@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="asciitilde" format="1">
+  <advance width="386"/>
+  <unicode hex="007E"/>
+  <outline>
+    <contour>
+      <point x="241" y="177" type="curve" smooth="yes"/>
+      <point x="290" y="177"/>
+      <point x="346" y="249"/>
+      <point x="346" y="269" type="curve" smooth="yes"/>
+      <point x="346" y="279"/>
+      <point x="334" y="286"/>
+      <point x="324" y="286" type="curve" smooth="yes"/>
+      <point x="312" y="286"/>
+      <point x="286" y="243"/>
+      <point x="253" y="243" type="curve" smooth="yes"/>
+      <point x="205" y="243"/>
+      <point x="188" y="275"/>
+      <point x="140" y="275" type="curve" smooth="yes"/>
+      <point x="91" y="275"/>
+      <point x="40" y="206"/>
+      <point x="40" y="183" type="curve" smooth="yes"/>
+      <point x="40" y="173"/>
+      <point x="53" y="166"/>
+      <point x="61" y="166" type="curve" smooth="yes"/>
+      <point x="71" y="166"/>
+      <point x="99" y="210"/>
+      <point x="130" y="210" type="curve" smooth="yes"/>
+      <point x="180" y="210"/>
+      <point x="191" y="177"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.typemytype.robofont.layerData</key>
+      <dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

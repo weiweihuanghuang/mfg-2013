@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="dotbelowcomb.cap" format="1">
+  <advance width="0"/>
+  <outline>
+    <contour>
+      <point x="85" y="-93" type="curve" smooth="yes"/>
+      <point x="55" y="-93"/>
+      <point x="30" y="-117"/>
+      <point x="30" y="-147" type="curve" smooth="yes"/>
+      <point x="30" y="-178"/>
+      <point x="54" y="-203"/>
+      <point x="85" y="-203" type="curve" smooth="yes"/>
+      <point x="116" y="-203"/>
+      <point x="140" y="-178"/>
+      <point x="140" y="-147" type="curve" smooth="yes"/>
+      <point x="140" y="-117"/>
+      <point x="115" y="-93"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.typemytype.robofont.layerData</key>
+      <dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

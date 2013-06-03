@@ -1,0 +1,87 @@
+ 
+% File parsed with ufo2mf (UFO to Metafont) by Simon Egli and Walter Egli  %
+
+
+
+% box dimension definition %
+
+beginfontchar("c", 7.43484210923 + (incx * (9.82-7.43484210923)), mean#, 0);
+
+
+% einbauen : mean# aus Tabelle mit buchstaben gruppierungen link,;
+% tabelle mit gruppierung: <glyph name="p" = mean# 
+% tabelle mit gruppierung: <glyph name="A" = cap# 
+
+
+ 
+% point coordinates font A
+
+px1l := 2.14u ; py1l := -4.0u ;
+px3l := 5.44u ; py3l := 8.2u ;
+px3r := 8.77u ; py3r := 13.66u ;
+px2r := 8.8u ; py2r := 7.09u ;
+px1r := 12.54u ; py1r := 1.55u ;
+
+% reading mid points font A
+
+.5(px3l + px3r) = x230;
+.5(py3l + py3r) = y230;
+.5(px2l + px2r) = x220;
+.5(py2l + py2r) = y220;
+.5(px1l + px1r) = x210;
+.5(py1l + py1r) = y210;
+
+% fake extra l an r for metafont
+
+px3l = x3Bl; py3l = y3Bl; 
+px3r = x3Br; py3r = y3Br; 
+px2l = x2Bl; py2l = y2Bl; 
+px2r = x2Br; py2r = y2Br; 
+px1l = x1Bl; py1l = y1Bl; 
+px1r = x1Br; py1r = y1Br; 
+
+% pen width
+
+dist3 := length (z3Bl-z3Br) ;
+dist2 := length (z2Bl-z2Br) ;
+dist1 := length (z1Bl-z1Br) ;
+ 
+% point coordinates font B
+
+
+% reading mid points font B
+
+
+% fake extra l an r for font B
+
+
+% pen width Font B
+
+
+% pen angle Font A
+
+ang3 := angle((z3Br + (incx * (z3Cr -z3Br))) - (z3Bl + (incx * (z3Cl -z3Bl))));
+ang2 := angle((z2Br + (incx * (z2Cr -z2Br))) - (z2Bl + (incx * (z2Cl -z2Bl))));
+ang1 := angle((z1Br + (incx * (z1Cr -z1Br))) - (z1Bl + (incx * (z1Cl -z1Bl))));
+
+% center points and transformation
+
+z3=(x230 + (incx * (x23A - x230)), y230 + (incx * (y23A - y230)));
+z2=(x220 + (incx * (x22A - x220)), y220 + (incx * (y22A - y220)));
+z1=(x210 + (incx * (x21A - x210)), y210 + (incx * (y21A - y210)));
+
+% pen positions 
+
+penpos3(dist3 + (incx * (px - dist3)), ang3);
+penpos2(dist2 + (incx * (px - dist2)), ang2);
+penpos1(dist1 + (incx * (px - dist1)), ang1);
+
+% pen strokes  
+penstroke  z1e ... 
+z3e;
+
+
+% pen labels
+penlabels(range 1 thru 99);
+endchar;
+

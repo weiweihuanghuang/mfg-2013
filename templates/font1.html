@@ -1,0 +1,16 @@
+$def with (fontlist,form)
+<html>
+<body>
+$for fontl in fontlist:
+  <p> $fontl <br> 
+
+<div style="position:absolute;bottom:200px;">
+<form action="" method="post">
+$:form.render()
+</form>
+</div>
+
+</body>
+</html>
+
+

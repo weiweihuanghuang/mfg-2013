@@ -1,0 +1,16 @@
+% parameter file 
+incx:=0;
+font_size:=12pt#;
+ht#:=10pt#; 
+u#:=1pt#; 
+px#:=.1pt#; 
+superness:=1.0; 
+mean#:=6.12pt#; 
+des#:=2.45pt#; 
+asc#:=0.8ht#; 
+cap#:=0.8ht#; 
+  
+input glyphs 
+bye 
+ 
+

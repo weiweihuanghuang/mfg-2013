@@ -1,0 +1,79 @@
+$def with (posts,master,fontsource)
+<h2>Glyph View</h2>
+
+<p> Selected Fonts : <br>
+$for fonts in fontsource:
+  $fonts <br>
+</p> 
+<p> Select Point to Edit <br>
+
+
+
+$for mast in master:
+  <p style="position:fixed;top:160px;"> 
+   $mast.FontName <br>
+   Interpolation $mast.Interpolation <br> 
+   superness $mast.superness <br>
+   penwidth $mast.penwidht <br>
+   unitwidht $mast.unitwidht <br>
+   xHeight $mast.xHeight <br>
+   this is index.html <br>
+  </p>
+
+
+<style type="text/css">
+
+
+@font-face {
+    font-family: 'metapolator';
+    src: url('/static/font-webfont.eot');
+    src: url('/static/font-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/font-webfont.woff') format('woff'),
+         url('/static/font-webfont.ttf') format('truetype'),
+         url('/static/font-webfont.svg#metapolator') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+h3_b {
+  position: absolute;
+                        bottom: -353px;
+                        left: 9px;
+ 			z-index:-3;
+                        font-family:  "metapolator";
+                        font-size: 1200px;
+                        color:grey;
+
+
+                                        }
+#center {
+  background: red;
+  bottom: 0;
+  height: 0px;
+  left: -300;    
+  margin: auto;
+  position: absolute;
+  top: 200;      
+  right: 0;
+  width: 0px;
+  -webkit-transform: translate(0%, 0%) scale(0.80, 0.80);
+}
+		
+</style>
+
+<div id="center" >
+
+<div>
+        <h3_b>
+p
+        </h3_b>
+</div>
+
+$for posti in posts:
+        <div  id="$posti.id" style="$posti.position">
+        <p><a href="/view/$posti.id" style="text-decoration:none">&#9673;$posti.PointNr</a></p> 
+        </div>
+</div>
+

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Gcommaaccent.sc</key>
+	<string>Gcommaaccent_.sc.glif</string>
+	<key>H</key>
+	<string>H_.glif</string>
+	<key>Kcommaaccent.sc</key>
+	<string>Kcommaaccent_.sc.glif</string>
+	<key>Lcommaaccent.sc</key>
+	<string>Lcommaaccent_.sc.glif</string>
+	<key>Ncommaaccent.sc</key>
+	<string>Ncommaaccent_.sc.glif</string>
+	<key>Rcommaaccent.sc</key>
+	<string>Rcommaaccent_.sc.glif</string>
+	<key>comma</key>
+	<string>comma.glif</string>
+	<key>exclam</key>
+	<string>exclam.glif</string>
+	<key>f</key>
+	<string>f.glif</string>
+	<key>gcommaaccent.sc</key>
+	<string>gcommaaccent.sc.glif</string>
+	<key>h</key>
+	<string>h.glif</string>
+	<key>kcommaaccent.sc</key>
+	<string>kcommaaccent.sc.glif</string>
+	<key>lcommaaccent.sc</key>
+	<string>lcommaaccent.sc.glif</string>
+	<key>n</key>
+	<string>n.glif</string>
+	<key>ncommaaccent.sc</key>
+	<string>ncommaaccent.sc.glif</string>
+	<key>o</key>
+	<string>o.glif</string>
+	<key>p</key>
+	<string>p.glif</string>
+	<key>rcommaaccent.sc</key>
+	<string>rcommaaccent.sc.glif</string>
+	<key>space</key>
+	<string>space.glif</string>
+</dict>
+</plist>
