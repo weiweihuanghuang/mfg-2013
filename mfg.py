@@ -20,6 +20,7 @@ t_globals = {
     'datestr': web.datestr
 }
 render = web.template.render('templates', base='base', globals=t_globals)
+###  classes
 
 class cFont:
      fontna = "oswald.ufo"
