@@ -23,7 +23,7 @@ CREATE TABLE glyphparam (
     glyphName VARCHAR(3),
     PointName VARCHAR(5),
     startp integer default 0,
-    superness float default 707, 
+    superness integer , 
     penwidth float,
     xHeight  float,
     cardinal VARCHAR(10), 
@@ -33,13 +33,13 @@ CREATE TABLE master (
     idmaster INT AUTO_INCREMENT,
     FontName TEXT,
     Interpolation float,
-    superness float,
+    superness integer,
     penwidht  float,
     unitwidht float,
     xHeight   float,
     primary key (idmaster)
 );
-insert into master (FontName,Interpolation,superness,penwidht,unitwidht,xHeight) Values ("My First Metapolator Font", 0.5,1.0,1.0,1.0,1.0);
+insert into master (FontName,Interpolation,superness,penwidht,unitwidht,xHeight) Values ("My First Metapolator Font", 0.5,1,1,1.0,1.0);
 insert into glyphoutline (id,GlyphName,PointNr,x,y) Values (1,'A','p1',20,0);
 insert into glyphoutline (id,Glyphname,PointNr,x,y) Values (2,'A','p2',139,0);
 insert into glyphoutline (id,GlyphName,PointNr,x,y) Values (3,'A','p3',257,295);

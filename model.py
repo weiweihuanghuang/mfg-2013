@@ -7,6 +7,7 @@ xmldoc = minidom.parse(glyphsource)
 itemlist = xmldoc.getElementsByTagName('point')
 advance = xmldoc.getElementsByTagName('advance')
 db = web.database(dbn='mysql', db='blog', user='root', pw='schnaegg' )
+#db = web.database(dbn='mysql', db='blog', user='walter', pw='' )
 
 def delFont(fontName,glyphNamel):
 
@@ -58,19 +59,17 @@ def putFont():
                startp = 0
 #  find superness , cardinal and all parameter 
 #
-            superness = 0
-            print im.value.find("superness"),im,len(im.value)
+            db.insert('glyphparam', id=inum,GlyphName=glyphName, PointName=nameval, startp=startp)
             if im.value.find("superness") > 0:
               iposa=im.value.find("superness") 
               ipose= im.value.find(",")
               if ipose > iposa :
-                superness = int(im.value[iposa+10:ipose])
+                superness = int(im.value[iposa+9:ipose])
               else :
                 ipose = len(im.value)
-                superness = int(im.value[iposa+10:ipose])
-            print "superness", superness
+                superness = int(im.value[iposa+9:ipose])
+              db.update('glyphparam', where='id=$inum and GlyphName="'+glyphName+'"', vars=locals(), superness=superness)
             cardinal = 0
-            db.insert('glyphparam', id=inum,GlyphName=glyphName, PointName=nameval, startp=startp, superness=superness, cardinal=cardinal)
         except :
            nameval = ""
            startp = 0
@@ -153,18 +152,24 @@ def writexml():
                  s.attributes['y'] = str(db_rows[0].y)
                  sname = str(db_rows[0].PointName)
                  if sname <> "None" : 
-                   qstrp = "SELECT startp from glyphparam where id="+str(inum) +" and Glyphname="+'"'+glyphName+'"'
+                   qstrp = "SELECT * from glyphparam where id="+str(inum) +" and Glyphname="+'"'+glyphName+'"'
                    db_rowparam = list(db.query(qstrp))
-		   if str(db_rowparam[0].startp) > '0':
-		      s.attributes['name'] = sname + ', start '
-                   else :
-		      s.attributes['name'] = sname
+                   nameattr = sname
 
-               
+		   if str(db_rowparam[0].startp) > '0':
+		     nameattr = nameattr + ', start '
+                   
+                   print " superness ",db_rowparam[0].superness 
+		   if str(db_rowparam[0].superness) != 'None':
+		     nameattr = nameattr + ',superness'+str(db_rowparam[0].superness)
+                    
+                   s.attributes['name'] = nameattr 
 
                  s.toxml()
              except :
                  print " db and script not consisten"
 #     with codecs.open("glyphs/e.glif", "w", "utf-8") as out:
-     with codecs.open("oswald.ufo/glyphs/"+glyphnameNew, "w", "utf-8") as out:
+#     with codecs.open("oswald.ufo/glyphs/"+glyphnameNew, "w", "utf-8") as out:
+     print "glyphsource", glyphsource
+     with codecs.open(glyphsource, "w", "utf-8") as out:
           xmldoc.writexml(out) 
