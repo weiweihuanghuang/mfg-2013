@@ -69,7 +69,7 @@ def putFont():
                 ipose = len(im.value)
                 superness = int(im.value[iposa+9:ipose])
               db.update('glyphparam', where='id=$inum and GlyphName="'+glyphName+'"', vars=locals(), superness=superness)
-            cardinal = 0
+    #        cardinal = 0
         except :
            nameval = ""
            startp = 0
@@ -110,13 +110,13 @@ def update_post(id, x, y):
     db.update('glyphoutline', where='id=$id and GlyphName="'+glyphName+'"', vars=locals(),
         x=x, y=y)
 
-def update_glyphparam(id, a, b, c, d):
+def update_glyphparam(id, a, b, c):
     db.update('glyphparam', where='id=$id and GlyphName="'+glyphName+'"', vars=locals(),
-        PointName=a, startp=b, superness=c, cardinal=d)
+        PointName=a, startp=b, superness=c)
 
-def insert_glyphparam(id, a, b, c, d):
+def insert_glyphparam(id, a, b, c):
     
-    db.insert('glyphparam', id=id,GlyphName=glyphName, PointName=a, startp=b, superness=c, cardinal=d)
+    db.insert('glyphparam', id=id,GlyphName=glyphName, PointName=a, startp=b, superness=c)
 
 def get_master():
     return db.query("SELECT FontName,Interpolation,superness,penwidht,unitwidht,xHeight from master where idmaster=1 ")

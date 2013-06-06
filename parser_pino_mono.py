@@ -752,7 +752,7 @@ for i in range (0,nnz-1) :
   zitemc = zzn[i-1]
 
   zeile =""
-  zeile = str(zzstart[i])+ " z"+str(zitem)+"e"+zzleft[i] +zzright[i] +zzup[i] +zzdown[i] +zzcycle[i]
+  zeile = str(zzstart[i])+ " z"+str(zitem)+"e"+zzleft[i] +zzright[i] +zzdown[i] +zzcycle[i]  ### confused with s up erness    +zzup[i] 
   zeileb =""
   zeileb = str(zzstart[i])
   if zzstart[i+1]=="" : 

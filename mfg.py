@@ -22,10 +22,13 @@ t_globals = {
 render = web.template.render('templates', base='base', globals=t_globals)
 ###  classes
 
+
+### preset font loading
+
 class cFont:
-     fontna = "oswald.ufo"
-     fontnb = "oswald.ufo"
-     glyphName = "c"
+     fontna = "GaramondSans.ufo"
+     fontnb = "GaramondSans.ufo"
+     glyphName = "p"
 
 class Index:
 
@@ -34,7 +37,8 @@ class Index:
         posts = model.get_posts()
         master = model.get_master()
         fontsource = [cFont.fontna,cFont.fontnb,cFont.glyphName]
-        return render.index(posts,master,fontsource)
+	webglyph = cFont.glyphName
+        return render.index(posts,master,fontsource,webglyph)
 
 
 class View:
@@ -61,12 +65,14 @@ class View:
         web.form.Textbox('superness',
             size=4, 
             description="superness"),
-        web.form.Dropdown(name='Cardinal',
-            args=['Up', 'Left', 'Down', 'Right'],
-	    value='Up'),
+ #       web.form.Dropdown(name='Cardinal',
+ #           args=['Up', 'Left', 'Down', 'Right'],
+#	    value='Up'),
         web.form.Dropdown(name='+ Parameter',
-            args=['Tension', 'Direction', 'Line', 'Pen1', 'Pen2', 'Stem', 'Baseline', 'X-Height', 'Cap', 'Ascender', 'Descender']), web.form.Checkbox('delete'), 
+            args=['Tension', 'Direction', 'Line', 'Pen1', 'Pen2', 'Stem', 'Baseline', 'X-Height', 'Cap', 'Ascender', 'Descender']), 
 
+#web.form.Checkbox('delete'), 
+		
 #            if Tension in args :
 #               formParam = web.form.Form(
 #               web.form.Textbox('Tension',
@@ -90,7 +96,8 @@ class View:
         if glyphparam != None :
            formParam.fill(glyphparam)
         master = model.get_master()
-        return render.view(posts,post,form,formParam,master)
+	webglyph = cFont.glyphName
+        return render.view(posts,post,form,formParam,master,webglyph)
 
     def POST(self, id):
         form = View.form()
@@ -99,23 +106,26 @@ class View:
         if not form.validates() :
             posts = model.get_posts()
             master = model.get_master()
-            return render.view(posts, post, form, formParam, master)
+	    webglyph = cFont.glyphName
+            return render.view(posts, post, form, formParam, master, webglyph)
         if form.d.PointName != None :
             if not formParam.validates() :
                 return render.view(posts, post, form, formParam, master)
             if model.get_glyphparam(int(id)) != None :
-                model.update_glyphparam(int(id),form.d.PointName, formParam.d.startp, formParam.d.superness, formParam.d.Cardinal)
+                model.update_glyphparam(int(id),form.d.PointName, formParam.d.startp, formParam.d.superness)
             else :
-                model.insert_glyphparam(int(id),form.d.PointName, formParam.d.startp, formParam.d.superness, formParam.d.Cardinal)
+                model.insert_glyphparam(int(id),form.d.PointName, formParam.d.startp, formParam.d.superness)
                 
         model.update_post(int(id), form.d.x, form.d.y)
         posts = model.get_posts()
         master = model.get_master()
+	webglyph = cFont.glyphName
+
         model.writexml()        
         commstr = "python ufo2mf.py " + cFont.fontna+"/glyphs " + cFont.fontnb+"/glyphs glyphs"
         os.system(commstr)
         os.system("sh makefont.sh")
-        return render.view(posts, post, form, formParam, master)
+        return render.view(posts, post, form, formParam, master, webglyph)
 
 class ViewFont:
     def GET(self):

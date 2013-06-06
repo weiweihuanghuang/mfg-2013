@@ -22,10 +22,10 @@ python param_script.py  > font.mf
 
 perl mf2pt1.pl --encoding=t1 --comment="Copyright (c) 2013" --family="font" --nofixedpitch --fullname="font" --name="font-regular" --weight="regular" font.mf
 
-sfnt2woff font.otf && ~/Sites/mfg6/ttf2eot font.ttf > font.eot
+sfnt2woff font.otf && ttf2eot font.ttf > font.eot
 sfnt2woff font.otf > font.woff
 
-mv font.eot ~/Sites/mfg6/static/font-webfont.eot
-mv font.woff ~/Sites/mfg6/static/font-webfont.woff
-mv font.ttf ~/Sites/mfg6/static/font-webfont.ttf
-mv font.otf ~/Sites/mfg6/static/font.otf
+mv font.eot static/font-webfont.eot
+mv font.woff static/font-webfont.woff
+mv font.ttf static/font-webfont.ttf
+mv font.otf static/font.otf
