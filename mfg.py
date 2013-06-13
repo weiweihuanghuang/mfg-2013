@@ -1,4 +1,4 @@
-""" Basic metfont point interface using webpy  """
+""" Basic metafont point interface using webpy  """
 import web
 import model
 import os
@@ -12,6 +12,7 @@ urls = (
     '/edit/(\d+)', 'Edit',
     '/viewfont/', 'ViewFont',
     '/font1/', 'Font1',
+    '/font2/', 'GlobalParam',
 )
 
 
@@ -27,9 +28,9 @@ render = web.template.render('templates', base='base', globals=t_globals)
 ### preset font loading
 
 class cFont:
-     fontna = "GaramondSans.ufo"
-     fontnb = "GaramondSans.ufo"
-     glyphName = "n"
+     fontna = ""
+     fontnb = ""
+     glyphName =""
 
 class Index:
 
@@ -170,6 +171,45 @@ class Font1:
         model.putFont()
         fontlist = [f for f in glob.glob("*.ufo")]
         return render.font1(fontlist,form)
+
+class GlobalParam:
+    form = web.form.Form(
+        web.form.Textbox('superness', web.form.notnull, 
+            size=3,
+            description="superness", value="1"),
+        web.form.Textbox('Interpolation', web.form.notnull, 
+            size=3,
+            description="Interpolation", value="0.5"),
+        web.form.Textbox('penwidth', web.form.notnull, 
+            size=3,
+            description="penwidth", value="1.0"),
+        web.form.Textbox('unitwidth', web.form.notnull, 
+            size=3,
+            description="unitwidth", value="1.0"),
+        web.form.Textbox('xHeight', web.form.notnull, 
+            size=3,
+            description="xHeight", value="1.0"),
+        web.form.Button('save'),
+        )
+    def GET(self):
+        master = list(model.get_master())
+        form = self.form()
+        if master != None:
+           form.fill({'superness':master[0].superness,'Interpolation':master[0].Interpolation,'penwidth':master[0].penwidth,'unitwidth':master[0].unitwidth,'xHeight':master[0].xHeight})
+        return render.font2(form)
+
+    def POST (self):
+        form = GlobalParam.form()
+        form.fill()
+        model.update_master(1, form.d.superness, form.d.Interpolation, form.d.penwidth, form.d.unitwidth, form.d.xHeight)
+
+        return render.font2(form)
+
+app = web.application(urls, globals())
+
+if __name__ == '__main__':
+    app.run()
+
 
 app = web.application(urls, globals())
 

@@ -2,11 +2,8 @@ import web, datetime,mfg
 from xml.dom import minidom
 import codecs
 
-glyphsource = "test.ufo/glyphs/n.glif"
-xmldoc = minidom.parse(glyphsource)
-itemlist = xmldoc.getElementsByTagName('point')
-advance = xmldoc.getElementsByTagName('advance')
-db = web.database(dbn='mysql', db='blog', user='root', pw='schnaegg' )
+#db = web.database(dbn='mysql', db='blog', user='root', pw='schnaegg' )
+db = web.database(dbn='mysql', db='blog', user='walter', pw='' )
 
 def delFont(fontName,glyphNamel):
 
@@ -128,7 +125,7 @@ def insert_glyphparam(id, a, b, c):
     db.insert('glyphparam', id=id,GlyphName=glyphName, PointName=a, startp=b, superness=c)
 
 def get_master():
-    return db.query("SELECT FontName,Interpolation,superness,penwidht,unitwidht,xHeight from master where idmaster=1 ")
+    return db.query("SELECT FontName,superness,Interpolation,penwidth,unitwidth,xHeight from master where idmaster=1 ")
 
 def put_master():
     t=db.transaction()
@@ -143,6 +140,12 @@ def put_master():
        t.commit()
 
     return None    
+
+def update_master(id, a, b, c, d, e):
+#    print 'update_master',id,a,b,c,d,e    
+    db.update('master', where='idmaster = $id', vars=locals(), 
+      superness = a, Interpolation = b, penwidth = c, unitwidth = d, xHeight = e)
+    return None
 
 def writexml():
      glyphName = mfg.cFont.glyphName 

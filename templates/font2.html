@@ -1,28 +1,8 @@
-$def with (posts,master,fontsource,webglyph)
-<h2>Glyph View</h2>
+$def with (form)
+<html>
+<body>
+<p> global parameters </p>
 
-<p> Selected Fonts : <br>
-$for fonts in fontsource:
-  $fonts <br>
-</p> 
-
-$for mast in master:
-  <p> 
-   $mast.FontName <br>
-   Interpolation $mast.Interpolation <br> 
-   superness $mast.superness <br>
-   penwidth $mast.penwidth <br>
-   unitwidht $mast.unitwidth <br>
-   xHeight $mast.xHeight <br>
-   this is index.html <br>
-  </p>
-
-<br>
-<p style="color:blue;">Click on point to start Editor or <br>
-choose Font in Settings  <br>
- <br>
-Optimized for Chrome
-</p>
 
 <style>@font-face {
 	font-family:'metapolator';
@@ -100,17 +80,18 @@ table,th,td {
 </style>
 
 
-<div id="center" >
 
 <div>
-        <h3_b>
-$webglyph
-        </h3_b>
+<form action="" method="post">
+$:form.render()
+</form>
 </div>
+<div>
+<p>
+<a href="/font2/">global parameter set</a>
+</p>
+<div>
+</body>
+</html>
 
-$for posti in posts:
-        <div  id="$posti.id" style="$posti.position">
-        <p><a href="/view/$posti.id" >&#9673;$posti.PointNr</a></p> 
-        </div>
-</div>
 

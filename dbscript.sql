@@ -34,12 +34,12 @@ CREATE TABLE master (
     FontName TEXT,
     Interpolation float,
     superness integer,
-    penwidht  float,
-    unitwidht float,
+    penwidth  float,
+    unitwidth float,
     xHeight   float,
     primary key (idmaster)
 );
-insert into master (FontName,Interpolation,superness,penwidht,unitwidht,xHeight) Values ("My First Metapolator Font", 0.5,1,1,1.0,1.0);
+insert into master (FontName,Interpolation,superness,penwidth,unitwidth,xHeight) Values ("My First Metapolator Font", 0.5,1,1,1.0,1.0);
 insert into glyphoutline (id,GlyphName,PointNr,x,y) Values (1,'A','p1',20,0);
 insert into glyphoutline (id,Glyphname,PointNr,x,y) Values (2,'A','p2',139,0);
 insert into glyphoutline (id,GlyphName,PointNr,x,y) Values (3,'A','p3',257,295);
