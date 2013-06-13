@@ -23,12 +23,13 @@ render = web.template.render('templates', base='base', globals=t_globals)
 ###  classes
 
 
+
 ### preset font loading
 
 class cFont:
      fontna = "GaramondSans.ufo"
      fontnb = "GaramondSans.ufo"
-     glyphName = "p"
+     glyphName = "n"
 
 class Index:
 
@@ -123,6 +124,7 @@ class View:
 
         model.writexml()        
         commstr = "python ufo2mf.py " + cFont.fontna+"/glyphs " + cFont.fontnb+"/glyphs glyphs"
+	print commstr
         os.system(commstr)
         os.system("sh makefont.sh")
         return render.view(posts, post, form, formParam, master, webglyph)

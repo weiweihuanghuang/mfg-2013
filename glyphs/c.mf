@@ -5,7 +5,7 @@
 
 % box dimension definition %
 
-beginfontchar("c", 7.43484210923 + (incx * (9.82-7.43484210923)), mean#, 0);
+beginfontchar("n", 5.67 + (incx * (5.67-5.67)), mean#, 0);
 
 
 % einbauen : mean# aus Tabelle mit buchstaben gruppierungen link,;
@@ -48,15 +48,35 @@ dist1 := length (z1Bl-z1Br) ;
  
 % point coordinates font B
 
+ppx1l := 2.14u ; ppy1l := -4.0u ;
+ppx3l := 5.44u ; ppy3l := 8.2u ;
+ppx3r := 8.77u ; ppy3r := 13.66u ;
+ppx2r := 8.8u ; ppy2r := 7.09u ;
+ppx1r := 12.54u ; ppy1r := 1.55u ;
 
 % reading mid points font B
 
+.5(ppx3l + ppx3r) = x23A;
+.5(ppy3l + ppy3r) = y23A;
+.5(ppx2l + ppx2r) = x22A;
+.5(ppy2l + ppy2r) = y22A;
+.5(ppx1l + ppx1r) = x21A;
+.5(ppy1l + ppy1r) = y21A;
 
 % fake extra l an r for font B
 
+ppx3l = x3Cl; ppy3l = y3Cl; 
+ppx3r = x3Cr; ppy3r = y3Cr; 
+ppx2l = x2Cl; ppy2l = y2Cl; 
+ppx2r = x2Cr; ppy2r = y2Cr; 
+ppx1l = x1Cl; ppy1l = y1Cl; 
+ppx1r = x1Cr; ppy1r = y1Cr; 
 
 % pen width Font B
 
+dist3B := length (z3Cl-z3Cr) ;
+dist2B := length (z2Cl-z2Cr) ;
+dist1B := length (z1Cl-z1Cr) ;
 
 % pen angle Font A
 

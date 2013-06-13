@@ -1,6 +1,12 @@
 $def with (posts,post,form,formparam,master,webglyph)
 
 <h2>Glyph Edit</h2>
+<form action="">
+	<select name="parameters">
+		<option value="metapolation">Metapolation</option>
+		<option value="">Superness</option>
+	</select>
+</form>
 
 $for mast in master:
   <p> $mast.FontName <br>
@@ -13,76 +19,120 @@ $for mast in master:
  <br>
 </p>
 
-<style type="text/css">
 
-@font-face {
-    font-family: 'metapolator';
-    src: url('/static/font-webfont.eot');
-    src: url('/static/font-webfont.eot?#iefix') format('embedded-opentype'),
-         url('/static/font-webfont.woff') format('woff'),
-         url('/static/font-webfont.ttf') format('truetype'),
-         url('/static/font-webfont.svg#metapolator') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
+<style>@font-face {
+	font-family:'metapolator';
+	src:url('/static/font-webfont.eot');
+	src:url('/static/font-webfont.eot?#iefix') format('embedded-opentype'),url('/static/font-webfont.woff') format('woff'),url('/static/font-webfont.ttf') format('truetype'),url('/static/font-webfont.svg#metapolator') format('svg');
+	font-weight:normal;
+	font-style:normal;
 }
-
 h3_b {
-                        position: absolute;
-                        bottom: -359px;
-                        left: 9px;
- 			z-index:-3;
-                        font-family:  "metapolator";
-                        font-size: 1200px;
-                        color:grey;
-                                        }
-
+	position:absolute;
+	z-index:-5;
+	bottom:-350px;
+	left:9px;
+	font-family:"metapolator";
+	font-size:1200px;
+	color:grey;
+}
+h3_a {
+	position:absolute;
+	z-index:-5;
+	bottom:-359px;
+	right:9px;
+	font-family:"metapolator";
+	font-size:1200px;
+	color:grey;
+}
+h3_c {
+	position:absolute;
+	z-index:-5;
+	bottom:-350px;
+	left:619px;
+	font-family:"metapolator";
+	font-size:1200px;
+	color:grey;
+}
+p,h2,#menu,table,th,td,#ruler {
+	font:normal 15px/19px "Courier New",Courier,mono;
+	z-index:-5;
+}
+h2 {
+	color:red;
+}
 #center {
-  background: red;
-  bottom: 0;
-  height: 0px;
-  left: -300;    
-  margin: auto;
-  position: absolute;
-  top: 200;      
-  right: 0;
-  width: 0px;
-  -webkit-transform: translate(0%, 0%) scale(0.80, 0.80);
+	background:red;
+	bottom:0;
+	height:0px;
+	left:-300;
+	margin:auto;
+	position:absolute;
+	top:200;
+	right:0;
+	width:0px;
+	-webkit-transform:translate(0%,0%) scale(0.80,0.80);
 }
-
-
+#menu {
+	position:relative;
+	z-index:5;
+	width:200px;
+	float:right;
+	color:red;
+}
+a:visited {
+		color:inherit;
+	text-decoration:none;
+}
 a:link {
-   color:inherit;
+		color:inherit;
+	text-decoration:none;
 }
-
-
-					
+table,th,td {
+	width:200px;
+	text-align:left;
+	color: red;
+}
 </style>
 
-
-
-
-
-<div id="center" >
-
-
-<div>
-        <h3_b>
-$webglyph
-        </h3_b>
-</div>
-
+<div id="center">
+	<div class="ruler" style="position:absolute;left:0px;bottom: -359px;color:pink;">
+		<div style="border-left:1px solid pink;height:2048px">
+		</div>
+		&larr;0
+	</div>
+	<div>
+		<h3_a>
+		n </h3_a>
+	</div>
+	<div>
+		<h3_b>
+$webglyph </h3_b>
+	</div>
+	<div>
+		<h3_c>
+		o </h3_c>
+	</div>
+	<div id="ruler" style="position:absolute;left:550px;bottom: -359px;color:pink;">
+		<div id="ruler" style="top-410;border-right:1px solid pink;height:2048px">
+		</div>
+		1002&rarr;
+	</div>
 $for posti in posts:
-        <div  id="$posti.id" style="$posti.position">
-        <p><a href="/view/$posti.id" style="text-decoration:none">&#9673;$posti.PointNr</a></p> 
-        </div>
+	<div id="$posti.id" style="$posti.position">
+		<p>
+			<a href="/view/$posti.id" style="text-decoration:none">&#9678;$posti.PointNr</a>
+		</p>
+	</div>
 </div>
+<div>
+	<form action="" method="post">
+$:form.render() 
+$if form.d.PointName > "0" : 
+	$:formparam.render()
+	</div>
 
-
-<div style="position:absolute;bottom:20px;">
-<form action="" method="post">
-$:form.render()
-$if form.d.PointName > "0" :
-   $:formparam.render()
-</div>
+<p style="color:red"> &#9678; z points </p>
+<p style="color:blue"> &#9678; undefined points </p>
+<p style="color:CCFFFF"> &#9678; control points </p>
 

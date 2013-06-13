@@ -8,87 +8,84 @@
       <point pointNo="p3" x="178" y="378"/>
       <point name="z4r" pointNo="p4" smooth="yes" type="curve" x="223" y="378"/>
       <point pointNo="p5" x="310" y="378"/>
-      <point pointNo="p6" x="330" y="327"/>
-      <point name="z5r" pointNo="p7" type="curve" x="329" y="234"/>
-      <point pointNo="p8" x="328" y="185"/>
-      <point pointNo="p9" x="298" y="45"/>
-      <point name="z6r" pointNo="p10" smooth="yes" type="curve" x="220" y="45"/>
-      <point pointNo="p11" x="183" y="45"/>
+      <point pointNo="p6" x="331" y="323"/>
+      <point name="z5r,superness0" pointNo="p7" smooth="yes" type="curve" x="330" y="129"/>
+      <point pointNo="p8" x="329" y="179"/>
+      <point pointNo="p9" x="284" y="61"/>
+      <point name="" pointNo="p10" smooth="yes" type="curve" x="306" y="61"/>
+      <point pointNo="p11" x="169" y="61"/>
       <point pointNo="p12" x="148" y="70"/>
-      <point name="z7r" pointNo="p13" smooth="yes" type="curve" x="148" y="107"/>
+      <point name="z6r,superness0" pointNo="p13" smooth="yes" type="curve" x="148" y="107"/>
     </contour>
     <contour>
-      <point pointNo="p14" smooth="yes" type="line" x="65" y="-161"/>
+      <point name="z1l, start ,superness0" pointNo="p14" smooth="yes" type="line" x="65" y="-161"/>
       <point pointNo="p15" x="65" y="-186"/>
-      <point pointNo="p16" x="60" y="-210"/>
-      <point pointNo="p17" smooth="yes" type="curve" x="47" y="-214"/>
-      <point pointNo="p18" x="20" y="-222"/>
+      <point pointNo="p16" x="57" y="-195"/>
+      <point name="" pointNo="p17" smooth="yes" type="curve" x="46" y="-206"/>
+      <point pointNo="p18" x="38" y="-214"/>
       <point pointNo="p19" x="3" y="-230"/>
-      <point pointNo="p20" smooth="yes" type="curve" x="3" y="-240"/>
+      <point name="" pointNo="p20" type="curve" x="3" y="-240"/>
       <point pointNo="p21" x="3" y="-250"/>
       <point pointNo="p22" x="12" y="-260"/>
-      <point pointNo="p23" smooth="yes" type="curve" x="38" y="-260"/>
+      <point name="" pointNo="p23" smooth="yes" type="curve" x="38" y="-260"/>
       <point pointNo="p24" x="131" y="-260"/>
       <point pointNo="p25" x="191" y="-273"/>
-      <point pointNo="p26" smooth="yes" type="curve" x="225" y="-273"/>
+      <point name=", start " pointNo="p26" smooth="yes" type="curve" x="225" y="-273"/>
       <point pointNo="p27" x="251" y="-273"/>
       <point pointNo="p28" x="259" y="-263"/>
-      <point pointNo="p29" smooth="yes" type="curve" x="259" y="-253"/>
+      <point name="" pointNo="p29" smooth="yes" type="curve" x="259" y="-253"/>
       <point pointNo="p30" x="259" y="-243"/>
       <point pointNo="p31" x="243" y="-235"/>
-      <point pointNo="p32" smooth="yes" type="curve" x="216" y="-227"/>
+      <point name="" pointNo="p32" smooth="yes" type="curve" x="216" y="-227"/>
       <point pointNo="p33" x="162" y="-212"/>
       <point pointNo="p34" x="148" y="-204"/>
-      <point pointNo="p35" smooth="yes" type="curve" x="148" y="-169"/>
-      <point pointNo="p36" smooth="yes" type="line" x="148" y="-8"/>
+      <point name="z1r, start ,superness0" pointNo="p35" smooth="yes" type="curve" x="148" y="-169"/>
+      <point name="z6l,superness0" pointNo="p36" smooth="yes" type="line" x="148" y="50"/>
       <point pointNo="p37" x="148" y="1"/>
       <point pointNo="p38" x="149" y="6"/>
-      <point pointNo="p39" smooth="yes" type="curve" x="158" y="6"/>
+      <point name="" pointNo="p39" smooth="yes" type="curve" x="158" y="6"/>
       <point pointNo="p40" x="162" y="6"/>
       <point pointNo="p41" x="177" y="-6"/>
-      <point name="z6l" pointNo="p42" smooth="yes" type="curve" x="197" y="-6"/>
+      <point name="" pointNo="p42" smooth="yes" type="curve" x="197" y="-6"/>
       <point pointNo="p43" x="330" y="-6"/>
-      <point name=", start " pointNo="p44" x="425" y="121"/>
-      <point name="z5l,superness0" pointNo="p45" smooth="yes" type="curve" x="435" y="157"/>
-      <point name=", start " pointNo="p46" x="425" y="341"/>
-      <point pointNo="p47" x="358" y="430"/>
-      <point name="z4l" pointNo="p48" smooth="yes" type="curve" x="275" y="430"/>
-      <point pointNo="p49" x="230" y="430"/>
+      <point name="" pointNo="p44" x="315" y="121"/>
+      <point name="z5l,superness0" pointNo="p45" smooth="yes" type="curve" x="425" y="129"/>
+      <point name="" pointNo="p46" x="315" y="341"/>
+      <point pointNo="p47" x="365" y="461"/>
+      <point name="z4l,superness0" pointNo="p48" smooth="yes" type="curve" x="482" y="361"/>
+      <point pointNo="p49" x="237" y="461"/>
       <point pointNo="p50" x="178" y="406"/>
-      <point pointNo="p51" smooth="yes" type="curve" x="162" y="390"/>
+      <point name="" pointNo="p51" smooth="yes" type="curve" x="162" y="390"/>
       <point pointNo="p52" x="154" y="382"/>
       <point pointNo="p53" x="149" y="387"/>
-      <point pointNo="p54" type="curve" x="148" y="392"/>
-      <point pointNo="p55" smooth="yes" type="line" x="148" y="410"/>
-      <point pointNo="p56" x="148" y="429"/>
+      <point name="" pointNo="p54" type="curve" x="148" y="392"/>
+      <point name="z2r" pointNo="p55" smooth="yes" type="line" x="148" y="439"/>
+      <point pointNo="p56" x="148" y="458"/>
       <point pointNo="p57" x="148" y="438"/>
-      <point name=", start " pointNo="p58" smooth="yes" type="curve" x="136" y="438"/>
+      <point name="" pointNo="p58" smooth="yes" type="curve" x="136" y="438"/>
       <point pointNo="p59" x="126" y="438"/>
       <point pointNo="p60" x="43" y="405"/>
-      <point pointNo="p61" type="curve" x="32" y="399"/>
+      <point name="" pointNo="p61" type="curve" x="32" y="399"/>
       <point pointNo="p62" x="19" y="393"/>
       <point pointNo="p63" x="3" y="385"/>
-      <point pointNo="p64" smooth="yes" type="curve" x="3" y="374"/>
+      <point name="" pointNo="p64" smooth="yes" type="curve" x="3" y="374"/>
       <point pointNo="p65" x="3" y="363"/>
       <point pointNo="p66" x="13" y="357"/>
-      <point pointNo="p67" smooth="yes" type="curve" x="24" y="353"/>
+      <point name="" pointNo="p67" smooth="yes" type="curve" x="24" y="353"/>
       <point pointNo="p68" x="48" y="344"/>
       <point pointNo="p69" x="65" y="319"/>
-      <point pointNo="p70" smooth="yes" type="curve" x="65" y="302"/>
+      <point name="" pointNo="p70" smooth="yes" type="curve" x="65" y="302"/>
     </contour>
     <contour>
-      <point name="z1l, start " pointNo="p71" type="move" x="65" y="-274"/>
-      <point name="z1r" pointNo="p72" type="line" x="148" y="-274"/>
+      <point name=", start ,superness0" pointNo="p71" type="move" x="65" y="-274"/>
+      <point name=",superness0" pointNo="p72" type="line" x="148" y="-274"/>
     </contour>
     <contour>
       <point name="z2l" pointNo="p73" type="move" x="65" y="405"/>
-      <point name="z2r" pointNo="p74" type="line" x="148" y="405"/>
+      <point name="" pointNo="p74" type="line" x="148" y="405"/>
     </contour>
     <contour>
-      <point name="z3l, start " pointNo="p75" type="move" x="115" y="303"/>
-    </contour>
-    <contour>
-      <point name="z7l" pointNo="p76" type="move" x="104" y="110"/>
+      <point name="z3l, start " pointNo="p75" type="move" x="107" y="312"/>
     </contour>
   </outline>
   <lib>

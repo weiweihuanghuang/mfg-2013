@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="o" format="1">
+  <advance width="500"/>
+  <unicode hex="006F"/>
+  <outline>
+    <contour>
+      <point x="45" y="-33" type="line" name="z2l,superness0"/>
+      <point x="457" y="448" type="line" name="z2r,superness0"/>
+      <point x="436" y="87" type="line" name="z1r,superness0"/>
+      <point x="400" y="48" type="line" name="z1l, start ,superness0"/>
+    </contour>
+    <contour>
+      <point x="31" y="115" type="line" name="z3l,superness0"/>
+      <point x="73" y="353" type="line" name="z4l,superness0"/>
+      <point x="87" y="369" type="line" name="z4r,superness0"/>
+      <point x="403" y="454" type="line" name="z3r,superness0"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.typemytype.robofont.layerData</key>
+      <dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

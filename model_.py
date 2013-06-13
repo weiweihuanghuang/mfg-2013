@@ -7,6 +7,7 @@ xmldoc = minidom.parse(glyphsource)
 itemlist = xmldoc.getElementsByTagName('point')
 advance = xmldoc.getElementsByTagName('advance')
 db = web.database(dbn='mysql', db='blog', user='root', pw='schnaegg' )
+#db = web.database(dbn='mysql', db='blog', user='walter', pw='' )
 
 def delFont(fontName,glyphNamel):
 
@@ -93,14 +94,12 @@ def get_posts():
     return db.query("SELECT IFNULL(PointName, '') PointNr,x,y,concat('position:absolute;left:',0+x,'px;top:',0-y,'px; ',IF (PointName > '', 'color:red;', IF (contrp > 0 , 'z-index:-1;color:blue;', 'z-index:-2;color:CCFFFF;')) ) position, id from vglyphoutline where GlyphName="+'"'+glyphName+'"')
 
 def get_post(id):
-    glyphName = mfg.cFont.glyphName 
     try:
         return db.select('vglyphoutline', where='id=$id and glyphName='+'"'+glyphName+'"', vars=locals())[0]
     except IndexError:
         return None
 
 def get_glyphparam(id):
-    glyphName = mfg.cFont.glyphName 
     try:
         return db.select('glyphparam', where='id=$id and GlyphName='+'"'+glyphName+'"', vars=locals())[0]
     except IndexError:
@@ -108,23 +107,15 @@ def get_glyphparam(id):
 
 
 def update_post(id, x, y):
-    glyphName = mfg.cFont.glyphName 
     db.update('glyphoutline', where='id=$id and GlyphName="'+glyphName+'"', vars=locals(),
         x=x, y=y)
 
 def update_glyphparam(id, a, b, c):
-    glyphName = mfg.cFont.glyphName 
-    bb = b
-    if c != '' :
-      cc = c
-    else:
-      cc = None
     db.update('glyphparam', where='id=$id and GlyphName="'+glyphName+'"', vars=locals(),
-        pointName=a, startp=bb, superness=cc)
+        PointName=a, startp=b, superness=c)
 
 def insert_glyphparam(id, a, b, c):
     
-    glyphName = mfg.cFont.glyphName 
     db.insert('glyphparam', id=id,GlyphName=glyphName, PointName=a, startp=b, superness=c)
 
 def get_master():
@@ -145,11 +136,11 @@ def put_master():
     return None    
 
 def writexml():
-     glyphName = mfg.cFont.glyphName 
-     glyphsource = mfg.cFont.fontna + "/glyphs/"+glyphName+".glif"
      inum = 0
+     global glyphnameNew
 #     db_rows=list(db.query("SELECT PointName,x,y from glyphoutline"))
 #    we assume the number of rows from the db >= the number of the itemlist 
+     print "newglyphname",glyphnameNew
      for  s in itemlist:
              inum = inum + 1
              qstr = "SELECT PointNr,x,y,PointName from vglyphoutline where id="+str(inum) +" and Glyphname="+'"'+glyphName+'"'
@@ -177,6 +168,8 @@ def writexml():
                  s.toxml()
              except :
                  print " db and script not consisten"
+#     with codecs.open("glyphs/e.glif", "w", "utf-8") as out:
+#     with codecs.open("oswald.ufo/glyphs/"+glyphnameNew, "w", "utf-8") as out:
      print "glyphsource", glyphsource
      with codecs.open(glyphsource, "w", "utf-8") as out:
           xmldoc.writexml(out) 

@@ -1,0 +1,17 @@
+This is MetaPost, version 1.504 (kpathsea version 6.1.0)  13 JUN 2013 09:23
+**\mode:=localfont; mag:=83.6458333333333; bpppix 0.02; nonstopmode; input font
+.mf
+(mf2pt1.mp (/usr/local/texlive/2012/texmf-dist/metapost/base/mfplain.mp
+Preloading the plain base, version 0.99: preliminaries,
+ basic constants and mathematical macros,
+ macros for converting units,
+ macros and tables for various modes of operation,
+ macros for drawing and filling,
+ macros for proof labels and rules,
+ macros for character and font administration,
+and a few last-minute items.)))
+(./font.mf (./glyphs.mf (./glyphlist.mf (./glyphs/n.mf [110]) (./glyphs/o.mf
+[111]) (./glyphs/p.mf [112])))
+Font metrics written on font.tfm.
+3 output files written: font.110 .. font.112
+

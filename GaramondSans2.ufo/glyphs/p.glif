@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="p" format="1">
+  <advance width="445"/>
+  <unicode hex="0070"/>
+  <outline>
+    <contour>
+      <point x="148" y="294" type="line" smooth="yes" name="z3r"/>
+      <point x="148" y="338"/>
+      <point x="161" y="292"/>
+      <point x="206" y="292" type="curve" smooth="yes" name="z4r"/>
+      <point x="293" y="292"/>
+      <point x="239" y="369"/>
+      <point x="238" y="175" type="curve" smooth="yes" name="z5r,superness0"/>
+      <point x="237" y="225"/>
+      <point x="210" y="100"/>
+      <point x="232" y="100" type="curve" smooth="yes" name=""/>
+      <point x="95" y="100"/>
+      <point x="148" y="70"/>
+      <point x="148" y="107" type="curve" smooth="yes" name="z6r,superness0"/>
+    </contour>
+    <contour>
+      <point x="65" y="-161" type="line" smooth="yes" name="z1l, start ,superness0"/>
+      <point x="65" y="-186"/>
+      <point x="57" y="-195"/>
+      <point x="46" y="-206" type="curve" smooth="yes" name=""/>
+      <point x="38" y="-214"/>
+      <point x="3" y="-230"/>
+      <point x="3" y="-240" type="curve" name=""/>
+      <point x="3" y="-250"/>
+      <point x="12" y="-260"/>
+      <point x="38" y="-260" type="curve" smooth="yes" name=""/>
+      <point x="131" y="-260"/>
+      <point x="191" y="-273"/>
+      <point x="225" y="-273" type="curve" smooth="yes" name=", start "/>
+      <point x="251" y="-273"/>
+      <point x="259" y="-263"/>
+      <point x="259" y="-253" type="curve" smooth="yes" name=""/>
+      <point x="259" y="-243"/>
+      <point x="243" y="-235"/>
+      <point x="216" y="-227" type="curve" smooth="yes" name=""/>
+      <point x="162" y="-212"/>
+      <point x="148" y="-204"/>
+      <point x="148" y="-169" type="curve" smooth="yes" name="z1r, start ,superness0"/>
+      <point x="148" y="50" type="line" smooth="yes" name="z6l,superness0"/>
+      <point x="148" y="1"/>
+      <point x="149" y="6"/>
+      <point x="158" y="6" type="curve" smooth="yes" name=""/>
+      <point x="162" y="6"/>
+      <point x="177" y="-6"/>
+      <point x="197" y="-6" type="curve" smooth="yes" name=""/>
+      <point x="330" y="-6"/>
+      <point x="425" y="121" name=""/>
+      <point x="535" y="129" type="curve" smooth="yes" name="z5l,superness0"/>
+      <point x="425" y="341" name=""/>
+      <point x="461" y="532"/>
+      <point x="378" y="532" type="curve" smooth="yes" name="z4l,superness0"/>
+      <point x="333" y="532"/>
+      <point x="178" y="406"/>
+      <point x="162" y="390" type="curve" smooth="yes" name=""/>
+      <point x="154" y="382"/>
+      <point x="149" y="387"/>
+      <point x="148" y="392" type="curve" name=""/>
+      <point x="148" y="439" type="line" smooth="yes" name="z2r"/>
+      <point x="148" y="458"/>
+      <point x="148" y="438"/>
+      <point x="136" y="438" type="curve" smooth="yes" name=""/>
+      <point x="126" y="438"/>
+      <point x="43" y="405"/>
+      <point x="32" y="399" type="curve" name=""/>
+      <point x="19" y="393"/>
+      <point x="3" y="385"/>
+      <point x="3" y="374" type="curve" smooth="yes" name=""/>
+      <point x="3" y="363"/>
+      <point x="13" y="357"/>
+      <point x="24" y="353" type="curve" smooth="yes" name=""/>
+      <point x="48" y="344"/>
+      <point x="65" y="319"/>
+      <point x="65" y="302" type="curve" smooth="yes" name=""/>
+    </contour>
+    <contour>
+      <point x="65" y="-274" type="move" name=", start ,superness0"/>
+      <point x="148" y="-274" type="line" name=",superness0"/>
+    </contour>
+    <contour>
+      <point x="65" y="405" type="move" name="z2l"/>
+      <point x="148" y="405" type="line" name=""/>
+    </contour>
+    <contour>
+      <point x="107" y="312" type="move" name="z3l, start "/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.typemytype.robofont.guides</key>
+      <array>
+        <dict>
+          <key>angle</key>
+          <real>90.0</real>
+          <key>isGlobal</key>
+          <false/>
+          <key>magnetic</key>
+          <integer>5</integer>
+          <key>name</key>
+          <string></string>
+          <key>x</key>
+          <integer>65</integer>
+          <key>y</key>
+          <integer>-161</integer>
+        </dict>
+        <dict>
+          <key>angle</key>
+          <real>90.0</real>
+          <key>isGlobal</key>
+          <false/>
+          <key>magnetic</key>
+          <integer>5</integer>
+          <key>name</key>
+          <string></string>
+          <key>x</key>
+          <integer>148</integer>
+          <key>y</key>
+          <integer>-169</integer>
+        </dict>
+        <dict>
+          <key>angle</key>
+          <integer>0</integer>
+          <key>isGlobal</key>
+          <false/>
+          <key>magnetic</key>
+          <integer>5</integer>
+          <key>name</key>
+          <string></string>
+          <key>x</key>
+          <real>148.0</real>
+          <key>y</key>
+          <real>294.0</real>
+        </dict>
+      </array>
+      <key>com.typemytype.robofont.layerData</key>
+      <dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

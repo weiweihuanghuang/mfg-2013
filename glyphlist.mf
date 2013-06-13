@@ -7,7 +7,7 @@
 %input glyphs/e.mf
 %input glyphs/f.mf
 %input glyphs/g.mf
-%input glyphs/n.mf
-%input glyphs/o.mf
+input glyphs/n.mf
+input glyphs/o.mf
 input glyphs/p.mf
 %input glyphs/H_.mf
