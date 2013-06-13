@@ -33,7 +33,7 @@ CREATE TABLE master (
     idmaster INT AUTO_INCREMENT,
     FontName TEXT,
     Interpolation float,
-    superness integer,
+    superness float,
     penwidth  float,
     unitwidth float,
     xHeight   float,

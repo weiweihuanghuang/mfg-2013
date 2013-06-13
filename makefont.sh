@@ -1,4 +1,4 @@
-rm font.mf
+#rm font.mf
 rm font.2602gf
 rm missfont.log
 rm font.log
@@ -16,7 +16,7 @@ rm font-webfont.eot
 rm font-webfont.woff
 rm font-webfont.ttf
 
-python param_script.py  > font.mf
+#python param_script.py  > font.mf
 
 # mf font.mf
 

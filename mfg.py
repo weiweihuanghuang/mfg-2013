@@ -202,7 +202,7 @@ class GlobalParam:
         form = GlobalParam.form()
         form.fill()
         model.update_master(1, form.d.superness, form.d.Interpolation, form.d.penwidth, form.d.unitwidth, form.d.xHeight)
-
+        model.writeGlobalParam()
         return render.font2(form)
 
 app = web.application(urls, globals())

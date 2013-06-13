@@ -183,3 +183,35 @@ def writexml():
      print "glyphsource", glyphsource
      with codecs.open(glyphsource, "w", "utf-8") as out:
           xmldoc.writexml(out) 
+
+def writeGlobalParam():
+# prepare font.mf parameter file
+#
+  master = list(get_master()) 
+  fontsize=12
+  incx=0
+  u = 1
+  superness = master[0].superness 
+  print "superness ",superness
+  px=0.1
+  mean=6.12
+  des=2.45
+  asc=0.8
+  cap=0.8
+  ifile=open("font.mf","w")
+  ifile.write("% parameter file \n")
+  ifile.write("incx:=%.0f;\n"%incx)
+  ifile.write("font_size:=%.0fpt#;\n"%fontsize)
+  ifile.write("ht#:=10pt#;\n")
+  ifile.write("u#:=%.0fpt#;\n"%u)
+  ifile.write("px#:=%.1fpt#;\n"%px)
+  ifile.write("superness:=%.1f;\n"%superness)
+  ifile.write("mean#:=%.2fpt#;\n"%mean)
+  ifile.write("des#:=%.2fht#;\n"%des)
+  ifile.write("asc#:=%.2fht#;\n"%asc)
+  ifile.write("cap#:=%.2fht#;\n"%cap)
+  ifile.write("\n") 
+  ifile.write("input glyphs\n") 
+  ifile.write("bye\n") 
+  ifile.close()
+  return None 
