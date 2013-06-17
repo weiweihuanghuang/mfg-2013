@@ -31,9 +31,9 @@ w2 = str(float(w2)/100)
 glyph = glif.getElementsByTagName('glyph')
 g = glyph[0].attributes['name'].value
 
-mean = ['a', 'c', 'e', 'm', 'n', 'o', 'r', 's', 'u', 'v', 'w', 'x', 'z']
+mean = ['a', 'c', 'e', 'm', 'n', 'o', 'r', 's', 'u', 'v', 'w', 'x', 'z', 'h', 'b', 'd', 'k']
 des = ['g', 'j', 'p', 'q', 'y']
-cap = [ 'f', 'A', 'B', 'C', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+cap = [ 'asciitilde', 'bar', 'brokenbar', 'exclamdown', 'braceleft', 'braceright', 'bracketleft', 'space', 'f', 'A', 'B', 'C', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
 
 if g in mean :
     ggroup = 'mean#'
@@ -44,7 +44,7 @@ if g in des :
 if g in cap : 
     ggroup = 'cap#'
 
-print 'beginfontchar("' + g + '", ' + w + " + (incx * (" + w2 + '-' + w + ")), " + ggroup + ", 0);"
+print 'beginfontchar("' + g + '", (' + w + "*width) + (incx * (" + w2 + '-' + w + ")), " + ggroup + ", 0);"
 
 
 print """
@@ -419,6 +419,21 @@ for item in itemlist :
 # reading transformation
 
 
+if g in mean :
+    ggroup = 'xheight'
+    
+if g in des :
+    ggroup = 'descender'
+        
+if g in cap : 
+    ggroup = 'capital'
+
+if g in cap : 
+    ggroup = 'ascender'
+
+
+
+
 glif = minidom.parse(font_a)
 itemlist = glif.getElementsByTagName('point') 
 
@@ -447,7 +462,7 @@ for item in itemlist :
        if im.value.find(znamer)>-1 or im.value.find(znamel)>-1: 
          if im.value.find(znamer)>-1 :
 
-                print znamel[0:-1] + "=(x2"+znamel[1:-1] + "0 + (incx * (x2"+znamel[1:-1]+"A - x2" + znamel[1:-1]+"0)), y2"+znamel[1:-1] + "0 + (incx * (y2"+znamel[1:-1] + "A - y2" + znamel[1:-1] + "0)));"
+                print znamel[0:-1] + "=(x2"+znamel[1:-1] + "0 *width + (incx * (x2"+znamel[1:-1]+"A - x2" + znamel[1:-1]+"0)), y2"+znamel[1:-1] + "0 *" + ggroup + " + (incx * (y2"+znamel[1:-1] + "A - y2" + znamel[1:-1] + "0)));"
 
 
 print """
@@ -585,7 +600,7 @@ for item in itemlist :
            del zzsuper_qrval_b[i-1]
            zzsuper_qrval_b.insert(i-1,itensss)
 
- 
+
 
            
 # reading font Pen strokes
@@ -617,6 +632,10 @@ zzsuper_qlval = []
 zzdir = []
 zzdirval = []
 
+zzshiftedx = []
+zzshiftedxA = []
+zzshiftedxB = []
+
 zzleft = []
 zzright = []
 zzup = []
@@ -641,7 +660,13 @@ for i in range (1,100):
   
   zzdir.append("")
   zzdirval.append(0)
+
+  zzshiftedx.append("")
+  zzshiftedxA.append(0)
+  zzshiftedxB.append(0)
   
+  
+
   zzleft.append("")
   zzright.append("")
   zzup.append("")
@@ -681,11 +706,11 @@ for item in itemlist :
       
          if im.value.find("left") >-1 :
            del zzleft[i-1]
-           zzup.insert(i-1,"{left}")            
+           zzleft.insert(i-1,"{left}")            
            
          if im.value.find("right") >-1 :
            del zzright[i-1]
-           zzup.insert(i-1,"{right}")   
+           zzright.insert(i-1,"{right}")   
            
          if im.value.find("up") >-1 :
            del zzup[i-1]
@@ -736,6 +761,21 @@ for item in itemlist :
            del zzdirval[i-1]
            zzdirval.insert(i-1,itenss)
 
+
+         if im.value.find("shiftedx") >-1 :
+           ipoosaa = im.value.find("shiftedx")
+           ipooskk = im.value.find(",")
+           ipoosku = im.value.find("_")
+           itensA = im.value[ipoosaa+8:ipoosku]
+           itensB = im.value[ipoosku+1:ipooskk]
+           del zzshiftedx[i-1]
+           zzshiftedx.insert(i-1,"shifted")
+           del zzshiftedxA[i-1]
+           zzshiftedxA.insert(i-1,itensA)
+           del zzshiftedxB[i-1]
+           zzshiftedxB.insert(i-1,itensB)
+
+
 nnz = 0
 for zitem in zzn :
   nnz = nnz +1 
@@ -751,8 +791,10 @@ for i in range (0,nnz-1) :
   zitemb = zzn[i+1]
   zitemc = zzn[i-1]
 
+## default string
+
   zeile =""
-  zeile = str(zzstart[i])+ " z"+str(zitem)+"e"+zzleft[i] +zzright[i] +zzdown[i] +zzcycle[i]  ### confused with s up erness    +zzup[i] 
+  zeile = str(zzstart[i]) + "z"+str(zitem)+"e" +zzleft[i] +zzright[i] +zzup[i] +zzdown[i]
   zeileb =""
   zeileb = str(zzstart[i])
   if zzstart[i+1]=="" : 
@@ -765,6 +807,8 @@ for i in range (0,nnz-1) :
     if zzsuper_qr[i] <> "" :
       zeile = zeileb + zzsuper_qr[i]+ "("+str(zitem)+"e," +str(zitemb)+"e, ["+str(zzsuper_qrval[i]/1000.0) + '+ (incx * (' + str(zzsuper_qrval_b[i]/1000.0)+ '-' +str(zzsuper_qrval[i]/1000.0) + '))])' 
 
+    if zzshiftedx[i] <> "" :
+      zeile = zeile + " " + zzshiftedx[i]+ "(x"+ str(zzshiftedxA[i])  + " - x" + str(zzshiftedxB[i])+",0)"
 
     if zzdir[i] <> "" :
       zeile = zeile +"{"+zzdir[i]+" ("+str(zzdirval[i]) + ' + (incx * (' + str(zzdirval_b[i])+ '-' +str(zzdirval[i]) + ')))}'  
