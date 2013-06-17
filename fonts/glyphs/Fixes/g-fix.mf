@@ -1,0 +1,43 @@
+% have to copy replace all this
+
+% pen positions 
+
+penpos11(dist11 + (incx * (px - dist11)), ang11);
+penpos10(dist10 + (incx * (px - dist10)), ang10);
+penpos9(dist9 + (incx * (px - dist9)), ang9);
+penpos8(dist8 + (incx * (px - dist8)), ang8);
+penpos1(dist1 + (incx * (px - dist1)), ang1);
+penpos2(dist2 + (incx * (px - dist2)), ang2);
+penpos3(dist3 + (incx * (px - dist3)), ang3);
+penpos4(dist4 + (incx * (px - dist4)), ang4);
+penpos5(dist5 + (incx * (px - dist5)), ang5);
+penpos6(dist6 + (incx * (px - dist6)), ang6);
+penpos7(dist7 + (incx * (px - dist7)), ang7);
+
+% center points and transformation
+
+z11=(x2110 + (incx * (x211A - x2110)), y2110 + (incx * (y211A - y2110)));
+z10=(x2100 + (incx * (x210A - x2100)), y2100 + (incx * (y210A - y2100))) 
+	shifted (incx * (x5l-x10r) + dist3*0.05,0);
+z9=(x290 + (incx * (x29A - x290)), y290 + (incx * (y29A - y290)));
+z8=(x280 + (incx * (x28A - x280)), y280 + (incx * (y28A - y280)));
+z1=(x210 + (incx * (x21A - x210)), y210 + (incx * (y21A - y210)));
+z2=(x220 + (incx * (x22A - x220)), y220 + (incx * (y22A - y220)));
+z3=(x230 + (incx * (x23A - x230)), y230 + (incx * (y23A - y230)));
+z4=(x240 + (incx * (x24A - x240)), y240 + (incx * (y24A - y240)));
+z5=(x250 + (incx * (x25A - x250)), y250 + (incx * (y25A - y250)));
+z6=(x260 + (incx * (x26A - x260)), y260 + (incx * (y26A - y260)));
+z7=(x270 + (incx * (x27A - x270)), y270 + (incx * (y27A - y270)));
+
+% pen strokes  
+penstroke  z1e shifted(x4r-x1r,0) --
+ z2e shifted(x4r-x2r,0)-- 
+ z3e shifted(x4r-x3r,0)--
+ z4e --- 
+ z5e .. tension 0.8 ..  
+ z6e{left} .. tension 0.9 .. 
+ z7e{up}; 
+penstroke  z8e{up} .. tension 0.9 .. 
+ z9e{right} .. tension 0.8 and 1.2 .. 
+ z10e {down} .. tension 1.2 and 0.8 ..  
+z11e{left} .. tension 1.1 and 0.75 ..  cycle;

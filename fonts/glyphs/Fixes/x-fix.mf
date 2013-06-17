@@ -1,0 +1,26 @@
+% pen strokes  
+penstroke  z1e{down} ... 
+ z2e{down} ... 
+ z3e;
+penstroke  z4e{dir(17 + (incx * (20-17)))} ...
+{dir64}z5e ;
+
+
+% fix stem with shifted
+penstroke  z1e shifted ((x2l-x5r),0) {down} ... 
+ z2e{down} ... 
+ z3e;
+penstroke  z4e shifted (incx * (x4-0.9*x4),0) ... 
+{dir64}z5e shifted ((x1l-x5r),0) shifted ((x2l-x5r),0);
+
+
+% center points and transformation
+
+z1=(x210 + (incx * (x21A - x210)), y210 + (incx * (y21A - y210))) shifted ((x2l-x5r),0);
+z3=(x230 + (incx * (x23A - x230)), y230 + (incx * (y23A - y230)));
+z2=(x220 + (incx * (x22A - x220)), y220 + (incx * (y22A - y220)));
+z5=(x250 + (incx * (x25A - x250)), y250 + (incx * (y25A - y250))) shifted ((x1l-x5r),0);
+z4=(x240 + (incx * (x24A - x240)), y240 + (incx * (y24A - y240))) shifted (incx * (x4-0.9*x4),0) ;
+
+
+% 1st # is 1st font, then its 2nd - 1st

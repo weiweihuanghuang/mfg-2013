@@ -1,0 +1,95 @@
+% tension only
+
+% pen strokes stereo
+
+penstroke  z1e{dir73} .. tension 0.8  .. 
+super_qr(2e,3e, [0.658 + (incx * (0.66-0.658))]) ... 
+ z3e{down} ... 
+ z4e{down} ... 
+ {dir(-180+119)}z5e;
+penstroke  z6e ... 
+ z7e shifted ( ( (x8-x7)/(x8-x6) )*(dist3*0.2) ,0) ..  tension 0.9 and 0.8 ..
+ z8e{down} ... 
+ z9e shifted (0, 0.35 * incx * -dist9B) ..  tension 0.95 ..
+z10e shifted (x3r-x10l,0) {up};
+
+
+% pen strokes bold
+penstroke  z1e{dir73} .. tension 0.8  .. 
+super_qr(2e,3e, [0.658 + (incx * (0.66-0.658))]) ... 
+ z3e{down} ... 
+ z4e{down} ... 
+ {dir(-180+119)}z5e;
+penstroke  z6e ... 
+ z7e shifted ( ( (x8-x7)/(x8-x6) )*(dist3*0.2) ,0) {dir-161} ..  tension 1.5 and 0.9 ..
+ z8e{down} ... 
+ z9e shifted (0, 0.35 * incx * -dist9B) ..  tension 0.95 ..
+z10e shifted (x3r-x10l,0) {up};
+
+%%%%
+% center points and transformation
+
+z4=(x240 + (incx * (x24A - x240)), y240 + (incx * (y24A - y240)));
+z3=(x230 + (incx * (x23A - x230)), y230 + (incx * (y23A - y230)));
+z2=(x220 + (incx * (x22A - x220)), y220 + (incx * (y22A - y220)));
+z1=(x210 + (incx * (x21A - x210)), y210 + (incx * (y21A - y210)));
+z5=(x250 + (incx * (x25A - x250)), y250 + (incx * (y25A - y250)));
+z10=(x2100 + (incx * (x210A - x2100)), y2100 + (incx * (y210A - y2100)));
+z9=(x290 + (incx * (x29A - x290)), y290 + (incx * (y29A - y290))) shifted (0, 0.35 * incx * -dist9B);
+z8=(x280 + (incx * (x28A - x280)), y280 + (incx * (y28A - y280)));
+z7=(x270 + (incx * (x27A - x270)), y270 + (incx * (y27A - y270)));
+z6=(x260 + (incx * (x26A - x260)), y260 + (incx * (y26A - y260)));
+
+% pen positions 
+
+penpos4(dist4 + (incx * (px - dist4)), ang4);
+penpos3(dist3 + (incx * (px - dist3)), ang3);
+penpos2(dist2 + (incx * (px - dist2)), ang2);
+penpos1(dist1 + (incx * (px - dist1)), ang1);
+penpos5(dist5 + (incx * (px - dist5)), ang5);
+penpos10(dist10 + (incx * (px - dist10)), ang10);
+penpos9(dist9 + (incx * (px - dist9)), ang9);
+penpos8(dist8 + (incx * (px - dist8)), ang8);
+penpos7(dist7 + (incx * (px - dist7)), ang7);
+penpos6(dist6 + (incx * (px - dist6)), ang6);
+
+% pen strokes  
+penstroke  z1e{dir76} .. tension 0.81 ..
+super_qr(2e,3e, [0.66+ (incx * (0.665-0.66))]) ... 
+ z3e{down} ... 
+ z4e{down} ... 
+ {dir(-180+119)}z5e;
+penstroke  z6e ... 
+ z7e {dir-172} ..  tension 1 and 0.75 ..
+ z8e{down} .. tension 0.9 and 1 .. 
+ z9e ..  tension 0.95 ..
+z10e shifted (x3r-x10l,0) {up};
+%%%%
+
+% w superquarter only
+
+% pen strokes  
+penstroke super_ql(1e,2e, [0.59+ (incx * (0.707-0.59))]) ... 
+super_qr(2e,3e, [0.66+ (incx * (0.707-0.66))]) ... 
+ z3e{down} ... 
+ z4e{down} ... 
+ z5e;
+penstroke  z6e ... 
+ z7e ... 
+ z8e{down} ... 
+ z9e ... 
+z10e;
+
+% w super quarter & tension
+
+% pen strokes  
+penstroke  z1e{dir76} .. tension 0.81  ..
+super_qr(2e,3e, [0.66+ (incx * (0.707-0.66))]) ... 
+ z3e{down} ... 
+ z4e{down} ... 
+ z5e;
+penstroke  z6e ... 
+ z7e ..  tension 0.98 and 0.95 ..
+ z8e{down} ... 
+ z9e ..  tension 0.95 ..
+z10e;

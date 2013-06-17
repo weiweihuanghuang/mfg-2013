@@ -1,0 +1,50 @@
+ 
+% File parsed with ufo2mf (UFO to Metafont) by Simon Egli and Walter Egli  %
+
+
+
+% box dimension definition %
+
+beginfontchar("p", 11.39 + (incx * (11.39-11.39)), des#, 0);
+
+
+% einbauen : mean# aus Tabelle mit buchstaben gruppierungen link,;
+% tabelle mit gruppierung: <glyph name="p" = mean# 
+% tabelle mit gruppierung: <glyph name="A" = cap# 
+
+
+ 
+% point coordinates font A
+
+
+% reading mid points font A
+
+
+% fake extra l an r for metafont
+
+
+% pen width
+
+ 
+% point coordinates font B
+
+
+% reading mid points font B
+
+
+% fake extra l an r for font B
+
+
+% pen width Font B
+
+
+% pen angle Font A
+
+
+% center points and transformation
+
+
+% pen positions 
+
+
+% pen strokes  

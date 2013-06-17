@@ -1,0 +1,145 @@
+ 
+% File parsed with ufo2mf (UFO to Metafont) by Simon Egli and Walter Egli  %
+
+
+
+% box dimension definition %
+
+beginfontchar("x", 11.39 + (incx * (11.39-11.39)), mean#, 0);
+
+
+% einbauen : mean# aus Tabelle mit buchstaben gruppierungen link,;
+% tabelle mit gruppierung: <glyph name="p" = mean# 
+% tabelle mit gruppierung: <glyph name="A" = cap# 
+
+
+ 
+% point coordinates font A
+
+px1r := 6.47u ; py1r := 14.72u ;
+px1l := 7.63u ; py1l := 14.72u ;
+px2l := 7.63u ; py2l := 12.39u ;
+px3l := 7.63u ; py3l := 0.0u ;
+px3r := 5.83u ; py3r := 0.0u ;
+px2r := 5.83u ; py2r := 11.86u ;
+px5r := 7.63u ; py5r := 14.72u ;
+px4r := 2.23u ; py4r := 9.3u ;
+px4l := 2.23u ; py4l := 11.04u ;
+px5l := 6.47u ; py5l := 14.72u ;
+
+% reading mid points font A
+
+.5(px1l + px1r) = x210;
+.5(py1l + py1r) = y210;
+.5(px3l + px3r) = x230;
+.5(py3l + py3r) = y230;
+.5(px2l + px2r) = x220;
+.5(py2l + py2r) = y220;
+.5(px5l + px5r) = x250;
+.5(py5l + py5r) = y250;
+.5(px4l + px4r) = x240;
+.5(py4l + py4r) = y240;
+
+% fake extra l an r for metafont
+
+px1l = x1Bl; py1l = y1Bl; 
+px1r = x1Br; py1r = y1Br; 
+px3l = x3Bl; py3l = y3Bl; 
+px3r = x3Br; py3r = y3Br; 
+px2l = x2Bl; py2l = y2Bl; 
+px2r = x2Br; py2r = y2Br; 
+px5l = x5Bl; py5l = y5Bl; 
+px5r = x5Br; py5r = y5Br; 
+px4l = x4Bl; py4l = y4Bl; 
+px4r = x4Br; py4r = y4Br; 
+
+% pen width
+
+dist1 := length (z1Bl-z1Br) ;
+dist3 := length (z3Bl-z3Br) ;
+dist2 := length (z2Bl-z2Br) ;
+dist5 := length (z5Bl-z5Br) ;
+dist4 := length (z4Bl-z4Br) ;
+ 
+% point coordinates font B
+
+ppx1r := 6.47u ; ppy1r := 14.72u ;
+ppx1l := 7.63u ; ppy1l := 14.72u ;
+ppx2l := 7.63u ; ppy2l := 12.39u ;
+ppx3l := 7.63u ; ppy3l := 0.0u ;
+ppx3r := 5.83u ; ppy3r := 0.0u ;
+ppx2r := 5.83u ; ppy2r := 11.86u ;
+ppx5r := 7.63u ; ppy5r := 14.72u ;
+ppx4r := 2.23u ; ppy4r := 9.3u ;
+ppx4l := 2.23u ; ppy4l := 11.04u ;
+ppx5l := 6.47u ; ppy5l := 14.72u ;
+
+% reading mid points font B
+
+.5(ppx1l + ppx1r) = x21A;
+.5(ppy1l + ppy1r) = y21A;
+.5(ppx3l + ppx3r) = x23A;
+.5(ppy3l + ppy3r) = y23A;
+.5(ppx2l + ppx2r) = x22A;
+.5(ppy2l + ppy2r) = y22A;
+.5(ppx5l + ppx5r) = x25A;
+.5(ppy5l + ppy5r) = y25A;
+.5(ppx4l + ppx4r) = x24A;
+.5(ppy4l + ppy4r) = y24A;
+
+% fake extra l an r for font B
+
+ppx1l = x1Cl; ppy1l = y1Cl; 
+ppx1r = x1Cr; ppy1r = y1Cr; 
+ppx3l = x3Cl; ppy3l = y3Cl; 
+ppx3r = x3Cr; ppy3r = y3Cr; 
+ppx2l = x2Cl; ppy2l = y2Cl; 
+ppx2r = x2Cr; ppy2r = y2Cr; 
+ppx5l = x5Cl; ppy5l = y5Cl; 
+ppx5r = x5Cr; ppy5r = y5Cr; 
+ppx4l = x4Cl; ppy4l = y4Cl; 
+ppx4r = x4Cr; ppy4r = y4Cr; 
+
+% pen width Font B
+
+dist1B := length (z1Cl-z1Cr) ;
+dist3B := length (z3Cl-z3Cr) ;
+dist2B := length (z2Cl-z2Cr) ;
+dist5B := length (z5Cl-z5Cr) ;
+dist4B := length (z4Cl-z4Cr) ;
+
+% pen angle Font A
+
+ang1 := angle((z1Br + (incx * (z1Cr -z1Br))) - (z1Bl + (incx * (z1Cl -z1Bl))));
+ang3 := angle((z3Br + (incx * (z3Cr -z3Br))) - (z3Bl + (incx * (z3Cl -z3Bl))));
+ang2 := angle((z2Br + (incx * (z2Cr -z2Br))) - (z2Bl + (incx * (z2Cl -z2Bl))));
+ang5 := angle((z5Br + (incx * (z5Cr -z5Br))) - (z5Bl + (incx * (z5Cl -z5Bl))));
+ang4 := angle((z4Br + (incx * (z4Cr -z4Br))) - (z4Bl + (incx * (z4Cl -z4Bl))));
+
+% center points and transformation
+
+z1=(x210 + (incx * (x21A - x210)), y210 + (incx * (y21A - y210)));
+z3=(x230 + (incx * (x23A - x230)), y230 + (incx * (y23A - y230)));
+z2=(x220 + (incx * (x22A - x220)), y220 + (incx * (y22A - y220)));
+z5=(x250 + (incx * (x25A - x250)), y250 + (incx * (y25A - y250)));
+z4=(x240 + (incx * (x24A - x240)), y240 + (incx * (y24A - y240)));
+
+% pen positions 
+
+penpos1(dist1 + (incx * (px - dist1)), ang1);
+penpos3(dist3 + (incx * (px - dist3)), ang3);
+penpos2(dist2 + (incx * (px - dist2)), ang2);
+penpos5(dist5 + (incx * (px - dist5)), ang5);
+penpos4(dist4 + (incx * (px - dist4)), ang4);
+
+% pen strokes  
+penstroke  z1e shifted ((x2l-x5r),0) {down} ... 
+ z2e{down} ... 
+ z3e;
+penstroke  z4e shifted (incx * (x4-0.9*x4),0) ... 
+{dir64}z5e shifted ((x1l-x5r),0) shifted ((x2l-x5r),0);
+
+% pen labels
+penlabels(range 1 thru 99);
+endchar;
+
