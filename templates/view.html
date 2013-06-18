@@ -1,4 +1,4 @@
-$def with (posts,post,form,formparam,master,webglyph)
+$def with (posts,post,form,formparam,master,mastglobal,webglyph)
 
 <h2>Glyph Edit</h2>
 <form action="">
@@ -10,6 +10,8 @@ $def with (posts,post,form,formparam,master,webglyph)
 
 $for mast in master:
   <p> $mast.FontName <br>
+
+$for mast in mastglobal:
    Interpolation $mast.Interpolation <br> 
    superness $mast.superness <br>
    penwidth $mast.penwidth <br>

@@ -30,8 +30,16 @@ render = web.template.render('templates', base='base', globals=t_globals)
 class cFont:
      fontna = ""
      fontnb = ""
+     fontname = ""
+     idglobal = 1
+     idmaster = 1
      glyphName =""
-
+     superness =1
+     Interpolation=0.5
+     penwidth=1
+     unitwidth=1
+     xHeight=1
+     
 class Index:
 
     def GET (self):
@@ -97,9 +105,10 @@ class View:
         formParam = self.formParam()
         if glyphparam != None :
            formParam.fill(glyphparam)
+        mastglobal = model.get_globalparam()
         master = model.get_master()
 	webglyph = cFont.glyphName
-        return render.view(posts,post,form,formParam,master,webglyph)
+        return render.view(posts,post,form,formParam,master,mastglobal,webglyph)
 
     def POST(self, id):
         form = View.form()
@@ -108,11 +117,12 @@ class View:
         if not form.validates() :
             posts = model.get_posts()
             master = model.get_master()
+            mastglobal = model.get_globalparam()
 	    webglyph = cFont.glyphName
-            return render.view(posts, post, form, formParam, master, webglyph)
+            return render.view(posts, post, form, formParam, master,mastglobal, webglyph)
         if form.d.PointName != None :
             if not formParam.validates() :
-                return render.view(posts, post, form, formParam, master)
+                return render.view(posts, post, form, formParam, master,mastglobal)
             if model.get_glyphparam(int(id)) != None :
                 model.update_glyphparam(int(id),form.d.PointName, formParam.d.startp, formParam.d.superness)
             else :
@@ -121,6 +131,7 @@ class View:
         model.update_post(int(id), form.d.x, form.d.y)
         posts = model.get_posts()
         master = model.get_master()
+        mastglobal = model.get_globalparam()
 	webglyph = cFont.glyphName
 
         model.writexml()        
@@ -128,12 +139,12 @@ class View:
 	print commstr
         os.system(commstr)
         os.system("sh makefont.sh")
-        return render.view(posts, post, form, formParam, master, webglyph)
+        return render.view(posts, post, form, formParam, master, mastglobal,webglyph)
 
 class ViewFont:
     def GET(self):
         """ View single post """
-        param=Index.form.d.UFO_A
+        param=cFont.glyphName
         return render.viewfont(param)
 
 class Font1:
@@ -192,16 +203,17 @@ class GlobalParam:
         web.form.Button('save'),
         )
     def GET(self):
-        master = list(model.get_master())
+        
+        gm = list(model.get_globalparam())
         form = self.form()
-        if master != None:
-           form.fill({'superness':master[0].superness,'Interpolation':master[0].Interpolation,'penwidth':master[0].penwidth,'unitwidth':master[0].unitwidth,'xHeight':master[0].xHeight})
+        if gm != None:
+           form.fill({'superness':gm[0].superness,'Interpolation':gm[0].Interpolation,'penwidth':gm[0].penwidth,'unitwidth':gm[0].unitwidth,'xHeight':gm[0].xHeight})
         return render.font2(form)
 
     def POST (self):
         form = GlobalParam.form()
         form.fill()
-        model.update_master(1, form.d.superness, form.d.Interpolation, form.d.penwidth, form.d.unitwidth, form.d.xHeight)
+        model.update_globalparam(1, form.d.superness, form.d.Interpolation, form.d.penwidth, form.d.unitwidth, form.d.xHeight)
         model.writeGlobalParam()
         return render.font2(form)
 

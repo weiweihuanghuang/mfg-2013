@@ -41,15 +41,16 @@ def putFont():
         try :
             im = s.attributes['name'] 
             iposa = im.value.find("z")
-            ipose = im.value.find(",")
-            if ipose > -1:
+            ipose = im.value.find(",",iposa)
+            if ipose > iposa :
                nameval = im.value[iposa:ipose]
             else :
-               nameval = im.value
-            print "inum nameval",inum,nameval          
+               if ipose == -1 :
+                 ipose=len(im.value) 
+                 nameval = im.value[iposa:ipose]
 #  find the start value
 #            print "findstart",inum, im.value.find('start')
-            if im.value.find('start') > 0 :
+            if im.value.find('start') > -1 :
                startp = 1
             else:
                startp = 0
@@ -58,7 +59,7 @@ def putFont():
             db.insert('glyphparam', id=inum,GlyphName=glyphName, PointName=nameval, startp=startp)
             if im.value.find("superness") > 0:
               iposa=im.value.find("superness") 
-              ipose= im.value.find(",")
+              ipose= im.value.find(",",iposa)
               if ipose > iposa :
                 superness = int(im.value[iposa+9:ipose])
               else :
@@ -124,15 +125,24 @@ def insert_glyphparam(id, a, b, c):
     glyphName = mfg.cFont.glyphName 
     db.insert('glyphparam', id=id,GlyphName=glyphName, PointName=a, startp=b, superness=c)
 
+def get_masters():
+    return db.select('master',  vars=locals())
+
 def get_master():
-    return db.query("SELECT FontName,superness,Interpolation,penwidth,unitwidth,xHeight from master where idmaster=1 ")
+
+    id=mfg.cFont.idmaster
+    return db.select('master',  where='idmaster=$id', vars=locals())
 
 def put_master():
+
+    fontName=mfg.cFont.fontname
+    fontNameA=mfg.cFont.fontna
+    fontNameB=mfg.cFont.fontnb
+    idglobal =mfg.cFont.idglobal
     t=db.transaction()
-    print "put_master",fontName
+    
     try:
-       db.insert('master', FontName="'"+fontName+"'")
-#,Interpolation='fff',superness='fff',penwidth='a',unitwidth='b',xHeight='c')
+       db.insert('master', FontName="'"+fontName+"'", FontNameA="'"+fontNameA+"'", FontNameB="'"+fontNameB+"'", idglobal="'"+idglobal+"'")
     except:
        t.rollback()
        raise
@@ -141,9 +151,32 @@ def put_master():
 
     return None    
 
-def update_master(id, a, b, c, d, e):
-#    print 'update_master',id,a,b,c,d,e    
+def get_globalparams():
+    return db.select('globalparam', vars=locals())
+
+def get_globalparam():
+
+    id=mfg.cFont.idglobal
+    return db.select('globalparam', where='idglobal=$id',vars=locals())
+
+def put_globalparam(id):
+
+    superness=mfg.cFont.superness
+    Interpolation=mfg.cFont.Interpolation
+    penwidth=mfg.cFont.penwidth
+    unitwidth=mfg.cFont.unitwidth
+    xHeight=mfg.cFont.xHeight
+    db.insert('globalparam', where='idglobal = $id',vars=locals(), 
+        superness=superness, Interpolation=Interpolation, penwidth=penwidth, unitwidth=unitwidth, xHeigth=xHeigth)
+    return None
+
+def update_master(id, a, b, c, d):
     db.update('master', where='idmaster = $id', vars=locals(), 
+      FontName = a, FontNameA = b, FontNameB = c, idglobal = d)
+    return None
+
+def update_globalparam(id, a, b, c, d, e):
+    db.update('globalparam', where='idglobal = $id', vars=locals(), 
       superness = a, Interpolation = b, penwidth = c, unitwidth = d, xHeight = e)
     return None
 
