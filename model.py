@@ -1,6 +1,7 @@
 import web, datetime,mfg
 from xml.dom import minidom
 import codecs
+import os.path, time
 
 #db = web.database(dbn='mysql', db='blog', user='root', pw='schnaegg' )
 db = web.database(dbn='mysql', db='blog', user='walter', pw='' )
@@ -18,6 +19,9 @@ def putFont():
   glyphsource = mfg.cFont.fontna + "/glyphs/"+glyphName+".glif"
   glyphnameNew = glyphName+".glif"
   print glyphnameNew
+  print "lastmodified: %s" % time.ctime(os.path.getmtime(glyphsource))
+  print  "lastmodified:" , os.path.getmtime(glyphsource) 
+
   global xmldoc
   global itemlist
   try :
@@ -28,8 +32,18 @@ def putFont():
 
   itemlist = xmldoc.getElementsByTagName('point')
   advance = xmldoc.getElementsByTagName('advance')
-  db.delete('glyphoutline', where='Glyphname="'+glyphName+'"')  
-  db.delete('glyphparam', where='Glyphname="'+glyphName+'"')  
+#
+#  decide when to load new entries from xml file   
+#
+  dbq= list(db.query("SELECT unix_timestamp(max(vdate)) vdate from glyphoutline where glyphname=glyphName"))
+  print  dbq[0].vdate, os.path.getmtime(glyphsource) 
+  vdatedb=int(dbq[0].vdate)
+  vdateos=int(os.path.getmtime(glyphsource))
+  dbq= list(db.query("SELECT unix_timestamp(max(vdate)) vdate from glyphparam where glyphname=glyphName"))
+  vdatedbp=int(dbq[0].vdate)
+  if ( max(vdatedb,vdatedbp) < vdateos) :
+    db.delete('glyphoutline', where='Glyphname="'+glyphName+'"')  
+    db.delete('glyphparam', where='Glyphname="'+glyphName+'"')  
 
   if not  list(db.select('glyphoutline', where='GlyphName="'+glyphName+'"')) :  # check if list is empty
 #  put data into db
