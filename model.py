@@ -37,9 +37,7 @@ def putFont():
      print "not meier"
      return None
 
-  itemlistA = xmldocA.getElementsByTagName('point')
   advanceA = xmldocA.getElementsByTagName('advance')
-  itemlistB = xmldocB.getElementsByTagName('point')
   advanceB = xmldocB.getElementsByTagName('advance')
   
   idmasterA = int(mfg.cFont.idmaster)
@@ -52,33 +50,48 @@ def putFont():
 #
   dbqA= list(db.query("SELECT unix_timestamp(max(vdate)) vdate from glyphoutline where glyphname=glyphName" +idsA))
   dbqB= list(db.query("SELECT unix_timestamp(max(vdate)) vdate from glyphoutline where glyphname=glyphName" +idsB))
+  dbqpA= list(db.query("SELECT unix_timestamp(max(vdate)) vdate from glyphparam where glyphname=glyphName"+idsA))
+  dbqpB= list(db.query("SELECT unix_timestamp(max(vdate)) vdate from glyphparam where glyphname=glyphName"+idsB))
 # check if glyphoutline exists
-  for glyphsource in [glyphsourceA,glyphsourceB] :
-    if glyphsource == glyphsourceA:
+  for idmaster in [1,-1] :
+    print "glyphsource",glyphsource, glyphsourceA, glyphsourceB
+    if idmaster == 1:
+      glyphsource = glyphsourceA
       dbq = dbqA
+      if  dbqA[0].vdate == None :
+         vdatedb = 0
+         vdatedbp = 0
+      else:
+         vdatedb=int(dbqA[0].vdate)
+         vdatedbp=int(dbqpA[0].vdate)
       ids = idsA
-      idmaster = idmasterA
       itemlist = xmldocA.getElementsByTagName('point')
-    if glyphsource == glyphsourceB:
+
+    if idmaster == -1:
+      glyphsource = glyphsourceB
       dbq = dbqB
+      if  dbqB[0].vdate == None :
+         vdatedb = 0
+         vdatedbp = 0
+      else:
+         vdatedb=int(dbqB[0].vdate)
+         vdatedbp=int(dbqpB[0].vdate)
       ids = idsB
-      idmaster = idmasterB
       itemlist = xmldocB.getElementsByTagName('point')
 
-    if not  dbq:
-      print  dbq[0].vdate, os.path.getmtime(glyphsource) 
-      vdatedb=int(dbq[0].vdate)
+    if dbq:
+      print  dbq[0].vdate,vdatedb,vdatedbp, os.path.getmtime(glyphsource) 
       vdateos=int(os.path.getmtime(glyphsource))
-      dbq= list(db.query("SELECT unix_timestamp(max(vdate)) vdate from glyphparam where glyphname=glyphName"+ids))
-      vdatedbp=int(dbq[0].vdate)
       if ( max(vdatedb,vdatedbp) < vdateos) :
         db.delete('glyphoutline', where='Glyphname="'+glyphName+'"'+ids )  
         db.delete('glyphparam', where='Glyphname="'+glyphName+'"'+ids )  
 
+    print "*****idsids",ids
     if not  list(db.select('glyphoutline', where='GlyphName="'+glyphName+'"'+ids )) :  # check if list is empty
 #  put data into db
        inum=0
        strg=""
+       print "****ids",ids
        for s in itemlist :
         inum = inum+1
 #  find a named point , convention the name begin with the letter z
@@ -126,8 +139,8 @@ def putFont():
             mainpoint = 0 
 	s.toxml()
         strg= "insert into glyphoutline (GlyphName,PointNr,x,y,contrp,id,idmaster) Values ("+'"'+glyphName+'"'+","+'"'+s.attributes['pointNo'].value+'"' + ","+ str(s.attributes['x'].value)+ "," + str(s.attributes['y'].value)+","+str(mainpoint)+","+str(inum)+","+str(idmaster)+")"
-        print strg
         db.query(strg)
+
   return None  
 
 def gidmast(idwork):

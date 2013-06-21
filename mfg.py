@@ -32,8 +32,8 @@ class cFont:
      fontnb = ""
      fontname = ""
      idglobal = 1
-     idmaster = 1
-     idwork   = 0
+     idmaster = '1'
+     idwork   = '0'
      glyphName =""
      superness =1
      metapolation=0.5
@@ -44,7 +44,6 @@ class cFont:
 class Index:
 
     def GET (self):
-        print "ididid",id
         """ Show page """
         posts = model.get_posts()
         master = model.get_masters()
