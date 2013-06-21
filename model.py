@@ -86,12 +86,10 @@ def putFont():
         db.delete('glyphoutline', where='Glyphname="'+glyphName+'"'+ids )  
         db.delete('glyphparam', where='Glyphname="'+glyphName+'"'+ids )  
 
-    print "*****idsids",ids
     if not  list(db.select('glyphoutline', where='GlyphName="'+glyphName+'"'+ids )) :  # check if list is empty
 #  put data into db
        inum=0
        strg=""
-       print "****ids",ids
        for s in itemlist :
         inum = inum+1
 #  find a named point , convention the name begin with the letter z
@@ -155,9 +153,6 @@ def get_posts():
     glyphName = mfg.cFont.glyphName 
     ids= " and idmaster="+'"'+str(idmaster)+'"'
     q1="SELECT IFNULL(PointName, '') PointNr,x,y,concat('position:absolute;left:',0+x,'px;top:',0-y,'px; ',IF (PointName > '', 'color:red;', IF (contrp > 0 , 'z-index:-1;color:blue;', 'z-index:-2;color:CCFFFF;')) ) position, id from vglyphoutline where GlyphName="+'"'+glyphName+'"'
-    print "q1q1",q1
-    print "idsids",ids
-    print "q1+ids", q1+ids
     return db.query(q1+ids )
 
 def get_post(id):
