@@ -9,10 +9,10 @@ import glob
 urls = (
     '/', 'Index',
     '/view/(\d+)', 'View',
-    '/edit/(\d+)', 'Edit',
+    '/metap/(\d+)', 'Metap',
     '/viewfont/', 'ViewFont',
-    '/font1/', 'Font1',
-    '/font2/', 'GlobalParam',
+    '/font1/(\d+)', 'Font1',
+    '/font2/(\d+)', 'GlobalParam',
 )
 
 
@@ -33,9 +33,10 @@ class cFont:
      fontname = ""
      idglobal = 1
      idmaster = 1
+     idwork   = 0
      glyphName =""
      superness =1
-     Interpolation=0.5
+     metapolation=0.5
      penwidth=1
      unitwidth=1
      xHeight=1
@@ -43,13 +44,35 @@ class cFont:
 class Index:
 
     def GET (self):
+        print "ididid",id
         """ Show page """
         posts = model.get_posts()
-        master = model.get_master()
+        master = model.get_masters()
         fontsource = [cFont.fontna,cFont.fontnb,cFont.glyphName]
 	webglyph = cFont.glyphName
-        return render.index(posts,master,fontsource,webglyph)
+        return render.metap(posts,master,fontsource,webglyph)
 
+
+class Metap:
+
+    def GET (self,id):
+        """ Show page """
+        cFont.idwork=id
+        posts = model.get_posts()
+        master = model.get_masters()
+#        fontsource = [cFont.fontna,cFont.fontnb,cFont.glyphName]
+
+        if id =='0':
+#          we are working on font A
+#
+           fontsource = [cFont.fontna,cFont.glyphName]
+        if id =='1':
+#          we are working on font B
+#          
+           fontsource = [cFont.fontnb,cFont.glyphName]
+
+	webglyph = cFont.glyphName
+        return render.metap(posts,master,fontsource,webglyph)
 
 class View:
     form = web.form.Form(
@@ -97,16 +120,17 @@ class View:
 
     def GET(self,id):
         """ View single post """
-        post = model.get_post(int(id))
-        posts = model.get_posts()
         form=self.form()
-        glyphparam = model.get_glyphparam(int(id))
-        form.fill(post)
+        if id > '0' : 
+           post = model.get_post(int(id))
+           glyphparam = model.get_glyphparam(int(id))
+           form.fill(post)
+        posts = model.get_posts()
         formParam = self.formParam()
         if glyphparam != None :
            formParam.fill(glyphparam)
-        mastglobal = model.get_globalparam()
-        master = model.get_master()
+        mastglobal = model.get_globalparam(cFont.idglobal)
+        master = model.get_master(cFont.idmaster)
 	webglyph = cFont.glyphName
         return render.view(posts,post,form,formParam,master,mastglobal,webglyph)
 
@@ -116,8 +140,8 @@ class View:
         post = model.get_post(int(id))
         if not form.validates() :
             posts = model.get_posts()
-            master = model.get_master()
-            mastglobal = model.get_globalparam()
+            master = model.get_master(cFont.idmaster)
+            mastglobal = model.get_globalparam(cFont.idglobal)
 	    webglyph = cFont.glyphName
             return render.view(posts, post, form, formParam, master,mastglobal, webglyph)
         if form.d.PointName != None :
@@ -130,8 +154,8 @@ class View:
                 
         model.update_post(int(id), form.d.x, form.d.y)
         posts = model.get_posts()
-        master = model.get_master()
-        mastglobal = model.get_globalparam()
+        master = model.get_master(cFont.idmaster)
+        mastglobal = model.get_globalparam(cFont.idglobal)
 	webglyph = cFont.glyphName
 
         model.writexml()        
@@ -161,36 +185,39 @@ class Font1:
             description="glyph", value="c"),
         web.form.Button('savefont'),
         )
-    def GET(self):
+    def GET(self,id):
+        mmaster= list(model.get_masters())
+        if id > '0' : 
+           master= list(model.get_master(id))
         fontna = cFont.fontna
         fontnb = cFont.fontnb
-#        fontlist= ["oswald","meier"] 
         fontlist = [f for f in glob.glob("*.ufo")]
         form=self.form()
         form=Font1.form()
         form.fill({'UFO_A':fontna,'UFO_B':fontnb,'GLYPH':cFont.glyphName})
-        return render.font1(fontlist,form)
+        return render.font1(fontlist,form,mmaster,cFont)
 
-    def POST (self):
+    def POST (self,id):
+        mmaster= list(model.get_masters())
+        master= list(model.get_master(id))
         form = Font1.form()
         form.fill()
-        print "form.d.UFO_A",form.d.UFO_A
         cFont.fontna = form.d.UFO_A
         cFont.fontnb = form.d.UFO_B
         cFont.glyphName  = form.d.GLYPH
-        print "glyph",form.d.GLYPH
         model.putFont()
         fontlist = [f for f in glob.glob("*.ufo")]
-        return render.font1(fontlist,form)
+        return render.font1(fontlist,form,mmaster,cFont)
 
 class GlobalParam:
+
     form = web.form.Form(
         web.form.Textbox('superness', web.form.notnull, 
             size=3,
             description="superness", value="1"),
-        web.form.Textbox('Interpolation', web.form.notnull, 
+        web.form.Textbox('metapolation', web.form.notnull, 
             size=3,
-            description="Interpolation", value="0.5"),
+            description="metapolation", value="0.5"),
         web.form.Textbox('penwidth', web.form.notnull, 
             size=3,
             description="penwidth", value="1.0"),
@@ -202,20 +229,27 @@ class GlobalParam:
             description="xHeight", value="1.0"),
         web.form.Button('save'),
         )
-    def GET(self):
+    def GET(self,id):
         
-        gm = list(model.get_globalparam())
+        gml = list(model.get_globalparams())
         form = self.form()
-        if gm != None:
-           form.fill({'superness':gm[0].superness,'Interpolation':gm[0].Interpolation,'penwidth':gm[0].penwidth,'unitwidth':gm[0].unitwidth,'xHeight':gm[0].xHeight})
-        return render.font2(form)
+        if id > '0' :
+          gm = list(model.get_globalparam(id))
+        else:
+          gm = None
 
-    def POST (self):
+        if gm != None:
+             form.fill({'superness':gm[0].superness,'metapolation':gm[0].metapolation,'penwidth':gm[0].penwidth,'unitwidth':gm[0].unitwidth,'xHeight':gm[0].xHeight})
+        return render.font2(form,gml,cFont)
+
+    def POST (self,id):
+        gml = list(model.get_globalparams())
+        gm = list(model.get_globalparam(id))
         form = GlobalParam.form()
         form.fill()
-        model.update_globalparam(1, form.d.superness, form.d.Interpolation, form.d.penwidth, form.d.unitwidth, form.d.xHeight)
+        model.update_globalparam(id, form.d.superness, form.d.metapolation, form.d.penwidth, form.d.unitwidth, form.d.xHeight)
         model.writeGlobalParam()
-        return render.font2(form)
+        return render.font2(form,gml,cFont)
 
 app = web.application(urls, globals())
 

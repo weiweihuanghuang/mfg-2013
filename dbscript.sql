@@ -20,20 +20,33 @@ CREATE TABLE glyphoutline (
     contrp integer default 0,
     idmaster INT,
     vdate    TIMESTAMP default now(),
-    primary key (id,glyphName)
+    primary key (idmaster,id,glyphName)
 );
 CREATE TABLE glyphparam (
     id INT ,
     glyphName VARCHAR(3),
     PointName VARCHAR(5),
-    startp integer default 0,
-    superness integer , 
+    startp INT,
+    leftp   INT,
+    rightp  INT,
+    downp   INT,
+    upp     INT,
+    superqr INT,
+    superleft INT,
+    tension INT, 
+    tensionend varchar(10),
+    cycle     INT,
+    penshiftedx varchar(7),
+    penshiftedy varchar(7), 
+    pointshiftx varchar(7),
+    pointshifty varchar(7),
+    superness INT, 
     penwidth float,
     xHeight  float,
     cardinal VARCHAR(10), 
     idmaster INT,
     vdate    TIMESTAMP default now(),
-    primary key (id,glyphName)
+    primary key (idmaster,id,glyphName)
 );
 CREATE TABLE master (
     idmaster INT AUTO_INCREMENT,
@@ -46,24 +59,17 @@ CREATE TABLE master (
 );
 CREATE TABLE globalparam (
     idglobal INT ,
-    Interpolation float,
+    metapolation float,
     superness float,
     penwidth  float,
     unitwidth float,
     xHeight   float,
+    tension   integer,
     primary key (idglobal)
 );
-insert into master (FontName,FontNameA,FontNameB,idglobal) Values ("My First Metapolator Font", "","",1);
-insert into globalparam (idglobal,Interpolation,superness,penwidth,unitwidth,xHeight) Values (1, 0.5,1,1,1.0,1.0);
-insert into glyphoutline (id,GlyphName,PointNr,x,y) Values (1,'A','p1',20,0);
-insert into glyphoutline (id,Glyphname,PointNr,x,y) Values (2,'A','p2',139,0);
-insert into glyphoutline (id,GlyphName,PointNr,x,y) Values (3,'A','p3',257,295);
-insert into glyphoutline (id,GlyphName,PointNr,x,y) Values (4,'A','p4',665,295);
-insert into glyphoutline (id,GlyphName,PointNr,x,y) Values (5,'A','p5',778,0);
-insert into glyphoutline (id,GlyphName,PointNr,x,y) Values (6,'A','p6',896,0);
-insert into glyphoutline (id,GlyphName,PointNr,x,y) Values (7,'A','p7',537,930);
-insert into glyphoutline (id,GlyphName,PointNr,x,y) Values (8,'A','p8',385,930);
-insert into glyphoutline (id,GlyphName,PointNr,x,y) Values (9,'A','p9',303,405);
-insert into glyphoutline (id,GlyphName,PointNr,x,y) Values (10,'A','p10',461,819);
-insert into glyphoutline (id,GlyphName,PointNr,x,y) Values (11,'A','p11',618,405);
+insert into master (FontName,FontNameA,FontNameB,idglobal) Values ("My First Metapolator Font", "GaramondSans.ufo","GaramondSans.ufo",1);
+insert into master (FontName,FontNameA,FontNameB,idglobal) Values ("My second Metapolator Font", "Aeriel-Regular.ufo","Aeriel-Regular.ufo",2);
+insert into master (FontName,FontNameA,FontNameB,idglobal) Values ("combined Garamond and Aeriel", "GaramondSans.ufo","Aeriel-Regular.ufo",2);
+insert into globalparam (idglobal,metapolation,superness,penwidth,unitwidth,xHeight) Values (1, 0.5,1,1,1.0,1.0);
+insert into globalparam (idglobal,metapolation,superness,penwidth,unitwidth,xHeight) Values (2, 0.5,1,700,1.0,1.0);
 

@@ -1,4 +1,4 @@
-$def with (fontlist,form)
+$def with (fontlist,form,mmaster,cfont)
 <html>
 <body>
 $for fontl in fontlist:
@@ -79,9 +79,10 @@ table,th,td {
 	color: red;
 }
 </style>
-
-
-
+<p>
+$for mma in mmaster:
+   idma <a href="/font1/$mma.idmaster">$mma.idmaster</a> projname $mma.FontName fontA $mma.FontNameA fontB $mma.FontNameB idglobal $mma.idglobal vdate $mma.vdate <br>
+</p>
 <div>
 <form action="" method="post">
 $:form.render()
@@ -89,7 +90,7 @@ $:form.render()
 </div>
 <div>
 <p>
-<a href="/font2/">global parameter set</a>
+<a href="/font2/$cfont.idglobal">global parameter set</a>
 </p>
 <div>
 </body>

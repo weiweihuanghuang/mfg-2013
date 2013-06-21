@@ -11,45 +11,75 @@ def delFont(fontName,glyphNamel):
   return None
 
 def putFont():
+#
+#  put font A and font B into table
+#
   print mfg.cFont.glyphName
   global glyphsource
   global glyphnameNew
   global glyphName
   glyphName = mfg.cFont.glyphName 
-  glyphsource = mfg.cFont.fontna + "/glyphs/"+glyphName+".glif"
+  glyphsourceA = mfg.cFont.fontna + "/glyphs/"+glyphName+".glif"
+  glyphsourceB = mfg.cFont.fontnb + "/glyphs/"+glyphName+".glif"
   glyphnameNew = glyphName+".glif"
   print glyphnameNew
-  print "lastmodified: %s" % time.ctime(os.path.getmtime(glyphsource))
-  print  "lastmodified:" , os.path.getmtime(glyphsource) 
+  print "lastmodifiedA: %s" % time.ctime(os.path.getmtime(glyphsourceA))
+  print "lastmodifiedB: %s" % time.ctime(os.path.getmtime(glyphsourceB))
 
-  global xmldoc
-  global itemlist
+  global xmldocA
+  global xmldocB
+  global itemlistA
+  global itemlistB
   try :
-     xmldoc = minidom.parse(glyphsource)
+     xmldocA = minidom.parse(glyphsourceA)
+     xmldocB = minidom.parse(glyphsourceB)
   except :
      print "not meier"
      return None
 
-  itemlist = xmldoc.getElementsByTagName('point')
-  advance = xmldoc.getElementsByTagName('advance')
+  itemlistA = xmldocA.getElementsByTagName('point')
+  advanceA = xmldocA.getElementsByTagName('advance')
+  itemlistB = xmldocB.getElementsByTagName('point')
+  advanceB = xmldocB.getElementsByTagName('advance')
+  
+  idmasterA = int(mfg.cFont.idmaster)
+  idmasterB = -idmasterA
+
+  idsA= " and idmaster="+'"'+str(idmasterA)+'"'
+  idsB= " and idmaster="+'"'+str(idmasterB)+'"'
 #
 #  decide when to load new entries from xml file   
 #
-  dbq= list(db.query("SELECT unix_timestamp(max(vdate)) vdate from glyphoutline where glyphname=glyphName"))
-  print  dbq[0].vdate, os.path.getmtime(glyphsource) 
-  vdatedb=int(dbq[0].vdate)
-  vdateos=int(os.path.getmtime(glyphsource))
-  dbq= list(db.query("SELECT unix_timestamp(max(vdate)) vdate from glyphparam where glyphname=glyphName"))
-  vdatedbp=int(dbq[0].vdate)
-  if ( max(vdatedb,vdatedbp) < vdateos) :
-    db.delete('glyphoutline', where='Glyphname="'+glyphName+'"')  
-    db.delete('glyphparam', where='Glyphname="'+glyphName+'"')  
+  dbqA= list(db.query("SELECT unix_timestamp(max(vdate)) vdate from glyphoutline where glyphname=glyphName" +idsA))
+  dbqB= list(db.query("SELECT unix_timestamp(max(vdate)) vdate from glyphoutline where glyphname=glyphName" +idsB))
+# check if glyphoutline exists
+  for glyphsource in [glyphsourceA,glyphsourceB] :
+    if glyphsource == glyphsourceA:
+      dbq = dbqA
+      ids = idsA
+      idmaster = idmasterA
+      itemlist = xmldocA.getElementsByTagName('point')
+    if glyphsource == glyphsourceB:
+      dbq = dbqB
+      ids = idsB
+      idmaster = idmasterB
+      itemlist = xmldocB.getElementsByTagName('point')
 
-  if not  list(db.select('glyphoutline', where='GlyphName="'+glyphName+'"')) :  # check if list is empty
+    if not  dbq:
+      print  dbq[0].vdate, os.path.getmtime(glyphsource) 
+      vdatedb=int(dbq[0].vdate)
+      vdateos=int(os.path.getmtime(glyphsource))
+      dbq= list(db.query("SELECT unix_timestamp(max(vdate)) vdate from glyphparam where glyphname=glyphName"+ids))
+      vdatedbp=int(dbq[0].vdate)
+      if ( max(vdatedb,vdatedbp) < vdateos) :
+        db.delete('glyphoutline', where='Glyphname="'+glyphName+'"'+ids )  
+        db.delete('glyphparam', where='Glyphname="'+glyphName+'"'+ids )  
+
+    if not  list(db.select('glyphoutline', where='GlyphName="'+glyphName+'"'+ids )) :  # check if list is empty
 #  put data into db
-     inum=0
-     strg=""
-     for s in itemlist :
+       inum=0
+       strg=""
+       for s in itemlist :
         inum = inum+1
 #  find a named point , convention the name begin with the letter z
         try :
@@ -70,7 +100,7 @@ def putFont():
                startp = 0
 #  find superness , cardinal and all parameter 
 #
-            db.insert('glyphparam', id=inum,GlyphName=glyphName, PointName=nameval, startp=startp)
+            db.insert('glyphparam', id=inum,GlyphName=glyphName, idmaster=idmaster, PointName=nameval, startp=startp)
             if im.value.find("superness") > 0:
               iposa=im.value.find("superness") 
               ipose= im.value.find(",",iposa)
@@ -79,7 +109,7 @@ def putFont():
               else :
                 ipose = len(im.value)
                 superness = int(im.value[iposa+9:ipose])
-              db.update('glyphparam', where='id=$inum and GlyphName="'+glyphName+'"', vars=locals(), superness=superness)
+              db.update('glyphparam', where='id=$inum and GlyphName="'+glyphName+'"' + ids, vars=locals(), superness=superness)
     #        cardinal = 0
         except :
            nameval = ""
@@ -95,57 +125,86 @@ def putFont():
         except :
             mainpoint = 0 
 	s.toxml()
-        strg= "insert into glyphoutline (GlyphName,PointNr,x,y,contrp,id) Values ("+'"'+glyphName+'"'+","+'"'+s.attributes['pointNo'].value+'"' + ","+ str(s.attributes['x'].value)+ "," + str(s.attributes['y'].value)+","+str(mainpoint)+","+str(inum)+")"
+        strg= "insert into glyphoutline (GlyphName,PointNr,x,y,contrp,id,idmaster) Values ("+'"'+glyphName+'"'+","+'"'+s.attributes['pointNo'].value+'"' + ","+ str(s.attributes['x'].value)+ "," + str(s.attributes['y'].value)+","+str(mainpoint)+","+str(inum)+","+str(idmaster)+")"
         print strg
         db.query(strg)
   return None  
 
+def gidmast(idwork):
+    if idwork == '0':
+       idmaster = int(mfg.cFont.idmaster)
+    if idwork == '1':
+       idmaster = -int(mfg.cFont.idmaster)
+    return(idmaster)
+
 def get_posts():
+    idmaster = gidmast(mfg.cFont.idwork)
     glyphName = mfg.cFont.glyphName 
-    return db.query("SELECT IFNULL(PointName, '') PointNr,x,y,concat('position:absolute;left:',0+x,'px;top:',0-y,'px; ',IF (PointName > '', 'color:red;', IF (contrp > 0 , 'z-index:-1;color:blue;', 'z-index:-2;color:CCFFFF;')) ) position, id from vglyphoutline where GlyphName="+'"'+glyphName+'"')
+    ids= " and idmaster="+'"'+str(idmaster)+'"'
+    q1="SELECT IFNULL(PointName, '') PointNr,x,y,concat('position:absolute;left:',0+x,'px;top:',0-y,'px; ',IF (PointName > '', 'color:red;', IF (contrp > 0 , 'z-index:-1;color:blue;', 'z-index:-2;color:CCFFFF;')) ) position, id from vglyphoutline where GlyphName="+'"'+glyphName+'"'
+    print "q1q1",q1
+    print "idsids",ids
+    print "q1+ids", q1+ids
+    return db.query(q1+ids )
 
 def get_post(id):
     glyphName = mfg.cFont.glyphName 
+    idmaster = gidmast(mfg.cFont.idwork)
+    ids= " and idmaster="+'"'+str(idmaster)+'"'
     try:
-        return db.select('vglyphoutline', where='id=$id and glyphName='+'"'+glyphName+'"', vars=locals())[0]
+        return db.select('vglyphoutline', where='id=$id and glyphName='+'"'+glyphName+'"' +ids, vars=locals())[0]
     except IndexError:
         return None
 
 def get_glyphparam(id):
     glyphName = mfg.cFont.glyphName 
+    idmaster = gidmast(cFont.idwork)
+    ids= " and idmaster="+'"'+str(idmaster)+'"'
     try:
-        return db.select('glyphparam', where='id=$id and GlyphName='+'"'+glyphName+'"', vars=locals())[0]
+        return db.select('glyphparam', where='id=$id and GlyphName='+'"'+glyphName+'"'+ids, vars=locals())[0]
     except IndexError:
         return None
 
 
 def update_post(id, x, y):
     glyphName = mfg.cFont.glyphName 
-    db.update('glyphoutline', where='id=$id and GlyphName="'+glyphName+'"', vars=locals(),
+    idmaster = gidmast(mfg.cFont.idwork)
+    ids= " and idmaster="+'"'+str(idmaster)+'"'
+    db.update('glyphoutline', where='id=$id and GlyphName="'+glyphName+'"'+ids, vars=locals(),
         x=x, y=y)
 
 def update_glyphparam(id, a, b, c):
     glyphName = mfg.cFont.glyphName 
+    idmaster = gidmast(mfg.cFont.idwork)
+    ids= " and idmaster="+'"'+str(idmaster)+'"'
     bb = b
     if c != '' :
       cc = c
     else:
       cc = None
-    db.update('glyphparam', where='id=$id and GlyphName="'+glyphName+'"', vars=locals(),
+    db.update('glyphparam', where='id=$id and GlyphName="'+glyphName+'"'+ids, vars=locals(),
         pointName=a, startp=bb, superness=cc)
 
 def insert_glyphparam(id, a, b, c):
     
     glyphName = mfg.cFont.glyphName 
-    db.insert('glyphparam', id=id,GlyphName=glyphName, PointName=a, startp=b, superness=c)
+    idmaster = gidmast(mfg.cFont.idwork)
+    db.insert('glyphparam', id=id,GlyphName=glyphName, PointName=a, startp=b, idmaster=idmaster, superness=c)
 
 def get_masters():
     return db.select('master',  vars=locals())
 
-def get_master():
+def get_master(id):
 
-    id=mfg.cFont.idmaster
-    return db.select('master',  where='idmaster=$id', vars=locals())
+    mfg.cFont.idmaster=id
+    ssmr= db.select('master',  where='idmaster=$id', vars=locals())
+    ssm=list(ssmr)
+    mfg.cFont.fontname=str(ssm[0].FontName)
+    mfg.cFont.fontna=str(ssm[0].FontNameA)
+    mfg.cFont.fontnb=str(ssm[0].FontNameB)
+ 
+    return ssmr
+
 
 def put_master():
 
@@ -168,20 +227,20 @@ def put_master():
 def get_globalparams():
     return db.select('globalparam', vars=locals())
 
-def get_globalparam():
+def get_globalparam(id):
+    mfg.cFont.idglobal=id
 
-    id=mfg.cFont.idglobal
     return db.select('globalparam', where='idglobal=$id',vars=locals())
 
 def put_globalparam(id):
 
     superness=mfg.cFont.superness
-    Interpolation=mfg.cFont.Interpolation
+    metapolation=mfg.cFont.metapolation
     penwidth=mfg.cFont.penwidth
     unitwidth=mfg.cFont.unitwidth
     xHeight=mfg.cFont.xHeight
     db.insert('globalparam', where='idglobal = $id',vars=locals(), 
-        superness=superness, Interpolation=Interpolation, penwidth=penwidth, unitwidth=unitwidth, xHeigth=xHeigth)
+        superness=superness, metapolation=metapolation, penwidth=penwidth, unitwidth=unitwidth, xHeigth=xHeigth)
     return None
 
 def update_master(id, a, b, c, d):
@@ -191,18 +250,23 @@ def update_master(id, a, b, c, d):
 
 def update_globalparam(id, a, b, c, d, e):
     db.update('globalparam', where='idglobal = $id', vars=locals(), 
-      superness = a, Interpolation = b, penwidth = c, unitwidth = d, xHeight = e)
+      superness = a, metapolation = b, penwidth = c, unitwidth = d, xHeight = e)
     return None
 
 def writexml():
      glyphName = mfg.cFont.glyphName 
-     glyphsource = mfg.cFont.fontna + "/glyphs/"+glyphName+".glif"
+     if cFont.idwork =='0' :
+        glyphsource = mfg.cFont.fontna + "/glyphs/"+glyphName+".glif"
+     if cFont.idwork =='1' :
+        glyphsource = mfg.cFont.fontnb + "/glyphs/"+glyphName+".glif"
+     idmaster = gidmast(mfg.cFont.idwork)
+     ids= " and idmaster="+'"'+str(idmaster)+'"'
      inum = 0
 #     db_rows=list(db.query("SELECT PointName,x,y from glyphoutline"))
 #    we assume the number of rows from the db >= the number of the itemlist 
      for  s in itemlist:
              inum = inum + 1
-             qstr = "SELECT PointNr,x,y,PointName from vglyphoutline where id="+str(inum) +" and Glyphname="+'"'+glyphName+'"'
+             qstr = "SELECT PointNr,x,y,PointName from vglyphoutline where id="+str(inum) +" and Glyphname="+'"'+glyphName+'"'+ids
             
              try :
                  db_rows=list(db.query(qstr))
@@ -211,7 +275,7 @@ def writexml():
                  s.attributes['y'] = str(db_rows[0].y)
                  sname = str(db_rows[0].PointName)
                  if sname <> "None" : 
-                   qstrp = "SELECT * from glyphparam where id="+str(inum) +" and Glyphname="+'"'+glyphName+'"'
+                   qstrp = "SELECT * from glyphparam where id="+str(inum) +" and Glyphname="+'"'+glyphName+'"'+ids
                    db_rowparam = list(db.query(qstrp))
                    nameattr = sname
 
@@ -234,11 +298,13 @@ def writexml():
 def writeGlobalParam():
 # prepare font.mf parameter file
 #
-  master = list(get_master()) 
+  
+  master = list(get_master(mfg.cFont.idmaster)) 
+  imgl = list(get_globalparam(mfg.cFont.idglobal))
   fontsize=12
   incx=0
   u = 1
-  superness = master[0].superness 
+  superness = imgl[0].superness
   print "superness ",superness
   px=0.1
   mean=6.12

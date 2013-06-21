@@ -1,8 +1,28 @@
-$def with (form,gmlist,cfont)
-<html>
-<body>
-<p> global parameters </p>
+$def with (posts,master,fontsource,webglyph)
+<h2>Glyph View</h2>
 
+<p> Selected Font : <br>
+$for fonts in fontsource:
+  $fonts <br>
+</p> 
+
+$for mast in master:
+  <p> 
+   id $mast.idmaster $mast.FontName  $mast.FontNameA $mast.FontNameB $mast.vdate<br>
+   this is metap.html <br>
+  </p>
+
+<p> 
+<a href="/metap/0">edit on set A</a> <br>
+<a href="/metap/1">edit on set B</a> <br>
+</p> 
+
+<br>
+<p style="color:blue;">Click on point to start Editor or <br>
+choose Font in Settings  <br>
+ <br>
+Optimized for Chrome
+</p>
 
 <style>@font-face {
 	font-family:'metapolator';
@@ -79,23 +99,18 @@ table,th,td {
 }
 </style>
 
-<p> global parameter table list </p>
-<p>
-$for gm in gmlist:
-     idglobal <a href="/font2/$gm.idglobal">$gm.idglobal</a>  interp $gm.metapolation sup $gm.superness penw $gm.penwidth pen unit $gm.unitwidth penxH $gm.xHeight <br>
 
-</p>
+<div id="center" >
+
 <div>
-<form action="" method="post">
-$:form.render()
-</form>
+        <h3_b>
+$webglyph
+        </h3_b>
 </div>
-<div>
-<p>
-<a href="/font2/$cfont.idglobal">global parameter set</a>
-</p>
-<div>
-</body>
-</html>
 
+$for posti in posts:
+        <div  id="$posti.id" style="$posti.position">
+        <p><a href="/view/$posti.id" >&#9673;$posti.PointNr</a></p> 
+        </div>
+</div>
 
