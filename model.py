@@ -262,10 +262,13 @@ def update_globalparam(id, a, b, c, d, e):
 
 def writexml():
      glyphName = mfg.cFont.glyphName 
-     if cFont.idwork =='0' :
+     if mfg.cFont.idwork =='0' :
         glyphsource = mfg.cFont.fontna + "/glyphs/"+glyphName+".glif"
-     if cFont.idwork =='1' :
+        xmldoc = xmldocA
+     if mfg.cFont.idwork =='1' :
+        xmldoc = xmldocB
         glyphsource = mfg.cFont.fontnb + "/glyphs/"+glyphName+".glif"
+     itemlist = xmldoc.getElementsByTagName('point')
      idmaster = gidmast(mfg.cFont.idwork)
      ids= " and idmaster="+'"'+str(idmaster)+'"'
      inum = 0
