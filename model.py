@@ -180,7 +180,10 @@ def update_post(id, x, y):
     db.update('glyphoutline', where='id=$id and GlyphName="'+glyphName+'"'+ids, vars=locals(),
         x=x, y=y)
 
-def update_glyphparam(id, a, b, c):
+def update_glyphparamD(id, a, b):
+  print a,b
+  
+def update_glyphparam(id, a, b, c ):
     glyphName = mfg.cFont.glyphName 
     idmaster = gidmast(mfg.cFont.idwork)
     ids= " and idmaster="+'"'+str(idmaster)+'"'

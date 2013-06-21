@@ -97,17 +97,11 @@ class View:
         web.form.Textbox('superness',
             size=4, 
             description="superness"),
-        web.form.Dropdown(name='+ Parameter',
-            args=['leftp','rightp','downp','upp','supergr','superleft','tension','tensionend','cycle','penshiftedx','penshiftedy','pointshiftx','pointshifty','penwidth','xHeight','cardinal']), 
-
-#web.form.Checkbox('delete'), 
-		
-#            if Tension in args :
-#               formParam = web.form.Form(
-#               web.form.Textbox('Tension',
-#               size=5, 
-#               description="Tension"))
-
+        web.form.Dropdown('Param',
+            [('leftp','leftp'),('rightp','rightp'),('dwonp','downp'),('upp','upp'),('supergr','supergr'),('superleft','superleft'),('tension','tension'),('tensionend','tensionend'),('cycle','cycle'),('penshiftedx','penshiftedx'),('penshiftedy','penshiftedy'),('pointshiftx','pointshiftx'),('pointshifty','pointshifty'),('penwidth','penwidth'),('xHeight','xHeight'),('cardinal','cardinal')]), 
+        web.form.Textbox('parmval',
+            size=10, 
+            description="parmval"),
         web.form.Button('saveParam'), 
         )
 
@@ -145,6 +139,7 @@ class View:
                 return render.view(posts, post, form, formParam, master,mastglobal)
             if model.get_glyphparam(int(id)) != None :
                 model.update_glyphparam(int(id),form.d.PointName, formParam.d.startp, formParam.d.superness)
+                model.update_glyphparamD(int(id),formParam.d.Param, formParam.d.parmval)
             else :
                 model.insert_glyphparam(int(id),form.d.PointName, formParam.d.startp, formParam.d.superness)
                 
@@ -157,8 +152,8 @@ class View:
         model.writexml()        
         commstr = "python ufo2mf.py " + cFont.fontna+"/glyphs " + cFont.fontnb+"/glyphs glyphs"
 	print commstr
-        os.system(commstr)
-        os.system("sh makefont.sh")
+#        os.system(commstr)
+#        os.system("sh makefont.sh")
         return render.view(posts, post, form, formParam, master, mastglobal,webglyph)
 
 class ViewFont:
