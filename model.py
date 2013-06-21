@@ -53,9 +53,9 @@ def putFont():
   dbqpA= list(db.query("SELECT unix_timestamp(max(vdate)) vdate from glyphparam where glyphname=glyphName"+idsA))
   dbqpB= list(db.query("SELECT unix_timestamp(max(vdate)) vdate from glyphparam where glyphname=glyphName"+idsB))
 # check if glyphoutline exists
-  for idmaster in [1,-1] :
+  for idmaster in [idmasterA,idmasterB] :
     print "glyphsource",glyphsource, glyphsourceA, glyphsourceB
-    if idmaster == 1:
+    if idmaster == idmasterA:
       glyphsource = glyphsourceA
       dbq = dbqA
       if  dbqA[0].vdate == None :
@@ -67,7 +67,7 @@ def putFont():
       ids = idsA
       itemlist = xmldocA.getElementsByTagName('point')
 
-    if idmaster == -1:
+    if idmaster == idmasterB:
       glyphsource = glyphsourceB
       dbq = dbqB
       if  dbqB[0].vdate == None :
@@ -166,7 +166,7 @@ def get_post(id):
 
 def get_glyphparam(id):
     glyphName = mfg.cFont.glyphName 
-    idmaster = gidmast(cFont.idwork)
+    idmaster = gidmast(mfg.cFont.idwork)
     ids= " and idmaster="+'"'+str(idmaster)+'"'
     try:
         return db.select('glyphparam', where='id=$id and GlyphName='+'"'+glyphName+'"'+ids, vars=locals())[0]
