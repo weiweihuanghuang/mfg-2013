@@ -54,7 +54,6 @@ def putFont():
   dbqpB= list(db.query("SELECT unix_timestamp(max(vdate)) vdate from glyphparam where glyphname=glyphName"+idsB))
 # check if glyphoutline exists
   for idmaster in [idmasterA,idmasterB] :
-    print "glyphsource",glyphsource, glyphsourceA, glyphsourceB
     if idmaster == idmasterA:
       glyphsource = glyphsourceA
       dbq = dbqA
