@@ -32,7 +32,7 @@ class cFont:
      fontnb = ""
      fontname = ""
      idglobal = 1
-     idmaster = '1'
+     idmaster = 1
      idwork   = '0'
      glyphName =""
      superness =1
@@ -97,11 +97,8 @@ class View:
         web.form.Textbox('superness',
             size=4, 
             description="superness"),
- #       web.form.Dropdown(name='Cardinal',
- #           args=['Up', 'Left', 'Down', 'Right'],
-#	    value='Up'),
         web.form.Dropdown(name='+ Parameter',
-            args=['Tension', 'Direction', 'Line', 'Pen1', 'Pen2', 'Stem', 'Baseline', 'X-Height', 'Cap', 'Ascender', 'Descender']), 
+            args=['leftp','rightp','downp','upp','supergr','superleft','tension','tensionend','cycle','penshiftedx','penshiftedy','pointshiftx','pointshifty','penwidth','xHeight','cardinal']), 
 
 #web.form.Checkbox('delete'), 
 		
@@ -198,7 +195,8 @@ class Font1:
 
     def POST (self,id):
         mmaster= list(model.get_masters())
-        master= list(model.get_master(id))
+        if id > '0':
+           master= list(model.get_master(id))
         form = Font1.form()
         form.fill()
         cFont.fontna = form.d.UFO_A
