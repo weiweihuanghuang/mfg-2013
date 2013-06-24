@@ -181,7 +181,17 @@ def update_post(id, x, y):
         x=x, y=y)
 
 def update_glyphparamD(id, a, b):
-  print a,b
+# string:syntax update glyphparam set leftp='1' where id=75 and Glyphname='p' and idmaster=1;
+    print a,b
+    glyphName = mfg.cFont.glyphName 
+    idmaster = gidmast(mfg.cFont.idwork)
+    ids= " and idmaster="+'"'+str(idmaster)+'"'
+    aa = a 
+    if b != '' :
+      bb = b 
+    else:
+      bb = None
+    str="update glyphparam set "
   
 def update_glyphparam(id, a, b, c ):
     glyphName = mfg.cFont.glyphName 
@@ -291,15 +301,48 @@ def writexml():
                    qstrp = "SELECT * from glyphparam where id="+str(inum) +" and Glyphname="+'"'+glyphName+'"'+ids
                    db_rowparam = list(db.query(qstrp))
                    nameattr = sname
-
+                   s.attributes['name']=nameattr
+#
+#      read param value and write into xml
+#
 		   if str(db_rowparam[0].startp) > '0':
-		     nameattr = nameattr + ', start '
-                   
-                   print " superness ",db_rowparam[0].superness 
-		   if str(db_rowparam[0].superness) != 'None':
-		     nameattr = nameattr + ',superness'+str(db_rowparam[0].superness)
-                    
-                   s.attributes['name'] = nameattr 
+		      s.attributes['start'] = '1'
+		   if str(db_rowparam[0].leftp) > '0' :
+                      s.attributes['leftp']='1'
+                   if str(db_rowparam[0].smooth] > '0':
+                      s.attributes['smooth']="yes"
+                   if str(db_rowparam[0].superness) ! ='None':
+                      s.attributes['superness']=str(db_rowparam[0].superness)  
+		   if str(db_rowparam[0].rightp) > '0':
+		      s.attributes['rightp'] = '1'
+		   if str(db_rowparam[0].downp) > '0' :
+                      s.attributes['downp']='1'
+                   if str(db_rowparam[0].smooth] > '0':
+                      s.attributes['upp']='1'
+                   if str(db_rowparam[0].supegr) ! ='None':
+                      s.attributes['supergr']=str(db_rowparam[0].supergr)  
+                   if str(db_rowparam[0].superleft) ! ='None':
+                      s.attributes['superleft']=str(db_rowparam[0].superleft)  
+                   if str(db_rowparam[0].tension) ! ='None':
+                      s.attributes['tension']=str(db_rowparam[0].tension)  
+                   if str(db_rowparam[0].tensionend) ! ='None':
+                      s.attributes['tensionend']=str(db_rowparam[0].tensionend)  
+                   if str(db_rowparam[0].cycle) ! ='None':
+                      s.attributes['cycle']=str(db_rowparam[0].cycle)  
+                   if str(db_rowparam[0].penwidth) ! ='None':
+                      s.attributes['penwidth']=str(db_rowparam[0].penwidth) 
+                   if str(db_rowparam[0].xHeight) ! ='None':
+                      s.attributes['xHeight']=str(db_rowparam[0].xHeight)  
+                   if str(db_rowparam[0].penshiftedx) ! ='None':
+                      s.attributes['penshiftedx']=str(db_rowparam[0].penshiftedx)  
+                   if str(db_rowparam[0].penshiftedy) ! ='None':
+                      s.attributes['penshiftedy']=str(db_rowparam[0].penshiftedy)  
+                   if str(db_rowparam[0].penshiftx) ! ='None':
+                      s.attributes['penshiftx']=str(db_rowparam[0].penshiftx)  
+                   if str(db_rowparam[0].penshifty) ! ='None':
+                      s.attributes['penshifty']=str(db_rowparam[0].penshifty)  
+                   if str(db_rowparam[0].cardinal) ! ='None':
+                      s.attributes['cardinal']=str(db_rowparam[0].cardinal) 
 
                  s.toxml()
              except :
