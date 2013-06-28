@@ -1415,10 +1415,10 @@ for i in range (0,nnz-1) :
       zeile = zeile + " shifted (0, y" + str(penshiftedyval[i]) + ")"      
 
     if overx[i] <> "" :
-      zeile = zeile + " shifted (0, mean-y" + str(overxval[i]) + ") + (0, over)" 
+      zeile = zeile + " shifted (0, mean-y" + str(overxval[i]) + ") + (0, over)" + stre
    
     if overbase[i] <> "" :
-      zeile = zeile + " shifted (0, baseline-y" + str(overbaseval[i]) + ") + (0, -over)" 
+      zeile = zeile + " shifted (0, baseline-y" + str(overbaseval[i]) + ") + (0, -over)"  + stre
 
     if doubledash[i] <> "" :
       zeile = zeile + doubledash[i]    
@@ -1559,7 +1559,7 @@ for i in range (0,nnz-1) :
                         if tripledash[i] > "" :
                          zeile = zeile 
                         else :
-                           zeile = zeile + semi + "seckel" 
+                           zeile = zeile + semi  
 
     else :
        zeile = zeile + semi 
