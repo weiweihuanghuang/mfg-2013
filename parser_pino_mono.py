@@ -847,6 +847,7 @@ for item in itemlist :
            del tensionand[i-1]
            tensionand.insert(i-1,"tensionand")
 	   del tensionandvalB[i-1]
+           del tensionandval2B[i-1]
            tensionandvalB.insert(i-1,itensionandval[:3])
            tensionandval2B.insert(i-1,itensionandval[-3:])
 
