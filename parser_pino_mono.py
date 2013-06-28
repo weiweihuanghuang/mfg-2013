@@ -54,7 +54,7 @@ if g in asc :
 #    ggroup = 'asc#'
 
 
-print 'beginfontchar("' + g + '", (' + w + "*width +px#) + (incx * (" + w2 + '-' + w + ")), " + ggroup + ", 0);"
+print 'beginfontchar("' + g + '", (' + w + "*width *width_" +  g  + " +px#) + (incx * (" + w2 + '-' + w + ")), " + ggroup + ", 0);"
 print """if known ps_output:
 glyph_name "uni""" + u + """"; 
 fi
@@ -552,10 +552,10 @@ for i in range (0,nnz-1) :
 ## default string
 
   zeile =""
-  zeile = "z"+str(zitem)+ "=(x2"+ str(zitem)+ "0 *width + (incx * (x2"+str(zitem)+"A - x2" +str(zitem)+"0)), y2"+str(zitem)+ "0 *" + ggroup + " + (incx * (y2"+str(zitem)+ "A - y2" +str(zitem)+ "0))"
+  zeile = "z"+str(zitem)+ "=(x2"+ str(zitem)+ "0 *width *width_" + g + "+ (incx * (x2"+str(zitem)+"A - x2" +str(zitem)+"0)), y2"+str(zitem)+ "0 *" + ggroup + " + (incx * (y2"+str(zitem)+ "A - y2" +str(zitem)+ "0))"
   
   zeileend =""
-  zeileend = 'z'+str(zzn[nnz-1])+ "=(x2"+ str(zzn[nnz-1])+ "0 *width + (incx * (x2"+str(zzn[nnz-1])+"A - x2" +str(zzn[nnz-1])+"0)), y2"+str(zzn[nnz-1])+ "0 *" + ggroup + " + (incx * (y2"+str(zzn[nnz-1]) + "A - y2" +str(zzn[nnz-1])+ "0))"
+  zeileend = 'z'+str(zzn[nnz-1])+ "=(x2"+ str(zzn[nnz-1])+ "0 *width *width_" + g + " + (incx * (x2"+str(zzn[nnz-1])+"A - x2" +str(zzn[nnz-1])+"0)), y2"+str(zzn[nnz-1])+ "0 *" + ggroup + " + (incx * (y2"+str(zzn[nnz-1]) + "A - y2" +str(zzn[nnz-1])+ "0))"
  
 
 # parameters 
@@ -1324,6 +1324,7 @@ for item in itemlist :
            del tensionand[i-1]
            tensionand.insert(i-1,"tensionand")
 	   del tensionandval[i-1]
+	   del tensionandval2[i-1]
            tensionandval.insert(i-1,itensionandval[:3])
            tensionandval2.insert(i-1,itensionandval[-3:])
 
