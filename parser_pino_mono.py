@@ -1415,10 +1415,10 @@ for i in range (0,nnz-1) :
       zeile = zeile + " shifted (0, y" + str(penshiftedyval[i]) + ")"      
 
     if overx[i] <> "" :
-      zeile = zeile + " shifted (0, mean-y" + str(overxval[i]) + ") + (0, over)" + stre
+      zeile = zeile + " shifted (0, mean-y" + str(overxval[i]) + ") + (0, over)" 
    
     if overbase[i] <> "" :
-      zeile = zeile + " shifted (0, baseline-y" + str(overbaseval[i]) + ") + (0, -over)"  + stre
+      zeile = zeile + " shifted (0, baseline-y" + str(overbaseval[i]) + ") + (0, -over)"  
 
     if doubledash[i] <> "" :
       zeile = zeile + doubledash[i]    
@@ -1441,39 +1441,39 @@ for i in range (0,nnz-1) :
 
  
     else : 
-      if tension[i] > "" :
-        zeile = zeile 
-      else :
-        if superright[i] > "" :
-          zeile = zeile 
-        else :
-          if superleft[i] > "" :
-            zeile = zeile 
-          else :
-            if tensionand[i] > "" :
-              zeile = zeile 
-            else :
-              if overx[i] > "" :
-                zeile = zeile 
-              else :
-                if overbase[i] > "" :
-                 zeile = zeile 
-                else :
-                  if penshifted[i] > "" :
-                   zeile = zeile 
-                  else :
-                    if doubledash[i] > "" :
-                     zeile = zeile 
-                    else :
-                      if tripledash[i] > "" :
-                       zeile = zeile 
-                      else :
-                        if tensionand[i] > "" :
-                         zeile = zeile 
-
-                        else :
-                           zeile = zeile + stre  
-
+       if tension[i] > "" :
+         zeile = zeile 
+       else :
+         if superright[i] > "" :
+           zeile = zeile 
+         else :
+           if superleft[i] > "" :
+             zeile = zeile 
+           else :
+             if tensionand[i] > "" :
+               zeile = zeile 
+             else :
+               if overx[i] > "" :
+                 zeile = zeile + stre
+               else :
+                 if overbase[i] > "" :
+                  zeile = zeile + stre
+                 else :
+                   if penshifted[i] > "" :
+                    zeile = zeile + stre
+                   else :
+                     if doubledash[i] > "" :
+                      zeile = zeile 
+                     else :
+                       if tripledash[i] > "" :
+                        zeile = zeile 
+                       else :
+                         if tensionand[i] > "" :
+                          zeile = zeile 
+ 
+                         else :
+                            zeile = zeile + stre  
+   
     if down2[i] <> "" :
       zeile = zeile  + down2[i]  
     if up2[i] <> "" :
