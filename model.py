@@ -418,6 +418,7 @@ def ufo2mf():
 
   dirnamef1 = mfg.cFont.fontna+"/glyphs"
   dirnamef2 = mfg.cFont.fontnb+"/glyphs"
+  dirnamep1 = "glyphs"
  
   charlist1 = [f for f in os.listdir(dirnamef1) ]
   charlist2 = [f for f in os.listdir(dirnamef2) ]
@@ -442,6 +443,7 @@ def ufo2mf():
         commd2 = "python parser_pino_mono.py " +ch1 +" " +dirnamef1 +" " +dirnamef2 +" > " +dirnamep1 +"/" +newfilename
         os.system(commd2)
       except :
+        print "error",dirnamef1+"/"+ch1
         print "error",dirnamef2+"/"+ch1
       continue
   
