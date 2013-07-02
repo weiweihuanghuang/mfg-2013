@@ -300,9 +300,9 @@ def update_master(id, a, b, c, d):
       FontName = a, FontNameA = b, FontNameB = c, idglobal = d)
     return None
 
-def update_globalparam(id, a, b, c, d, e):
+def update_globalparam(id, a, b, c, d, e, f, g):
     db.update('globalparam', where='idglobal = $id', vars=locals(), 
-      superness = a, metapolation = b, penwidth = c, unitwidth = d, xHeight = e)
+      superness = a, metapolation = b, penwidth = c, unitwidth = d, xHeight = e, ht = f, fontsize = g)
     return None
 
 def writexml():
@@ -371,21 +371,25 @@ def writeGlobalParam():
   
   master = list(get_master(mfg.cFont.idmaster)) 
   imgl = list(get_globalparam(mfg.cFont.idglobal))
-  fontsize=12
-  incx=0
-  u = 1
-  superness = imgl[0].superness
-  print "superness ",superness
-  px=0.1
-  mean=6.12
+
   des=2.45
   asc=0.8
   cap=0.8
+
+  superness = imgl[0].superness
+  metapolation = imgl[0].metapolation
+  px = imgl[0].penwidth
+  u = imgl[0].unitwidth
+  mean   = imgl[0].xHeight
+  fontsize   = imgl[0].fontsize
+  ht    = imgl[0].ht
+
+
   ifile=open("font.mf","w")
   ifile.write("% parameter file \n")
-  ifile.write("incx:=%.0f;\n"%incx)
+  ifile.write("metapolation:=%.1f;\n"%metapolation)
   ifile.write("font_size:=%.0fpt#;\n"%fontsize)
-  ifile.write("ht#:=10pt#;\n")
+  ifile.write("ht#:=%.0fpt#;\n"%ht)
   ifile.write("u#:=%.0fpt#;\n"%u)
   ifile.write("px#:=%.1fpt#;\n"%px)
   ifile.write("superness:=%.1f;\n"%superness)

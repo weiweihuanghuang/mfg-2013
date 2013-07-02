@@ -214,6 +214,12 @@ class GlobalParam:
         web.form.Textbox('xHeight', web.form.notnull, 
             size=3,
             description="xHeight", value="1.0"),
+        web.form.Textbox('ht', web.form.notnull, 
+            size=3,
+            description="ht", value="10"),
+        web.form.Textbox('fontsize', web.form.notnull, 
+            size=3,
+            description="fontsize", value="10"),
         web.form.Button('save'),
         )
     def GET(self,id):
@@ -226,7 +232,7 @@ class GlobalParam:
           gm = None
 
         if gm != None:
-             form.fill({'superness':gm[0].superness,'metapolation':gm[0].metapolation,'penwidth':gm[0].penwidth,'unitwidth':gm[0].unitwidth,'xHeight':gm[0].xHeight})
+             form.fill({'superness':gm[0].superness,'metapolation':gm[0].metapolation,'penwidth':gm[0].penwidth,'unitwidth':gm[0].unitwidth,'xHeight':gm[0].xHeight,'ht':gm[0].ht,'fontsize':gm[0].fontsize})
         return render.font2(form,gml,cFont)
 
     def POST (self,id):
@@ -234,7 +240,7 @@ class GlobalParam:
         gm = list(model.get_globalparam(id))
         form = GlobalParam.form()
         form.fill()
-        model.update_globalparam(id, form.d.superness, form.d.metapolation, form.d.penwidth, form.d.unitwidth, form.d.xHeight)
+        model.update_globalparam(id, form.d.superness, form.d.metapolation, form.d.penwidth, form.d.unitwidth, form.d.xHeight, form.d.ht, form.d.fontsize)
         model.writeGlobalParam()
         return render.font2(form,gml,cFont)
 

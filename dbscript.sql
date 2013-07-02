@@ -65,11 +65,13 @@ CREATE TABLE globalparam (
     unitwidth float,
     xHeight   float,
     tension   integer,
+    fontsize  integer default 12,
+    ht        integer default 10,
     primary key (idglobal)
 );
 insert into master (FontName,FontNameA,FontNameB,idglobal) Values ("My First Metapolator Font", "GaramondSans.ufo","GaramondSans.ufo",1);
 insert into master (FontName,FontNameA,FontNameB,idglobal) Values ("My second Metapolator Font", "Aeriel-Regular.ufo","Aeriel-Regular.ufo",2);
 insert into master (FontName,FontNameA,FontNameB,idglobal) Values ("combined Garamond and Aeriel", "GaramondSans.ufo","Aeriel-Regular.ufo",2);
-insert into globalparam (idglobal,metapolation,superness,penwidth,unitwidth,xHeight) Values (1, 0.5,1,1,1.0,1.0);
-insert into globalparam (idglobal,metapolation,superness,penwidth,unitwidth,xHeight) Values (2, 0.5,1,700,1.0,1.0);
+insert into globalparam (idglobal,metapolation,superness,penwidth,unitwidth,xHeight,fontsize,ht) Values (1, 0.5,1,1,1.0,1.0,12,10);
+insert into globalparam (idglobal,metapolation,superness,penwidth,unitwidth,xHeight,fontsize,ht) Values (2, 0.5,1,700,1.0,1.0,15,8);
 
