@@ -1,3 +1,12 @@
+def inktrapcut(a) =
+a*(A_inktrap + incx * (B_inktrap-A_inktrap)) enddef;
+
+def inktrap_l(a)=
+shifted (-0.5*a*(A_inktrap + incx * (B_inktrap-A_inktrap)),0) enddef;
+
+def inktrap_r(a)=
+shifted (0.5*a*(A_inktrap + incx * (B_inktrap-A_inktrap)),0) enddef;
+
 def stemcutter(expr a) =
 a*(A_stemcut+incx*(B_stemcut-A_stemcut)) enddef; 
 
