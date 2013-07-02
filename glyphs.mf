@@ -75,12 +75,20 @@ numeric aa_, bb_, cc_; bb_=b/y; cc_=c/y; aa_=a-(b/y)*(b/y);
 % superness macros, can be used for quarter circle segments %
 
 % left curves (superness) %
+%def super_ql(suffix i,j,m) =
+% z.i{0,y.j-y.i}...((m * superness)[x.j,x.i], (m * superness)[y.i,y.j]){z.j-z.i}...z.j{x.j-x.i,0} enddef;
+
+% right curves (superness) %
+%def super_qr(suffix j,k, m) =
+%z.j{x.k-x.j,0}...((m * superness)[x.j,x.k],(m * superness)[y.k,y.j]){z.k-z.j}...z.k{0,y.k-y.j} enddef;
+
+% left curves (superness) %
 def super_ql(suffix i,j,m) =
- z.i{0,y.j-y.i}...((m * superness)[x.j,x.i], (m * superness)[y.i,y.j]){z.j-z.i}...z.j{x.j-x.i,0} enddef;
+ z.i{0,y.j-y.i}...((m * (A_superness+incx*(A_superness-B_superness))[x.j,x.i], (m * (A_superness+incx*(A_superness-B_superness)))[y.i,y.j]){z.j-z.i}...z.j{x.j-x.i,0} enddef;
 
 % right curves (superness) %
 def super_qr(suffix j,k, m) =
-z.j{x.k-x.j,0}...((m * superness)[x.j,x.k],(m * superness)[y.k,y.j]){z.k-z.j}...z.k{0,y.k-y.j} enddef;
+z.j{x.k-x.j,0}...((m * (A_superness+incx*(A_superness-B_superness)))[x.j,x.k],(m * (A_superness+incx*(A_superness-B_superness)))[y.k,y.j]){z.k-z.j}...z.k{0,y.k-y.j} enddef;
 
 % glyph input
 
