@@ -6,6 +6,22 @@ import os.path, time
 #db = web.database(dbn='mysql', db='blog', user='root', pw='schnaegg' )
 db = web.database(dbn='mysql', db='blog', user='walter', pw='' )
 
+def xxmlat(s, dbob, sattr, val):
+
+   print "dbob",dbob,"atttt",sattr," vvvv",val
+   if str(dbob) != 'None' :
+      if not s.hasAttribute(sattr) :
+          s.setAttribute(sattr,"")
+
+      if val == '' :
+          s.attributes[sattr] = str(dbob)
+      else : 
+          s.attributes[sattr] = val
+         
+   else :
+      if s.hasAttribute(sattr) :
+          s.removeAttribute(sattr)
+
 def delFont(fontName,glyphNamel):
 
   return None
@@ -74,7 +90,10 @@ def putFont():
          vdatedbp = 0
       else:
          vdatedb=int(dbqB[0].vdate)
-         vdatedbp=int(dbqpB[0].vdate)
+         if dbqpB[0].vdate == None :
+            vdatedbp = 0
+         else:
+            vdatedbp=int(dbqpB[0].vdate)
       ids = idsB
       itemlist = xmldocB.getElementsByTagName('point')
 
@@ -190,26 +209,28 @@ def update_glyphparamD(id, a, b):
     if b != '' :
       bb = b 
     else:
-      bb = None
-    str="update glyphparam set "
+      bb = 'NULL' 
+#    strg="update glyphparam set "+aa+"="+bb+" where id="+str(id)+" and GlyphName='"+glyphName+"'"+ids 
+    strg="update glyphparam set "+aa+"="+str(bb)+" where id="+str(id)+" and GlyphName='"+glyphName+"'"+ids 
+    print strg
+    db.query(strg)
   
-def update_glyphparam(id, a, b, c ):
+def update_glyphparam(id, a):
     glyphName = mfg.cFont.glyphName 
     idmaster = gidmast(mfg.cFont.idwork)
     ids= " and idmaster="+'"'+str(idmaster)+'"'
-    bb = b
-    if c != '' :
-      cc = c
+    if a != '' :
+      aa = a
     else:
-      cc = None
+      aa = 'NULL'
     db.update('glyphparam', where='id=$id and GlyphName="'+glyphName+'"'+ids, vars=locals(),
-        pointName=a, startp=bb, superness=cc)
+        pointName=aa)
 
-def insert_glyphparam(id, a, b, c):
+def insert_glyphparam(id, a):
     
     glyphName = mfg.cFont.glyphName 
     idmaster = gidmast(mfg.cFont.idwork)
-    db.insert('glyphparam', id=id,GlyphName=glyphName, PointName=a, startp=b, idmaster=idmaster, superness=c)
+    db.insert('glyphparam', id=id,GlyphName=glyphName, PointName=a, idmaster=idmaster)
 
 def get_masters():
     return db.select('master',  vars=locals())
@@ -274,6 +295,7 @@ def update_globalparam(id, a, b, c, d, e):
     return None
 
 def writexml():
+
      glyphName = mfg.cFont.glyphName 
      if mfg.cFont.idwork =='0' :
         glyphsource = mfg.cFont.fontna + "/glyphs/"+glyphName+".glif"
@@ -291,62 +313,43 @@ def writexml():
              inum = inum + 1
              qstr = "SELECT PointNr,x,y,PointName from vglyphoutline where id="+str(inum) +" and Glyphname="+'"'+glyphName+'"'+ids
             
-             try :
-                 db_rows=list(db.query(qstr))
-                 s.attributes['pointNo'] = str(db_rows[0].PointNr)
-                 s.attributes['x'] = str(db_rows[0].x)
-                 s.attributes['y'] = str(db_rows[0].y)
-                 sname = str(db_rows[0].PointName)
-                 if sname <> "None" : 
+             db_rows=list(db.query(qstr))
+             s.attributes['pointNo'] = str(db_rows[0].PointNr)
+             s.attributes['x'] = str(db_rows[0].x)
+             s.attributes['y'] = str(db_rows[0].y)
+             sname = str(db_rows[0].PointName)
+             if sname <> "None" : 
                    qstrp = "SELECT * from glyphparam where id="+str(inum) +" and Glyphname="+'"'+glyphName+'"'+ids
                    db_rowparam = list(db.query(qstrp))
                    nameattr = sname
-                   s.attributes['name']=nameattr
+                   print "namename",nameattr
+                   if s.hasAttribute('name') :
+                      s.attributes['name']=nameattr
+                   else :
+                      s.setAttribute('name',nameattr)
 #
 #      read param value and write into xml
 #
-		   if str(db_rowparam[0].startp) > '0':
-		      s.attributes['start'] = '1'
-		   if str(db_rowparam[0].leftp) > '0' :
-                      s.attributes['leftp']='1'
-                   if str(db_rowparam[0].smooth] > '0':
-                      s.attributes['smooth']="yes"
-                   if str(db_rowparam[0].superness) ! ='None':
-                      s.attributes['superness']=str(db_rowparam[0].superness)  
-		   if str(db_rowparam[0].rightp) > '0':
-		      s.attributes['rightp'] = '1'
-		   if str(db_rowparam[0].downp) > '0' :
-                      s.attributes['downp']='1'
-                   if str(db_rowparam[0].smooth] > '0':
-                      s.attributes['upp']='1'
-                   if str(db_rowparam[0].supegr) ! ='None':
-                      s.attributes['supergr']=str(db_rowparam[0].supergr)  
-                   if str(db_rowparam[0].superleft) ! ='None':
-                      s.attributes['superleft']=str(db_rowparam[0].superleft)  
-                   if str(db_rowparam[0].tension) ! ='None':
-                      s.attributes['tension']=str(db_rowparam[0].tension)  
-                   if str(db_rowparam[0].tensionend) ! ='None':
-                      s.attributes['tensionend']=str(db_rowparam[0].tensionend)  
-                   if str(db_rowparam[0].cycle) ! ='None':
-                      s.attributes['cycle']=str(db_rowparam[0].cycle)  
-                   if str(db_rowparam[0].penwidth) ! ='None':
-                      s.attributes['penwidth']=str(db_rowparam[0].penwidth) 
-                   if str(db_rowparam[0].xHeight) ! ='None':
-                      s.attributes['xHeight']=str(db_rowparam[0].xHeight)  
-                   if str(db_rowparam[0].penshiftedx) ! ='None':
-                      s.attributes['penshiftedx']=str(db_rowparam[0].penshiftedx)  
-                   if str(db_rowparam[0].penshiftedy) ! ='None':
-                      s.attributes['penshiftedy']=str(db_rowparam[0].penshiftedy)  
-                   if str(db_rowparam[0].penshiftx) ! ='None':
-                      s.attributes['penshiftx']=str(db_rowparam[0].penshiftx)  
-                   if str(db_rowparam[0].penshifty) ! ='None':
-                      s.attributes['penshifty']=str(db_rowparam[0].penshifty)  
-                   if str(db_rowparam[0].cardinal) ! ='None':
-                      s.attributes['cardinal']=str(db_rowparam[0].cardinal) 
+                   xxmlat(s,db_rowparam[0].startp,'startp','1')
+                   xxmlat(s,db_rowparam[0].leftp,'leftp','1')
+                   xxmlat(s,db_rowparam[0].superness,'superness','')
+                   xxmlat(s,db_rowparam[0].rightp,'rightp','1')
+                   xxmlat(s,db_rowparam[0].downp,'downp','1')
+                   xxmlat(s,db_rowparam[0].upp,'upp','1')
+                   xxmlat(s,db_rowparam[0].superqr,'superqr','')
+                   xxmlat(s,db_rowparam[0].superleft,'superleft','')
+                   xxmlat(s,db_rowparam[0].tension,'tension','')
+                   xxmlat(s,db_rowparam[0].tensionend,'tensionend','')
+                   xxmlat(s,db_rowparam[0].cycle,'cycle','')
+                   xxmlat(s,db_rowparam[0].penshiftedx,'penshiftedx','')
+                   xxmlat(s,db_rowparam[0].penshiftedy,'penshiftedy','')
+                   xxmlat(s,db_rowparam[0].pointshiftx,'pointshiftx','')
+                   xxmlat(s,db_rowparam[0].pointshifty,'pointshifty','')
+                   xxmlat(s,db_rowparam[0].penwidth,'penwidth','')
+                   xxmlat(s,db_rowparam[0].xHeight,'xHeight','')
+                   xxmlat(s,db_rowparam[0].cardinal,'cardinal','')
 
-                 s.toxml()
-             except :
-                 print " db and script not consisten"
+             s.toxml()
      print "glyphsource", glyphsource
      with codecs.open(glyphsource, "w", "utf-8") as out:
           xmldoc.writexml(out) 

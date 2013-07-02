@@ -91,26 +91,18 @@ class View:
         )
 
     formParam = web.form.Form(
-        web.form.Textbox('startp',
-	    size=1,
-            description="start"),
-        web.form.Textbox('superness',
-            size=4, 
-            description="superness"),
         web.form.Dropdown('Param',
-            [('leftp','leftp'),('rightp','rightp'),('dwonp','downp'),('upp','upp'),('supergr','supergr'),('superleft','superleft'),('tension','tension'),('tensionend','tensionend'),('cycle','cycle'),('penshiftedx','penshiftedx'),('penshiftedy','penshiftedy'),('pointshiftx','pointshiftx'),('pointshifty','pointshifty'),('penwidth','penwidth'),('xHeight','xHeight'),('cardinal','cardinal')]), 
+            [('startp','startp'),('superness','superness'),('leftp','leftp'),('rightp','rightp'),('downp','downp'),('upp','upp'),('superqr','superqr'),('superleft','superleft'),('tension','tension'),('tensionend','tensionend'),('cycle','cycle'),('penshiftedx','penshiftedx'),('penshiftedy','penshiftedy'),('pointshiftx','pointshiftx'),('pointshifty','pointshifty'),('penwidth','penwidth'),('xHeight','xHeight'),('cardinal','cardinal')]), 
         web.form.Textbox('parmval',
             size=10, 
             description="parmval"),
         web.form.Button('saveParam'), 
         )
 
-   
-
-
     def GET(self,id):
         """ View single post """
         form=self.form()
+        
         if id > '0' : 
            post = model.get_post(int(id))
            glyphparam = model.get_glyphparam(int(id))
@@ -119,10 +111,11 @@ class View:
         formParam = self.formParam()
         if glyphparam != None :
            formParam.fill(glyphparam)
+           print "***glyphparam****",glyphparam.upp
         mastglobal = model.get_globalparam(cFont.idglobal)
         master = model.get_master(cFont.idmaster)
 	webglyph = cFont.glyphName
-        return render.view(posts,post,form,formParam,master,mastglobal,webglyph)
+        return render.view(posts,post,form,formParam,master,mastglobal,webglyph,glyphparam)
 
     def POST(self, id):
         form = View.form()
@@ -133,28 +126,30 @@ class View:
             master = model.get_master(cFont.idmaster)
             mastglobal = model.get_globalparam(cFont.idglobal)
 	    webglyph = cFont.glyphName
-            return render.view(posts, post, form, formParam, master,mastglobal, webglyph)
+            return render.view(posts, post, form, formParam, master,mastglobal, webglyph,glyphparam)
         if form.d.PointName != None :
             if not formParam.validates() :
                 return render.view(posts, post, form, formParam, master,mastglobal)
             if model.get_glyphparam(int(id)) != None :
-                model.update_glyphparam(int(id),form.d.PointName, formParam.d.startp, formParam.d.superness)
+                model.update_glyphparam(int(id),form.d.PointName)
+
                 model.update_glyphparamD(int(id),formParam.d.Param, formParam.d.parmval)
             else :
-                model.insert_glyphparam(int(id),form.d.PointName, formParam.d.startp, formParam.d.superness)
+                model.insert_glyphparam(int(id),form.d.PointName )
                 
         model.update_post(int(id), form.d.x, form.d.y)
         posts = model.get_posts()
         master = model.get_master(cFont.idmaster)
         mastglobal = model.get_globalparam(cFont.idglobal)
 	webglyph = cFont.glyphName
+        glyphparam = model.get_glyphparam(int(id))
 
         model.writexml()        
         commstr = "python ufo2mf.py " + cFont.fontna+"/glyphs " + cFont.fontnb+"/glyphs glyphs"
 	print commstr
 #        os.system(commstr)
 #        os.system("sh makefont.sh")
-        return render.view(posts, post, form, formParam, master, mastglobal,webglyph)
+        return render.view(posts, post, form, formParam, master, mastglobal,webglyph,glyphparam)
 
 class ViewFont:
     def GET(self):

@@ -1,4 +1,4 @@
-$def with (posts,post,form,formparam,master,mastglobal,webglyph)
+$def with (posts,post,form,formparam,master,mastglobal,webglyph,glyphparam)
 
 <h2>Glyph Edit</h2>
 <form action="">
@@ -131,7 +131,45 @@ $for posti in posts:
 	<form action="" method="post">
 $:form.render() 
 $if form.d.PointName > "0" : 
-	$:formparam.render()
+    $:formparam.render()
+
+    $if glyphparam.startp != None :
+       startp $glyphparam.startp <br>
+    $if glyphparam.leftp != None :
+       leftp $glyphparam.leftp <br>
+    $if glyphparam.rightp != None :
+       rightp $glyphparam.rightp <br>
+    $if glyphparam.downp != None :
+       downp $glyphparam.downp <br>
+    $if glyphparam.upp != None :
+       upp $glyphparam.upp <br>
+    $if glyphparam.superqr != None :
+       superqr  $glyphparam.superqr <br>
+    $if glyphparam.superleft != None :
+       superleft $glyphparam.superleft <br>
+    $if glyphparam.tension != None :
+       tension $glyphparam.tension <br>
+    $if glyphparam.tensionend != None :
+       tensionend $glyphparam.tensionend <br>
+    $if glyphparam.cycle != None :
+       cycle $glyphparam.cycle <br>
+    $if glyphparam.penshiftedx != None :
+       penshiftedx $glyphparam.penshiftedx <br>
+    $if glyphparam.penshiftedy != None :
+       penshiftedy $glyphparam.penshiftedy <br>
+    $if glyphparam.pointshiftx != None :
+       pointshiftx $glyphparam.pointshiftx <br>
+    $if glyphparam.pointshifty != None :
+       pointshifty $glyphparam.pointshifty <br>
+    $if glyphparam.superness != None :
+       supernesnn $glyphparam.superness <br>
+    $if glyphparam.penwidth != None :
+       penwidth $glyphparam.penwidth <br>
+    $if glyphparam.xHeight != None :
+       xHeight $glyphparam.xHeight <br>
+    $if glyphparam.cardinal != None :
+       cardinal $glyphparam.cardinal <br>
+
 	</div>
 
 <p style="color:red"> &#9678; z points </p>
