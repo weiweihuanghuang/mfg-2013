@@ -22,6 +22,12 @@ def xxmlat(s, dbob, sattr, val):
       if s.hasAttribute(sattr) :
           s.removeAttribute(sattr)
 
+def xxmrlat( inum, s, db, sattr ):
+             
+   if s.hasAttribute(sattr) :
+       val = s.getAttribute(sattr)
+       update_glyphparamD( inum, sattr, val)
+
 def delFont(fontName,glyphNamel):
 
   return None
@@ -111,7 +117,7 @@ def putFont():
        for s in itemlist :
         inum = inum+1
 #  find a named point , convention the name begin with the letter z
-        try :
+        if s.hasAttribute('name'): 
             im = s.attributes['name'] 
             iposa = im.value.find("z")
             ipose = im.value.find(",",iposa)
@@ -121,26 +127,32 @@ def putFont():
                if ipose == -1 :
                  ipose=len(im.value) 
                  nameval = im.value[iposa:ipose]
-#  find the start value
-#            print "findstart",inum, im.value.find('start')
-            if im.value.find('start') > -1 :
-               startp = 1
-            else:
-               startp = 0
-#  find superness , cardinal and all parameter 
-#
-            db.insert('glyphparam', id=inum,GlyphName=glyphName, idmaster=idmaster, PointName=nameval, startp=startp)
-            if im.value.find("superness") > 0:
-              iposa=im.value.find("superness") 
-              ipose= im.value.find(",",iposa)
-              if ipose > iposa :
-                superness = int(im.value[iposa+9:ipose])
-              else :
-                ipose = len(im.value)
-                superness = int(im.value[iposa+9:ipose])
-              db.update('glyphparam', where='id=$inum and GlyphName="'+glyphName+'"' + ids, vars=locals(), superness=superness)
-    #        cardinal = 0
-        except :
+            db.insert('glyphparam', id=inum,GlyphName=glyphName, idmaster=idmaster, PointName=nameval)
+
+#  find  all parameter and save it in db
+
+            xxmrlat(inum,s,db, 'startp' )
+            xxmrlat(inum,s,db, 'superness' )
+            xxmrlat(inum,s,db, 'startp')
+            xxmrlat(inum,s,db, 'leftp')
+            xxmrlat(inum,s,db, 'superness')
+            xxmrlat(inum,s,db, 'rightp')
+            xxmrlat(inum,s,db, 'downp')
+            xxmrlat(inum,s,db, 'upp')
+            xxmrlat(inum,s,db, 'superqr')
+            xxmrlat(inum,s,db, 'superleft')
+            xxmrlat(inum,s,db, 'tension')
+            xxmrlat(inum,s,db, 'tensionend')
+            xxmrlat(inum,s,db, 'cycle')
+            xxmrlat(inum,s,db, 'penshiftedx')
+            xxmrlat(inum,s,db, 'penshiftedy')
+            xxmrlat(inum,s,db, 'pointshiftx')
+            xxmrlat(inum,s,db, 'pointshifty')
+            xxmrlat(inum,s,db, 'penwidth')
+            xxmrlat(inum,s,db, 'xHeight')
+            xxmrlat(inum,s,db, 'cardinal')
+
+        else :
            nameval = ""
            startp = 0
 
@@ -210,7 +222,6 @@ def update_glyphparamD(id, a, b):
       bb = b 
     else:
       bb = 'NULL' 
-#    strg="update glyphparam set "+aa+"="+bb+" where id="+str(id)+" and GlyphName='"+glyphName+"'"+ids 
     strg="update glyphparam set "+aa+"="+str(bb)+" where id="+str(id)+" and GlyphName='"+glyphName+"'"+ids 
     print strg
     db.query(strg)
