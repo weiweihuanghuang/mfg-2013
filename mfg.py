@@ -40,7 +40,10 @@ class cFont:
      penwidth=1
      unitwidth=1
      xHeight=1
-     
+     fontsize=12
+     ht=10
+     timestamp=0
+ 
 class Index:
 
     def GET (self):
@@ -145,10 +148,8 @@ class View:
         glyphparam = model.get_glyphparam(int(id))
 
         model.writexml()        
-        commstr = "python ufo2mf.py " + cFont.fontna+"/glyphs " + cFont.fontnb+"/glyphs glyphs"
-	print commstr
-#        os.system(commstr)
-#        os.system("sh makefont.sh")
+        model.ufo2mf() 
+        os.system("sh makefont.sh")
         return render.view(posts, post, form, formParam, master, mastglobal,webglyph,glyphparam)
 
 class ViewFont:

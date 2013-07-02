@@ -291,8 +291,10 @@ def put_globalparam(id):
     penwidth=mfg.cFont.penwidth
     unitwidth=mfg.cFont.unitwidth
     xHeight=mfg.cFont.xHeight
+    ht = mfg.cFont.ht
+    fontsize = mfg.cFont.fontsize
     db.insert('globalparam', where='idglobal = $id',vars=locals(), 
-        superness=superness, metapolation=metapolation, penwidth=penwidth, unitwidth=unitwidth, xHeigth=xHeigth)
+        superness=superness, metapolation=metapolation, penwidth=penwidth, unitwidth=unitwidth, xHeigth=xHeigth , ht=ht, fontsize=fontsize)
     return None
 
 def update_master(id, a, b, c, d):
@@ -402,3 +404,46 @@ def writeGlobalParam():
   ifile.write("bye\n") 
   ifile.close()
   return None 
+
+
+def buildfname ( filename ):
+    try :
+      basename,extension = filename.split('.')
+    except :
+           extension="garbage"
+           basename=""
+    return [basename,extension]
+
+def ufo2mf():
+
+  dirnamef1 = mfg.cFont.fontna+"/glyphs"
+  dirnamef2 = mfg.cFont.fontnb+"/glyphs"
+ 
+  charlist1 = [f for f in os.listdir(dirnamef1) ]
+  charlist2 = [f for f in os.listdir(dirnamef2) ]
+
+  for ch1 in charlist1: 
+    fnb,ext=buildfname (ch1)
+    if ext in ["glif"] and ( fnb == mfg.cFont.glyphName or mfg.cFont.timestamp == 0 ) :
+
+      print "file",ch1
+    
+      try :
+        filech1 = open(dirnamef1+"/"+ch1,'r')
+        filech2 = open(dirnamef2+"/"+ch1,'r')
+#  if test for timestamp ....
+        print " "
+        print dirnamef1,  " ch ", ch1
+        print " "
+        commd1 = "ls "+dirnamef1+"/"+ch1
+        os.system(commd1)
+        newfile,extension = ch1.split('.')
+        newfilename=newfile+".mf"
+        commd2 = "python parser_pino_mono.py " +ch1 +" " +dirnamef1 +" " +dirnamef2 +" > " +dirnamep1 +"/" +newfilename
+        os.system(commd2)
+      except :
+        print "error",dirnamef2+"/"+ch1
+      continue
+  
+  mfg.cFont.timestamp=1
+  return None
