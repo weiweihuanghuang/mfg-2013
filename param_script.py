@@ -13,7 +13,7 @@ import sys
 string = "% parameter file \n"
 
 #global parameter
-string = string + "incx:=0;\n"
+string = string + "incx:=0.5;\n"
 string = string + "font_size:=12pt#;\n"  
 string = string + "ht#:=10pt#; \n"      
 string = string + "u#:=1pt#; \n"      			 
@@ -34,6 +34,7 @@ string = string + "A_descender:=1; \n"
 string = string + "A_inktrap:=10; \n"
 string = string + "A_stemcut:=20; \n"
 string = string + "A_skeleton#:=0pt#; \n"
+string = string + "A_superness:=1.2; \n"
 
 #local parameter B at incx = 1
 string = string + "B_px#:=0.1pt#; \n"      					
@@ -49,6 +50,7 @@ string = string + "B_descender:=1; \n"
 string = string + "B_inktrap:=10; \n"
 string = string + "B_stemcut:=0; \n"
 string = string + "B_skeleton#:=0.02pt#; \n"
+string = string + "B_superness:=1.7; \n"
 
 #glyph parameter
 string = string + "width_n:=1; \n"

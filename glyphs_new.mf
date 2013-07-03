@@ -1,39 +1,6 @@
-% this file contains all defenitions outside glyphs and extra parameters not listed on metaflop.com
-py#:=px#;
+A_py#:=A_px#;
+B_py#:=B_px#;
 o#:=0 pt#;	       % overshoot                  $ 0 / 1	
-
-
-% glyph parameter
-
-width_n:=1; 
-width_nL:=0; 
-width_nR#:=0pt#; 
-
-
-% superness:=1;   
-% mean#:=4.10pt# ;
-%des#:=2.45pt#;
-%asc#:=7.20pt#; 
-%cap#:=6.50pt#;
-width:=1.0; 
-widthcomp:=0; 
-xheight:=1;
-capital:=1; 
-ascender:=1; 
-descender:=1; 
-
-over#:=0.02u#; 
-baseline:=0; 
-
-angV = 1; 
-distV = 0; 
-
-
-% extra parameters
-
-width_a:=1.0; 
-width_aR:=-.5pt#; 
-width_aL:=-3pt; 
 
 
 % some defenitions for the output and proof sheets
@@ -69,15 +36,20 @@ mode_setup;
 % metafont needs these pixel definitions to calculate the final dimensions of the parameter values
 
 define_pixels(s,u);
-define_pixels(px,py);
-define_good_y_pixels(asc);
-define_good_y_pixels(des);
-define_good_y_pixels(cap);
-define_good_y_pixels(mean);
+define_pixels(A_px,A_py,A_skeleton,B_skeleton);
+define_good_y_pixels(A_asc);
+define_good_y_pixels(A_des);
+define_good_y_pixels(A_cap);
+define_good_y_pixels(A_mean);
+
+define_pixels(B_px,B_py);
+define_good_y_pixels(B_asc);
+define_good_y_pixels(B_des);
+define_good_y_pixels(B_cap);
+define_good_y_pixels(B_mean);
+
 define_corrected_pixels(o);
-define_good_y_pixels(over);
-
-
+% insert new parameters here
 
 vardef tanh(expr x) =
 numeric ee_;
@@ -91,9 +63,8 @@ beginchar(code,unit_width*u#,h,d);
 pickup font_pen;
 enddef;
 
-
 % fixed pen settings %
-pickup pencircle xscaled px yscaled py rotated 15;
+pickup pencircle xscaled (A_px + incx*(B_px-A_px)) yscaled (A_py + incx*(B_py-A_py)) rotated 15;
 font_pen:=savepen;
 
 % calculation for diagonal stems, like in uppercase A
@@ -104,12 +75,20 @@ numeric aa_, bb_, cc_; bb_=b/y; cc_=c/y; aa_=a-(b/y)*(b/y);
 % superness macros, can be used for quarter circle segments %
 
 % left curves (superness) %
+%def super_ql(suffix i,j,m) =
+% z.i{0,y.j-y.i}...((m * superness)[x.j,x.i], (m * superness)[y.i,y.j]){z.j-z.i}...z.j{x.j-x.i,0} enddef;
+
+% right curves (superness) %
+%def super_qr(suffix j,k, m) =
+%z.j{x.k-x.j,0}...((m * superness)[x.j,x.k],(m * superness)[y.k,y.j]){z.k-z.j}...z.k{0,y.k-y.j} enddef;
+
+% left curves (superness) %
 def super_ql(suffix i,j,m) =
- z.i{0,y.j-y.i}...((m * superness)[x.j,x.i], (m * superness)[y.i,y.j]){z.j-z.i}...z.j{x.j-x.i,0} enddef;
+ z.i{0,y.j-y.i}...((m * (A_superness+incx*(A_superness-B_superness))[x.j,x.i], (m * (A_superness+incx*(A_superness-B_superness)))[y.i,y.j]){z.j-z.i}...z.j{x.j-x.i,0} enddef;
 
 % right curves (superness) %
 def super_qr(suffix j,k, m) =
-z.j{x.k-x.j,0}...((m * superness)[x.j,x.k],(m * superness)[y.k,y.j]){z.k-z.j}...z.k{0,y.k-y.j} enddef;
+z.j{x.k-x.j,0}...((m * (A_superness+incx*(A_superness-B_superness)))[x.j,x.k],(m * (A_superness+incx*(A_superness-B_superness)))[y.k,y.j]){z.k-z.j}...z.k{0,y.k-y.j} enddef;
 
 % glyph input
 
@@ -117,10 +96,10 @@ input glyphlist
 
 % some extra font information for TeX and LaTeX
 
-%font_quad:=3u#+0s#;
-%font_normal_space:=0s#;
-%font_normal_stretch:=0u#;
-%font_normal_shrink:=0u#;
+font_quad:=10u#+0s#;
+font_normal_space:=3u#+0s#;
+font_normal_stretch:=0u#;
+font_normal_shrink:=0u#;
 
 font_coding_scheme:="OT1";
 

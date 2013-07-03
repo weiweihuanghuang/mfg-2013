@@ -1,11 +1,5 @@
-def inktrapcut(a) =
-a*(A_inktrap + incx * (B_inktrap-A_inktrap)) enddef;
-
-def inktrap_l(a)=
-shifted (-0.5*a*(A_inktrap + incx * (B_inktrap-A_inktrap)),0) enddef;
-
-def inktrap_r(a)=
-shifted (0.5*a*(A_inktrap + incx * (B_inktrap-A_inktrap)),0) enddef;
+%def stemcutter(expr a) =
+%a*(A_stemcut+incx*(B_stemcut-A_stemcut)) enddef;
 
 def stemcutter(expr a) =
 a*(A_stemcut+incx*(B_stemcut-A_stemcut)) enddef; 
@@ -15,6 +9,8 @@ shifted (-0.5*a*(A_stemcut+incx*(B_stemcut-A_stemcut)),0) enddef;
 
 def stemshift_r(expr a) =
 shifted (0.5*a*(A_stemcut+incx*(B_stemcut-A_stemcut)),0) enddef;
+
+
 
 % File parsed with ufo2mf (UFO to Metafont) by Simon Egli and Walter Egli  %
 
@@ -187,6 +183,15 @@ penpos1(dist1 + A_px + incx * (B_px-A_px)-stemcuttervar, ang1); if stemcuttervar
 penpos2(dist2 + A_px + incx * (B_px-A_px), ang2);
 penpos3(dist3 + A_px + incx * (B_px-A_px), ang3);
 
+%four poles
+%penpos3([dist3 + ((A_skeleton + incx * (B_skeleton-A_skeleton)) * (A_px + incx * (B_px-A_px) - dist3))] + interpolationbetweendifferentpoles * 
+%
+%{
+%[dist3B + ((A_skeletonB + incx * (B_skeletonB-A_skeletonB)) * (A_pxB + incx * (B_pxB-A_pxB) - dist3B))] - 
+%[dist3 + ((A_skeleton + incx * (B_skeleton-A_skeleton)) * (A_px + incx * (B_px-A_px) - dist3))]
+%}
+%, ang3);
+
 % test new center (z) points
 
 z1=((A_width + incx * (A_width-B_width)) * (x210 + incx*(x21A - x210) + width_nL) * width_n, (A_xheight + incx * (B_xheight-A_xheight))*(y210 + incx*(y21A - y210))) stemshift_l(1);
@@ -203,7 +208,7 @@ penstroke z1e --
 z2e --
 z3e;
 penstroke z4e ... 
-{right}z5e .. tension 0.9 .. 
+{right}z5e .. super_qr(5e,6e, [0.615+ (incx * (0.665-0.615))]) .. 
 {down}z6e .. tension 0.85 .. 
 {left}z7e ... 
 z8e;
@@ -212,3 +217,4 @@ z8e;
 % pen labels
 penlabels(range 1 thru 99);
 endchar;
+
