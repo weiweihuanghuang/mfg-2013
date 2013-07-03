@@ -28,6 +28,7 @@ render = web.template.render('templates', base='base', globals=t_globals)
 ### preset font loading
 
 class cFont:
+     fontpath = "fonts/1/"
      fontna = ""
      fontnb = ""
      fontname = ""
@@ -114,7 +115,6 @@ class View:
         formParam = self.formParam()
         if glyphparam != None :
            formParam.fill(glyphparam)
-           print "***glyphparam****",glyphparam.upp
         mastglobal = model.get_globalparam(cFont.idglobal)
         master = model.get_master(cFont.idmaster)
 	webglyph = cFont.glyphName
@@ -178,7 +178,8 @@ class Font1:
            master= list(model.get_master(id))
         fontna = cFont.fontna
         fontnb = cFont.fontnb
-        fontlist = [f for f in glob.glob("*.ufo")]
+        fontlist = [f for f in glob.glob("fonts/*/*.ufo")]
+        fontlist.sort()
         form=self.form()
         form=Font1.form()
         form.fill({'UFO_A':fontna,'UFO_B':fontnb,'GLYPH':cFont.glyphName})
@@ -194,7 +195,8 @@ class Font1:
         cFont.fontnb = form.d.UFO_B
         cFont.glyphName  = form.d.GLYPH
         model.putFont()
-        fontlist = [f for f in glob.glob("*.ufo")]
+        fontlist = [f for f in glob.glob("fonts/*/*.ufo")]
+        fontlist.sort()
         return render.font1(fontlist,form,mmaster,cFont)
 
 class GlobalParam:

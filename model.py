@@ -36,6 +36,8 @@ def putFont():
 #
 #  put font A and font B into table
 #
+  mfg.cFont.fontpath="fonts/"+str(mfg.cFont.idmaster)+"/"
+  
   print mfg.cFont.glyphName
   global glyphsource
   global glyphnameNew
@@ -368,9 +370,10 @@ def writexml():
           xmldoc.writexml(out) 
 
 def writeGlobalParam():
-# prepare font.mf parameter file
 #
-  
+# prepare font.mf parameter file
+# write the file into the directory mfg.cFont.fontpath
+#  
   master = list(get_master(mfg.cFont.idmaster)) 
   imgl = list(get_globalparam(mfg.cFont.idglobal))
 
@@ -387,7 +390,7 @@ def writeGlobalParam():
   ht    = imgl[0].ht
 
 
-  ifile=open("font.mf","w")
+  ifile=open(mfg.cFont.fontpath+"font.mf","w")
   ifile.write("% parameter file \n")
   ifile.write("metapolation:=%.1f;\n"%metapolation)
   ifile.write("font_size:=%.0fpt#;\n"%fontsize)
@@ -415,10 +418,10 @@ def buildfname ( filename ):
     return [basename,extension]
 
 def ufo2mf():
-
-  dirnamef1 = mfg.cFont.fontna+"/glyphs"
-  dirnamef2 = mfg.cFont.fontnb+"/glyphs"
-  dirnamep1 = "glyphs"
+  print "************",mfg.cFont.fontpath
+  dirnamef1 = mfg.cFont.fontpath+mfg.cFont.fontna+"/glyphs"
+  dirnamef2 = mfg.cFont.fontpath+mfg.cFont.fontnb+"/glyphs"
+  dirnamep1 = mfg.cFont.fontpath+"glyphs"
  
   charlist1 = [f for f in os.listdir(dirnamef1) ]
   charlist2 = [f for f in os.listdir(dirnamef2) ]
@@ -432,10 +435,6 @@ def ufo2mf():
       try :
         filech1 = open(dirnamef1+"/"+ch1,'r')
         filech2 = open(dirnamef2+"/"+ch1,'r')
-#  if test for timestamp ....
-        print " "
-        print dirnamef1,  " ch ", ch1
-        print " "
         commd1 = "ls "+dirnamef1+"/"+ch1
         os.system(commd1)
         newfile,extension = ch1.split('.')
