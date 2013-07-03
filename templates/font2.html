@@ -1,4 +1,4 @@
-$def with (form,gmlist,cfont)
+$def with (form,gmlist,cfont,glo,formlA,formlB)
 <html>
 <body>
 <p> global parameters </p>
@@ -77,19 +77,50 @@ table,th,td {
 	text-align:left;
 	color: red;
 }
+#mmA {
+     position:absolute;
+     top: 50%;
+     left: 40%;
+     }
+#mmB {
+     position:absolute;
+     top: 50%;
+     left: 60%;
+     }
+
 </style>
 
 <p> global parameter table list </p>
 <p>
 $for gm in gmlist:
-     idglobal <a href="/font2/$gm.idglobal">$gm.idglobal</a>  interp $gm.metapolation sup $gm.superness penw $gm.penwidth pen unit $gm.unitwidth penxH $gm.xHeight <br>
+     idglobal <a href="/font2/$gm.idglobal">$gm.idglobal</a>  interp $gm.metapolation sup $gm.superness penw $gm.penwidth pen unit $gm.unitwidth penxH $gm.xHeight ht $gm.fontsize maxstemcut $gm.maxstemcut <br>
 
 </p>
+<p> local parameter table list </p>
+<p>
+$for gm in glo:
+     idlocal <a href="/font2/$gm.idlocal">$gm.idlocal</a>  px $gm.px mean $gm.mean des $gm.des asc $gm.ascl cap $gm.cap width $gm.width xheight $gm.xheight capital $gm.capital ascender $gm.ascender descender $gm.descender inktrap $gm.inktrap stemcut $gm.stemcut skeleton $gm.skeleton superness $gm.superness <br>
+
+</p>
+
 <div>
 <form action="" method="post">
 $:form.render()
 </form>
 </div>
+<div id="mmA" >
+<p> local A Param </p>
+<form action="" method="post">
+$:formlA.render()
+</form>
+</div>
+<div id="mmB">
+<p> local B Param </p>
+<form action="" method="post">
+$:formlB.render()
+</form>
+</div>
+
 <div>
 <p>
 <a href="/font2/$cfont.idglobal">global parameter set</a>

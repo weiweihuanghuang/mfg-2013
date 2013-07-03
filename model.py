@@ -43,8 +43,8 @@ def putFont():
   global glyphnameNew
   global glyphName
   glyphName = mfg.cFont.glyphName 
-  glyphsourceA = mfg.cFont.fontna + "/glyphs/"+glyphName+".glif"
-  glyphsourceB = mfg.cFont.fontnb + "/glyphs/"+glyphName+".glif"
+  glyphsourceA = mfg.cFont.fontpath+mfg.cFont.fontna + "/glyphs/"+glyphName+".glif"
+  glyphsourceB = mfg.cFont.fontpath+mfg.cFont.fontnb + "/glyphs/"+glyphName+".glif"
   glyphnameNew = glyphName+".glif"
   print glyphnameNew
   print "lastmodifiedA: %s" % time.ctime(os.path.getmtime(glyphsourceA))
@@ -286,6 +286,12 @@ def get_globalparam(id):
 
     return db.select('globalparam', where='idglobal=$id',vars=locals())
 
+def get_localparams():
+    return db.select('localparam', vars=locals())
+
+def get_localparam(id):
+    return db.select('globalparam', where='idlocal=$id',vars=locals())
+
 def put_globalparam(id):
 
     superness=mfg.cFont.superness
@@ -304,9 +310,9 @@ def update_master(id, a, b, c, d):
       FontName = a, FontNameA = b, FontNameB = c, idglobal = d)
     return None
 
-def update_globalparam(id, a, b, c, d, e, f, g):
+def update_globalparam(id, a, b, c, d, e, f, g, h):
     db.update('globalparam', where='idglobal = $id', vars=locals(), 
-      superness = a, metapolation = b, penwidth = c, unitwidth = d, xHeight = e, ht = f, fontsize = g)
+      superness = a, metapolation = b, penwidth = c, unitwidth = d, xHeight = e, ht = f, fontsize = g, maxstemcut = h)
     return None
 
 def writexml():
@@ -388,20 +394,54 @@ def writeGlobalParam():
   mean   = imgl[0].xHeight
   fontsize   = imgl[0].fontsize
   ht    = imgl[0].ht
-
-
+  maxstemcut = imgl[0].maxstemcut
+#
+# global parameters
   ifile=open(mfg.cFont.fontpath+"font.mf","w")
   ifile.write("% parameter file \n")
   ifile.write("metapolation:=%.1f;\n"%metapolation)
   ifile.write("font_size:=%.0fpt#;\n"%fontsize)
   ifile.write("ht#:=%.0fpt#;\n"%ht)
   ifile.write("u#:=%.0fpt#;\n"%u)
-  ifile.write("px#:=%.1fpt#;\n"%px)
+  ifile.write("max_stemcut:=%.0fpt;\n"%maxstemcut)
   ifile.write("superness:=%.1f;\n"%superness)
-  ifile.write("mean#:=%.2fpt#;\n"%mean)
-  ifile.write("des#:=%.2fht#;\n"%des)
-  ifile.write("asc#:=%.2fht#;\n"%asc)
-  ifile.write("cap#:=%.2fht#;\n"%cap)
+
+# local parameters A  
+  imlo = list(get_localparam(mfg.cFont.idlocalA))
+
+  ifile.write("A_px#:=%.1fpt#;\n"%imlo[0].px)
+  ifile.write("A_mean#:=%.2fpt#;\n"%imlo[0].mean)
+  ifile.write("A_des#:=%.2fpt#;\n"%imlo[0].des)
+  ifile.write("A_asc#:=%.1fht#;\n"%imlo[0].ascl)
+  ifile.write("A_cap#:=%.1fht#;\n"%imlo[0].cap)
+  ifile.write("A_width:=%.0f;\n"%imlo[0].width)
+  ifile.write("A_xheight:=%.0f;\n"%imlo[0].xheight)
+  ifile.write("A_capital:=%.0f;\n"%imlo[0].capital)
+  ifile.write("A_ascender:=%.0f;\n"%imlo[0].ascender)
+  ifile.write("A_descender:=%.0f;\n"%imlo[0].descender)
+  ifile.write("A_inktrap:=%.0f;\n"%imlo[0].inktrap)
+  ifile.write("A_stemcut:=%.0f;\n"%imlo[0].stemcut)
+  ifile.write("A_skeleton#:=%.0fpt#;\n"%imlo[0].skeleton)
+  ifile.write("A_superness:=%.1f;\n"%imlo[0].superness)
+  
+# local parameters B  
+  imlo = list(get_localparam(mfg.cFont.idlocalB))
+
+  ifile.write("B_px#:=%.1fpt#;\n"%imlo[0].px)
+  ifile.write("B_mean#:=%.2fpt#;\n"%imlo[0].mean)
+  ifile.write("B_des#:=%.2fpt#;\n"%imlo[0].des)
+  ifile.write("B_asc#:=%.1fht#;\n"%imlo[0].ascl)
+  ifile.write("B_cap#:=%.1fht#;\n"%imlo[0].cap)
+  ifile.write("B_width:=%.0f;\n"%imlo[0].width)
+  ifile.write("B_xheight:=%.0f;\n"%imlo[0].xheight)
+  ifile.write("B_capital:=%.0f;\n"%imlo[0].capital)
+  ifile.write("B_ascender:=%.0f;\n"%imlo[0].ascender)
+  ifile.write("B_descender:=%.0f;\n"%imlo[0].descender)
+  ifile.write("B_inktrap:=%.0f;\n"%imlo[0].inktrap)
+  ifile.write("B_stemcut:=%.0f;\n"%imlo[0].stemcut)
+  ifile.write("B_skeleton#:=%.0fpt#;\n"%imlo[0].skeleton)
+  ifile.write("B_superness:=%.1f;\n"%imlo[0].superness)
+
   ifile.write("\n") 
   ifile.write("input glyphs\n") 
   ifile.write("bye\n") 

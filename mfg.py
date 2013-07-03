@@ -13,6 +13,7 @@ urls = (
     '/viewfont/', 'ViewFont',
     '/font1/(\d+)', 'Font1',
     '/font2/(\d+)', 'GlobalParam',
+    '/font3/(\d+)', 'localParam',
 )
 
 
@@ -223,29 +224,123 @@ class GlobalParam:
         web.form.Textbox('fontsize', web.form.notnull, 
             size=3,
             description="fontsize", value="10"),
+        web.form.Textbox('maxstemcut', web.form.notnull, 
+            size=3,
+            description="maxstemcut", value="10"),
         web.form.Button('save'),
         )
+    formlocA = web.form.Form(
+        web.form.Textbox('px', web.form.notnull, 
+            size=3,
+            description="px", value="1"),
+        web.form.Textbox('mean', web.form.notnull, 
+            size=3,
+            description="mean", value="5"),
+        web.form.Textbox('des', web.form.notnull, 
+            size=3,
+            description="des", value="2"),
+        web.form.Textbox('asc', web.form.notnull, 
+            size=3,
+            description="asc", value="1.0"),
+        web.form.Textbox('cap', web.form.notnull, 
+            size=3,
+            description="cap", value="1.0"),
+        web.form.Textbox('xheight', web.form.notnull, 
+            size=3,
+            description="xheight", value="10"),
+        web.form.Textbox('capital', web.form.notnull, 
+            size=3,
+            description="capital", value="10"),
+        web.form.Textbox('ascender', web.form.notnull, 
+            size=3,
+            description="ascender", value="10"),
+        web.form.Textbox('descender', web.form.notnull, 
+            size=3,
+            description="descender", value="10"),
+        web.form.Textbox('inktrap', web.form.notnull, 
+            size=3,
+            description="inktrap", value="10"),
+        web.form.Textbox('stemcut', web.form.notnull, 
+            size=3,
+            description="stemcut", value="10"),
+        web.form.Textbox('skeleton', web.form.notnull, 
+            size=3,
+            description="skeleton", value="10"),
+        web.form.Textbox('superness', web.form.notnull, 
+            size=3,
+            description="superness", value="10"),
+        web.form.Button('save'),
+        )
+    formlocB = web.form.Form(
+        web.form.Textbox('px', web.form.notnull, 
+            size=3,
+            description="px", value="1"),
+        web.form.Textbox('mean', web.form.notnull, 
+            size=3,
+            description="mean", value="5"),
+        web.form.Textbox('des', web.form.notnull, 
+            size=3,
+            description="des", value="2"),
+        web.form.Textbox('asc', web.form.notnull, 
+            size=3,
+            description="asc", value="1.0"),
+        web.form.Textbox('cap', web.form.notnull, 
+            size=3,
+            description="cap", value="1.0"),
+        web.form.Textbox('xheight', web.form.notnull, 
+            size=3,
+            description="xheight", value="10"),
+        web.form.Textbox('capital', web.form.notnull, 
+            size=3,
+            description="capital", value="10"),
+        web.form.Textbox('ascender', web.form.notnull, 
+            size=3,
+            description="ascender", value="10"),
+        web.form.Textbox('descender', web.form.notnull, 
+            size=3,
+            description="descender", value="10"),
+        web.form.Textbox('inktrap', web.form.notnull, 
+            size=3,
+            description="inktrap", value="10"),
+        web.form.Textbox('stemcut', web.form.notnull, 
+            size=3,
+            description="stemcut", value="10"),
+        web.form.Textbox('skeleton', web.form.notnull, 
+            size=3,
+            description="skeleton", value="10"),
+        web.form.Textbox('superness', web.form.notnull, 
+            size=3,
+            description="superness", value="10"),
+        web.form.Button('save'),
+        )
+
     def GET(self,id):
         
         gml = list(model.get_globalparams())
         form = self.form()
+        glo = list(model.get_localparams())
+        formlA = self.formlocA()
+        formlB = self.formlocB()
         if id > '0' :
           gm = list(model.get_globalparam(id))
         else:
           gm = None
 
         if gm != None:
-             form.fill({'superness':gm[0].superness,'metapolation':gm[0].metapolation,'penwidth':gm[0].penwidth,'unitwidth':gm[0].unitwidth,'xHeight':gm[0].xHeight,'ht':gm[0].ht,'fontsize':gm[0].fontsize})
-        return render.font2(form,gml,cFont)
+             form.fill({'superness':gm[0].superness,'metapolation':gm[0].metapolation,'penwidth':gm[0].penwidth,'unitwidth':gm[0].unitwidth,'xHeight':gm[0].xHeight,'ht':gm[0].ht,'fontsize':gm[0].fontsize,'maxstemcut':gm[0].maxstemcut})
+        return render.font2(form,gml,cFont,glo,formlA,formlB)
 
     def POST (self,id):
         gml = list(model.get_globalparams())
         gm = list(model.get_globalparam(id))
+        glo = list(model.get_localparams())
         form = GlobalParam.form()
         form.fill()
-        model.update_globalparam(id, form.d.superness, form.d.metapolation, form.d.penwidth, form.d.unitwidth, form.d.xHeight, form.d.ht, form.d.fontsize)
+        formlA = GlobalParam.formlocA() 
+        formlB = GlobalParam.formlocB()
+        model.update_globalparam(id, form.d.superness, form.d.metapolation, form.d.penwidth, form.d.unitwidth, form.d.xHeight, form.d.ht, form.d.fontsize, form.d.maxstemcut)
         model.writeGlobalParam()
-        return render.font2(form,gml,cFont)
+        return render.font2(form,gml,cFont,glo,formlA,formlB)
 
 app = web.application(urls, globals())
 
