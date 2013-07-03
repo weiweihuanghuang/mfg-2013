@@ -420,8 +420,8 @@ strtwo = " .. "
 stline = " -- "
 strz = ""
 zzn = []
-startp = []
-startpval = []
+start = []
+startval = []
 
 # create empty variable list
 
@@ -442,8 +442,8 @@ hval = []
 # add iteration to string
 
 for i in range (1,100):
-  startp.append("")
-  startpval.append(0)
+  start.append("")
+  startval.append(0)
   
   pointshifted.append("")
   pointshiftedval.append(0)
@@ -486,10 +486,10 @@ for item in itemlist :
        	 ipointshiftedy = False
 
        try :
-	 istartp = item.attributes['startp'].value   
-	 istartp = True
+	 istart = item.attributes['start'].value   
+	 istart = True
        except :
-       	 istartp = False
+       	 istart = False
 
        try :
 	 iv = item.attributes['v'].value   
@@ -514,15 +514,15 @@ for item in itemlist :
        if im.value.find(znamel) > -1 :
           zzn.append (i)
        if im.value.find(znamel) > -1 or im.value.find(znamer) > -1:
-#         if im.value.find("startp") >-1 :
-#           del startp[i-1]
-#           startp.insert(i-1,"")
-         if istartp == True :
-           istartpval = item.attributes['startp'].value
-           del startp[i-1]
-           startp.insert(i-1,"startp")
-	   del startpval[i-1]
-           startpval.insert(i-1,istartpval)
+#         if im.value.find("start") >-1 :
+#           del start[i-1]
+#           start.insert(i-1,"")
+         if istart == True :
+           istartval = item.attributes['start'].value
+           del start[i-1]
+           start.insert(i-1,"start")
+	   del startval[i-1]
+           startval.insert(i-1,istartval)
 
          if ipointshifted== True :
            ipointshiftedval= item.attributes['pointshifted'].value
@@ -689,8 +689,8 @@ strtwo = " .. "
 stline = " -- "
 strz = ""
 zzn = []
-startp = []
-startpval = []
+start = []
+startval = []
 
 # create empty variable list
 
@@ -717,8 +717,8 @@ overbaseval = []
 # add iteration to string
 
 for i in range (1,100):
-  startp.append("")
-  startpval.append(0)
+  start.append("")
+  startval.append(0)
   
   pointshifted.append("")
   pointshiftedval.append(0)
@@ -768,10 +768,10 @@ for item in itemlist :
        	 ipointshiftedy = False
 
        try :
-	 istartp = item.attributes['startp'].value   
-	 istartp = True
+	 istart = item.attributes['start'].value   
+	 istart = True
        except :
-       	 istartp = False
+       	 istart = False
 
 
        try :
@@ -810,15 +810,15 @@ for item in itemlist :
        if im.value.find(znamel) > -1 :
           zzn.append (i)
        if im.value.find(znamel) > -1 or im.value.find(znamer) > -1:
-#         if im.value.find("startp") >-1 :
-#           del startp[i-1]
-#           startp.insert(i-1,"")
-         if istartp == True :
-           istartpval = item.attributes['startp'].value
-           del startp[i-1]
-           startp.insert(i-1,"startp")
-	   del startpval[i-1]
-           startpval.insert(i-1,istartpval)
+#         if im.value.find("start") >-1 :
+#           del start[i-1]
+#           start.insert(i-1,"")
+         if istart == True :
+           istartval = item.attributes['start'].value
+           del start[i-1]
+           start.insert(i-1,"start")
+	   del startval[i-1]
+           startval.insert(i-1,istartval)
 
          if ipointshifted== True :
            ipointshiftedval= item.attributes['pointshifted'].value
@@ -927,8 +927,8 @@ stline = " -- "
 strz = ""
 zzn = []
 
-startp = []
-startpval = []
+start = []
+startval = []
 
 doubledash = []
 doubledashvalB = []
@@ -972,8 +972,8 @@ penshiftedvalB = []
 
 for i in range (1,100):
 
-  startp.append("")
-  startpval.append(0)
+  start.append("")
+  startval.append(0)
 
   doubledash.append("")
   doubledashvalB.append(0)
@@ -1119,9 +1119,9 @@ for item in itemlist :
        if im.value.find(znamel) > -1 :
           zzn.append (i)
        if im.value.find(znamel) > -1 or im.value.find(znamer) > -1:
-#         if im.value.find("startp") >-1 :
-#           del zzstartp[i-1]
-#           zzstartp.insert(i-1,"penstroke ")
+#         if im.value.find("start") >-1 :
+#           del zzstart[i-1]
+#           zzstart.insert(i-1,"penstroke ")
              
          if idoubledash == True :
            idoubledashval = item.attributes['doubledash'].value
@@ -1246,8 +1246,8 @@ strtwo = " .. "
 stline = " -- "
 strz = ""
 zzn = []
-startp = []
-startpval = []
+start = []
+startval = []
 
 doubledash = []
 doubledashval = []
@@ -1319,8 +1319,8 @@ cycleval = []
 
 for i in range (1,100):
 
-  startp.append("")
-  startpval.append(0)
+  start.append("")
+  startval.append(0)
 
   doubledash.append("")
   doubledashval.append(0)
@@ -1409,10 +1409,10 @@ for item in itemlist :
 
 
        try :
-	 istartp = item.attributes['startp'].value   
-	 istartp = True
+	 istart = item.attributes['start'].value   
+	 istart = True
        except :
-       	 istartp = False
+       	 istart = False
 
        try :
 	 idoubledash = item.attributes['doubledash'].value   
@@ -1562,20 +1562,20 @@ for item in itemlist :
           zzn.append (i)
        if im.value.find(znamel) > -1 or im.value.find(znamer) > -1:
         
-#	 if im.value.find("startp") >-1 :
-#           del zzstartp[i-1]
-#           zzstartp.insert(i-1,"penstroke ")
+#	 if im.value.find("start") >-1 :
+#           del zzstart[i-1]
+#           zzstart.insert(i-1,"penstroke ")
 
-         if istartp == True :
-           istartpval = item.attributes['startp'].value
-           del startp[i-1]
-           startp.insert(i-1,"penstroke ")
-	   del startpval[i-1]
-           startpval.insert(i-1,istartpval)
+         if istart == True :
+           istartval = item.attributes['start'].value
+           del start[i-1]
+           start.insert(i-1,"penstroke ")
+	   del startval[i-1]
+           startval.insert(i-1,istartval)
   
          if icycle == True :
            icycleval = item.attributes['cycle'].value
-           del startp[i-1]
+           del start[i-1]
            cycle.insert(i-1,"cycle")
 	   del cycleval[i-1]
            cycleval.insert(i-1,icycleval)
@@ -1762,14 +1762,14 @@ for i in range (0,nnz-1) :
 ## default string
 
   zeile =""
-  zeile =  str(startp[i]) +  "z"+str(zitem)+"e"  
+  zeile =  str(start[i]) +  "z"+str(zitem)+"e"  
   zeileb =""
-  zeileb = str(startp[i])
+  zeileb = str(start[i])
   zeilec = ""
-  zeilec = str(startp[i]) + "z"+str(zitem)+"e" 
-  if startp[i+1]=="" : 
+  zeilec = str(start[i]) + "z"+str(zitem)+"e" 
+  if start[i+1]=="" : 
 
-# if startp, add parameters
+# if start, add parameters
     dash = "..."
     if tripledash[i] <> "" :
       dash = "---"

@@ -1,13 +1,26 @@
 % input glyphs
 
-%input glyphs/a.mf
+%input glyphs/B_.mf
+%input glyphs/A_.mf
+%input glyphs/C_.mf
+%input glyphs/b.mf
+input glyphs/a.mf
+%input glyphs/c.mf
+input glyphs/n.mf
+%input glyphs/o.mf
+%input glyphs/p.mf
+%input glyphs/f.mf
+%input glyphs/g.mf
+%input glyphs/N_.mf
+%input glyphs/space.mf
+
 %input glyphs/b.mf
 %input glyphs/c.mf
 %input glyphs/d.mf
 %input glyphs/e.mf
 %input glyphs/f.mf
 %input glyphs/g.mf
-input glyphs/n.mf
-input glyphs/o.mf
-input glyphs/p.mf
+%input glyphs/n.mf
+%input glyphs/o.mf
+%input glyphs/p.mf
 %input glyphs/H_.mf
