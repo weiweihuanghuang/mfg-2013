@@ -290,7 +290,8 @@ def get_localparams():
     return db.select('localparam', vars=locals())
 
 def get_localparam(id):
-    return db.select('globalparam', where='idlocal=$id',vars=locals())
+    print "idididget local",id
+    return db.select('localparam', where='idlocal=$id',vars=locals())
 
 def put_globalparam(id):
 
@@ -314,6 +315,13 @@ def update_globalparam(id, a, b, c, d, e, f, g, h):
     db.update('globalparam', where='idglobal = $id', vars=locals(), 
       superness = a, metapolation = b, penwidth = c, unitwidth = d, xHeight = e, ht = f, fontsize = g, maxstemcut = h)
     return None
+
+def update_localparam(id, a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13 ):
+    print "idididget local update",id
+    db.update('localparam', where='idlocal = $id', vars=locals(), 
+      px = a1, mean = a2, des=a3, ascl=a4, cap=a5, xheight=a6, capital=a7, ascender=a8, descender=a9, inktrap=a10, stemcut=a11, skeleton=a12, superness=a13)
+    return None
+
 
 def writexml():
 

@@ -13,7 +13,8 @@ urls = (
     '/viewfont/', 'ViewFont',
     '/font1/(\d+)', 'Font1',
     '/font2/(\d+)', 'GlobalParam',
-    '/font3/(\d+)', 'localParam',
+    '/font3/(\d+)', 'localParamA',
+    '/font4/(\d+)', 'localParamB',
 )
 
 
@@ -45,6 +46,8 @@ class cFont:
      fontsize=12
      ht=10
      timestamp=0
+     idlocalA = 1
+     idlocalB = 2
  
 class Index:
 
@@ -202,7 +205,7 @@ class Font1:
 
 class GlobalParam:
 
-    form = web.form.Form(
+    formg = web.form.Form( 
         web.form.Textbox('superness', web.form.notnull, 
             size=3,
             description="superness", value="1"),
@@ -227,8 +230,40 @@ class GlobalParam:
         web.form.Textbox('maxstemcut', web.form.notnull, 
             size=3,
             description="maxstemcut", value="10"),
-        web.form.Button('save'),
+        web.form.Button('saveg'),
         )
+
+    def GET(self,id):
+        
+        print "getparam",id
+        gml = list(model.get_globalparams())
+        formg = self.formg()
+        if id > '0' :
+          gm = list(model.get_globalparam(id))
+        else:
+          gm = None
+
+        if gm != None:
+             formg.fill({'superness':gm[0].superness,'metapolation':gm[0].metapolation,'penwidth':gm[0].penwidth,'unitwidth':gm[0].unitwidth,'xHeight':gm[0].xHeight,'ht':gm[0].ht,'fontsize':gm[0].fontsize,'maxstemcut':gm[0].maxstemcut})
+        return render.font2(formg,gml,cFont)
+
+    def POST (self,id):
+        print "postparam",id
+        gml = list(model.get_globalparams())
+        gm = list(model.get_globalparam(id))
+        idlA = '1' 
+        idlB = '2'
+        formg = self.formg()
+        if formg.validates  :
+               model.update_globalparam(id, formg.d.superness, formg.d.metapolation, formg.d.penwidth, formg.d.unitwidth, formg.d.xHeight, formg.d.ht, formg.d.fontsize, formg.d.maxstemcut)
+        if not formg.validates() :
+               return render.font2(formg,gml,cFont)
+
+        model.writeGlobalParam()
+
+        return render.font2(formg,gml,cFont)
+class localParamA:
+
     formlocA = web.form.Form(
         web.form.Textbox('px', web.form.notnull, 
             size=3,
@@ -268,9 +303,60 @@ class GlobalParam:
             description="skeleton", value="10"),
         web.form.Textbox('superness', web.form.notnull, 
             size=3,
-            description="superness", value="10"),
-        web.form.Button('save'),
+            description="superness", value="30"),
+        web.form.Button('saveA'),
         )
+    def GET(self,id):
+        
+        print "getparam",id
+        gml = list(model.get_globalparams())
+        formg = GlobalParam.formg()
+        glo = list(model.get_localparams())
+        formlA = self.formlocA()
+        formlB = localParamB.formlocB()
+        gm = list(model.get_globalparam(cFont.idglobal))
+        formg.fill({'superness':gm[0].superness,'metapolation':gm[0].metapolation,'penwidth':gm[0].penwidth,'unitwidth':gm[0].unitwidth,'xHeight':gm[0].xHeight,'ht':gm[0].ht,'fontsize':gm[0].fontsize,'maxstemcut':gm[0].maxstemcut})
+        idlA = '1' 
+        idlB = '2'
+        if idlA > '0' :
+          gloA = list(model.get_localparam(id))
+        else:
+          gloA = None
+        if idlB > '0' :
+          gloB = list(model.get_localparam(idlB))
+        else:
+          gloB = None
+
+        if gloA != None:
+           formlA.fill({'px':gloA[0].px,'mean':gloA[0].mean,'des':gloA[0].des,'asc':gloA[0].ascl,'cap':gloA[0].cap,'xheight':gloA[0].xheight,'capital':gloA[0].capital,'ascender':gloA[0].ascender,'descender':gloA[0].descender,'inktrap':gloA[0].inktrap,'stemcut':gloA[0].stemcut,'skeleton':gloA[0].skeleton,'superness':gloA[0].superness})
+        if gloB != None:
+           formlB.fill({'px':gloB[0].px,'mean':gloB[0].mean,'des':gloB[0].des,'asc':gloB[0].ascl,'cap':gloB[0].cap,'xheight':gloB[0].xheight,'capital':gloB[0].capital,'ascender':gloB[0].ascender,'descender':gloB[0].descender,'inktrap':gloB[0].inktrap,'stemcut':gloB[0].stemcut,'skeleton':gloB[0].skeleton,'superness':gloB[0].superness})
+
+        return render.font3(formg,gml,cFont,glo,formlA,formlB)
+
+    def POST (self,id):
+        gml = list(model.get_globalparams())
+        glo = list(model.get_localparams())
+        idlA = '1' 
+        idlB = '2'
+        gloA = list(model.get_localparam(idlA))
+        formg = GlobalParam.formg()
+        formlA = self.formlocA() 
+        formlB = localParamB.formlocB() 
+        formlA.fill()
+
+        if formlA.validates() :
+               model.update_localparam(idlA,formlA.d.px,formlA.d.mean,formlA.d.des,formlA.d.asc,formlA.d.cap,formlA.d.xheight,formlA.d.capital,formlA.d.ascender,formlA.d.descender,formlA.d.inktrap,formlA.d.stemcut,formlA.d.skeleton,formlA.d.superness)
+
+        if not formlA.validates() :
+               return render.font3(formg,gml,cFont,glo,formlA,formlB)
+
+        model.writeGlobalParam()
+        return render.font3(formg,gml,cFont,glo,formlA,formlB)
+
+
+class localParamB:
+
     formlocB = web.form.Form(
         web.form.Textbox('px', web.form.notnull, 
             size=3,
@@ -310,43 +396,55 @@ class GlobalParam:
             description="skeleton", value="10"),
         web.form.Textbox('superness', web.form.notnull, 
             size=3,
-            description="superness", value="10"),
-        web.form.Button('save'),
+            description="superness", value="20"),
+        web.form.Button('saveB'),
         )
-
     def GET(self,id):
         
         gml = list(model.get_globalparams())
-        form = self.form()
+        formg = GlobalParam.formg()
         glo = list(model.get_localparams())
-        formlA = self.formlocA()
+        formlA = localParamA.formlocA()
         formlB = self.formlocB()
-        if id > '0' :
-          gm = list(model.get_globalparam(id))
+        gm = list(model.get_globalparam(cFont.idglobal))
+        formg.fill({'superness':gm[0].superness,'metapolation':gm[0].metapolation,'penwidth':gm[0].penwidth,'unitwidth':gm[0].unitwidth,'xHeight':gm[0].xHeight,'ht':gm[0].ht,'fontsize':gm[0].fontsize,'maxstemcut':gm[0].maxstemcut})
+        idlA = '1' 
+        idlB = '2'
+        if idlA > '0' :
+          gloA = list(model.get_localparam(idlA))
         else:
-          gm = None
+          gloA = None
+        if idlB > '0' :
+          gloB = list(model.get_localparam(id))
+        else:
+          gloB = None
 
-        if gm != None:
-             form.fill({'superness':gm[0].superness,'metapolation':gm[0].metapolation,'penwidth':gm[0].penwidth,'unitwidth':gm[0].unitwidth,'xHeight':gm[0].xHeight,'ht':gm[0].ht,'fontsize':gm[0].fontsize,'maxstemcut':gm[0].maxstemcut})
-        return render.font2(form,gml,cFont,glo,formlA,formlB)
+        if gloA != None:
+           formlA.fill({'px':gloA[0].px,'mean':gloA[0].mean,'des':gloA[0].des,'asc':gloA[0].ascl,'cap':gloA[0].cap,'xheight':gloA[0].xheight,'capital':gloA[0].capital,'ascender':gloA[0].ascender,'descender':gloA[0].descender,'inktrap':gloA[0].inktrap,'stemcut':gloA[0].stemcut,'skeleton':gloA[0].skeleton,'superness':gloA[0].superness})
+        if gloB != None:
+           formlB.fill({'px':gloB[0].px,'mean':gloB[0].mean,'des':gloB[0].des,'asc':gloB[0].ascl,'cap':gloB[0].cap,'xheight':gloB[0].xheight,'capital':gloB[0].capital,'ascender':gloB[0].ascender,'descender':gloB[0].descender,'inktrap':gloB[0].inktrap,'stemcut':gloB[0].stemcut,'skeleton':gloB[0].skeleton,'superness':gloB[0].superness})
+
+        return render.font4(formg,gml,cFont,glo,formlA,formlB)
 
     def POST (self,id):
         gml = list(model.get_globalparams())
-        gm = list(model.get_globalparam(id))
         glo = list(model.get_localparams())
-        form = GlobalParam.form()
-        form.fill()
-        formlA = GlobalParam.formlocA() 
-        formlB = GlobalParam.formlocB()
-        model.update_globalparam(id, form.d.superness, form.d.metapolation, form.d.penwidth, form.d.unitwidth, form.d.xHeight, form.d.ht, form.d.fontsize, form.d.maxstemcut)
+        idlA = '1' 
+        idlB = '2'
+        gloB = list(model.get_localparam(id))
+        formlB = self.formlocB()
+        formlA = localParamA.formlocA()
+        formg = GlobalParam.formg()
+        formlB.fill()
+
+        if formlB.validates() :
+              model.update_localparam(idlB,formlB.d.px,formlB.d.mean,formlB.d.des,formlB.d.asc,formlB.d.cap,formlB.d.xheight,formlB.d.capital,formlB.d.ascender,formlB.d.descender,formlB.d.inktrap,formlB.d.stemcut,formlB.d.skeleton,formlB.d.superness)
+        if not formlB.validates() :
+               return render.font4(formg,gml,cFont,glo,formlA,formlB)
+
         model.writeGlobalParam()
-        return render.font2(form,gml,cFont,glo,formlA,formlB)
 
-app = web.application(urls, globals())
-
-if __name__ == '__main__':
-    app.run()
-
+        return render.font4(formg,gml,cFont,glo,formlA,formlB)
 
 app = web.application(urls, globals())
 
