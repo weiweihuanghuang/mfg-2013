@@ -153,7 +153,9 @@ class View:
 
         model.writexml()        
         model.ufo2mf() 
-        os.system("sh makefont.sh")
+        strms = "sh makefont.sh "+cFont.fontpath+"font.mf"
+        print strms
+        os.system(strms)
         return render.view(posts, post, form, formParam, master, mastglobal,webglyph,glyphparam)
 
 class ViewFont:
@@ -337,8 +339,9 @@ class localParamA:
     def POST (self,id):
         gml = list(model.get_globalparams())
         glo = list(model.get_localparams())
-        idlA = '1' 
         idlB = '2'
+        idlA = id
+        cFont.idlocalA=id 
         gloA = list(model.get_localparam(idlA))
         formg = GlobalParam.formg()
         formlA = self.formlocA() 
@@ -431,6 +434,9 @@ class localParamB:
         glo = list(model.get_localparams())
         idlA = '1' 
         idlB = '2'
+        cFont.idlocal = id
+#                id argument via the html
+#
         gloB = list(model.get_localparam(id))
         formlB = self.formlocB()
         formlA = localParamA.formlocA()

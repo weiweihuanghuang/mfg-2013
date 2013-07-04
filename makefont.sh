@@ -1,4 +1,3 @@
-#rm font.mf
 rm font.2602gf
 rm missfont.log
 rm font.log
@@ -16,11 +15,9 @@ rm font-webfont.eot
 rm font-webfont.woff
 rm font-webfont.ttf
 
-#python param_script.py  > font.mf
-
 # mf font.mf
 
-perl mf2pt1.pl --encoding=t1 --comment="Copyright (c) 2013" --family="font" --nofixedpitch --fullname="font" --name="font-regular" --weight="regular" font.mf
+perl mf2pt1.pl --encoding=t1 --comment="Copyright (c) 2013" --family="font" --nofixedpitch --fullname="font" --name="font-regular" --weight="regular" $1
 
 sfnt2woff font.otf && ttf2eot font.ttf > font.eot
 sfnt2woff font.otf > font.woff
