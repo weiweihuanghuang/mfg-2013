@@ -451,7 +451,7 @@ def writeGlobalParam():
   ifile.write("B_superness:=%.1f;\n"%imlo[0].superness)
 
   ifile.write("\n") 
-  ifile.write("input glyphs\n") 
+  ifile.write("input "+mfg.cFont.fontpath+"glyphs\n") 
   ifile.write("bye\n") 
   ifile.close()
   return None 

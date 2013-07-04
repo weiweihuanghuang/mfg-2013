@@ -153,7 +153,8 @@ class View:
 
         model.writexml()        
         model.ufo2mf() 
-        strms = "sh makefont.sh "+cFont.fontpath+"font.mf"
+        os.environ['MFINPUTS'] = cFont.fontpath
+        strms = "sh makefont.sh font.mf"
         print strms
         os.system(strms)
         return render.view(posts, post, form, formParam, master, mastglobal,webglyph,glyphparam)
@@ -253,8 +254,6 @@ class GlobalParam:
         print "postparam",id
         gml = list(model.get_globalparams())
         gm = list(model.get_globalparam(id))
-        idlA = '1' 
-        idlB = '2'
         formg = self.formg()
         if formg.validates  :
                model.update_globalparam(id, formg.d.superness, formg.d.metapolation, formg.d.penwidth, formg.d.unitwidth, formg.d.xHeight, formg.d.ht, formg.d.fontsize, formg.d.maxstemcut)
@@ -318,9 +317,11 @@ class localParamA:
         formlB = localParamB.formlocB()
         gm = list(model.get_globalparam(cFont.idglobal))
         formg.fill({'superness':gm[0].superness,'metapolation':gm[0].metapolation,'penwidth':gm[0].penwidth,'unitwidth':gm[0].unitwidth,'xHeight':gm[0].xHeight,'ht':gm[0].ht,'fontsize':gm[0].fontsize,'maxstemcut':gm[0].maxstemcut})
-        idlA = '1' 
-        idlB = '2'
+        idlA =id 
+        
+        idlB =cFont.idlocalB
         if idlA > '0' :
+          cFont.idlocalA = id
           gloA = list(model.get_localparam(id))
         else:
           gloA = None
@@ -339,14 +340,17 @@ class localParamA:
     def POST (self,id):
         gml = list(model.get_globalparams())
         glo = list(model.get_localparams())
-        idlB = '2'
+        idlB = cFont.idlocalB 
         idlA = id
         cFont.idlocalA=id 
         gloA = list(model.get_localparam(idlA))
+        gloB = list(model.get_localparam(idlB))
         formg = GlobalParam.formg()
         formlA = self.formlocA() 
         formlB = localParamB.formlocB() 
         formlA.fill()
+
+        formlB.fill({'px':gloB[0].px,'mean':gloB[0].mean,'des':gloB[0].des,'asc':gloB[0].ascl,'cap':gloB[0].cap,'xheight':gloB[0].xheight,'capital':gloB[0].capital,'ascender':gloB[0].ascender,'descender':gloB[0].descender,'inktrap':gloB[0].inktrap,'stemcut':gloB[0].stemcut,'skeleton':gloB[0].skeleton,'superness':gloB[0].superness})
 
         if formlA.validates() :
                model.update_localparam(idlA,formlA.d.px,formlA.d.mean,formlA.d.des,formlA.d.asc,formlA.d.cap,formlA.d.xheight,formlA.d.capital,formlA.d.ascender,formlA.d.descender,formlA.d.inktrap,formlA.d.stemcut,formlA.d.skeleton,formlA.d.superness)
@@ -411,8 +415,8 @@ class localParamB:
         formlB = self.formlocB()
         gm = list(model.get_globalparam(cFont.idglobal))
         formg.fill({'superness':gm[0].superness,'metapolation':gm[0].metapolation,'penwidth':gm[0].penwidth,'unitwidth':gm[0].unitwidth,'xHeight':gm[0].xHeight,'ht':gm[0].ht,'fontsize':gm[0].fontsize,'maxstemcut':gm[0].maxstemcut})
-        idlA = '1' 
-        idlB = '2'
+        idlA = cFont.idlocalA  
+        idlB =id 
         if idlA > '0' :
           gloA = list(model.get_localparam(idlA))
         else:
@@ -432,16 +436,19 @@ class localParamB:
     def POST (self,id):
         gml = list(model.get_globalparams())
         glo = list(model.get_localparams())
-        idlA = '1' 
-        idlB = '2'
-        cFont.idlocal = id
+        idlA = cFont.idlocalA 
+        cFont.idlocalB = id
+        idlB =id 
 #                id argument via the html
 #
         gloB = list(model.get_localparam(id))
+        gloA = list(model.get_localparam(idlA))
         formlB = self.formlocB()
         formlA = localParamA.formlocA()
         formg = GlobalParam.formg()
         formlB.fill()
+
+        formlA.fill({'px':gloA[0].px,'mean':gloA[0].mean,'des':gloA[0].des,'asc':gloA[0].ascl,'cap':gloA[0].cap,'xheight':gloA[0].xheight,'capital':gloA[0].capital,'ascender':gloA[0].ascender,'descender':gloA[0].descender,'inktrap':gloA[0].inktrap,'stemcut':gloA[0].stemcut,'skeleton':gloA[0].skeleton,'superness':gloA[0].superness})
 
         if formlB.validates() :
               model.update_localparam(idlB,formlB.d.px,formlB.d.mean,formlB.d.des,formlB.d.asc,formlB.d.cap,formlB.d.xheight,formlB.d.capital,formlB.d.ascender,formlB.d.descender,formlB.d.inktrap,formlB.d.stemcut,formlB.d.skeleton,formlB.d.superness)
