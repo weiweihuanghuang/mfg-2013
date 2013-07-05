@@ -154,6 +154,7 @@ class View:
         model.writexml()        
         model.ufo2mf() 
         os.environ['MFINPUTS'] = cFont.fontpath
+        model.writeGlyphlist()
         strms = "sh makefont.sh font.mf"
         print strms
         os.system(strms)
@@ -255,6 +256,7 @@ class GlobalParam:
         gml = list(model.get_globalparams())
         gm = list(model.get_globalparam(id))
         formg = self.formg()
+        formg.fill()
         if formg.validates  :
                model.update_globalparam(id, formg.d.superness, formg.d.metapolation, formg.d.penwidth, formg.d.unitwidth, formg.d.xHeight, formg.d.ht, formg.d.fontsize, formg.d.maxstemcut)
         if not formg.validates() :

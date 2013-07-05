@@ -463,7 +463,7 @@ def writeGlobalParam():
   ifile.write("B_superness:=%.1f;\n"%imlo[0].superness)
 
   ifile.write("\n") 
-  ifile.write("input "+mfg.cFont.fontpath+"glyphs\n") 
+  ifile.write("input glyphs\n") 
   ifile.write("bye\n") 
   ifile.close()
   return None 
@@ -520,8 +520,10 @@ def writeGlyphlist():
   charlist1 = [f for f in os.listdir(dirnamep1) ]
 
   for ch1 in charlist1: 
+    fnb,ext=buildfname (ch1)
+    if ext in ["mf"]  :
 
-      print "file",ch1
+      ifile.write("input glyphs/"+ch1+"\n")
     
   ifile.close()
   return None
