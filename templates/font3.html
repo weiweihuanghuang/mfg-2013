@@ -99,18 +99,18 @@ $for gmg in gmlist:
 <p> local parameter table list </p>
 <p>
 $for gm in glo:
-     idlocal <a href="/font2/$gm.idlocal">$gm.idlocal</a>  px $gm.px mean $gm.mean des $gm.des asc $gm.ascl cap $gm.cap width $gm.width xheight $gm.xheight capital $gm.capital ascender $gm.ascender descender $gm.descender inktrap $gm.inktrap stemcut $gm.stemcut skeleton $gm.skeleton superness $gm.superness <br>
+     idlocal <a href="/font3/$gm.idlocal">$gm.idlocal</a>  px $gm.px mean $gm.mean des $gm.des asc $gm.ascl cap $gm.cap width $gm.width xheight $gm.xheight capital $gm.capital ascender $gm.ascender descender $gm.descender inktrap $gm.inktrap stemcut $gm.stemcut skeleton $gm.skeleton superness $gm.superness <br>
 
 </p>
-<p> global param <a href="/font2/1">set global param</a>
+<p> global param <a href="/font2/$cfont.idglobal">set global param</a>
 <div id="mmA" >
-<p> local A Param <a href="/font3/1">local param A</a></p>
+<p> local A Param <a href="/font3/$cfont.idlocalA">local param A</a></p>
 <form action="" method="POST" name="formlA">
 $:formlA.render()
 </form>
 </div>
 <div id="mmB">
-<p> local B Param <a href="/font4/2">local param B</a></p>
+<p> local B Param <a href="/font4/$cfont.idlocalB">local param B</a></p>
 <form action="" method="POST" name="formlB">
 $:formlB.render()
 </form>

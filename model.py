@@ -326,12 +326,17 @@ def update_localparam(id, a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13 ):
 def writexml():
 
      glyphName = mfg.cFont.glyphName 
+     print "*** 000",glyphName
      if mfg.cFont.idwork =='0' :
-        glyphsource = mfg.cFont.fontna + "/glyphs/"+glyphName+".glif"
+        print "*** 0",glyphName
+        glyphsource  = mfg.cFont.fontpath+mfg.cFont.fontna + "/glyphs/"+glyphName+".glif"
+        print "*** gylyphsource A*",glyphsource
         xmldoc = xmldocA
      if mfg.cFont.idwork =='1' :
+        print "*** 1",glyphName
         xmldoc = xmldocB
-        glyphsource = mfg.cFont.fontnb + "/glyphs/"+glyphName+".glif"
+        glyphsource = mfg.cFont.fontpath+mfg.cFont.fontnb + "/glyphs/"+glyphName+".glif"
+        print "*** gylyphsource B*",glyphsource
      itemlist = xmldoc.getElementsByTagName('point')
      idmaster = gidmast(mfg.cFont.idwork)
      ids= " and idmaster="+'"'+str(idmaster)+'"'
@@ -382,6 +387,13 @@ def writexml():
      print "glyphsource", glyphsource
      with codecs.open(glyphsource, "w", "utf-8") as out:
           xmldoc.writexml(out) 
+
+def writeGlyphlist():
+  ifile=open(mfg.cFont.fontpath+"glyphlist.mf","w")
+  
+
+
+  return None
 
 def writeGlobalParam():
 #
@@ -496,3 +508,22 @@ def ufo2mf():
   
   mfg.cFont.timestamp=1
   return None
+
+def writeGlyphlist():
+
+  print "*** write glyphlist ***"
+  ifile=open(mfg.cFont.fontpath+"glyphlist.mf","w")
+ 
+
+  dirnamep1 = mfg.cFont.fontpath+"glyphs"
+ 
+  charlist1 = [f for f in os.listdir(dirnamep1) ]
+
+  for ch1 in charlist1: 
+
+      print "file",ch1
+    
+  ifile.close()
+  return None
+
+
