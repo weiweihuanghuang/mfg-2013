@@ -1,4 +1,4 @@
-$def with (posts,post,form,formparam,master,mastglobal,webglyph,glyphparam)
+$def with (posts,post,form,formparam,master,mastglobal,webglyph,glyphparam,cfont)
 
 <h2>Glyph Edit</h2>
 <form action="">
@@ -7,6 +7,14 @@ $def with (posts,post,form,formparam,master,mastglobal,webglyph,glyphparam)
 		<option value="">Superness</option>
 	</select>
 </form>
+
+<p>
+$if cfont.idwork == '0' :
+       Font A: $cfont.fontna 
+$if cfont.idwork == '1' : 
+       Font B: $cfont.fontnb 
+</p>
+
 
 $for mast in master:
   <p> $mast.FontName <br>
@@ -23,6 +31,10 @@ $for mast in mastglobal:
  <br>
 </p>
 
+<p> 
+<a href="/metap/0">Edit Font A</a> <br>
+<a href="/metap/1">Edit Font B</a> <br>
+</p> 
 
 <style>@font-face {
 	font-family:'metapolator';
@@ -31,33 +43,44 @@ $for mast in mastglobal:
 	font-weight:normal;
 	font-style:normal;
 }
-h3_b {
+
+left {
 	position:absolute;
-	z-index:-5;
-	bottom:-350px;
-	left:9px;
+
 	font-family:"metapolator";
-	font-size:1200px;
-	color:grey;
+	font-size:1000px;
+	color:#FFA2F2;
+	right:0;
+bottom:-360;
+	z-index:-6;
+
+
+
 }
-h3_a {
+middle, right {
 	position:absolute;
-	z-index:-5;
-	bottom:-359px;
-	right:9px;
+bottom:-360;
+left:6;
+
 	font-family:"metapolator";
-	font-size:1200px;
+	font-size:1000px;
 	color:grey;
-}
-h3_c {
-	position:absolute;
 	z-index:-5;
-	bottom:-350px;
-	left:619px;
-	font-family:"metapolator";
-	font-size:1200px;
-	color:grey;
+
+
 }
+right {
+	color:CCFFFF;
+	z-index:-8;
+}
+      
+      .first {
+        color: grey;
+      }
+      .second { 
+        color: #95F5FF;
+      }
+
 p,h2,#menu,table,th,td,#ruler {
 	font:normal 15px/19px "Courier New",Courier,mono;
 	z-index:-5;
@@ -66,7 +89,6 @@ h2 {
 	color:red;
 }
 #center {
-	background:red;
 	bottom:0;
 	height:0px;
 	left:-300;
@@ -75,7 +97,7 @@ h2 {
 	top:200;
 	right:0;
 	width:0px;
-	-webkit-transform:translate(0%,0%) scale(0.80,0.80);
+	-webkit-transform:translate(0%,0%) scale(100%,100%);
 }
 #menu {
 	position:relative;
@@ -100,28 +122,19 @@ table,th,td {
 </style>
 
 <div id="center">
-	<div class="ruler" style="position:absolute;left:0px;bottom: -359px;color:pink;">
-		<div style="border-left:1px solid pink;height:2048px">
-		</div>
-		&larr;0
+
+	<div>
+		<left> &#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;	 </left>
 	</div>
 	<div>
-		<h3_a>
-	 </h3_a>
+		<middle>
+<span class="first">$webglyph</span><span class="second">&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;</span> 
 	</div>
-	<div>
-		<h3_b>
-$webglyph </h3_b>
+
+<div>
+		<right>  </right>
 	</div>
-	<div>
-		<h3_c>
-	 </h3_c>
-	</div>
-	<div id="ruler" style="position:absolute;left:550px;bottom: -359px;color:pink;">
-		<div id="ruler" style="top-410;border-right:1px solid pink;height:2048px">
-		</div>
-		1002&rarr;
-	</div>
+
 $for posti in posts:
 	<div id="$posti.id" style="$posti.position">
 		<p>

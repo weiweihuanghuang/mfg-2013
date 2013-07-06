@@ -6,15 +6,9 @@ $for fonts in fontsource:
   $fonts <br>
 </p> 
 
-$for mast in master:
-  <p> 
-   id $mast.idmaster $mast.FontName  $mast.FontNameA $mast.FontNameB $mast.vdate<br>
-   this is metap.html <br>
-  </p>
-
 <p> 
-<a href="/metap/0">edit on set A</a> <br>
-<a href="/metap/1">edit on set B</a> <br>
+<a href="/metap/0">Edit Font A</a> <br>
+<a href="/metap/1">Edit Font B</a> <br>
 </p> 
 
 <br>
@@ -31,33 +25,44 @@ Optimized for Chrome
 	font-weight:normal;
 	font-style:normal;
 }
-h3_b {
+
+left {
 	position:absolute;
-	z-index:-5;
-	bottom:-350px;
-	left:9px;
+
 	font-family:"metapolator";
-	font-size:1200px;
-	color:grey;
+	font-size:1000px;
+	color:#FFA2F2;
+	right:0;
+bottom:-360;
+	z-index:-6;
+
+
+
 }
-h3_a {
+middle, right {
 	position:absolute;
-	z-index:-5;
-	bottom:-359px;
-	right:9px;
+bottom:-360;
+left:6;
+
 	font-family:"metapolator";
-	font-size:1200px;
+	font-size:1000px;
 	color:grey;
-}
-h3_c {
-	position:absolute;
 	z-index:-5;
-	bottom:-350px;
-	left:619px;
-	font-family:"metapolator";
-	font-size:1200px;
-	color:grey;
+
+
 }
+right {
+	color:CCFFFF;
+	z-index:-8;
+}
+      
+      .first {
+        color: grey;
+      }
+      .second { 
+        color: #95F5FF;
+      }
+
 p,h2,#menu,table,th,td,#ruler {
 	font:normal 15px/19px "Courier New",Courier,mono;
 	z-index:-5;
@@ -66,7 +71,6 @@ h2 {
 	color:red;
 }
 #center {
-	background:red;
 	bottom:0;
 	height:0px;
 	left:-300;
@@ -75,7 +79,7 @@ h2 {
 	top:200;
 	right:0;
 	width:0px;
-	-webkit-transform:translate(0%,0%) scale(0.80,0.80);
+	-webkit-transform:translate(0%,0%) scale(100%,100%);
 }
 #menu {
 	position:relative;
@@ -99,13 +103,12 @@ table,th,td {
 }
 </style>
 
-
 <div id="center" >
 
 <div>
-        <h3_b>
+        <middle>
 $webglyph
-        </h3_b>
+        </middle>
 </div>
 
 $for posti in posts:

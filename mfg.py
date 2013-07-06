@@ -122,7 +122,7 @@ class View:
         mastglobal = model.get_globalparam(cFont.idglobal)
         master = model.get_master(cFont.idmaster)
 	webglyph = cFont.glyphName
-        return render.view(posts,post,form,formParam,master,mastglobal,webglyph,glyphparam)
+        return render.view(posts,post,form,formParam,master,mastglobal,webglyph,glyphparam,cFont)
 
     def POST(self, id):
         form = View.form()
@@ -133,7 +133,7 @@ class View:
             master = model.get_master(cFont.idmaster)
             mastglobal = model.get_globalparam(cFont.idglobal)
 	    webglyph = cFont.glyphName
-            return render.view(posts, post, form, formParam, master,mastglobal, webglyph,glyphparam)
+            return render.view(posts, post, form, formParam, master,mastglobal, webglyph,glyphparam,cFont)
         if form.d.PointName != None :
             if not formParam.validates() :
                 return render.view(posts, post, form, formParam, master,mastglobal)
@@ -158,7 +158,7 @@ class View:
         strms = "sh makefont.sh font.mf"
         print strms
         os.system(strms)
-        return render.view(posts, post, form, formParam, master, mastglobal,webglyph,glyphparam)
+        return render.view(posts, post, form, formParam, master, mastglobal,webglyph,glyphparam,cFont)
 
 class ViewFont:
     def GET(self):

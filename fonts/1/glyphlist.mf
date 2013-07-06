@@ -1,0 +1,4 @@
+input glyphs/bar.mf
+input glyphs/g.mf
+input glyphs/l.mf
+input glyphs/n.mf
