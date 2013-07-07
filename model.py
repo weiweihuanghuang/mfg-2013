@@ -185,7 +185,15 @@ def get_posts():
     glyphName = mfg.cFont.glyphName 
     ids= " and idmaster="+'"'+str(idmaster)+'"'
     q1="SELECT IFNULL(PointName, '') PointNr,x,y,concat('position:absolute;left:',0+x,'px;top:',0-y,'px; ',IF (PointName > '', 'color:red;', IF (contrp > 0 , 'z-index:-1;color:blue;', 'z-index:-2;color:CCFFFF;')) ) position, id from vglyphoutline where GlyphName="+'"'+glyphName+'"'
-    return db.query(q1+ids )
+    return list(db.query(q1+ids ))
+
+def get_postspa():
+    idmaster = gidmast(mfg.cFont.idwork)
+    glyphName = mfg.cFont.glyphName 
+    ids= " and idmaster="+'"'+str(idmaster)+'"'
+    dbstr=db.select('vglyphoutlines', where='glyphName='+'"'+glyphName+'"' +ids, vars=locals())     
+    return list(dbstr)
+
 
 def get_post(id):
     glyphName = mfg.cFont.glyphName 

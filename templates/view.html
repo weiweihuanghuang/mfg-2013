@@ -1,4 +1,4 @@
-$def with (posts,post,form,formparam,master,mastglobal,webglyph,glyphparam,cfont)
+$def with (posts,post,form,formparam,master,mastglobal,webglyph,glyphparam,cfont,postspa)
 
 <h2>Glyph Edit</h2>
 <form action="">
@@ -134,7 +134,6 @@ table,th,td {
 <div>
 		<right>  </right>
 	</div>
-
 $for posti in posts:
 	<div id="$posti.id" style="$posti.position">
 		<p>
@@ -186,7 +185,55 @@ $if form.d.PointName > "0" :
        cardinal $glyphparam.cardinal <br>
 
 	</div>
+<p> points - parameters </p>
+<p> 
+$for ppp in postspa:
+   $if ppp.PointName != '' :
+     $ppp.id  $ppp.PointName
+     $if ppp.startp != None :
+         startp $ppp.startp
+     $if ppp.leftp != None :
+       leftp $ppp.leftp
+     $if ppp.rightp != None :
+       rightp $ppp.rightp
+     $if ppp.downp != None :
+       downp $ppp.downp
+     $if ppp.upp != None :
+       upp $ppp.upp
+     $if ppp.superqr != None :
+       superqr  $ppp.superqr
+     $if ppp.superleft != None :
+       superleft $ppp.superleft
+     $if ppp.tension != None :
+       tension $ppp.tension
+     $if ppp.tensionend != None :
+       tensionend $ppp.tensionend
+     $if ppp.cycle != None :
+       cycle $ppp.cycle
+     $if ppp.penshiftedx != None :
+       penshiftedx $ppp.penshiftedx
+     $if ppp.penshiftedy != None :
+       penshiftedy $ppp.penshiftedy
+     $if ppp.pointshiftx != None :
+       pointshiftx $ppp.pointshiftx
+     $if ppp.pointshifty != None :
+       pointshifty $ppp.pointshifty
+     $if ppp.superness != None :
+       supernesnn $ppp.superness
+     $if ppp.penwidth != None :
+       penwidth $ppp.penwidth
+     $if ppp.xHeight != None :
+       xHeight $ppp.xHeight
+     $if ppp.cardinal != None :
+       cardinal $ppp.cardinal
 
+
+
+
+
+
+   <br>
+</p>
 <p style="color:red"> &#9678; z points </p>
 <p style="color:blue"> &#9678; undefined points </p>
 <p style="color:CCFFFF"> &#9678; control points </p>
