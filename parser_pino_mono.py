@@ -27,15 +27,16 @@ w2 = itemlist[0].attributes['width'].value
 w2 = str(float(w2)/100)
 
 glyph = glif.getElementsByTagName('glyph')
-g = glyph[0].attributes['name'].value
+g = glyph[0].attributes['name'].value 
 
 uni = minidom.parse(font_a) 
 itemlist = uni.getElementsByTagName('unicode')
 u = itemlist[0].attributes['hex'].value
 
-mean = ['a', 'c', 'e', 'm', 'n', 'o', 'r', 's', 'u', 'v', 'w', 'x', 'z', 'h', 'b', 'd']
+mean = ['a', 'c', 'e', 'm', 'n', 'o', 'r', 's', 'u', 'v', 'w', 'x', 'z', 'h', 'b', 'd','bar']
 des = ['g', 'j', 'p', 'q', 'y']
-asc = ['k', 'i', 'l', 't', 'f']
+dept = ['g', 'j', 'p', 'q', 'y']
+asc = ['bar', 'k', 'i', 'l', 't', 'f']
 cap = ['f', 'A', 'B', 'C', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
 
 # ggroup=""
@@ -45,7 +46,12 @@ if g in mean :
     
 if g in des :
     ggroup = 'des#'
-        
+
+if g in dept :
+    ggroup2 = '0'
+else : 
+    ggroup2 = '0'
+
 if g in cap : 
     ggroup = 'cap#'
 
@@ -56,7 +62,7 @@ if g in asc :
 #    ggroup = 'asc#'
 
 
-print 'beginfontchar("' + g + '", (' + w + "*width *width_" +  g  + " +px#) + (metapolation * (" + w2 + '-' + w + ")), " + ggroup + ", 0);"
+print 'beginfontchar("' + g + '", (A_width + metapolation * (A_width - B_width)) * width_' + g + " * (" + w + " + width_" +  g  + "R#), A_" + ggroup + " + metapolation * (B_" + ggroup + " - A_" + ggroup + "), " + ggroup2 + ");"
 print """if known ps_output:
 glyph_name "uni""" + u + """"; 
 fi
@@ -382,7 +388,7 @@ for item in itemlist :
 
 print """
 
-% test new center (z) points
+% test new vertical and horizontal option
 """ 
 
 
@@ -392,7 +398,7 @@ g = glyph[0].attributes['name'].value
 
 mean = ['a', 'c', 'e', 'm', 'n', 'o', 'r', 's', 'u', 'v', 'w', 'x', 'z', 'h', 'b', 'd']
 des = ['g', 'j', 'p', 'q', 'y']
-asc = ['k', 'i', 'l', 't', 'f']
+asc = ['bar','k', 'i', 'l', 't', 'f']
 cap = ['f', 'A', 'B', 'C', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
 
 # ggroup=""
@@ -420,8 +426,8 @@ strtwo = " .. "
 stline = " -- "
 strz = ""
 zzn = []
-start = []
-startval = []
+startp = []
+startpval = []
 
 # create empty variable list
 
@@ -442,8 +448,8 @@ hval = []
 # add iteration to string
 
 for i in range (1,100):
-  start.append("")
-  startval.append(0)
+  startp.append("")
+  startpval.append(0)
   
   pointshifted.append("")
   pointshiftedval.append(0)
@@ -486,10 +492,10 @@ for item in itemlist :
        	 ipointshiftedy = False
 
        try :
-	 istart = item.attributes['start'].value   
-	 istart = True
+	 istartp = item.attributes['startp'].value   
+	 istartp = True
        except :
-       	 istart = False
+       	 istartp = False
 
        try :
 	 iv = item.attributes['v'].value   
@@ -514,15 +520,15 @@ for item in itemlist :
        if im.value.find(znamel) > -1 :
           zzn.append (i)
        if im.value.find(znamel) > -1 or im.value.find(znamer) > -1:
-#         if im.value.find("start") >-1 :
-#           del start[i-1]
-#           start.insert(i-1,"")
-         if istart == True :
-           istartval = item.attributes['start'].value
-           del start[i-1]
-           start.insert(i-1,"start")
-	   del startval[i-1]
-           startval.insert(i-1,istartval)
+#         if im.value.find("startp") >-1 :
+#           del startp[i-1]
+#           startp.insert(i-1,"")
+         if istartp == True :
+           istartpval = item.attributes['startp'].value
+           del startp[i-1]
+           startp.insert(i-1,"startp")
+	   del startpval[i-1]
+           startpval.insert(i-1,istartpval)
 
          if ipointshifted== True :
            ipointshiftedval= item.attributes['pointshifted'].value
@@ -612,38 +618,171 @@ for i in range (0,nnz) :
  
 
 
+####### new penpos
+
+
+
+
+        
+# reading font Pen strokes
+
 print """
-% pen positions 
+
+% test new penpos
 """ 
-
-
-# reading font Pen Positions
 
 glif = minidom.parse(font_a)
 itemlist = glif.getElementsByTagName('point') 
 
+
+
 inattr=0   
+ivn = 0
+strz = ""
+zzn = []
+
+# create empty variable list
+
+stemcutter = []
+stemcutterval = []
+
+
+# add iteration to string
+
+for i in range (1,100):
+
+  stemcutter.append("")
+  stemcutterval.append(0)
+
+# search for parameter values
+  
 for item in itemlist :
   for i in range (1,100):
      znamel = 'z'+str(i)+'l'
      znamer = 'z'+str(i)+'r'
-#     zname = 'z'+str(i)+'r'
-
+     
      ipn=0
      try :
        x = item.attributes['x'].value
        y = item.attributes['y'].value
        im =item.attributes['name'] 
+
+       try :
+	 istemcutter = item.attributes['stemcutter'].value   
+	 istemcutter = True
+       except :
+       	 istemcutter = False
+
        ipn = 1   
      except : 
        inattr=inattr+1 
-        
+
+
      if ipn == 1 :
-       if im.value.find(znamer)>-1 or im.value.find(znamel)>-1: 
-         if im.value.find(znamer)>-1 :
+       if im.value.find(znamel) > -1 :
+          zzn.append (i)
+       if im.value.find(znamel) > -1 or im.value.find(znamer) > -1:
+
+         if istemcutter == True :
+           istemcutterval = item.attributes['stemcutter'].value
+           del stemcutter[i-1]
+           stemcutter.insert(i-1,"stemcutter")
+	   del stemcutterval[i-1]
+           stemcutterval.insert(i-1,istemcutterval)
+
+
+nnz = 0
+for zitem in zzn :
+  nnz = nnz +1 
+
+
+i = 0
+zzn.sort()
+zeile =""
+zeileend =""
+semi = ";"
+close = ")"
+for i in range (0,nnz) :
+  zitem = zzn[i]
+  
+  zitemb = zzn[i]
+  zitemc = zzn[i-1]
+
+## default string
+
+  zeile =""
+
+  zeile = """penpos"""  +str(zitem) + "(dist" +str(zitem) + " + (A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist" +str(zitem) + ")"
+
+
+#  zeile = """penpos""" + znamel[1:-1] + "(dist" + znamel[1:-1] + " + (metapolation * (px - (dist"+znamel[1:-1] + " + (distV * (dist" + znamel[1:-1] + "V - dist" +znamel[1:-1] + "))))), (ang"+znamel[1:-1] + " + (angV * (ang" + znamel[1:-1] + "V - ang" + znamel[1:-1] +"))));"
+
+
+# parameters 
+
+  if stemcutter[i] <> "" :
+    zeile = zeile + "-" + stemcutter[i] + "(" +  str(stemcutterval[i]) + ")"      
+ 
+  else: 
+     zeile = zeile 
+  zeile = zeile + ", ang" +str(zitem) + ");"
+  print zeile
+
+#zeile = zeileend + semi
+
+#print zeile
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+############
+
+
+
+
+#print """
+#% pen positions 
+#""" 
+
+
+# reading font Pen Positions
+
+#glif = minidom.parse(font_a)
+#itemlist = glif.getElementsByTagName('point') 
+
+#inattr=0   
+#for item in itemlist :
+#  for i in range (1,100):
+#     znamel = 'z'+str(i)+'l'
+#     znamer = 'z'+str(i)+'r'
+#     zname = 'z'+str(i)+'r'
+
+#     ipn=0
+#     try :
+#       x = item.attributes['x'].value
+#       y = item.attributes['y'].value
+#       im =item.attributes['name'] 
+#       ipn = 1   
+#     except : 
+#       inattr=inattr+1 
+#        
+#     if ipn == 1 :
+#       if im.value.find(znamer)>-1 or im.value.find(znamel)>-1: 
+#         if im.value.find(znamer)>-1 :
          
 #            print """penpos""" + znamel[1:-1] + "(dist"+znamel[1:-1] + " + (metapolation * (px - dist"+znamel[1:-1] + ")), ang"+znamel[1:-1] + ");"
-            print """penpos""" + znamel[1:-1] + "(dist" + znamel[1:-1] + " + (metapolation * (px - (dist"+znamel[1:-1] + " + (distV * (dist" + znamel[1:-1] + "V - dist" +znamel[1:-1] + "))))), (ang"+znamel[1:-1] + " + (angV * (ang" + znamel[1:-1] + "V - ang" + znamel[1:-1] +"))));"
+#            print """penpos""" + znamel[1:-1] + "(dist" + znamel[1:-1] + " + (metapolation * (px - (dist"+znamel[1:-1] + " + (distV * (dist" + znamel[1:-1] + "V - dist" +znamel[1:-1] + "))))), (ang"+znamel[1:-1] + " + (angV * (ang" + znamel[1:-1] + "V - ang" + znamel[1:-1] +"))));"
+
+
 
 
         
@@ -661,7 +800,7 @@ g = glyph[0].attributes['name'].value
 
 mean = ['a', 'c', 'e', 'm', 'n', 'o', 'r', 's', 'u', 'v', 'w', 'x', 'z', 'h', 'b', 'd']
 des = ['g', 'j', 'p', 'q', 'y']
-asc = ['k', 'i', 'l', 't', 'f']
+asc = ['bar','k', 'i', 'l', 't', 'f']
 cap = ['f', 'A', 'B', 'C', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
 
 # ggroup=""
@@ -689,8 +828,8 @@ strtwo = " .. "
 stline = " -- "
 strz = ""
 zzn = []
-start = []
-startval = []
+startp = []
+startpval = []
 
 # create empty variable list
 
@@ -717,8 +856,8 @@ overbaseval = []
 # add iteration to string
 
 for i in range (1,100):
-  start.append("")
-  startval.append(0)
+  startp.append("")
+  startpval.append(0)
   
   pointshifted.append("")
   pointshiftedval.append(0)
@@ -768,10 +907,10 @@ for item in itemlist :
        	 ipointshiftedy = False
 
        try :
-	 istart = item.attributes['start'].value   
-	 istart = True
+	 istartp = item.attributes['startp'].value   
+	 istartp = True
        except :
-       	 istart = False
+       	 istartp = False
 
 
        try :
@@ -810,15 +949,15 @@ for item in itemlist :
        if im.value.find(znamel) > -1 :
           zzn.append (i)
        if im.value.find(znamel) > -1 or im.value.find(znamer) > -1:
-#         if im.value.find("start") >-1 :
-#           del start[i-1]
-#           start.insert(i-1,"")
-         if istart == True :
-           istartval = item.attributes['start'].value
-           del start[i-1]
-           start.insert(i-1,"start")
-	   del startval[i-1]
-           startval.insert(i-1,istartval)
+#         if im.value.find("startp") >-1 :
+#           del startp[i-1]
+#           startp.insert(i-1,"")
+         if istartp == True :
+           istartpval = item.attributes['startp'].value
+           del startp[i-1]
+           startp.insert(i-1,"startp")
+	   del startpval[i-1]
+           startpval.insert(i-1,istartpval)
 
          if ipointshifted== True :
            ipointshiftedval= item.attributes['pointshifted'].value
@@ -883,7 +1022,7 @@ for i in range (0,nnz) :
 
   zeile =""
 
-  zeile = "z"+str(zitem)+ "=(x2"+ str(zitem)+ "0 *width *width_" + g + "+ (metapolation * (x2"+str(zitem)+"A - x2" +str(zitem)+"0)), y2"+str(zitem)+ "0 *" + ggroup + " + (metapolation * (y2"+str(zitem)+ "A - y2" +str(zitem)+ "0)))"
+  zeile = "z"+str(zitem)+ "=((A_width + metapolation * (A_width - B_width)) * (x2"+ str(zitem)+ "0 + metapolation * (x2"+str(zitem)+"A - x2" +str(zitem)+"0) + width_" + g + "L) * width_" + g + ", (A_" + ggroup + " + metapolation * (B_" + ggroup + " - A_" + ggroup + "))*(y2"+str(zitem)+ "0 + metapolation *(y2"+str(zitem)+ "A - y2" +str(zitem)+ "0)))"
 
 #  zeileend =""
 #  zeileend = 'z'+str(zzn[nnz-1])+ "=(x2"+ str(zzn[nnz-1])+ "0 *width *width_" + g + " + (metapolation * (x2"+str(zzn[nnz-1])+"A - x2" +str(zzn[nnz-1])+"0)), y2"+str(zzn[nnz-1])+ "0 *" + ggroup + " + (metapolation * (y2"+str(zzn[nnz-1]) + "A - y2" +str(zzn[nnz-1])+ "0)))"
@@ -927,8 +1066,8 @@ stline = " -- "
 strz = ""
 zzn = []
 
-start = []
-startval = []
+startp = []
+startpval = []
 
 doubledash = []
 doubledashvalB = []
@@ -952,8 +1091,8 @@ superleftvalB = []
 dir = []
 dirvalB = []
 
-left = []
-leftvalB = []
+leftp = []
+leftpvalB = []
 
 right = []
 rightvalB = []
@@ -961,8 +1100,8 @@ rightvalB = []
 up = []
 upvalB = []
 
-down = []
-downvalB = []
+downp = []
+downpvalB = []
 
 penshiftedy = []
 penshiftedyvalB = []
@@ -972,8 +1111,8 @@ penshiftedvalB = []
 
 for i in range (1,100):
 
-  start.append("")
-  startval.append(0)
+  startp.append("")
+  startpval.append(0)
 
   doubledash.append("")
   doubledashvalB.append(0)
@@ -997,8 +1136,8 @@ for i in range (1,100):
   dir.append("")
   dirvalB.append(0)
 
-  left.append("")
-  leftvalB.append(0)
+  leftp.append("")
+  leftpvalB.append(0)
 
   right.append("")
   rightvalB.append(0)
@@ -1006,8 +1145,8 @@ for i in range (1,100):
   up.append("")
   upvalB.append(0)
 
-  down.append("")
-  downvalB.append(0)
+  downp.append("")
+  downpvalB.append(0)
   
   penshiftedy.append("")
   penshiftedyvalB.append(0)
@@ -1049,10 +1188,10 @@ for item in itemlist :
        	 idir = False
 
        try :
-	 ileft = item.attributes['left'].value   
-	 ileft = True
+	 ileftp = item.attributes['leftp'].value   
+	 ileftp = True
        except :
-       	 ileft = False
+       	 ileftp = False
 
        try :
 	 iup = item.attributes['up'].value   
@@ -1067,10 +1206,10 @@ for item in itemlist :
        	 iright = False
 
        try :
-	 idown = item.attributes['down'].value   
-	 idown = True
+	 idownp = item.attributes['downp'].value   
+	 idownp = True
        except :
-       	 idown = False
+       	 idownp = False
 
        try :
 	 itension = item.attributes['tension'].value   
@@ -1119,9 +1258,9 @@ for item in itemlist :
        if im.value.find(znamel) > -1 :
           zzn.append (i)
        if im.value.find(znamel) > -1 or im.value.find(znamer) > -1:
-#         if im.value.find("start") >-1 :
-#           del zzstart[i-1]
-#           zzstart.insert(i-1,"penstroke ")
+#         if im.value.find("startp") >-1 :
+#           del zzstartp[i-1]
+#           zzstartp.insert(i-1,"penstroke ")
              
          if idoubledash == True :
            idoubledashval = item.attributes['doubledash'].value
@@ -1151,12 +1290,12 @@ for item in itemlist :
 	   del upvalB[i-1]
            upvalB.insert(i-1,iupval)
 
-         if ileft == True :
-           ileftval = item.attributes['left'].value
-           del left[i-1]
-           left.insert(i-1,"left")
-	   del leftvalB[i-1]
-           leftvalB.insert(i-1,ileftval)
+         if ileftp == True :
+           ileftpval = item.attributes['leftp'].value
+           del leftp[i-1]
+           leftp.insert(i-1,"left")
+	   del leftpvalB[i-1]
+           leftpvalB.insert(i-1,ileftpval)
 
          if iright == True :
            irightval = item.attributes['right'].value
@@ -1165,12 +1304,12 @@ for item in itemlist :
 	   del rightvalB[i-1]
            rightvalB.insert(i-1,irightval)
 
-         if idown == True :
-           idownval = item.attributes['down'].value
-           del down[i-1]
-           down.insert(i-1,"down")
-	   del downvalB[i-1]
-           downvalB.insert(i-1,idownval)
+         if idownp == True :
+           idownpval = item.attributes['downp'].value
+           del downp[i-1]
+           downp.insert(i-1,"down")
+	   del downpvalB[i-1]
+           downpvalB.insert(i-1,idownpval)
                   
          if itension == True :
            itensionval = item.attributes['tension'].value
@@ -1226,9 +1365,8 @@ for item in itemlist :
 
 
 print """
-% pen strokes  """
-
-
+% pen strokes % first built in:
+penstroke """
 
 
            
@@ -1246,8 +1384,8 @@ strtwo = " .. "
 stline = " -- "
 strz = ""
 zzn = []
-start = []
-startval = []
+startp = []
+startpval = []
 
 doubledash = []
 doubledashval = []
@@ -1271,8 +1409,8 @@ superleftval = []
 dir = []
 dirval = []
 
-left = []
-leftval = []
+leftp = []
+leftpval = []
 
 right = []
 rightval = []
@@ -1280,14 +1418,14 @@ rightval = []
 up = []
 upval = []
 
-down = []
-downval = []
+downp = []
+downpval = []
 
 dir2 = []
 dir2val = []
 
-left2 = []
-left2val = []
+leftp2 = []
+leftp2val = []
 
 right2 = []
 right2val = []
@@ -1295,8 +1433,8 @@ right2val = []
 up2 = []
 up2val = []
 
-down2= []
-down2val = []
+downp2= []
+downp2val = []
 
 penshiftedy = []
 penshiftedyval = []
@@ -1319,8 +1457,8 @@ cycleval = []
 
 for i in range (1,100):
 
-  start.append("")
-  startval.append(0)
+  startp.append("")
+  startpval.append(0)
 
   doubledash.append("")
   doubledashval.append(0)
@@ -1344,8 +1482,8 @@ for i in range (1,100):
   dir.append("")
   dirval.append(0)
 
-  left.append("")
-  leftval.append(0)
+  leftp.append("")
+  leftpval.append(0)
 
   right.append("")
   rightval.append(0)
@@ -1353,14 +1491,14 @@ for i in range (1,100):
   up.append("")
   upval.append(0)
 
-  down.append("")
-  downval.append(0)
+  downp.append("")
+  downpval.append(0)
 
   dir2.append("")
   dir2val.append(0)
 
-  left2.append("")
-  left2val.append(0)
+  leftp2.append("")
+  leftp2val.append(0)
 
   right2.append("")
   right2val.append(0)
@@ -1368,8 +1506,8 @@ for i in range (1,100):
   up2.append("")
   up2val.append(0)
   
-  down2.append("")
-  down2val.append(0)
+  downp2.append("")
+  downp2val.append(0)
 
   penshiftedy.append("")
   penshiftedyval.append(0)
@@ -1409,10 +1547,10 @@ for item in itemlist :
 
 
        try :
-	 istart = item.attributes['start'].value   
-	 istart = True
+	 istartp = item.attributes['startp'].value   
+	 istartp = True
        except :
-       	 istart = False
+       	 istartp = False
 
        try :
 	 idoubledash = item.attributes['doubledash'].value   
@@ -1439,16 +1577,16 @@ for item in itemlist :
        	 idir2 = False
 
        try :
-	 ileft = item.attributes['left'].value   
-	 ileft = True
+	 ileftp = item.attributes['leftp'].value   
+	 ileftp = True
        except :
-       	 ileft = False
+       	 ileftp = False
 
        try :
-	 ileft2 = item.attributes['left2'].value   
-	 ileft2 = True
+	 ileftp2 = item.attributes['leftp2'].value   
+	 ileftp2 = True
        except :
-       	 ileft2 = False
+       	 ileftp2 = False
 
        try :
 	 iup = item.attributes['up'].value   
@@ -1475,16 +1613,16 @@ for item in itemlist :
        	 iright2 = False
 
        try :
-	 idown = item.attributes['down'].value   
-	 idown = True
+	 idownp = item.attributes['downp'].value   
+	 idownp = True
        except :
-       	 idown = False
+       	 idownp = False
 
        try :
-	 idown2= item.attributes['down2'].value   
-	 idown2= True
+	 idownp2= item.attributes['downp2'].value   
+	 idownp2= True
        except :
-       	 idown2= False
+       	 idownp2= False
 
 
        try :
@@ -1562,20 +1700,20 @@ for item in itemlist :
           zzn.append (i)
        if im.value.find(znamel) > -1 or im.value.find(znamer) > -1:
         
-#	 if im.value.find("start") >-1 :
-#           del zzstart[i-1]
-#           zzstart.insert(i-1,"penstroke ")
+#	 if im.value.find("startp") >-1 :
+#           del zzstartp[i-1]
+#           zzstartp.insert(i-1,"penstroke ")
 
-         if istart == True :
-           istartval = item.attributes['start'].value
-           del start[i-1]
-           start.insert(i-1,"penstroke ")
-	   del startval[i-1]
-           startval.insert(i-1,istartval)
+         if istartp == True :
+           istartpval = item.attributes['startp'].value
+           del startp[i-1]
+           startp.insert(i-1,"penstroke ")
+	   del startpval[i-1]
+           startpval.insert(i-1,istartpval)
   
          if icycle == True :
            icycleval = item.attributes['cycle'].value
-           del start[i-1]
+           del startp[i-1]
            cycle.insert(i-1,"cycle")
 	   del cycleval[i-1]
            cycleval.insert(i-1,icycleval)
@@ -1615,12 +1753,12 @@ for item in itemlist :
 	   del upval[i-1]
            upval.insert(i-1,iupval)
 
-         if ileft == True :
-           ileftval = item.attributes['left'].value
-           del left[i-1]
-           left.insert(i-1,"{left} ")
-	   del leftval[i-1]
-           leftval.insert(i-1,ileftval)
+         if ileftp == True :
+           ileftpval = item.attributes['leftp'].value
+           del leftp[i-1]
+           leftp.insert(i-1,"{left} ")
+	   del leftpval[i-1]
+           leftpval.insert(i-1,ileftpval)
 
          if iright == True :
            irightval = item.attributes['right'].value
@@ -1629,19 +1767,19 @@ for item in itemlist :
 	   del rightval[i-1]
            rightval.insert(i-1,irightval)
 
-         if idown == True :
-           idownval = item.attributes['down'].value
-           del down[i-1]
-           down.insert(i-1," {down} ")
-	   del downval[i-1]
-           downval.insert(i-1,idownval)
+         if idownp == True :
+           idownpval = item.attributes['downp'].value
+           del downp[i-1]
+           downp.insert(i-1," {down} ")
+	   del downpval[i-1]
+           downpval.insert(i-1,idownpval)
 
-         if idown2 == True :
-           idown2val = item.attributes['down2'].value
-           del down2[i-1]
-           down2.insert(i-1," {down} ")
-	   del down2val[i-1]
-           down2val.insert(i-1,idown2val)
+         if idownp2 == True :
+           idownp2val = item.attributes['downp2'].value
+           del downp2[i-1]
+           downp2.insert(i-1," {down} ")
+	   del downp2val[i-1]
+           downp2val.insert(i-1,idownp2val)
 
          if iup2 == True :
            iup2val = item.attributes['up2'].value
@@ -1650,12 +1788,12 @@ for item in itemlist :
 	   del up2val[i-1]
            up2val.insert(i-1,iup2val)
 
-         if ileft2 == True :
-           ileft2val = item.attributes['left2'].value
-           del left2[i-1]
-           left2.insert(i-1,"{left} ")
-	   del left2val[i-1]
-           left2val.insert(i-1,ileft2val)
+         if ileftp2 == True :
+           ileftp2val = item.attributes['leftp2'].value
+           del leftp2[i-1]
+           leftp2.insert(i-1,"{left} ")
+	   del leftp2val[i-1]
+           leftp2val.insert(i-1,ileftp2val)
 
          if iright2 == True :
            iright2val = item.attributes['right2'].value
@@ -1762,14 +1900,14 @@ for i in range (0,nnz-1) :
 ## default string
 
   zeile =""
-  zeile =  str(start[i]) +  "z"+str(zitem)+"e"  
+  zeile =  str(startp[i]) +  "z"+str(zitem)+"e"  
   zeileb =""
-  zeileb = str(start[i])
+  zeileb = str(startp[i])
   zeilec = ""
-  zeilec = str(start[i]) + "z"+str(zitem)+"e" 
-  if start[i+1]=="" : 
+  zeilec = str(startp[i]) + "z"+str(zitem)+"e" 
+  if startp[i+1]=="" : 
 
-# if start, add parameters
+# if startp, add parameters
     dash = "..."
     if tripledash[i] <> "" :
       dash = "---"
@@ -1794,10 +1932,10 @@ for i in range (0,nnz-1) :
     if up[i] <> "" :
       zeile = zeile + "{up}"      
 
-    if down[i] <> "" :
+    if downp[i] <> "" :
       zeile = zeile + "{down}"      
 
-    if left[i] <> "" :
+    if leftp[i] <> "" :
       zeile = zeile + "{left}"      
 
     if right[i] <> "" :
@@ -1874,14 +2012,14 @@ for i in range (0,nnz-1) :
                          zeile = zeile   
    
 
-    if down2[i] <> "" :
-      zeile = zeile  + dash + down2[i]  
+    if downp2[i] <> "" :
+      zeile = zeile  + dash + downp2[i]  
     else:
       if up2[i] <> "" :
         zeile = zeile  + dash + up2[i]  
       else :
-        if left2[i] <> "" :
-          zeile = zeile  + dash + left2[i]  
+        if leftp2[i] <> "" :
+          zeile = zeile  + dash + leftp2[i]  
         else :
           if right2[i] <> "" :
             zeile = zeile  + dash + right2[i]  
@@ -1916,19 +2054,19 @@ for i in range (0,nnz-1) :
  
     else : 
       if tension[i] <> "" :
-        zeile = zeile + strtwo + "tension" + " (" + tensionval[i] + ' + (metapolation * (' + tensionvalB[i] + '-' + tensionval[i] + ')))' + strtwo  + down2[i] + semi
+        zeile = zeile + strtwo + "tension" + " (" + tensionval[i] + ' + (metapolation * (' + tensionvalB[i] + '-' + tensionval[i] + ')))' + strtwo  + downp2[i] + semi
       
     if tensionand[i] <> "" :
       zeile = zeile + strtwo + "tension" + " ((" + str(tensionandval[i]) + '/100) + (metapolation * ((' + str(tensionandvalB[i]) + '/100) - (' + str(tensionandval[i]) + '/100))))' + " and ((" + str(tensionandval2[i]) + '/100) + (metapolation * ((' + str(tensionandval2B[i]) + '/100) - (' + str(tensionandval2[i]) + '/100))))' + strtwo   + semi
 
 
 
-      if down2[i] <> "" :
-        zeile = zeile + dash + down2[i]  + semi
+      if downp2[i] <> "" :
+        zeile = zeile + dash + downp2[i]  + semi
       if up2[i] <> "" :
         zeile = zeile + dash + up2[i]  + semi
-      if left2[i] <> "" :
-        zeile = zeile + dash  + left2[i]  + semi
+      if leftp2[i] <> "" :
+        zeile = zeile + dash  + leftp2[i]  + semi
       if right2[i] <> "" :
         zeile = zeile + dash + right2[i]  + semi
       if dir2[i] <> "" :
@@ -1967,7 +2105,6 @@ for i in range (0,nnz-1) :
 
     else :
        zeile = zeile + semi 
-
   print zeile
 
 

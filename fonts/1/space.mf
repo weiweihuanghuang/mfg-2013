@@ -1,0 +1,8 @@
+width_l:=1.0;	width_lR#:=-.5pt#;	width_lL:=-3pt; 
+width_a:=1.0; 	width_aR#:=-.1pt#; 	width_aL:=0pt; 
+width_bar:=1.0;	width_barR#:=0pt#; 	width_barL:=0pt; 
+width_n:=1; 	width_nR#:=0pt#; 	width_nL:=0; 		
+width_g:=1; 	width_gR#:=0pt#; 	width_gL:=0; 	
+width_f:=1; 	width_fL:=0;		width_fR#:=1pt#;  
+width_N:=1; 	width_NL:=0+A_px;		width_NR#:=0pt#+A_px#;  
+
