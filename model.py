@@ -432,7 +432,7 @@ def writeGlobalParam():
   ifile.write("ht#:=%.0fpt#;\n"%ht)
   ifile.write("u#:=%.0fpt#;\n"%u)
   ifile.write("max_stemcut:=%.0fpt;\n"%maxstemcut)
-  ifile.write("superness:=%.1f;\n"%superness)
+  ifile.write("superness:=%.2f;\n"%superness)
 
 # local parameters A  
   imlo = list(get_localparam(mfg.cFont.idlocalA))
@@ -449,8 +449,8 @@ def writeGlobalParam():
   ifile.write("A_descender:=%.0f;\n"%imlo[0].descender)
   ifile.write("A_inktrap:=%.0f;\n"%imlo[0].inktrap)
   ifile.write("A_stemcut:=%.0f;\n"%imlo[0].stemcut)
-  ifile.write("A_skeleton#:=%.0fpt#;\n"%imlo[0].skeleton)
-  ifile.write("A_superness:=%.1f;\n"%imlo[0].superness)
+  ifile.write("A_skeleton#:=%.2fpt#;\n"%imlo[0].skeleton)
+  ifile.write("A_superness:=%.2f;\n"%imlo[0].superness)
   
 # local parameters B  
   imlo = list(get_localparam(mfg.cFont.idlocalB))
@@ -467,8 +467,8 @@ def writeGlobalParam():
   ifile.write("B_descender:=%.0f;\n"%imlo[0].descender)
   ifile.write("B_inktrap:=%.0f;\n"%imlo[0].inktrap)
   ifile.write("B_stemcut:=%.0f;\n"%imlo[0].stemcut)
-  ifile.write("B_skeleton#:=%.0fpt#;\n"%imlo[0].skeleton)
-  ifile.write("B_superness:=%.1f;\n"%imlo[0].superness)
+  ifile.write("B_skeleton#:=%.2fpt#;\n"%imlo[0].skeleton)
+  ifile.write("B_superness:=%.2f;\n"%imlo[0].superness)
 
   ifile.write("\n") 
   ifile.write("input glyphs\n") 
