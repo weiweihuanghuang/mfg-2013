@@ -5,28 +5,6 @@ B_py#:=B_px#;
 
 o#:=0 pt#;	       % overshoot                  $ 0 / 1	
 
-% extra parameters
-width_l:=1.0; 
-width_lR#:=-.5pt#; 
-width_lL:=-3pt; 
-width_a:=1.0; 
-width_aR:=-.5pt#; 
-width_aL:=-3pt; 
-width_bar:=1.0; 
-width_barR#:=0pt#; 
-width_barL:=0pt; 
-
-%glyph parameter
-
-width_n:=1; 
-width_nL:=0; 
-width_nR#:=0pt#;
- 
-width_g:=1; 
-width_gL:=0; 
-width_gR#:=0pt#; 
-
-
 
 
 % some defenitions for the output and proof sheets
@@ -130,9 +108,16 @@ z.j{x.k-x.j,0}...((m * superness)[x.j,x.k],(m * superness)[y.k,y.j]){z.k-z.j}...
 def stemcutter(expr a) =
 a*(A_stemcut+incx*(B_stemcut-A_stemcut)) enddef; 
 
+
+
+% width and sidebearing settings for each glyph
+
+input space
+
 % glyph input
 
 input glyphlist
+
 
 % some extra font information for TeX and LaTeX
 

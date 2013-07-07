@@ -51,8 +51,8 @@
       <point name="z11l" pointNo="p24" type="line" x="186" y="-1"/>
     </contour>
     <contour>
-      <point name="z12l" pointNo="p25" startp="1" type="move" x="269" y="386"/>
-      <point name="z12r" pointNo="p26" type="line" x="306" y="349"/>
+      <point name="z12l" pointNo="p25" type="move" x="269" y="386"/>
+      <point name="z12r" pointNo="p26" startp="1" type="line" x="306" y="349"/>
     </contour>
   </outline>
   <lib>
