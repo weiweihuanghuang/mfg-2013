@@ -3,8 +3,8 @@ from xml.dom import minidom
 import codecs
 import os.path, time
 
-#db = web.database(dbn='mysql', db='blog', user='root', pw='schnaegg' )
-db = web.database(dbn='mysql', db='blog', user='walter', pw='' )
+db = web.database(dbn='mysql', db='blog', user='root', pw='' )
+#db = web.database(dbn='mysql', db='blog', user='walter', pw='' )
 
 def xxmlat(s, dbob, sattr, val):
 
@@ -324,10 +324,10 @@ def update_globalparam(id, a, b, c, d, e, f, g, h):
       superness = a, metapolation = b, penwidth = c, unitwidth = d, xHeight = e, ht = f, fontsize = g, maxstemcut = h)
     return None
 
-def update_localparam(id, a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13 ):
+def update_localparam(id, a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14 ):
     print "idididget local update",id
     db.update('localparam', where='idlocal = $id', vars=locals(), 
-      px = a1, mean = a2, des=a3, ascl=a4, cap=a5, xheight=a6, capital=a7, ascender=a8, descender=a9, inktrap=a10, stemcut=a11, skeleton=a12, superness=a13)
+      px = a1, mean = a2, des=a3, ascl=a4, cap=a5, width=a6, xheight=a7, capital=a8, ascender=a9, descender=a10, inktrap=a11, stemcut=a12, skeleton=a13, superness=a14)
     return None
 
 
@@ -442,7 +442,7 @@ def writeGlobalParam():
   ifile.write("A_des#:=%.2fpt#;\n"%imlo[0].des)
   ifile.write("A_asc#:=%.1fht#;\n"%imlo[0].ascl)
   ifile.write("A_cap#:=%.1fht#;\n"%imlo[0].cap)
-  ifile.write("A_width:=%.0f;\n"%imlo[0].width)
+  ifile.write("A_width:=%.2f;\n"%imlo[0].width)
   ifile.write("A_xheight:=%.0f;\n"%imlo[0].xheight)
   ifile.write("A_capital:=%.0f;\n"%imlo[0].capital)
   ifile.write("A_ascender:=%.0f;\n"%imlo[0].ascender)
@@ -460,7 +460,7 @@ def writeGlobalParam():
   ifile.write("B_des#:=%.2fpt#;\n"%imlo[0].des)
   ifile.write("B_asc#:=%.1fht#;\n"%imlo[0].ascl)
   ifile.write("B_cap#:=%.1fht#;\n"%imlo[0].cap)
-  ifile.write("B_width:=%.0f;\n"%imlo[0].width)
+  ifile.write("B_width:=%.2f;\n"%imlo[0].width)
   ifile.write("B_xheight:=%.0f;\n"%imlo[0].xheight)
   ifile.write("B_capital:=%.0f;\n"%imlo[0].capital)
   ifile.write("B_ascender:=%.0f;\n"%imlo[0].ascender)
