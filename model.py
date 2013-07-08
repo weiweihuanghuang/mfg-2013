@@ -267,6 +267,18 @@ def get_master(id):
  
     return ssmr
 
+def update_master(id):
+
+    fontNameA=mfg.cFont.fontna
+    fontNameB=mfg.cFont.fontnb
+    fontName=mfg.cFont.fontname 
+    db.update('master', where='idmaster=$id', vars=locals(),
+       fontNameA=fontNameA,fontNameB=fontNameB,FontName=fontName)
+    return None
+
+def get_globalparams():
+    return db.select('globalparam', vars=locals())
+
 
 def put_master():
 
@@ -314,7 +326,7 @@ def put_globalparam(id):
         superness=superness, metapolation=metapolation, penwidth=penwidth, unitwidth=unitwidth, xHeigth=xHeigth , ht=ht, fontsize=fontsize)
     return None
 
-def update_master(id, a, b, c, d):
+def updatemaster(id, a, b, c, d):
     db.update('master', where='idmaster = $id', vars=locals(), 
       FontName = a, FontNameA = b, FontNameB = c, idglobal = d)
     return None

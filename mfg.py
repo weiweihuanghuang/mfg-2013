@@ -171,13 +171,15 @@ class ViewFont:
 
 class Font1:
     form = web.form.Form(
+        web.form.Textbox('Name', web.form.notnull, 
+            size=30,
+            description="name", value=cFont.fontna),
         web.form.Textbox('UFO_A', web.form.notnull, 
             size=20,
-#            description="namea", value="oswald.ufo"),
-            description="namea", value=cFont.fontna),
+            description="fontnameA", value=cFont.fontna),
         web.form.Textbox('UFO_B', web.form.notnull, 
             size=20,
-            description="nameb", value=cFont.fontnb),
+            description="fontnameB", value=cFont.fontnb),
         web.form.Textbox('GLYPH', web.form.notnull, 
             size=5,
             description="glyph", value="c"),
@@ -187,24 +189,27 @@ class Font1:
         mmaster= list(model.get_masters())
         if id > '0' : 
            master= list(model.get_master(id))
+        fontname =cFont.fontname 
         fontna = cFont.fontna
         fontnb = cFont.fontnb
         fontlist = [f for f in glob.glob("fonts/*/*.ufo")]
         fontlist.sort()
         form=self.form()
         form=Font1.form()
-        form.fill({'UFO_A':fontna,'UFO_B':fontnb,'GLYPH':cFont.glyphName})
+        form.fill({'Name':fontname,'UFO_A':fontna,'UFO_B':fontnb,'GLYPH':cFont.glyphName})
         return render.font1(fontlist,form,mmaster,cFont)
 
     def POST (self,id):
         mmaster= list(model.get_masters())
-        if id > '0':
-           master= list(model.get_master(id))
         form = Font1.form()
         form.fill()
+        cFont.fontname = form.d.Name
         cFont.fontna = form.d.UFO_A
         cFont.fontnb = form.d.UFO_B
         cFont.glyphName  = form.d.GLYPH
+        if id > '0':
+           model.update_master(id)
+           master= list(model.get_master(id))
         model.putFont()
         fontlist = [f for f in glob.glob("fonts/*/*.ufo")]
         fontlist.sort()
