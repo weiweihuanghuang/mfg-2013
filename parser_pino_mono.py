@@ -62,7 +62,7 @@ if g in asc :
 #    ggroup = 'asc#'
 
 
-print 'beginfontchar("' + g + '", (A_width + metapolation * (A_width - B_width)) * width_' + g + " * (" + w + " + width_" +  g  + "R#), A_" + ggroup + " + metapolation * (B_" + ggroup + " - A_" + ggroup + "), " + ggroup2 + ");"
+print 'beginfontchar("' + g + '", (' + w + '*A_width + metapolation * (' + w + '*A_width - ' + w2 + '*B_width)) * width_' + g + "+ width_" +  g  + "R#, A_" + ggroup + " + metapolation * (B_" + ggroup + " - A_" + ggroup + "), " + ggroup2 + ");"
 print """if known ps_output:
 glyph_name "uni""" + u + """"; 
 fi
@@ -1097,8 +1097,8 @@ leftpvalB = []
 right = []
 rightvalB = []
 
-up = []
-upvalB = []
+upp = []
+uppvalB = []
 
 downp = []
 downpvalB = []
@@ -1142,8 +1142,8 @@ for i in range (1,100):
   right.append("")
   rightvalB.append(0)
 
-  up.append("")
-  upvalB.append(0)
+  upp.append("")
+  uppvalB.append(0)
 
   downp.append("")
   downpvalB.append(0)
@@ -1194,10 +1194,10 @@ for item in itemlist :
        	 ileftp = False
 
        try :
-	 iup = item.attributes['up'].value   
-	 iup = True
+	 iupp = item.attributes['upp'].value   
+	 iupp = True
        except :
-       	 iup = False
+       	 iupp = False
 
        try :
 	 iright = item.attributes['right'].value   
@@ -1283,12 +1283,12 @@ for item in itemlist :
 	   del dirvalB[i-1]
            dirvalB.insert(i-1,idirval)
       
-         if iup == True :
-           iupval = item.attributes['up'].value
-           del up[i-1]
-           up.insert(i-1,"up")
-	   del upvalB[i-1]
-           upvalB.insert(i-1,iupval)
+         if iupp == True :
+           iuppval = item.attributes['upp'].value
+           del upp[i-1]
+           upp.insert(i-1,"up")
+	   del uppvalB[i-1]
+           uppvalB.insert(i-1,iuppval)
 
          if ileftp == True :
            ileftpval = item.attributes['leftp'].value
@@ -1415,8 +1415,8 @@ leftpval = []
 right = []
 rightval = []
 
-up = []
-upval = []
+upp = []
+uppval = []
 
 downp = []
 downpval = []
@@ -1430,8 +1430,8 @@ leftp2val = []
 right2 = []
 right2val = []
 
-up2 = []
-up2val = []
+upp2 = []
+upp2val = []
 
 downp2= []
 downp2val = []
@@ -1488,8 +1488,8 @@ for i in range (1,100):
   right.append("")
   rightval.append(0)
 
-  up.append("")
-  upval.append(0)
+  upp.append("")
+  uppval.append(0)
 
   downp.append("")
   downpval.append(0)
@@ -1503,8 +1503,8 @@ for i in range (1,100):
   right2.append("")
   right2val.append(0)
 
-  up2.append("")
-  up2val.append(0)
+  upp2.append("")
+  upp2val.append(0)
   
   downp2.append("")
   downp2val.append(0)
@@ -1589,16 +1589,16 @@ for item in itemlist :
        	 ileftp2 = False
 
        try :
-	 iup = item.attributes['up'].value   
-	 iup = True
+	 iupp = item.attributes['upp'].value   
+	 iupp = True
        except :
-       	 iup = False
+       	 iupp = False
 
        try :
-	 iup2 = item.attributes['up2'].value   
-	 iup2 = True
+	 iupp2 = item.attributes['upp2'].value   
+	 iupp2 = True
        except :
-       	 iup2 = False
+       	 iupp2 = False
 
        try :
 	 iright = item.attributes['right'].value   
@@ -1746,12 +1746,12 @@ for item in itemlist :
 	   del dir2val[i-1]
            dir2val.insert(i-1,idir2val)
       
-         if iup == True :
-           iupval = item.attributes['up'].value
-           del up[i-1]
-           up.insert(i-1,"{up} ")
-	   del upval[i-1]
-           upval.insert(i-1,iupval)
+         if iupp == True :
+           iuppval = item.attributes['upp'].value
+           del upp[i-1]
+           upp.insert(i-1,"{up} ")
+	   del uppval[i-1]
+           uppval.insert(i-1,iuppval)
 
          if ileftp == True :
            ileftpval = item.attributes['leftp'].value
@@ -1781,12 +1781,12 @@ for item in itemlist :
 	   del downp2val[i-1]
            downp2val.insert(i-1,idownp2val)
 
-         if iup2 == True :
-           iup2val = item.attributes['up2'].value
-           del up2[i-1]
-           up2.insert(i-1,"{up} ")
-	   del up2val[i-1]
-           up2val.insert(i-1,iup2val)
+         if iupp2 == True :
+           iupp2val = item.attributes['upp2'].value
+           del upp2[i-1]
+           upp2.insert(i-1,"{up} ")
+	   del upp2val[i-1]
+           upp2val.insert(i-1,iupp2val)
 
          if ileftp2 == True :
            ileftp2val = item.attributes['leftp2'].value
@@ -1929,7 +1929,7 @@ for i in range (0,nnz-1) :
 
 
 
-    if up[i] <> "" :
+    if upp[i] <> "" :
       zeile = zeile + "{up}"      
 
     if downp[i] <> "" :
@@ -2015,8 +2015,8 @@ for i in range (0,nnz-1) :
     if downp2[i] <> "" :
       zeile = zeile  + dash + downp2[i]  
     else:
-      if up2[i] <> "" :
-        zeile = zeile  + dash + up2[i]  
+      if upp2[i] <> "" :
+        zeile = zeile  + dash + upp2[i]  
       else :
         if leftp2[i] <> "" :
           zeile = zeile  + dash + leftp2[i]  
@@ -2063,8 +2063,8 @@ for i in range (0,nnz-1) :
 
       if downp2[i] <> "" :
         zeile = zeile + dash + downp2[i]  + semi
-      if up2[i] <> "" :
-        zeile = zeile + dash + up2[i]  + semi
+      if upp2[i] <> "" :
+        zeile = zeile + dash + upp2[i]  + semi
       if leftp2[i] <> "" :
         zeile = zeile + dash  + leftp2[i]  + semi
       if right2[i] <> "" :
