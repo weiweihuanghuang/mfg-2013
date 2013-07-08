@@ -7,17 +7,17 @@
       <point x="558.0" y="0" type="line" name="z7l"/>
       <point x="558.0" y="650" type="line" name="z8l"/>
       <point x="603.0" y="650" type="line" name="z8r"/>
-      <point x="604.0" y="0" type="line" name="z7r"  start="1"/>
+      <point x="604.0" y="0" type="line" name="z7r"/>
     </contour>
     <contour>
       <point x="60.0" y="1.0" type="line" name="z1l"/>
       <point x="60.0" y="650" type="line" name="z2l"/>
       <point x="110.0" y="650.0" type="line" name="z2r"/>
-      <point x="110.0" y="1.0" type="line" name="z1r" start="1"/>
+      <point x="110.0" y="1.0" type="line" name="z1r"/>
     </contour>
     <contour>
-      <point x="131.0" y="650" type="line" name="z4r" doubledash="1"/>
-      <point x="110.0" y="650" type="line" name="z3r" start="1"/>
+      <point x="131.0" y="650" type="line" name="z4r"/>
+      <point x="110.0" y="650" type="line" name="z3r"/>
       <point x="60.0" y="650" type="line" name="z3l"/>
       <point x="60.0" y="588" type="line" name="z4l"/>
       <point x="536.0" y="0" type="line" name="z5l"/>

@@ -3,7 +3,7 @@
 
 % box dimension definition %
 
-beginfontchar("g", (A_width + metapolation * (A_width - B_width)) * width_g * (4.35 + width_gR#), A_des# + metapolation * (B_des# - A_des#), 0);
+beginfontchar("g", (4.35*A_width + metapolation * (4.35*A_width - 4.35*B_width)) * width_g+ width_gR#, A_des# + metapolation * (B_des# - A_des#), 0);
 if known ps_output:
 glyph_name "uni0067"; 
 fi
