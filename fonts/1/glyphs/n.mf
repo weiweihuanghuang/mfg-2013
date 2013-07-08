@@ -3,7 +3,7 @@
 
 % box dimension definition %
 
-beginfontchar("n", (A_width + metapolation * (A_width - B_width)) * width_n * (5.28 + width_nR#), A_mean# + metapolation * (B_mean# - A_mean#), 0);
+beginfontchar("n", (5.28*A_width + metapolation * (5.28*A_width - 5.28*B_width)) * width_n+ width_nR#, A_mean# + metapolation * (B_mean# - A_mean#), 0);
 if known ps_output:
 glyph_name "uni006E"; 
 fi
@@ -14,7 +14,7 @@ fi
 px7r := 3.69u ; py7r := 0.0u ;
 px7l := 4.39u ; py7l := 0.0u ;
 px6r := 3.69u ; py6r := 2.7u ;
-px6l := 5.38u ; py6l := 2.7u ;
+px6l := 4.38u ; py6l := 2.7u ;
 px5r := 2.8u ; py5r := 3.65u ;
 px5l := 3.26u ; py5l := 4.14u ;
 px4l := 1.3u ; py4l := 3.08u ;
@@ -176,13 +176,13 @@ z7=((A_width + metapolation * (A_width - B_width)) * (x270 + metapolation * (x27
 
 % pen strokes % first built in:
 penstroke 
-penstroke z1e...
+z1e...
 z2e...
-z3e...
-z4e;
-penstroke z5e...
+z3e;
+penstroke z4e...
+z5e...
 z6e{down}...
-z7e ... cycle
+z7e
 ;
 
 

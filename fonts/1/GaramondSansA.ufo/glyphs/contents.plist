@@ -2,13 +2,29 @@
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>B</key>
+	<string>B_.glif</string>
+	<key>I</key>
+	<string>I_.glif</string>
+	<key>K</key>
+	<string>K_.glif</string>
+	<key>N</key>
+	<string>N_.glif</string>
+	<key>a</key>
+	<string>a.glif</string>
 	<key>bar</key>
 	<string>bar.glif</string>
+	<key>f</key>
+	<string>f.glif</string>
 	<key>g</key>
 	<string>g.glif</string>
 	<key>l</key>
 	<string>l.glif</string>
 	<key>n</key>
 	<string>n.glif</string>
+	<key>o</key>
+	<string>o.glif</string>
+	<key>w</key>
+	<string>w.glif</string>
 </dict>
 </plist>

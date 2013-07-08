@@ -3,7 +3,7 @@
 
 % box dimension definition %
 
-beginfontchar("f", (A_width + metapolation * (A_width - B_width)) * width_f * (3.18 + width_fR#), A_asc# + metapolation * (B_asc# - A_asc#), 0);
+beginfontchar("f", (3.18*A_width + metapolation * (3.18*A_width - 3.18*B_width)) * width_f+ width_fR#, A_asc# + metapolation * (B_asc# - A_asc#), 0);
 if known ps_output:
 glyph_name "uni0066"; 
 fi
@@ -140,8 +140,8 @@ z5=((A_width + metapolation * (A_width - B_width)) * (x250 + metapolation * (x25
 
 % pen strokes % first built in:
 penstroke 
-z1e{down}...
-z2e...
+z1e...
+z2e{up}...
 z3e;
 penstroke z4e...
 z5e

@@ -4,21 +4,21 @@
   <unicode hex="0066"/>
   <outline>
     <contour>
-      <point x="91.0" y="532.0" type="move" name="z2l" />
+      <point x="91.0" y="532.0" type="move" name="z2l"/>
       <point x="162" y="532" type="line" name="z2r"/>
     </contour>
     <contour>
       <point x="91.0" y="0.0" type="move" name="z1l"/>
-      <point x="162.0" y="0.0" type="line" name="z1r" />
+      <point x="162.0" y="0.0" type="line" name="z1r"/>
     </contour>
     <contour>
-      <point x="300" y="665" type="move" name="z3r" />
+      <point x="300" y="665" type="move" name="z3r"/>
       <point x="310" y="709" type="line" name="z3l"/>
     </contour>
     <contour>
-      <point x="304" y="399" type="line" name="z5l" />
-      <point x="29" y="399" type="line" name="z4l"  />
-      <point x="29" y="352" type="line" name="z4r" />
+      <point x="304" y="399" type="line" name="z5l"/>
+      <point x="29" y="399" type="line" name="z4l"/>
+      <point x="29" y="352" type="line" name="z4r"/>
       <point x="304" y="352" type="line" name="z5r"/>
     </contour>
   </outline>
