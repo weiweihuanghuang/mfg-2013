@@ -112,14 +112,16 @@ def putFont():
         db.delete('glyphoutline', where='Glyphname="'+glyphName+'"'+ids )  
         db.delete('glyphparam', where='Glyphname="'+glyphName+'"'+ids )  
 
-    if not  list(db.select('glyphoutline', where='GlyphName="'+glyphName+'"'+ids )) :  # check if list is empty
+# check if list is empty
+    if not  list(db.select('glyphoutline', where='GlyphName="'+glyphName+'"'+ids )) or mfg.cFont.loadoption == '1' : 
 #  put data into db
-       inum=0
-       strg=""
-       for s in itemlist :
+      inum=0
+      strg=""
+      for s in itemlist :
         inum = inum+1
 #  find a named point , convention the name begin with the letter z
-        if s.hasAttribute('name'): 
+        if mfg.cFont.loadoption == '0':
+          if s.hasAttribute('name'): 
             im = s.attributes['name'] 
             iposa = im.value.find("z")
             ipose = im.value.find(",",iposa)
@@ -154,23 +156,30 @@ def putFont():
             xxmrlat(inum,s,db, 'xHeight')
             xxmrlat(inum,s,db, 'cardinal')
 
-        else :
-           nameval = ""
-           startp = 0
-
-        s.attributes['pointNo']= "p" + str(inum)    # adding a new attribute
-
-        try :
-          if s.attributes['type'] >-1 :
-            mainpoint = 1
           else :
-            mainpoint = 1 
-        except :
-            mainpoint = 0 
-	s.toxml()
-        strg= "insert into glyphoutline (GlyphName,PointNr,x,y,contrp,id,idmaster) Values ("+'"'+glyphName+'"'+","+'"'+s.attributes['pointNo'].value+'"' + ","+ str(s.attributes['x'].value)+ "," + str(s.attributes['y'].value)+","+str(mainpoint)+","+str(inum)+","+str(idmaster)+")"
-        db.query(strg)
+            nameval = ""
+            startp = 0
 
+          s.attributes['pointNo']= "p" + str(inum)    # adding a new attribute
+
+          try :
+            if s.attributes['type'] >-1 :
+              mainpoint = 1
+            else :
+              mainpoint = 1 
+          except :
+             mainpoint = 0 
+	  s.toxml()
+          strg= "insert into glyphoutline (GlyphName,PointNr,x,y,contrp,id,idmaster) Values ("+'"'+glyphName+'"'+","+'"'+s.attributes['pointNo'].value+'"' + ","+ str(s.attributes['x'].value)+ "," + str(s.attributes['y'].value)+","+str(mainpoint)+","+str(inum)+","+str(idmaster)+")"
+          db.query(strg)
+        
+        if mfg.cFont.loadoption == '1':
+#    in this case we read only the coordinates from the xml file
+          update_post(inum, s.attributes['x'].value, s.attributes['y'].value)
+          
+        else:
+	  print "**** load option unknown **"
+           
   return None  
 
 def gidmast(idwork):

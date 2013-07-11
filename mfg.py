@@ -158,7 +158,7 @@ class View:
         model.writexml()        
         model.ufo2mf() 
         os.environ['MFINPUTS'] = cFont.fontpath
-        os.environ['MPINPUTS'] = cFont.fontpath
+#        os.environ['MPINPUTS'] = cFont.fontpath
         model.writeGlyphlist()
         strms = "sh makefont.sh font.mf"
         print strms
