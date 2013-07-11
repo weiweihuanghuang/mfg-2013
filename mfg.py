@@ -48,6 +48,7 @@ class cFont:
      timestamp=0
      idlocalA = 1
      idlocalB = 2
+     loadoption = '0'
  
 class Index:
 
@@ -157,6 +158,7 @@ class View:
         model.writexml()        
         model.ufo2mf() 
         os.environ['MFINPUTS'] = cFont.fontpath
+        os.environ['MPINPUTS'] = cFont.fontpath
         model.writeGlyphlist()
         strms = "sh makefont.sh font.mf"
         print strms
@@ -183,6 +185,10 @@ class Font1:
         web.form.Textbox('GLYPH', web.form.notnull, 
             size=5,
             description="glyph", value="c"),
+        web.form.Textbox('loadoption', web.form.notnull, 
+            size=1,
+            description="loadoption", value="0"),
+
         web.form.Button('savefont'),
         )
     def GET(self,id):
@@ -192,11 +198,12 @@ class Font1:
         fontname =cFont.fontname 
         fontna = cFont.fontna
         fontnb = cFont.fontnb
+        loadoption = cFont.loadoption
         fontlist = [f for f in glob.glob("fonts/*/*.ufo")]
         fontlist.sort()
         form=self.form()
         form=Font1.form()
-        form.fill({'Name':fontname,'UFO_A':fontna,'UFO_B':fontnb,'GLYPH':cFont.glyphName})
+        form.fill({'Name':fontname,'UFO_A':fontna,'UFO_B':fontnb,'GLYPH':cFont.glyphName,'loadoption':cFont.loadoption})
         return render.font1(fontlist,form,mmaster,cFont)
 
     def POST (self,id):
@@ -207,6 +214,7 @@ class Font1:
         cFont.fontna = form.d.UFO_A
         cFont.fontnb = form.d.UFO_B
         cFont.glyphName  = form.d.GLYPH
+        cFont.loadoption = form.d.loadoption
         if id > '0':
            model.update_master(id)
            master= list(model.get_master(id))

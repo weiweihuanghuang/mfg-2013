@@ -3,12 +3,12 @@ from xml.dom import minidom
 import codecs
 import os.path, time
 
-db = web.database(dbn='mysql', db='blog', user='root', pw='' )
-#db = web.database(dbn='mysql', db='blog', user='walter', pw='' )
+#db = web.database(dbn='mysql', db='blog', user='root', pw='' )
+db = web.database(dbn='mysql', db='blog', user='walter', pw='' )
 
 def xxmlat(s, dbob, sattr, val):
 
-   print "dbob",dbob,"atttt",sattr," vvvv",val
+#   print "dbob",dbob,"atttt",sattr," vvvv",val
    if str(dbob) != 'None' :
       if not s.hasAttribute(sattr) :
           s.setAttribute(sattr,"")
@@ -108,7 +108,7 @@ def putFont():
     if dbq:
       print  dbq[0].vdate,vdatedb,vdatedbp, os.path.getmtime(glyphsource) 
       vdateos=int(os.path.getmtime(glyphsource))
-      if ( max(vdatedb,vdatedbp) < vdateos) :
+      if ( max(vdatedb,vdatedbp) < vdateos) and mfg.cFont.loadoption =='0':
         db.delete('glyphoutline', where='Glyphname="'+glyphName+'"'+ids )  
         db.delete('glyphparam', where='Glyphname="'+glyphName+'"'+ids )  
 
@@ -381,6 +381,7 @@ def writexml():
                       s.attributes['name']=nameattr
                    else :
                       s.setAttribute('name',nameattr)
+                   
 #
 #      read param value and write into xml
 #
@@ -515,8 +516,6 @@ def ufo2mf():
       try :
         filech1 = open(dirnamef1+"/"+ch1,'r')
         filech2 = open(dirnamef2+"/"+ch1,'r')
-        commd1 = "ls "+dirnamef1+"/"+ch1
-        os.system(commd1)
         newfile,extension = ch1.split('.')
         newfilename=newfile+".mf"
         commd2 = "python parser_pino_mono.py " +ch1 +" " +dirnamef1 +" " +dirnamef2 +" > " +dirnamep1 +"/" +newfilename
