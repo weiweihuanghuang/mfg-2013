@@ -1,7 +1,6 @@
 $def with (form,gmlist,cfont,glo,formlA,formlB)
 <html>
 <body>
-<p> global parameters </p>
 
 
 <style>@font-face {
@@ -79,30 +78,18 @@ table,th,td {
 }
 #mmA {
      position:absolute;
-     top: 50%;
-     left: 40%;
+     top: 70px;
+     left: 10px;
      }
 #mmB {
      position:absolute;
-     top: 50%;
-     left: 60%;
+     top: 70px;
+     left: 300px;
      }
 
 </style>
 
-<p> global parameter table list </p>
-<p>
-$for gmg in gmlist:
-     idglobal <a href="/font2/$gmg.idglobal">$gmg.idglobal</a>  interp $gmg.metapolation sup $gmg.superness penw $gmg.penwidth pen unit $gmg.unitwidth penxH $gmg.xHeight ht $gmg.fontsize maxstemcut $gmg.maxstemcut <br>
-
-</p>
 <p> local parameter table list </p>
-<p>
-$for gm in glo:
-     idlocal <a href="/font3/$gm.idlocal">$gm.idlocal</a>  px $gm.px mean $gm.mean des $gm.des asc $gm.ascl cap $gm.cap width $gm.width xheight $gm.xheight capital $gm.capital ascender $gm.ascender descender $gm.descender inktrap $gm.inktrap stemcut $gm.stemcut skeleton $gm.skeleton superness $gm.superness <br>
-
-</p>
-<p> global param <a href="/font2/$cfont.idglobal">set global param</a>
 <div id="mmA" >
 <p> local A Param <a href="/font3/$cfont.idlocalA">local param A</a></p>
 <form action="" method="POST" name="formlA">
@@ -121,6 +108,34 @@ $:formlB.render()
 <a href="/font2/$cfont.idglobal">global parameter set</a>
 </p>
 <div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<p>
+$for gm in glo:
+     idlocal <a href="/font3/$gm.idlocal">$gm.idlocal</a>  px $gm.px mean $gm.mean des $gm.des asc $gm.ascl cap $gm.cap width $gm.width xheight $gm.xheight capital $gm.capital ascender $gm.ascender descender $gm.descender inktrap $gm.inktrap stemcut $gm.stemcut skeleton $gm.skeleton superness $gm.superness <br>
+
+</p>
+
 </body>
 </html>
 
