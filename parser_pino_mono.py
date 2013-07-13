@@ -852,6 +852,11 @@ overxval = []
 overbase = []
 overbaseval = []
 
+overcap = []
+overcapval = []
+
+
+
 
 # add iteration to string
 
@@ -877,6 +882,10 @@ for i in range (1,100):
 
   overbase.append("")
   overbaseval.append(0)
+
+  overcap.append("")
+  overcapval.append(0)
+
 
 
 
@@ -936,6 +945,13 @@ for item in itemlist :
 	 ioverbase = True
        except :
        	 ioverbase = False
+
+       try :
+	 iovercap = item.attributes['overcap'].value   
+	 iovercap = True
+       except :
+       	 iovercap = False
+
 
 
 
@@ -1001,6 +1017,14 @@ for item in itemlist :
 	   del overbaseval[i-1]
            overbaseval.insert(i-1,ioverbaseval)
 
+         if iovercap == True :
+           iovercapval = item.attributes['overcap'].value
+	   del overcap[i-1]
+           overcap.insert(i-1,"shifted")
+	   del overcapval[i-1]
+           overcapval.insert(i-1,iovercapval)
+
+
 nnz = 0
 for zitem in zzn :
   nnz = nnz +1 
@@ -1033,12 +1057,19 @@ for i in range (0,nnz) :
   if pointshifted[i] <> "" :
     zeile = zeile +" shifted (" + str(pointshiftedval[i]) + ",0)"       
 
-  if overx[i] <> "" :
-    zeile = zeile + " shifted (0, mean-y" + str(overxval[i]) + ") + (0, over)" 
+#  if overx[i] <> "" :
+#    zeile = zeile + " shifted (0, mean-y" + str(overxval[i]) + ") + (0, over)"    
 
-  
+  if overx[i] <> "" :
+      zeile = zeile + " shifted (0, (A_mean + metapolation * (A_mean - B_mean)) - y" + str(zitem) + str(overxval[i]) + ") + (0, over)" 
+
   if overbase[i] <> "" :
-      zeile = zeile + " shifted (0, baseline-y" + str(overbaseval[i]) + ") + (0, -over)" 
+      zeile = zeile + " shifted (0, - y" + str(zitem) + str(overbaseval[i]) + ") - (0, over)" 
+
+  if overcap[i] <> "" :
+      zeile = zeile + " shifted (0, (A_cap + metapolation * (A_cap - B_cap)) - y" + str(zitem) + str(overcapval[i]) + ") + (0, over)" 
+
+ 
  
   else: 
      zeile = zeile 
@@ -1365,12 +1396,10 @@ for item in itemlist :
 
 
 print """
-% pen strokes % first built in:
-penstroke """
-
-
+% penstrokes
+"""
            
-# reading font Pen strokes
+# reading font penstrokes
 
 
 glif = minidom.parse(font_a)
@@ -1882,9 +1911,12 @@ for zitem in zzn :
 
 i = 0
 zzn.sort()
-zeile =""
+zeile = ""
 semi = ";"
+zeilestart = ""
 
+
+  
 
 if tripledash == True :
  dash = "---"
@@ -1906,8 +1938,8 @@ for i in range (0,nnz-1) :
   zeilec = ""
   zeilec = str(startp[i]) + "z"+str(zitem)+"e" 
   if startp[i+1]=="" : 
-
 # if startp, add parameters
+
     dash = "..."
     if tripledash[i] <> "" :
       dash = "---"
@@ -1944,19 +1976,11 @@ for i in range (0,nnz-1) :
     if dir[i] <> "" :
       zeile = zeile + " {dir "+ str(dirval[i]) + "}"      
 
-
     if penshifted[i] <> "" :
       zeile = zeile + " shifted (" + str(penshiftedval[i]) + ")"      
 
     if penshiftedy[i] <> "" :
       zeile = zeile + " shifted (0, y" + str(penshiftedyval[i]) + ")"      
-
-  
-#    if overbase[i] <> "" :
-#      zeile = zeile + " shifted (0, baseline-y" + str(overbaseval[i]) + ") + (0, -over)"  
-
-    if overcap[i] <> "" :
-      zeile = zeile + " shifted (0, cap-y" + str(overcapval[i]) + ") + (0, over)"  
 
     if superleft[i] <> "" :
       zeile = zeile + strtwo + superleft[i]+"("+str(zitem)+"e," +str(zitemsuper)+"e, ["+str(superleftval[i]) + '+ (metapolation * (' + str(superleftvalB[i])+ '-' +str(superleftval[i]) + '))])' + strtwo      
@@ -1984,32 +2008,14 @@ for i in range (0,nnz-1) :
            else :
              if tensionand[i] > "" :
                zeile = zeile 
-#             else :
-#               if overx[i] > "" :
-#                 zeile = zeile 
-#             else :
-#                 if overbase[i] > "" :
-#                  zeile = zeile 
              else :
-                   if overcap[i] > "" :
+               if penshifted[i] > "" :
+                 zeile = zeile 
+               else :
+                  if tensionand[i] > "" :
                     zeile = zeile 
-
-                   else :
-                     if penshifted[i] > "" :
-                      zeile = zeile 
-#
-#                     else :
-#                       if doubledash[i] > "" :
-#                        zeile = zeile 
-#                       else :
-#                         if tripledash[i] > "" :
-#                          zeile = zeile 
-                     else :
-                        if tensionand[i] > "" :
-                         zeile = zeile 
- 
-                        else :
-                         zeile = zeile   
+                  else :
+                      zeile = zeile   
    
 
     if downp2[i] <> "" :
@@ -2039,12 +2045,6 @@ for i in range (0,nnz-1) :
 
     if penshiftedy[i] <> "" :
       zeile = zeile + " shifted (0, y" + str(penshiftedyval[i]) + ")"      
-
-#    if overx[i] <> "" :
-#      zeile = zeile + " shifted (0, mean-y" + str(overxval[i]) + ") + (0, over)" 
-   
-#    if overbase[i] <> "" :
-#      zeile = zeile + " shifted (0, baseline-y" + str(overbaseval[i]) + ") + (0, -over)" 
 
     if doubledash[i] <> "" :
       zeile = zeile + doubledash[i]    
@@ -2085,23 +2085,17 @@ for i in range (0,nnz-1) :
             else :
               if tensionand[i] > "" :
                 zeile = zeile 
-#              else :
-#                if overx[i] > "" :
-#                  zeile = zeile 
-#              else :
-#                  if overbase[i] > "" :
-#                   zeile = zeile 
               else :
-                    if penshifted[i] > "" :
-                     zeile = zeile 
+                if penshifted[i] > "" :
+                  zeile = zeile 
+                else :
+                  if doubledash[i] > "" :
+                    zeile = zeile 
+                  else :
+                    if tripledash[i] > "" :
+                      zeile = zeile 
                     else :
-                      if doubledash[i] > "" :
-                       zeile = zeile 
-                      else :
-                        if tripledash[i] > "" :
-                         zeile = zeile 
-                        else :
-                           zeile = zeile + semi  
+                        zeile = zeile + semi  
 
     else :
        zeile = zeile + semi 
@@ -2120,17 +2114,11 @@ if penshifted[i+1] <> "" :
 if penshiftedy[i+1] <> "" :
  zeile = zeile + " shifted (0, y" + str(penshiftedyval[i+1]) + ")"      
 
-#if overx[i+1] <> "" :
-# zeile = zeile + " shifted (0, mean-y" + str(overxval[i+1]) + ") + (0, over)" 
-   
-#if overbase[i+1] <> "" :
-# zeile = zeile + " shifted (0, baseline-y" + str(overbaseval[i+1]) + ") + (0, -over)" 
-
-if overcap[i+1] <> "" :
- zeile = zeile + " shifted (0, cap-y" + str(overcapval[i+1]) + ") + (0, over)" 
+if tension[i] <> "" :
+ zeile = zeile + strtwo + "tension" + " ((" + tensionval[i] + '/100) + (metapolation * ((' + tensionvalB[i] + '/100) - (' + tensionval[i] + '/100))))' + strtwo 
 
 if cycle[i+1] <> "" :
- zeile = zeile + " ... cycle" 
+ zeile = zeile + " cycle" 
 
 else :
  zeile = zeile
