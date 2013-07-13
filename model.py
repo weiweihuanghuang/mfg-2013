@@ -3,8 +3,8 @@ from xml.dom import minidom
 import codecs
 import os.path, time
 
-#db = web.database(dbn='mysql', db='blog', user='root', pw='' )
-db = web.database(dbn='mysql', db='blog', user='walter', pw='' )
+db = web.database(dbn='mysql', db='blog', user='root', pw='' )
+#db = web.database(dbn='mysql', db='blog', user='walter', pw='' )
 
 def xxmlat(s, dbob, sattr, val):
 
@@ -134,6 +134,7 @@ def putFont():
             db.insert('glyphparam', id=inum,GlyphName=glyphName, idmaster=idmaster, PointName=nameval)
 
 #  find  all parameter and save it in db
+# add glyphparameters here:
 
             xxmrlat(inum,s,db, 'startp' )
             xxmrlat(inum,s,db, 'superness' )
@@ -143,7 +144,7 @@ def putFont():
             xxmrlat(inum,s,db, 'rightp')
             xxmrlat(inum,s,db, 'downp')
             xxmrlat(inum,s,db, 'upp')
-            xxmrlat(inum,s,db, 'superqr')
+            xxmrlat(inum,s,db, 'superright')
             xxmrlat(inum,s,db, 'superleft')
             xxmrlat(inum,s,db, 'tension')
             xxmrlat(inum,s,db, 'tensionend')
@@ -155,6 +156,9 @@ def putFont():
             xxmrlat(inum,s,db, 'penwidth')
             xxmrlat(inum,s,db, 'xHeight')
             xxmrlat(inum,s,db, 'cardinal')
+            xxmrlat(inum,s,db, 'overx')
+            xxmrlat(inum,s,db, 'overbase')
+            xxmrlat(inum,s,db, 'overcap')
 
           else :
             nameval = ""
@@ -331,8 +335,9 @@ def put_globalparam(id):
     xHeight=mfg.cFont.xHeight
     ht = mfg.cFont.ht
     fontsize = mfg.cFont.fontsize
+    over=mfg.cFont.over
     db.insert('globalparam', where='idglobal = $id',vars=locals(), 
-        superness=superness, metapolation=metapolation, penwidth=penwidth, unitwidth=unitwidth, xHeigth=xHeigth , ht=ht, fontsize=fontsize)
+        superness=superness, metapolation=metapolation, penwidth=penwidth, unitwidth=unitwidth, xHeigth=xHeigth , ht=ht, fontsize=fontsize, over=over)
     return None
 
 def updatemaster(id, a, b, c, d):
@@ -340,9 +345,9 @@ def updatemaster(id, a, b, c, d):
       FontName = a, FontNameA = b, FontNameB = c, idglobal = d)
     return None
 
-def update_globalparam(id, a, b, c, d, e, f, g, h):
+def update_globalparam(id, a, b, c, d, e, f, g, h, i):
     db.update('globalparam', where='idglobal = $id', vars=locals(), 
-      superness = a, metapolation = b, penwidth = c, unitwidth = d, xHeight = e, ht = f, fontsize = g, maxstemcut = h)
+      superness = a, metapolation = b, penwidth = c, unitwidth = d, xHeight = e, ht = f, fontsize = g, maxstemcut = h, over = i)
     return None
 
 def update_localparam(id, a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14 ):
@@ -393,14 +398,15 @@ def writexml():
                    
 #
 #      read param value and write into xml
-#
+#      add glyphparameters here:
+
                    xxmlat(s,db_rowparam[0].startp,'startp','1')
                    xxmlat(s,db_rowparam[0].leftp,'leftp','1')
                    xxmlat(s,db_rowparam[0].superness,'superness','')
                    xxmlat(s,db_rowparam[0].rightp,'rightp','1')
                    xxmlat(s,db_rowparam[0].downp,'downp','1')
                    xxmlat(s,db_rowparam[0].upp,'upp','1')
-                   xxmlat(s,db_rowparam[0].superqr,'superqr','')
+                   xxmlat(s,db_rowparam[0].superright,'superright','')
                    xxmlat(s,db_rowparam[0].superleft,'superleft','')
                    xxmlat(s,db_rowparam[0].tension,'tension','')
                    xxmlat(s,db_rowparam[0].tensionend,'tensionend','')
@@ -412,6 +418,9 @@ def writexml():
                    xxmlat(s,db_rowparam[0].penwidth,'penwidth','')
                    xxmlat(s,db_rowparam[0].xHeight,'xHeight','')
                    xxmlat(s,db_rowparam[0].cardinal,'cardinal','')
+                   xxmlat(s,db_rowparam[0].overx,'overx','')
+                   xxmlat(s,db_rowparam[0].overbase,'overbase','')
+                   xxmlat(s,db_rowparam[0].overcap,'overcap','')
 
              s.toxml()
      print "glyphsource", glyphsource
@@ -445,16 +454,20 @@ def writeGlobalParam():
   fontsize   = imgl[0].fontsize
   ht    = imgl[0].ht
   maxstemcut = imgl[0].maxstemcut
+  over = imgl[0].over
+
 #
 # global parameters
   ifile=open(mfg.cFont.fontpath+"font.mf","w")
   ifile.write("% parameter file \n")
-  ifile.write("metapolation:=%.1f;\n"%metapolation)
+  ifile.write("metapolation:=%.2f;\n"%metapolation)
   ifile.write("font_size:=%.0fpt#;\n"%fontsize)
   ifile.write("ht#:=%.0fpt#;\n"%ht)
   ifile.write("u#:=%.0fpt#;\n"%u)
   ifile.write("max_stemcut:=%.0fpt;\n"%maxstemcut)
   ifile.write("superness:=%.2f;\n"%superness)
+  ifile.write("over#:=%.2fpt#;\n"%over)
+
 
 # local parameters A  
   imlo = list(get_localparam(mfg.cFont.idlocalA))

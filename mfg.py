@@ -40,6 +40,7 @@ class cFont:
      glyphName =""
      superness =1
      metapolation=0.5
+     over=0.1
      penwidth=1
      unitwidth=1
      xHeight=1
@@ -99,11 +100,13 @@ class View:
         web.form.Button('save'), 
         )
 
+# add glyphparameters here:
+
     formParam = web.form.Form(
         web.form.Dropdown('Param',
-            [('startp','startp'),('superness','superness'),('leftp','leftp'),('rightp','rightp'),('downp','downp'),('upp','upp'),('superqr','superqr'),('superleft','superleft'),('tension','tension'),('tensionend','tensionend'),('cycle','cycle'),('penshiftedx','penshiftedx'),('penshiftedy','penshiftedy'),('pointshiftx','pointshiftx'),('pointshifty','pointshifty'),('penwidth','penwidth'),('xHeight','xHeight'),('cardinal','cardinal')]), 
+            [('startp','startp'),('leftp','leftp'),('rightp','rightp'),('downp','downp'),('upp','upp'),('superright','superright'),('superleft','superleft'),('tension','tension'),('tensionend','tensionend'),('cycle','cycle'),('penshiftedx','penshiftedx'),('penshiftedy','penshiftedy'),('pointshiftx','pointshiftx'),('pointshifty','pointshifty'),('penwidth','penwidth'),('xHeight','xHeight'),('cardinal','cardinal'),('superness','superness'),('overx','overx'),('overbase','overbase'),('overcap','overcap')]), 
         web.form.Textbox('parmval',
-            size=10, 
+            size=15, 
             description="parmval"),
         web.form.Button('saveParam'), 
         )
@@ -250,6 +253,10 @@ class GlobalParam:
         web.form.Textbox('maxstemcut', web.form.notnull, 
             size=3,
             description="maxstemcut", value="10"),
+        web.form.Textbox('over', web.form.notnull, 
+            size=3,
+            description="over", value="0.1"),
+
         web.form.Button('saveg'),
         )
 
@@ -264,7 +271,7 @@ class GlobalParam:
           gm = None
 
         if gm != None:
-             formg.fill({'superness':gm[0].superness,'metapolation':gm[0].metapolation,'penwidth':gm[0].penwidth,'unitwidth':gm[0].unitwidth,'xHeight':gm[0].xHeight,'ht':gm[0].ht,'fontsize':gm[0].fontsize,'maxstemcut':gm[0].maxstemcut})
+             formg.fill({'superness':gm[0].superness,'metapolation':gm[0].metapolation,'penwidth':gm[0].penwidth,'unitwidth':gm[0].unitwidth,'xHeight':gm[0].xHeight,'ht':gm[0].ht,'fontsize':gm[0].fontsize,'maxstemcut':gm[0].maxstemcut,'over':gm[0].over})
         return render.font2(formg,gml,cFont)
 
     def POST (self,id):
@@ -274,7 +281,7 @@ class GlobalParam:
         formg = self.formg()
         formg.fill()
         if formg.validates  :
-               model.update_globalparam(id, formg.d.superness, formg.d.metapolation, formg.d.penwidth, formg.d.unitwidth, formg.d.xHeight, formg.d.ht, formg.d.fontsize, formg.d.maxstemcut)
+               model.update_globalparam(id, formg.d.superness, formg.d.metapolation, formg.d.penwidth, formg.d.unitwidth, formg.d.xHeight, formg.d.ht, formg.d.fontsize, formg.d.maxstemcut, formg.d.over)
         if not formg.validates() :
                return render.font2(formg,gml,cFont)
 
@@ -339,7 +346,7 @@ class localParamA:
         formlA = self.formlocA()
         formlB = localParamB.formlocB()
         gm = list(model.get_globalparam(cFont.idglobal))
-        formg.fill({'superness':gm[0].superness,'metapolation':gm[0].metapolation,'penwidth':gm[0].penwidth,'unitwidth':gm[0].unitwidth,'xHeight':gm[0].xHeight,'ht':gm[0].ht,'fontsize':gm[0].fontsize,'maxstemcut':gm[0].maxstemcut})
+        formg.fill({'superness':gm[0].superness,'metapolation':gm[0].metapolation,'penwidth':gm[0].penwidth,'unitwidth':gm[0].unitwidth,'xHeight':gm[0].xHeight,'ht':gm[0].ht,'fontsize':gm[0].fontsize,'maxstemcut':gm[0].maxstemcut,'over':gm[0].over})
         idlA =id 
         
         idlB =cFont.idlocalB
@@ -444,7 +451,7 @@ class localParamB:
         formlA = localParamA.formlocA()
         formlB = self.formlocB()
         gm = list(model.get_globalparam(cFont.idglobal))
-        formg.fill({'superness':gm[0].superness,'metapolation':gm[0].metapolation,'penwidth':gm[0].penwidth,'unitwidth':gm[0].unitwidth,'xHeight':gm[0].xHeight,'ht':gm[0].ht,'fontsize':gm[0].fontsize,'maxstemcut':gm[0].maxstemcut})
+        formg.fill({'superness':gm[0].superness,'metapolation':gm[0].metapolation,'penwidth':gm[0].penwidth,'unitwidth':gm[0].unitwidth,'xHeight':gm[0].xHeight,'ht':gm[0].ht,'fontsize':gm[0].fontsize,'maxstemcut':gm[0].maxstemcut,'over':gm[0].over})
         idlA = cFont.idlocalA  
         idlB =id 
         if idlA > '0' :
