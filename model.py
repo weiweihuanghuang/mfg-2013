@@ -6,6 +6,7 @@ import os.path, time
 #db = web.database(dbn='mysql', db='blog', user='root', pw='' )
 db = web.database(dbn='mysql', db='blog', user='walter', pw='' )
 
+   
 def xxmlat(s, dbob, sattr, val):
 
 #   print "dbob",dbob,"atttt",sattr," vvvv",val
@@ -77,8 +78,9 @@ def putFont():
   dbqpA= list(db.query("SELECT unix_timestamp(max(vdate)) vdate from glyphparam where glyphname=glyphName"+idsA))
   dbqpB= list(db.query("SELECT unix_timestamp(max(vdate)) vdate from glyphparam where glyphname=glyphName"+idsB))
 # check if glyphoutline exists
-  for idmaster in [idmasterA,idmasterB] :
+  for idmaster in [idmasterA, idmasterB] :
     if idmaster == idmasterA:
+      mfg.cFont.idwork='0'
       glyphsource = glyphsourceA
       dbq = dbqA
       if  dbqA[0].vdate == None :
@@ -86,11 +88,15 @@ def putFont():
          vdatedbp = 0
       else:
          vdatedb=int(dbqA[0].vdate)
-         vdatedbp=int(dbqpA[0].vdate)
+         if dbqpA[0].vdate == None :
+            vdatedbp = 0
+         else:
+            vdatedbp=int(dbqpA[0].vdate)
       ids = idsA
       itemlist = xmldocA.getElementsByTagName('point')
 
     if idmaster == idmasterB:
+      mfg.cFont.idwork='1'
       glyphsource = glyphsourceB
       dbq = dbqB
       if  dbqB[0].vdate == None :
@@ -108,9 +114,11 @@ def putFont():
     if dbq:
       print  dbq[0].vdate,vdatedb,vdatedbp, os.path.getmtime(glyphsource) 
       vdateos=int(os.path.getmtime(glyphsource))
+      idel =0 
       if ( max(vdatedb,vdatedbp) < vdateos) and mfg.cFont.loadoption =='0':
         db.delete('glyphoutline', where='Glyphname="'+glyphName+'"'+ids )  
         db.delete('glyphparam', where='Glyphname="'+glyphName+'"'+ids )  
+        idel=1
 
 # check if list is empty
     if not  list(db.select('glyphoutline', where='GlyphName="'+glyphName+'"'+ids )) or mfg.cFont.loadoption == '1' : 
@@ -120,7 +128,7 @@ def putFont():
       for s in itemlist :
         inum = inum+1
 #  find a named point , convention the name begin with the letter z
-        if mfg.cFont.loadoption == '0':
+        if mfg.cFont.loadoption == '0' or idel ==1:
           if s.hasAttribute('name'): 
             im = s.attributes['name'] 
             iposa = im.value.find("z")
@@ -162,23 +170,31 @@ def putFont():
 
           s.attributes['pointNo']= "p" + str(inum)    # adding a new attribute
 
-          try :
-            if s.attributes['type'] >-1 :
+          if s.hasAttribute('type') : 
               mainpoint = 1
-            else :
-              mainpoint = 1 
-          except :
+          else :
              mainpoint = 0 
-	  s.toxml()
           strg= "insert into glyphoutline (GlyphName,PointNr,x,y,contrp,id,idmaster) Values ("+'"'+glyphName+'"'+","+'"'+s.attributes['pointNo'].value+'"' + ","+ str(s.attributes['x'].value)+ "," + str(s.attributes['y'].value)+","+str(mainpoint)+","+str(inum)+","+str(idmaster)+")"
           db.query(strg)
-        
-        if mfg.cFont.loadoption == '1':
+          db.query("commit") 
+        if mfg.cFont.loadoption == '1' and idel <1:
+          print "**",inum, s.attributes['x'].value, s.attributes['y'].value
 #    in this case we read only the coordinates from the xml file
           update_post(inum, s.attributes['x'].value, s.attributes['y'].value)
-          
-        else:
-	  print "**** load option unknown **"
+          if s.hasAttribute('name'): 
+            im = s.attributes['name'] 
+            iposa = im.value.find("z")
+            ipose = im.value.find(",",iposa)
+            if ipose > iposa :
+               nameval = im.value[iposa:ipose]
+            else :
+               if ipose == -1 :
+                 ipose=len(im.value) 
+                 nameval = im.value[iposa:ipose]
+          else: 
+            nameval="" 
+          update_glyphparam(inum,nameval)
+#        s.toxml()
            
   return None  
 
@@ -229,6 +245,7 @@ def update_post(id, x, y):
     ids= " and idmaster="+'"'+str(idmaster)+'"'
     db.update('glyphoutline', where='id=$id and GlyphName="'+glyphName+'"'+ids, vars=locals(),
         x=x, y=y)
+    db.query("commit")
 
 def update_glyphparamD(id, a, b):
 # string:syntax update glyphparam set leftp='1' where id=75 and Glyphname='p' and idmaster=1;
@@ -243,7 +260,7 @@ def update_glyphparamD(id, a, b):
       bb = 'NULL' 
     strg="update glyphparam set "+aa+"="+str(bb)+" where id="+str(id)+" and GlyphName='"+glyphName+"'"+ids 
     print strg
-    db.query(strg)
+    db.query("commit")
   
 def update_glyphparam(id, a):
     glyphName = mfg.cFont.glyphName 
@@ -255,6 +272,7 @@ def update_glyphparam(id, a):
       aa = 'NULL'
     db.update('glyphparam', where='id=$id and GlyphName="'+glyphName+'"'+ids, vars=locals(),
         pointName=aa)
+    db.query("commit")
 
 def insert_glyphparam(id, a):
     
@@ -262,6 +280,7 @@ def insert_glyphparam(id, a):
     idmaster = gidmast(mfg.cFont.idwork)
     db.insert('glyphparam', id=id,GlyphName=glyphName, PointName=a, idmaster=idmaster)
 
+    db.query("commit")
 def get_masters():
     return db.select('master',  vars=locals())
 
@@ -283,6 +302,7 @@ def update_master(id):
     fontName=mfg.cFont.fontname 
     db.update('master', where='idmaster=$id', vars=locals(),
        fontNameA=fontNameA,fontNameB=fontNameB,FontName=fontName)
+    db.query("commit")
     return None
 
 def get_globalparams():
@@ -333,22 +353,28 @@ def put_globalparam(id):
     fontsize = mfg.cFont.fontsize
     db.insert('globalparam', where='idglobal = $id',vars=locals(), 
         superness=superness, metapolation=metapolation, penwidth=penwidth, unitwidth=unitwidth, xHeigth=xHeigth , ht=ht, fontsize=fontsize)
+    db.query("commit")
     return None
 
 def updatemaster(id, a, b, c, d):
     db.update('master', where='idmaster = $id', vars=locals(), 
       FontName = a, FontNameA = b, FontNameB = c, idglobal = d)
+    db.commit()
+    wcom(db)
+    db.query("commit")
     return None
 
 def update_globalparam(id, a, b, c, d, e, f, g, h):
     db.update('globalparam', where='idglobal = $id', vars=locals(), 
       superness = a, metapolation = b, penwidth = c, unitwidth = d, xHeight = e, ht = f, fontsize = g, maxstemcut = h)
+    db.query("commit")
     return None
 
 def update_localparam(id, a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14 ):
     print "idididget local update",id
     db.update('localparam', where='idlocal = $id', vars=locals(), 
       px = a1, mean = a2, des=a3, ascl=a4, cap=a5, width=a6, xheight=a7, capital=a8, ascender=a9, descender=a10, inktrap=a11, stemcut=a12, skeleton=a13, superness=a14)
+    db.query("commit")
     return None
 
 
