@@ -17,7 +17,7 @@ px2l := 2.11u ; py2l := 4.15u ;
 px2r := 1.98u ; py2r := 3.86u ;
 px1r := 1.09u ; py1r := 2.69u ;
 px1l := 0.4u ; py1l := 2.58u ;
-px4r := 2.04u ; py4r := 1.39u ;
+px4r := 2.08u ; py4r := 1.39u ;
 px4l := 2.01u ; py4l := 1.06u ;
 px3r := 2.95u ; py3r := 2.76u ;
 px3l := 3.61u ; py3l := 2.95u ;
@@ -120,7 +120,7 @@ ppx2l := 2.11u ; ppy2l := 4.15u ;
 ppx2r := 1.98u ; ppy2r := 3.86u ;
 ppx1r := 1.09u ; ppy1r := 2.69u ;
 ppx1l := 0.4u ; ppy1l := 2.58u ;
-ppx4r := 2.04u ; ppy4r := 1.39u ;
+ppx4r := 2.05u ; ppy4r := 1.39u ;
 ppx4l := 2.01u ; ppy4l := 1.06u ;
 ppx3r := 2.95u ; ppy3r := 2.76u ;
 ppx3l := 3.61u ; ppy3l := 2.95u ;
@@ -287,7 +287,7 @@ penstroke
 z1e...
 z2e...
 z3e...
-z4e ... cycle;;
+z4e;
 penstroke z5e...
 z6e...
 z7e...

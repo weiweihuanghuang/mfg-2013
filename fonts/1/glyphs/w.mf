@@ -17,15 +17,15 @@ px7l := 4.06u ; py7l := 0.0u ;
 px7r := 4.39u ; py7r := 0.0u ;
 px8l := 5.51u ; py8l := 4.1u ;
 px8r := 5.83u ; py8r := 4.1u ;
-px5l := 2.55u ; py5l := 4.1u ;
+px5l := 2.55u ; py5l := 4.5u ;
 px5r := 3.43u ; py5r := 4.1u ;
 px4l := 3.17u ; py4l := 3.2u ;
 px4r := 3.5u ; py4r := 3.2u ;
 px3l := 1.97u ; py3l := 0.0u ;
 px3r := 2.3u ; py3r := 0.0u ;
-px1l := 0.43u ; py1l := 4.1u ;
-px1r := 1.29u ; py1r := 4.1u ;
-px2r := 2.35u ; py2r := 1.11u ;
+px1l := 0.43u ; py1l := 5.1u ;
+px1r := 1.09u ; py1r := 4.1u ;
+px2r := 2.05u ; py2r := 1.31u ;
 px2l := 1.97u ; py2l := 0.0u ;
 
 % reading mid points font A
@@ -195,12 +195,12 @@ z8=((A_width + metapolation * (A_width - B_width)) * (x280 + metapolation * (x28
 % pen strokes % first built in:
 penstroke 
 z1e...
-z2e;
-penstroke z3e...
-z4e;
-penstroke z5e...
-z6e;
-penstroke z7e...
+z2e...
+z3e...
+z4e...
+z5e...
+z6e...
+z7e...
 z8e
 ;
 

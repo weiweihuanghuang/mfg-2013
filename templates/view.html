@@ -1,6 +1,5 @@
 $def with (posts,post,form,formparam,master,mastglobal,webglyph,glyphparam,cfont,postspa)
-
-<h2 id="menuleft">Glyph Edit</h2>
+<p id="menuleft">Glyph Edit</p>
 
 <style>@font-face {
 	font-family:'metapolator';
@@ -56,10 +55,10 @@ h2 {
 #center {
 	bottom:0;
 	height:0px;
-	left:-300;
+	left:-500;
 	margin:auto;
 	position:absolute;
-	top:200;
+	top:400;
 	right:0;
 	width:0px;
 	-webkit-transform:translate(0%,0%) scale(100%,100%);
@@ -79,6 +78,26 @@ h2 {
 
 
 }
+
+#menuleft {
+	width:200px;
+
+}
+
+#menuleftgreen {
+	z-index:5;
+	background-color:green;
+	width:200px;
+	text-align:left;
+	color: yellow;
+        border-style:solid;
+	border-color:green;
+        border-width:5px;
+
+
+}
+
+
 a:visited {
 		color:inherit;
 	text-decoration:none;
@@ -89,7 +108,6 @@ a:link {
 }
 table,th,td, #menuleft{
 	background-color:black;
-	width:200px;
 	text-align:left;
 	color: white;
         border-style:solid;
@@ -99,15 +117,23 @@ table,th,td, #menuleft{
 }
  
 </style>
-<p id="menuleft">
+
+
+<p id="menuleft">  
 $if cfont.idwork == '0' :
        Font A: $cfont.fontna 
 $if cfont.idwork == '1' : 
        Font B: $cfont.fontnb 
-<p id="menuleft">
+</p> 
 
+<p> 
+<a id="menuleftgreen" href="/metap/0">Edit Font A</a> <br><br>
+<a id="menuleftgreen" href="/metap/1">Edit Font B</a> <br>
+</p> 
+
+<p id="menu">  
 $for mast in master:
-  <p> $mast.FontName <br> 
+   $mast.FontName  
 
 $for mast in mastglobal:
    Metapolation $mast.metapolation <br> 
@@ -121,39 +147,17 @@ $for mast in mastglobal:
  <br>
 </p>
 
-<p> 
-<a id="menuleft" href="/metap/0">Edit Font A</a> <br>
-<a id="menuleft" href="/metap/1">Edit Font B</a> <br>
-</p> 
-
-<div id="center">
-
-	<div>
-		<left> &#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;	 </left>
-	</div>
-	<div>
-		<middle>
-<span class="first">$webglyph</span><span class="second">&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;</span> 
-	</div>
-
-<div>
-		<right>  </right>
-	</div>
-$for posti in posts:
-	<div id="$posti.id" style="$posti.position">
-		<p>
-			<a href="/view/$posti.id" style="text-decoration:none">&#9678;$posti.PointNr</a>
-		</p>
-	</div>
-</div>
-<div id="menuleft" >
+<p id="menuleft" >
 	<form action="" method="post">
 $:form.render() 
 $if form.d.PointName > "0" : 
-    $:formparam.render()
+    $:formparam.render() 
 
+<!-- add new parameters here: -->
+
+<p id="menuleftgreen" >
     $if glyphparam.startp != None :
-       startp $glyphparam.startp <br>
+       startp $glyphparam.startp </p> <br>
     $if glyphparam.leftp != None :
        leftp $glyphparam.leftp <br>
     $if glyphparam.rightp != None :
@@ -162,8 +166,8 @@ $if form.d.PointName > "0" :
        downp $glyphparam.downp <br>
     $if glyphparam.upp != None :
        upp $glyphparam.upp <br>
-    $if glyphparam.superqr != None :
-       superqr  $glyphparam.superqr <br>
+    $if glyphparam.superright != None :
+       superright  $glyphparam.superright <br>
     $if glyphparam.superleft != None :
        superleft $glyphparam.superleft <br>
     $if glyphparam.tension != None :
@@ -188,10 +192,19 @@ $if form.d.PointName > "0" :
        xHeight $glyphparam.xHeight <br>
     $if glyphparam.cardinal != None :
        cardinal $glyphparam.cardinal <br>
+    $if glyphparam.overx != None :
+       overx $glyphparam.overx <br>
+    $if glyphparam.overbase != None :
+       overx $glyphparam.overbase <br>
+    $if glyphparam.overcap != None :
+       overx $glyphparam.overcap <br>
 
-	</div>
-<p> points - parameters </p>
-<p> 
+</p>
+
+<p id="menuleft"> points - parameters </p>
+<p id="menuleft"> 
+<!-- add new parameters here: -->
+
 $for ppp in postspa:
    $if ppp.PointName != '' :
      $ppp.id  $ppp.PointName
@@ -205,8 +218,8 @@ $for ppp in postspa:
        downp $ppp.downp
      $if ppp.upp != None :
        upp $ppp.upp
-     $if ppp.superqr != None :
-       superqr  $ppp.superqr
+     $if ppp.superright != None :
+       superright  $ppp.superright
      $if ppp.superleft != None :
        superleft $ppp.superleft
      $if ppp.tension != None :
@@ -231,10 +244,41 @@ $for ppp in postspa:
        xHeight $ppp.xHeight
      $if ppp.cardinal != None :
        cardinal $ppp.cardinal
+     $if ppp.overx != None :
+       overx $ppp.overx
+     $if ppp.overbase != None :
+       overbase $ppp.overbase
+     $if ppp.overcap != None :
+       overcap $ppp.overcap
 
    <br>
 </p>
+
 <p style="color:red"> &#9678; z points </p>
 <p style="color:blue"> &#9678; undefined points </p>
 <p style="color:CCFFFF"> &#9678; control points </p>
+
+
+
+
+<div id="center">
+
+	<div>
+		<left> &#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;	 </left>
+	</div>
+	<div>
+		<middle>
+<span class="first">$webglyph</span><span class="second">&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;</span> 
+	</div>
+
+$for posti in posts:
+	<div id="$posti.id" style="$posti.position">
+		<p>
+			<a href="/view/$posti.id" style="text-decoration:none">&#9678;$posti.PointNr</a>
+		</p>
+	</div>
+</div>
+
+
+
 

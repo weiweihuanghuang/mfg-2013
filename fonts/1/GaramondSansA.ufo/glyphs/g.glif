@@ -1,59 +1,58 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="g" format="1">
+<?xml version="1.0" ?><glyph format="1" name="g">
   <advance width="435"/>
   <unicode hex="0067"/>
   <outline>
     <contour>
-      <point x="426" y="389" type="move" name="z13l"/>
-      <point x="427" y="351" type="line" name="z13r"/>
+      <point name="z13l" pointNo="p1" type="move" x="426" y="389"/>
+      <point name="z13r" pointNo="p2" type="line" x="427" y="351"/>
     </contour>
     <contour>
-      <point x="211" y="415" type="move" name="z2l"/>
-      <point x="198" y="386" type="line" name="z2r"/>
+      <point name="z2l" pointNo="p3" type="move" x="211" y="415"/>
+      <point name="z2r" pointNo="p4" type="line" x="198" y="386"/>
     </contour>
     <contour>
-      <point x="109" y="269" type="move" name="z1r"/>
-      <point x="40" y="258" type="line" name="z1l"/>
+      <point name="z1r" pointNo="p5" type="move" x="109" y="269"/>
+      <point name="z1l" pointNo="p6" type="line" x="40" y="258"/>
     </contour>
     <contour>
-      <point x="204" y="139" type="move" name="z4r"/>
-      <point x="201" y="106" type="line" name="z4l"/>
+      <point name="z4r" pointNo="p7" type="move" x="208" y="139"/>
+      <point name="z4l" pointNo="p8" type="line" x="201" y="106"/>
     </contour>
     <contour>
-      <point x="295" y="276" type="move" name="z3r"/>
-      <point x="361" y="295" type="line" name="z3l"/>
+      <point name="z3r" pointNo="p9" type="move" x="295" y="276"/>
+      <point name="z3l" pointNo="p10" type="line" x="361" y="295"/>
     </contour>
     <contour>
-      <point x="140" y="144" type="move" name="z5l"/>
-      <point x="157" y="136" type="line" name="z5r"/>
+      <point name="z5l" pointNo="p11" type="move" x="140" y="144"/>
+      <point name="z5r" pointNo="p12" startp="1" type="line" x="157" y="136"/>
     </contour>
     <contour>
-      <point x="100" y="66" type="move" name="z6r"/>
-      <point x="41" y="40" type="line" name="z6l"/>
+      <point name="z6r" pointNo="p13" type="move" x="100" y="66"/>
+      <point name="z6l" pointNo="p14" type="line" x="41" y="40"/>
     </contour>
     <contour>
-      <point x="232" y="-37" type="move" name="z7l"/>
-      <point x="260" y="21" type="line" name="z7r"/>
+      <point name="z7l" pointNo="p15" type="move" x="232" y="-37"/>
+      <point name="z7r" pointNo="p16" type="line" x="260" y="21"/>
     </contour>
     <contour>
-      <point x="417" y="-66" type="move" name="z8r"/>
-      <point x="358" y="-109" type="line" name="z8l"/>
+      <point name="z8r" pointNo="p17" type="move" x="417" y="-66"/>
+      <point name="z8l" pointNo="p18" type="line" x="358" y="-109"/>
     </contour>
     <contour>
-      <point x="208" y="-250" type="move" name="z9l"/>
-      <point x="193" y="-290" type="line" name="z9r"/>
+      <point name="z9l" pointNo="p19" type="move" x="208" y="-250"/>
+      <point name="z9r" pointNo="p20" type="line" x="193" y="-290"/>
     </contour>
     <contour>
-      <point x="82" y="-137" type="move" name="z10l"/>
-      <point x="11" y="-177" type="line" name="z10r"/>
+      <point name="z10l" pointNo="p21" type="move" x="82" y="-137"/>
+      <point name="z10r" pointNo="p22" type="line" x="11" y="-177"/>
     </contour>
     <contour>
-      <point x="153" y="2" type="move" name="z11r"/>
-      <point x="186" y="-1" type="line" name="z11l"/>
+      <point name="z11r" pointNo="p23" type="move" x="153" y="2"/>
+      <point name="z11l" pointNo="p24" type="line" x="186" y="-1"/>
     </contour>
     <contour>
-      <point x="269" y="386" type="move" name="z12l"/>
-      <point x="306" y="349" type="line" name="z12r"/>
+      <point name="z12l" pointNo="p25" type="move" x="269" y="386"/>
+      <point name="z12r" pointNo="p26" startp="1" type="line" x="306" y="349"/>
     </contour>
   </outline>
   <lib>
