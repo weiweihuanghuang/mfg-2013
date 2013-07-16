@@ -158,6 +158,10 @@ $if form.d.PointName > "0" :
 <p id="menuleftgreen" >
     $if glyphparam.startp != None :
        startp $glyphparam.startp </p> <br>
+    $if glyphparam.doubledash != None :
+       doubledash $glyphparam.doubledash </p> <br>
+    $if glyphparam.tripledash != None :
+       tripledash $glyphparam.tripledash </p> <br>
     $if glyphparam.leftp != None :
        leftp $glyphparam.leftp <br>
     $if glyphparam.rightp != None :
@@ -166,6 +170,18 @@ $if form.d.PointName > "0" :
        downp $glyphparam.downp <br>
     $if glyphparam.upp != None :
        upp $glyphparam.upp <br>
+    $if glyphparam.dir != None :
+       dir $glyphparam.dir <br>
+    $if glyphparam.leftp2 != None :
+       leftp2 $glyphparam.leftp2 <br>
+    $if glyphparam.rightp2 != None :
+       rightp2 $glyphparam.rightp2 <br>
+    $if glyphparam.downp2 != None :
+       downp2 $glyphparam.downp2 <br>
+    $if glyphparam.upp2 != None :
+       upp2 $glyphparam.upp2 <br>
+    $if glyphparam.dir2 != None :
+       dir2 $glyphparam.dir2 <br>
     $if glyphparam.superright != None :
        superright  $glyphparam.superright <br>
     $if glyphparam.superleft != None :
@@ -210,6 +226,10 @@ $for ppp in postspa:
      $ppp.id  $ppp.PointName
      $if ppp.startp != None :
          startp $ppp.startp
+     $if ppp.doubledash != None :
+         doubledash $ppp.doubledash
+     $if ppp.tripledash != None :
+         tripledash $ppp.tripledash
      $if ppp.leftp != None :
        leftp $ppp.leftp
      $if ppp.rightp != None :
@@ -218,6 +238,18 @@ $for ppp in postspa:
        downp $ppp.downp
      $if ppp.upp != None :
        upp $ppp.upp
+     $if ppp.dir != None :
+       dir $ppp.dir
+     $if ppp.leftp2 != None :
+       leftp2 $ppp.leftp2
+     $if ppp.rightp2 != None :
+       rightp2 $ppp.rightp2
+     $if ppp.downp2 != None :
+       downp2 $ppp.downp2
+     $if ppp.upp2 != None :
+       upp2 $ppp.upp2
+     $if ppp.dir2 != None :
+       dir2 $ppp.dir2
      $if ppp.superright != None :
        superright  $ppp.superright
      $if ppp.superleft != None :

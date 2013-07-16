@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="B" format="1">
+  <advance width="578"/>
+  <unicode hex="0042"/>
+  <outline>
+    <contour>
+      <point x="127.0" y="0.0" type="line" name="z1l"/>
+      <point x="127.0" y="650.0" type="line" name="z2l"/>
+      <point x="208.0" y="650.0" type="line" name="z2r"/>
+      <point x="208.0" y="0.0" type="line" name="z1r"/>
+    </contour>
+    <contour>
+      <point x="444.0" y="190.0" type="move" name="z8l"/>
+      <point x="537.0" y="190.0" type="line" name="z8r"/>
+    </contour>
+    <contour>
+      <point x="170.0" y="343.0" type="move" name="z11l"/>
+      <point x="170.0" y="372.0" type="line" name="z11r"/>
+    </contour>
+    <contour>
+      <point x="285.0" y="343.0" type="move" name="z12l"/>
+      <point x="285.0" y="372.0" type="line" name="z12r"/>
+    </contour>
+    <contour>
+      <point x="171.0" y="1.0" type="move" name="z10r"/>
+      <point x="171.0" y="36.0" type="line" name="z10l"/>
+    </contour>
+    <contour>
+      <point x="277.0" y="1.0" type="move" name="z9r"/>
+      <point x="277.0" y="36.0" type="line" name="z9l"/>
+    </contour>
+    <contour>
+      <point x="169.0" y="627.0" type="move" name="z3r"/>
+      <point x="169.0" y="650.0" type="line" name="z3l"/>
+    </contour>
+    <contour>
+      <point x="410.0" y="508.0" type="move" name="z5r"/>
+      <point x="496.0" y="513.0" type="line" name="z5l"/>
+    </contour>
+    <contour>
+      <point x="285.0" y="343.0" type="move" name="z6l"/>
+      <point x="285.0" y="372.0" type="line" name="z6r"/>
+    </contour>
+    <contour>
+      <point x="285.0" y="343.0" type="move" name="z7l"/>
+      <point x="285.0" y="372.0" type="line" name="z7r"/>
+    </contour>
+    <contour>
+      <point x="283.0" y="627.0" type="move" name="z4r"/>
+      <point x="283.0" y="650.0" type="line" name="z4l"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.typemytype.robofont.layerData</key>
+      <dict>
+        <key>background</key>
+        <dict>
+          <key>anchors</key>
+          <array>
+          </array>
+          <key>components</key>
+          <array>
+          </array>
+          <key>contours</key>
+          <array>
+          </array>
+          <key>lib</key>
+          <dict>
+          </dict>
+          <key>name</key>
+          <string>B</string>
+          <key>unicodes</key>
+          <array>
+          </array>
+          <key>width</key>
+          <integer>578</integer>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

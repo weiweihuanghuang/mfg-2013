@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="a" format="1">
+  <advance width="399"/>
+  <unicode hex="0061"/>
+  <outline>
+    <contour>
+      <point x="276.0" y="213.0" type="move" name="z9l"/>
+      <point x="273.0" y="240.0" type="line" name="z9r"/>
+    </contour>
+    <contour>
+      <point x="113.0" y="110.0" type="move" name="z8l"/>
+      <point x="31.0" y="98.0" type="line" name="z8r"/>
+    </contour>
+    <contour>
+      <point x="115.0" y="338.0" type="move" name="z1l"/>
+      <point x="77.0" y="369.0" type="line" name="z1r"/>
+    </contour>
+    <contour>
+      <point x="319.0" y="1.0" type="move" name="z5r"/>
+      <point x="264.0" y="1.0" type="line" name="z5l"/>
+    </contour>
+    <contour>
+      <point x="310.0" y="331.0" type="move" name="z3r"/>
+      <point x="239.0" y="308.0" type="line" name="z3l"/>
+    </contour>
+    <contour>
+      <point x="238.0" y="55.0" type="move" name="z4l"/>
+      <point x="306.0" y="95.0" type="line" name="z4r"/>
+    </contour>
+    <contour>
+      <point x="167.0" y="31.0" type="move" name="z7l"/>
+      <point x="120.0" y="-14.0" type="line" name="z7r"/>
+    </contour>
+    <contour>
+      <point x="199.0" y="367.0" type="move" name="z2l"/>
+      <point x="211.0" y="413.0" type="line" name="z2r"/>
+    </contour>
+    <contour>
+      <point x="282.0" y="85.0" type="move" name="z6r"/>
+      <point x="261.0" y="100.0" type="line" name="z6l"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.typemytype.robofont.layerData</key>
+      <dict>
+        <key>background</key>
+        <dict>
+          <key>anchors</key>
+          <array>
+          </array>
+          <key>components</key>
+          <array>
+          </array>
+          <key>contours</key>
+          <array>
+          </array>
+          <key>lib</key>
+          <dict>
+          </dict>
+          <key>name</key>
+          <string>a</string>
+          <key>unicodes</key>
+          <array>
+          </array>
+          <key>width</key>
+          <integer>399</integer>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

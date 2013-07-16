@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="g" format="1">
+  <advance width="435.0"/>
+  <unicode hex="0067"/>
+  <outline>
+    <contour>
+      <point x="82.0" y="-137.0" type="move" name="z10l"/>
+      <point x="11.0" y="-177.0" type="line" name="z10r"/>
+    </contour>
+    <contour>
+      <point x="100.0" y="66.0" type="move" name="z6r"/>
+      <point x="41.0" y="40.0" type="line" name="z6l"/>
+    </contour>
+    <contour>
+      <point x="208.0" y="-250.0" type="move" name="z9l"/>
+      <point x="193.0" y="-290.0" type="line" name="z9r"/>
+    </contour>
+    <contour>
+      <point x="269.0" y="386.0" type="move" name="z12l"/>
+      <point x="306.0" y="349.0" type="line" name="z12r"/>
+    </contour>
+    <contour>
+      <point x="417.0" y="-66.0" type="move" name="z8r"/>
+      <point x="358.0" y="-109.0" type="line" name="z8l"/>
+    </contour>
+    <contour>
+      <point x="232.0" y="-37.0" type="move" name="z7l"/>
+      <point x="260.0" y="21.0" type="line" name="z7r"/>
+    </contour>
+    <contour>
+      <point x="295.0" y="276.0" type="move" name="z3r"/>
+      <point x="361.0" y="295.0" type="line" name="z3l"/>
+    </contour>
+    <contour>
+      <point x="153.0" y="2.0" type="move" name="z11r"/>
+      <point x="186.0" y="-1.0" type="line" name="z11l"/>
+    </contour>
+    <contour>
+      <point x="140.0" y="144.0" type="move" name="z5l"/>
+      <point x="157.0" y="136.0" type="line" name="z5r"/>
+    </contour>
+    <contour>
+      <point x="204.0" y="139.0" type="move" name="z4r"/>
+      <point x="201.0" y="106.0" type="line" name="z4l"/>
+    </contour>
+    <contour>
+      <point x="109.0" y="269.0" type="move" name="z1r"/>
+      <point x="40.0" y="258.0" type="line" name="z1l"/>
+    </contour>
+    <contour>
+      <point x="211.0" y="415.0" type="move" name="z2l"/>
+      <point x="198.0" y="386.0" type="line" name="z2r"/>
+    </contour>
+    <contour>
+      <point x="426.0" y="389.0" type="move" name="z13l"/>
+      <point x="426.0" y="349.0" type="line" name="z13r"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.typemytype.robofont.layerData</key>
+      <dict>
+        <key>background</key>
+        <dict>
+          <key>anchors</key>
+          <array>
+          </array>
+          <key>components</key>
+          <array>
+          </array>
+          <key>contours</key>
+          <array>
+          </array>
+          <key>lib</key>
+          <dict>
+          </dict>
+          <key>name</key>
+          <string>g</string>
+          <key>unicodes</key>
+          <array>
+          </array>
+          <key>width</key>
+          <real>435.0</real>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

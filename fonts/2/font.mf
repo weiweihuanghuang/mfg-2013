@@ -1,16 +1,16 @@
 % parameter file 
-metapolation:=0.0;
+metapolation:=0.50;
 font_size:=10pt#;
 ht#:=10pt#;
 u#:=1pt#;
 max_stemcut:=0pt;
 superness:=1.00;
-over#:=0.00pt#;
+over#:=0.20pt#;
 A_px#:=0.0pt#;
 A_mean#:=4.10pt#;
-A_des#:=2.90pt#;
-A_asc#:=0.7ht#;
-A_cap#:=0.7ht#;
+A_des#:=2.00pt#;
+A_asc#:=0.8ht#;
+A_cap#:=0.8ht#;
 A_width:=1.00;
 A_xheight:=1;
 A_capital:=1;
@@ -20,11 +20,11 @@ A_inktrap:=10;
 A_stemcut:=20;
 A_skeleton#:=0.00pt#;
 A_superness:=1.00;
-B_px#:=0.0pt#;
+B_px#:=0.1pt#;
 B_mean#:=4.10pt#;
-B_des#:=2.90pt#;
-B_asc#:=0.7ht#;
-B_cap#:=0.7ht#;
+B_des#:=2.00pt#;
+B_asc#:=0.8ht#;
+B_cap#:=0.8ht#;
 B_width:=1.00;
 B_xheight:=1;
 B_capital:=1;
@@ -32,7 +32,7 @@ B_ascender:=1;
 B_descender:=1;
 B_inktrap:=10;
 B_stemcut:=20;
-B_skeleton#:=0.00pt#;
+B_skeleton#:=-0.50pt#;
 B_superness:=1.00;
 
 input glyphs
