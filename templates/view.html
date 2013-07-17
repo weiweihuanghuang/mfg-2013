@@ -29,6 +29,8 @@ $def with (posts,post,form,formparam,master,mastglobal,webglyph,glyphparam,cfont
   url('/static/Inconsolata/Inconsolata-Bold.ttf') format('truetype'),
   url('/static/Inconsolata/Inconsolata-Bold.woff') format('woff');
 }
+
+
 left {
 	position:absolute;
 
@@ -65,7 +67,7 @@ right {
         color: rgba(255, 0, 0, 0.2);
       }
 
-p,h2,table,th,td, #menu {
+p,h2,table,th,td, #menu, input, select, textarea {
 	font:normal 15px/19px Menlo,'Inconsolata',mono;
 	z-index:5;
 }
@@ -214,8 +216,8 @@ $if form.d.PointName > "0" :
        cycle $glyphparam.cycle <br>
     $if glyphparam.penshifted != None :
        penshifted $glyphparam.penshifted <br>
-    $if glyphparam.pointshift != None :
-       pointshift $glyphparam.pointshift <br>
+    $if glyphparam.pointshifted != None :
+       pointshifted $glyphparam.pointshifted <br>
     $if glyphparam.superness != None :
        supernesnn $glyphparam.superness <br>
     $if glyphparam.penwidth != None :
@@ -285,8 +287,8 @@ $for ppp in postspa:
        cycle $ppp.cycle
      $if ppp.penshifted != None :
        penshifted $ppp.penshifted
-     $if ppp.pointshift != None :
-       pointshift $ppp.pointshift
+     $if ppp.pointshifted != None :
+       pointshifted $ppp.pointshifted
      $if ppp.superness != None :
        supernesnn $ppp.superness
      $if ppp.penwidth != None :

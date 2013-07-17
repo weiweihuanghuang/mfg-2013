@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><glyph format="1" name="a">
+<?xml version="1.0" ?><glyph format="1" name="65">
   <advance width="492"/>
   <unicode hex="0061"/>
   <outline>
@@ -15,7 +15,7 @@
       <point pointNo="p10" x="271" y="-8"/>
       <point pointNo="p11" x="358" y="33"/>
       <point name="z11r" pointNo="p12" type="curve" upp="1" x="358" y="154"/>
-      <point name="z11l" pointNo="p13" pointshift="x4r-x11l,0" type="line" x="328" y="169"/>
+      <point name="z11l" pointNo="p13" type="line" x="328" y="169"/>
       <point pointNo="p14" x="328" y="108"/>
       <point pointNo="p15" x="270" y="68"/>
       <point name="z10l" pointNo="p16" smooth="yes" type="curve" x="225" y="68"/>
