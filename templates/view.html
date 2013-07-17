@@ -1,5 +1,9 @@
 $def with (posts,post,form,formparam,master,mastglobal,webglyph,glyphparam,cfont,postspa)
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
 <p id="menuleft">Glyph Edit</p>
+
 
 <style>@font-face {
 	font-family:'metapolator';
@@ -8,7 +12,23 @@ $def with (posts,post,form,formparam,master,mastglobal,webglyph,glyphparam,cfont
 	font-weight:normal;
 	font-style:normal;
 }
+@font-face {
+  font-family: 'Inconsolata';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Inconsolata'), 
+  url('/static/Inconsolata/Inconsolata-Regular.ttf') format('truetype'),
+  url('/static/Inconsolata/Inconsolata-Regular.woff') format('woff');
+}
 
+@font-face {
+  font-family: 'Inconsolata';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Inconsolata Bold'), local('Inconsolata-Bold'), 
+  url('/static/Inconsolata/Inconsolata-Bold.ttf') format('truetype'),
+  url('/static/Inconsolata/Inconsolata-Bold.woff') format('woff');
+}
 left {
 	position:absolute;
 
@@ -16,7 +36,7 @@ left {
 	font-size:1000px;
 	color:rgba(255, 0, 0, 0.2);
 	right:0;
-bottom:-360;
+bottom:-270;
 	z-index:-6;
 
 
@@ -24,7 +44,7 @@ bottom:-360;
 }
 middle, right {
 	position:absolute;
-bottom:-360;
+bottom:-270;
 left:6;
 
 	font-family:"metapolator";
@@ -46,7 +66,7 @@ right {
       }
 
 p,h2,table,th,td, #menu {
-	font:normal 15px/19px "Courier New",Courier,mono;
+	font:normal 15px/19px Menlo,'Inconsolata',mono;
 	z-index:5;
 }
 h2 {
@@ -188,18 +208,14 @@ $if form.d.PointName > "0" :
        superleft $glyphparam.superleft <br>
     $if glyphparam.tension != None :
        tension $glyphparam.tension <br>
-    $if glyphparam.tensionend != None :
-       tensionend $glyphparam.tensionend <br>
+    $if glyphparam.tensionand != None :
+       tensionand $glyphparam.tensionand <br>
     $if glyphparam.cycle != None :
        cycle $glyphparam.cycle <br>
-    $if glyphparam.penshiftedx != None :
-       penshiftedx $glyphparam.penshiftedx <br>
-    $if glyphparam.penshiftedy != None :
-       penshiftedy $glyphparam.penshiftedy <br>
-    $if glyphparam.pointshiftx != None :
-       pointshiftx $glyphparam.pointshiftx <br>
-    $if glyphparam.pointshifty != None :
-       pointshifty $glyphparam.pointshifty <br>
+    $if glyphparam.penshifted != None :
+       penshifted $glyphparam.penshifted <br>
+    $if glyphparam.pointshift != None :
+       pointshift $glyphparam.pointshift <br>
     $if glyphparam.superness != None :
        supernesnn $glyphparam.superness <br>
     $if glyphparam.penwidth != None :
@@ -211,10 +227,17 @@ $if form.d.PointName > "0" :
     $if glyphparam.overx != None :
        overx $glyphparam.overx <br>
     $if glyphparam.overbase != None :
-       overx $glyphparam.overbase <br>
+       overbase $glyphparam.overbase <br>
     $if glyphparam.overcap != None :
-       overx $glyphparam.overcap <br>
-
+       overcap $glyphparam.overcap <br>
+    $if glyphparam.stemcutter != None :
+       stemcutter $glyphparam.stemcutter <br>
+    $if glyphparam.stemshift != None :
+       stemshift $glyphparam.stemshift <br>
+    $if glyphparam.inktrap_l != None :
+       inktrap_l $glyphparam.inktrap_l <br>
+    $if glyphparam.inktrap_r != None :
+       inktrap_r $glyphparam.inktrap_r <br>
 </p>
 
 <p id="menuleft"> points - parameters </p>
@@ -256,18 +279,14 @@ $for ppp in postspa:
        superleft $ppp.superleft
      $if ppp.tension != None :
        tension $ppp.tension
-     $if ppp.tensionend != None :
-       tensionend $ppp.tensionend
+     $if ppp.tensionand != None :
+       tensionand $ppp.tensionand
      $if ppp.cycle != None :
        cycle $ppp.cycle
-     $if ppp.penshiftedx != None :
-       penshiftedx $ppp.penshiftedx
-     $if ppp.penshiftedy != None :
-       penshiftedy $ppp.penshiftedy
-     $if ppp.pointshiftx != None :
-       pointshiftx $ppp.pointshiftx
-     $if ppp.pointshifty != None :
-       pointshifty $ppp.pointshifty
+     $if ppp.penshifted != None :
+       penshifted $ppp.penshifted
+     $if ppp.pointshift != None :
+       pointshift $ppp.pointshift
      $if ppp.superness != None :
        supernesnn $ppp.superness
      $if ppp.penwidth != None :
@@ -282,7 +301,14 @@ $for ppp in postspa:
        overbase $ppp.overbase
      $if ppp.overcap != None :
        overcap $ppp.overcap
-
+     $if ppp.stemcutter != None :
+       stemcutter $ppp.stemcutter
+     $if ppp.stemshift != None :
+       stemshift $ppp.stemshift
+     $if ppp.inktrap_l != None :
+       inktrap_l $ppp.inktrap_l
+     $if ppp.inktrap_r != None :
+       inktrap_r $ppp.inktrap_r
    <br>
 </p>
 

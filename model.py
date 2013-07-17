@@ -4,7 +4,7 @@ import codecs
 import os.path, time
 
 db = web.database(dbn='mysql', db='blog', user='root', pw='' )
-#db = web.database(dbn='mysql', db='blog', user='walter', pw='' )
+#db = web.database(dbn='mysql', db='blog', user='wei', pw='' )
 
    
 def xxmlat(s, dbob, sattr, val):
@@ -145,27 +145,31 @@ def putFont():
 # add glyphparameters here:
 
             xxmrlat(inum,s,db, 'startp' )
-            xxmrlat(inum,s,db, 'superness' )
-            xxmrlat(inum,s,db, 'startp')
+            xxmrlat(inum,s,db, 'doubledash' )
+            xxmrlat(inum,s,db, 'tripledash')
+            xxmrlat(inum,s,db, 'superness')
             xxmrlat(inum,s,db, 'leftp')
             xxmrlat(inum,s,db, 'rightp')
             xxmrlat(inum,s,db, 'downp')
             xxmrlat(inum,s,db, 'upp')
+            xxmrlat(inum,s,db, 'dir')
             xxmrlat(inum,s,db, 'superright')
             xxmrlat(inum,s,db, 'superleft')
             xxmrlat(inum,s,db, 'tension')
-            xxmrlat(inum,s,db, 'tensionend')
+            xxmrlat(inum,s,db, 'tensionand')
             xxmrlat(inum,s,db, 'cycle')
-            xxmrlat(inum,s,db, 'penshiftedx')
-            xxmrlat(inum,s,db, 'penshiftedy')
-            xxmrlat(inum,s,db, 'pointshiftx')
-            xxmrlat(inum,s,db, 'pointshifty')
+            xxmrlat(inum,s,db, 'penshifted')
+            xxmrlat(inum,s,db, 'pointshift')
             xxmrlat(inum,s,db, 'penwidth')
             xxmrlat(inum,s,db, 'xHeight')
             xxmrlat(inum,s,db, 'cardinal')
             xxmrlat(inum,s,db, 'overx')
             xxmrlat(inum,s,db, 'overbase')
             xxmrlat(inum,s,db, 'overcap')
+            xxmrlat(inum,s,db, 'stemcutter')
+            xxmrlat(inum,s,db, 'stemshift')
+            xxmrlat(inum,s,db, 'inktrap_l')
+            xxmrlat(inum,s,db, 'inktrap_r')
 
           else :
             nameval = ""
@@ -263,6 +267,7 @@ def update_glyphparamD(id, a, b):
       bb = 'NULL' 
     strg="update glyphparam set "+aa+"="+str(bb)+" where id="+str(id)+" and GlyphName='"+glyphName+"'"+ids 
     print strg
+    db.query(strg)
     db.query("commit")
   
 def update_glyphparam(id, a):
@@ -363,8 +368,6 @@ def put_globalparam(id):
 def updatemaster(id, a, b, c, d):
     db.update('master', where='idmaster = $id', vars=locals(), 
       FontName = a, FontNameA = b, FontNameB = c, idglobal = d)
-    db.commit()
-    wcom(db)
     db.query("commit")
     return None
 
@@ -375,7 +378,7 @@ def update_globalparam(id, a, b, c, d, e, f, g, h, i):
     return None
 
 def update_localparam(id, a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14 ):
-    print "idididget local update",id
+    print "id local param update",id
     db.update('localparam', where='idlocal = $id', vars=locals(), 
       px = a1, mean = a2, des=a3, ascl=a4, cap=a5, width=a6, xheight=a7, capital=a8, ascender=a9, descender=a10, inktrap=a11, stemcut=a12, skeleton=a13, superness=a14)
     db.query("commit")
@@ -387,12 +390,10 @@ def writexml():
      glyphName = mfg.cFont.glyphName 
      print "*** 000",glyphName
      if mfg.cFont.idwork =='0' :
-        print "*** 0",glyphName
         glyphsource  = mfg.cFont.fontpath+mfg.cFont.fontna + "/glyphs/"+glyphName+".glif"
         print "*** gylyphsource A*",glyphsource
         xmldoc = xmldocA
      if mfg.cFont.idwork =='1' :
-        print "*** 1",glyphName
         xmldoc = xmldocB
         glyphsource = mfg.cFont.fontpath+mfg.cFont.fontnb + "/glyphs/"+glyphName+".glif"
         print "*** gylyphsource B*",glyphsource
@@ -442,18 +443,20 @@ def writexml():
                    xxmlat(s,db_rowparam[0].superright,'superright','')
                    xxmlat(s,db_rowparam[0].superleft,'superleft','')
                    xxmlat(s,db_rowparam[0].tension,'tension','')
-                   xxmlat(s,db_rowparam[0].tensionend,'tensionend','')
+                   xxmlat(s,db_rowparam[0].tensionand,'tensionand','')
                    xxmlat(s,db_rowparam[0].cycle,'cycle','')
-                   xxmlat(s,db_rowparam[0].penshiftedx,'penshiftedx','')
-                   xxmlat(s,db_rowparam[0].penshiftedy,'penshiftedy','')
-                   xxmlat(s,db_rowparam[0].pointshiftx,'pointshiftx','')
-                   xxmlat(s,db_rowparam[0].pointshifty,'pointshifty','')
+                   xxmlat(s,db_rowparam[0].penshifted,'penshifted','')
+                   xxmlat(s,db_rowparam[0].pointshift,'pointshift','')
                    xxmlat(s,db_rowparam[0].penwidth,'penwidth','')
                    xxmlat(s,db_rowparam[0].xHeight,'xHeight','')
                    xxmlat(s,db_rowparam[0].cardinal,'cardinal','')
                    xxmlat(s,db_rowparam[0].overx,'overx','')
                    xxmlat(s,db_rowparam[0].overbase,'overbase','')
                    xxmlat(s,db_rowparam[0].overcap,'overcap','')
+                   xxmlat(s,db_rowparam[0].stemcutter,'stemcutter','')
+                   xxmlat(s,db_rowparam[0].stemshift,'stemshift','')
+                   xxmlat(s,db_rowparam[0].inktrap_l,'inktrap_l','')
+                   xxmlat(s,db_rowparam[0].inktrap_r,'inktrap_r','')
 
              s.toxml()
      print "glyphsource", glyphsource

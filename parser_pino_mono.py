@@ -9,8 +9,7 @@ charname = sys.argv[1]
 font_a =  dirnamef1 +"/"+charname 
 font_b =  dirnamef2 +"/"+charname 
 
-print """ 
-% File parsed with ufo2mf (UFO to Metafont) by Simon Egli and Walter Egli  %
+print """% File parsed with ufo2mf (UFO to Metafont) by Walter Egli, Simon Egli, Wei Huang  %
 
 % box dimension definition %
 """
@@ -33,11 +32,10 @@ uni = minidom.parse(font_a)
 itemlist = uni.getElementsByTagName('unicode')
 u = itemlist[0].attributes['hex'].value
 
-mean = ['a', 'c', 'e', 'm', 'n', 'o', 'r', 's', 'u', 'v', 'w', 'x', 'z', 'h', 'b', 'd','bar']
+mean = ['a', 'c', 'e', 'm', 'n', 'o', 'r', 's', 'u', 'v', 'w', 'x', 'z']
 des = ['g', 'j', 'p', 'q', 'y']
-dept = ['g', 'j', 'p', 'q', 'y']
-asc = ['bar', 'k', 'i', 'l', 't', 'f']
-cap = ['f', 'A', 'B', 'C', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+asc = ['b', 'h', 'd', 'k', 'i', 'l', 't', 'f']
+cap = ['f', 'A', 'B', 'C', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'zero', 'bar']
 
 # ggroup=""
 
@@ -47,8 +45,6 @@ if g in mean :
 if g in des :
     ggroup = 'des#'
 
-if g in dept :
-    ggroup2 = '0'
 else : 
     ggroup2 = '0'
 
@@ -624,7 +620,7 @@ for i in range (0,nnz) :
 
 
         
-# reading font Pen strokes
+# reading font Pen Positions
 
 print """
 
@@ -647,12 +643,27 @@ stemcutter = []
 stemcutterval = []
 
 
+inktrap_l = []
+inktrap_lval = []
+
+
+inktrap_r = []
+inktrap_rval = []
+
+
 # add iteration to string
 
 for i in range (1,100):
 
   stemcutter.append("")
   stemcutterval.append(0)
+
+  inktrap_l.append("")
+  inktrap_lval.append(0)
+
+  inktrap_r.append("")
+  inktrap_rval.append(0)
+
 
 # search for parameter values
   
@@ -673,6 +684,19 @@ for item in itemlist :
        except :
        	 istemcutter = False
 
+       try :
+	 iinktrap_l = item.attributes['inktrap_l'].value   
+	 iinktrap_l = True
+       except :
+       	 iinktrap_l = False
+
+       try :
+	 iinktrap_r = item.attributes['inktrap_r'].value   
+	 iinktrap_r = True
+       except :
+       	 iinktrap_r = False
+
+
        ipn = 1   
      except : 
        inattr=inattr+1 
@@ -690,6 +714,19 @@ for item in itemlist :
 	   del stemcutterval[i-1]
            stemcutterval.insert(i-1,istemcutterval)
 
+         if iinktrap_l == True :
+           iinktrap_lval = item.attributes['inktrap_l'].value
+           del inktrap_l[i-1]
+           inktrap_l.insert(i-1,"inktrap_l")
+	   del inktrap_lval[i-1]
+           inktrap_lval.insert(i-1,iinktrap_lval)
+
+         if iinktrap_r == True :
+           iinktrap_rval = item.attributes['inktrap_r'].value
+           del inktrap_r[i-1]
+           inktrap_r.insert(i-1,"inktrapcut")
+	   del inktrap_rval[i-1]
+           inktrap_rval.insert(i-1,iinktrap_rval)
 
 nnz = 0
 for zitem in zzn :
@@ -722,6 +759,12 @@ for i in range (0,nnz) :
 
   if stemcutter[i] <> "" :
     zeile = zeile + "-" + stemcutter[i] + "(" +  str(stemcutterval[i]) + ")"      
+ 
+  if inktrap_l[i] <> "" :
+    zeile = zeile + "- inktrapcut (" +  str(inktrap_lval[i]) + ")"      
+ 
+  if inktrap_r[i] <> "" :
+    zeile = zeile + "- inktrapcut (" +  str(inktrap_rval[i]) + ")"      
  
   else: 
      zeile = zeile 
@@ -857,6 +900,20 @@ overcapval = []
 
 
 
+inktrap_l = []
+inktrap_lval = []
+
+
+inktrap_r = []
+inktrap_rval = []
+
+stemshift = []
+stemshiftval = []
+
+
+
+
+
 
 # add iteration to string
 
@@ -886,6 +943,14 @@ for i in range (1,100):
   overcap.append("")
   overcapval.append(0)
 
+  inktrap_l.append("")
+  inktrap_lval.append(0)
+
+  inktrap_r.append("")
+  inktrap_rval.append(0)
+
+  stemshift.append("")
+  stemshiftval.append(0)
 
 
 
@@ -952,7 +1017,23 @@ for item in itemlist :
        except :
        	 iovercap = False
 
+       try :
+	 iinktrap_l = item.attributes['inktrap_l'].value   
+	 iinktrap_l = True
+       except :
+       	 iinktrap_l = False
 
+       try :
+	 iinktrap_r = item.attributes['inktrap_r'].value   
+	 iinktrap_r = True
+       except :
+       	 iinktrap_r = False
+
+       try :
+	 istemshift = item.attributes['stemshift'].value   
+	 istemshift = True
+       except :
+       	 istemshift = False
 
 
 
@@ -1024,6 +1105,29 @@ for item in itemlist :
 	   del overcapval[i-1]
            overcapval.insert(i-1,iovercapval)
 
+         if iinktrap_l == True :
+           iinktrap_lval = item.attributes['inktrap_l'].value
+           del inktrap_l[i-1]
+           inktrap_l.insert(i-1,"inktrapcut")
+	   del inktrap_lval[i-1]
+           inktrap_lval.insert(i-1,iinktrap_lval)
+
+         if iinktrap_r == True :
+           iinktrap_rval = item.attributes['inktrap_r'].value
+           del inktrap_r[i-1]
+           inktrap_r.insert(i-1,"inktrapcut")
+	   del inktrap_rval[i-1]
+           inktrap_rval.insert(i-1,iinktrap_rval)
+
+         if istemshift == True :
+           istemshiftval = item.attributes['stemshift'].value
+           del stemshift[i-1]
+           stemshift.insert(i-1,"stemshift")
+	   del stemshiftval[i-1]
+           stemshiftval.insert(i-1,istemshiftval)
+
+
+
 
 nnz = 0
 for zitem in zzn :
@@ -1054,14 +1158,24 @@ for i in range (0,nnz) :
 
 # parameters 
 
-  if pointshifted[i] <> "" :
-    zeile = zeile +" shifted (" + str(pointshiftedval[i]) + ",0)"       
-
-#  if overx[i] <> "" :
-#    zeile = zeile + " shifted (0, mean-y" + str(overxval[i]) + ") + (0, over)"    
-
   if overx[i] <> "" :
       zeile = zeile + " shifted (0, (A_mean + metapolation * (A_mean - B_mean)) - y" + str(zitem) + str(overxval[i]) + ") + (0, over)" 
+
+
+  if pointshifted[i] <> "" :
+      zeile = zeile +" shifted (" + str(pointshiftedval[i]) + ",0)"       
+
+
+  if stemshift[i] <> "" :
+      zeile = zeile +" stemshift (" + str(stemshiftval[i]) + ")"       
+
+
+  if inktrap_l[i] <> "" :
+      zeile = zeile +" inktrap_l (" + str(inktrap_lval[i]) + ")"       
+
+
+  if inktrap_r[i] <> "" :
+      zeile = zeile +" inktrap_r (" + str(inktrap_rval[i]) + ")"       
 
   if overbase[i] <> "" :
       zeile = zeile + " shifted (0, - y" + str(zitem) + str(overbaseval[i]) + ") - (0, over)" 
@@ -1125,8 +1239,8 @@ dirvalB = []
 leftp = []
 leftpvalB = []
 
-right = []
-rightvalB = []
+rightp = []
+rightpvalB = []
 
 upp = []
 uppvalB = []
@@ -1170,8 +1284,8 @@ for i in range (1,100):
   leftp.append("")
   leftpvalB.append(0)
 
-  right.append("")
-  rightvalB.append(0)
+  rightp.append("")
+  rightpvalB.append(0)
 
   upp.append("")
   uppvalB.append(0)
@@ -1231,10 +1345,10 @@ for item in itemlist :
        	 iupp = False
 
        try :
-	 iright = item.attributes['right'].value   
-	 iright = True
+	 irightp = item.attributes['rightp'].value   
+	 irightp = True
        except :
-       	 iright = False
+       	 irightp = False
 
        try :
 	 idownp = item.attributes['downp'].value   
@@ -1328,12 +1442,12 @@ for item in itemlist :
 	   del leftpvalB[i-1]
            leftpvalB.insert(i-1,ileftpval)
 
-         if iright == True :
-           irightval = item.attributes['right'].value
-           del right[i-1]
-           right.insert(i-1,"right")
-	   del rightvalB[i-1]
-           rightvalB.insert(i-1,irightval)
+         if irightp == True :
+           irightpval = item.attributes['rightp'].value
+           del rightp[i-1]
+           rightp.insert(i-1,"right")
+	   del rightpvalB[i-1]
+           rightpvalB.insert(i-1,irightpval)
 
          if idownp == True :
            idownpval = item.attributes['downp'].value
@@ -1441,8 +1555,8 @@ dirval = []
 leftp = []
 leftpval = []
 
-right = []
-rightval = []
+rightp = []
+rightpval = []
 
 upp = []
 uppval = []
@@ -1456,8 +1570,8 @@ dir2val = []
 leftp2 = []
 leftp2val = []
 
-right2 = []
-right2val = []
+rightp2 = []
+rightp2val = []
 
 upp2 = []
 upp2val = []
@@ -1514,8 +1628,8 @@ for i in range (1,100):
   leftp.append("")
   leftpval.append(0)
 
-  right.append("")
-  rightval.append(0)
+  rightp.append("")
+  rightpval.append(0)
 
   upp.append("")
   uppval.append(0)
@@ -1529,8 +1643,8 @@ for i in range (1,100):
   leftp2.append("")
   leftp2val.append(0)
 
-  right2.append("")
-  right2val.append(0)
+  rightp2.append("")
+  rightp2val.append(0)
 
   upp2.append("")
   upp2val.append(0)
@@ -1630,16 +1744,16 @@ for item in itemlist :
        	 iupp2 = False
 
        try :
-	 iright = item.attributes['right'].value   
-	 iright = True
+	 irightp = item.attributes['rightp'].value   
+	 irightp = True
        except :
-       	 iright = False
+       	 irightp = False
 
        try :
-	 iright2 = item.attributes['right2'].value   
-	 iright2 = True
+	 irightp2 = item.attributes['rightp2'].value   
+	 irightp2 = True
        except :
-       	 iright2 = False
+       	 irightp2 = False
 
        try :
 	 idownp = item.attributes['downp'].value   
@@ -1742,7 +1856,7 @@ for item in itemlist :
   
          if icycle == True :
            icycleval = item.attributes['cycle'].value
-           del startp[i-1]
+           del cycle[i-1]
            cycle.insert(i-1,"cycle")
 	   del cycleval[i-1]
            cycleval.insert(i-1,icycleval)
@@ -1789,12 +1903,12 @@ for item in itemlist :
 	   del leftpval[i-1]
            leftpval.insert(i-1,ileftpval)
 
-         if iright == True :
-           irightval = item.attributes['right'].value
-           del right[i-1]
-           right.insert(i-1,"{right} ")
-	   del rightval[i-1]
-           rightval.insert(i-1,irightval)
+         if irightp == True :
+           irightpval = item.attributes['rightp'].value
+           del rightp[i-1]
+           rightp.insert(i-1,"{right} ")
+	   del rightpval[i-1]
+           rightpval.insert(i-1,irightpval)
 
          if idownp == True :
            idownpval = item.attributes['downp'].value
@@ -1824,12 +1938,12 @@ for item in itemlist :
 	   del leftp2val[i-1]
            leftp2val.insert(i-1,ileftp2val)
 
-         if iright2 == True :
-           iright2val = item.attributes['right2'].value
-           del right2[i-1]
-           right2.insert(i-1,"{right} ")
-	   del right2val[i-1]
-           right2val.insert(i-1,iright2val)
+         if irightp2 == True :
+           irightp2val = item.attributes['rightp2'].value
+           del rightp2[i-1]
+           rightp2.insert(i-1,"{right} ")
+	   del rightp2val[i-1]
+           rightp2val.insert(i-1,irightp2val)
                   
          if itension == True :
            itensionval = item.attributes['tension'].value
@@ -1904,6 +2018,10 @@ for item in itemlist :
            overcapval.insert(i-1,iovercapval)
 
 
+
+
+
+
 nnz = 0
 for zitem in zzn :
   nnz = nnz +1 
@@ -1919,9 +2037,9 @@ zeilestart = ""
   
 
 if tripledash == True :
- dash = "---"
+ dash = " --- "
 else :
- dash = "..."
+ dash = " ... "
 
  
 for i in range (0,nnz-1) :
@@ -1940,25 +2058,30 @@ for i in range (0,nnz-1) :
   if startp[i+1]=="" : 
 # if startp, add parameters
 
-    dash = "..."
+
+    dash = " ... "
     if tripledash[i] <> "" :
-      dash = "---"
+      dash = " --- "
     else :
       if doubledash[i] <> "" :
-        dash = "--"
+        dash = " -- "
       else :
         if tension[i] <> "" :
           dash = ""
+
         else :
-          if superleft[i] <> "" :
+          if tensionand[i] <> "" :
             dash = ""
+  
           else :
-            if superright[i] <> "" :
+            if superleft[i] <> "" :
               dash = ""
             else :
-              if dir2[i] <> "" :
+              if superright[i] <> "" :
                 dash = ""
-
+              else :
+                if dir2[i] <> "" :
+                  dash = ""
 
 
     if upp[i] <> "" :
@@ -1970,7 +2093,7 @@ for i in range (0,nnz-1) :
     if leftp[i] <> "" :
       zeile = zeile + "{left}"      
 
-    if right[i] <> "" :
+    if rightp[i] <> "" :
       zeile = zeile + "{right}"      
 
     if dir[i] <> "" :
@@ -1988,34 +2111,53 @@ for i in range (0,nnz-1) :
     if superright[i] <> "" :
       zeile = zeile + strtwo + superright[i]+"("+str(zitem)+"e," +str(zitemsuper)+"e, ["+str(superrightval[i]) + '+ (metapolation * (' + str(superrightvalB[i])+ '-' +str(superrightval[i]) + '))])' + strtwo      
       
-    if tensionand[i] <> "" :
-      zeile = zeile + strtwo + "tension" + " ((" + str(tensionandval[i]) + '/100) + (metapolation * ((' + str(tensionandvalB[i]) + '/100) - (' + str(tensionandval[i]) + '/100))))' + " and ((" + str(tensionandval2[i]) + '/100) + (metapolation * ((' + str(tensionandval2B[i]) + '/100) - (' + str(tensionandval2[i]) + '/100))))' + strtwo
+    if  ( tension[i] <> "" and 
+          upp2[i] <> "") :
+            zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100 -' + str(tensionval[i]) + '/100)))' + strtwo  + "{up}" 
 
-    if tension[i] <> "" :
-      zeile = zeile + strtwo + "tension" + " ((" + tensionval[i] + '/100) + (metapolation * ((' + tensionvalB[i] + '/100) - (' + tensionval[i] + '/100))))' + strtwo 
+    if  ( tension[i] <> "" and 
+          downp2[i] <> "") :
+            zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100 -' + str(tensionval[i]) + '/100)))' + strtwo  + "{down}" 
+
+    if  ( tension[i] <> "" and 
+          rightp2[i] <> "") :
+            zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100 -' + str(tensionval[i]) + '/100)))' + strtwo  + "{right}" 
+
+    if  ( tension[i] <> "" and 
+          leftp2[i] <> "") :
+            zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100 -' + str(tensionval[i]) + '/100)))' + strtwo  + "{left}" 
+
+    if  ( tension[i] <> "" and 
+          dir2[i] <> "") :
+            zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100 -' + str(tensionval[i]) + '/100)))' + strtwo  + "{dir "+ str(dir2val[i]) + "}" 
+
+    else :
+      if dir2[i] <> "" :
+        zeile = zeile + " ... {dir "+ str(dir2val[i]) + "}"   
+
+      else :
+        if tension[i] <> "" :
+          zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100 -' + str(tensionval[i]) + '/100 )))' + strtwo  + downp2[i] 
+
+        else :
+          if tensionand[i] <> "" :
+             zeile = zeile + strtwo + "tension" + " ((" + str(tensionandval[i]) + '/100) + (metapolation * ((' + str(tensionandvalB[i]) + '/100) - (' + str(tensionandval[i]) + '/100))))' + " and ((" + str(tensionandval2[i]) + '/100) + (metapolation * ((' + str(tensionandval2B[i]) + '/100) - (' + str(tensionandval2[i]) + '/100))))'  + strtwo
 
 
- 
-    else : 
-       if tension[i] > "" :
-         zeile = zeile 
-       else :
-         if superright[i] > "" :
-           zeile = zeile 
-         else :
-           if superleft[i] > "" :
+          else :
+            if superright[i] > "" :
              zeile = zeile 
-           else :
-             if tensionand[i] > "" :
-               zeile = zeile 
-             else :
-               if penshifted[i] > "" :
+            else :
+              if superleft[i] > "" :
+                zeile = zeile 
+              else :
+                if tensionand[i] > "" :
                  zeile = zeile 
-               else :
-                  if tensionand[i] > "" :
-                    zeile = zeile 
+                else :
+                  if penshifted[i] > "" :
+                   zeile = zeile 
                   else :
-                      zeile = zeile   
+                     zeile = zeile   
    
 
     if downp2[i] <> "" :
@@ -2027,82 +2169,76 @@ for i in range (0,nnz-1) :
         if leftp2[i] <> "" :
           zeile = zeile  + dash + leftp2[i]  
         else :
-          if right2[i] <> "" :
-            zeile = zeile  + dash + right2[i]  
-          else :
-            if dir2[i] <> "" :
-              zeile = zeile + "... {dir "+ str(dir2val[i]) + "}"      
-            else:
-              zeile = zeile + dash
+          if rightp2[i] <> "" :
+            zeile = zeile  + dash + rightp2[i]  
    
+    zeile = zeile + dash 
+
+
+    
       
-# parameters before a new penpos    extra semi after else
+# parameters before a new penpos    (extra semi after else)
+
+
 
   else: 
-   
+
     if penshifted[i] <> "" :
       zeile = zeile + " shifted (" + str(penshiftedval[i]) + ")"       
 
-    if penshiftedy[i] <> "" :
-      zeile = zeile + " shifted (0, y" + str(penshiftedyval[i]) + ")"      
-
-    if doubledash[i] <> "" :
-      zeile = zeile + doubledash[i]    
-
-    if cycle[i] <> "" :
-      zeile = zeile + " ... cycle" + semi
- 
-    else : 
-      if tension[i] <> "" :
-        zeile = zeile + strtwo + "tension" + " (" + tensionval[i] + ' + (metapolation * (' + tensionvalB[i] + '-' + tensionval[i] + ')))' + strtwo  + downp2[i] + semi
-      
-    if tensionand[i] <> "" :
-      zeile = zeile + strtwo + "tension" + " ((" + str(tensionandval[i]) + '/100) + (metapolation * ((' + str(tensionandvalB[i]) + '/100) - (' + str(tensionandval[i]) + '/100))))' + " and ((" + str(tensionandval2[i]) + '/100) + (metapolation * ((' + str(tensionandval2B[i]) + '/100) - (' + str(tensionandval2[i]) + '/100))))' + strtwo   + semi
-
-
-
-      if downp2[i] <> "" :
-        zeile = zeile + dash + downp2[i]  + semi
-      if upp2[i] <> "" :
-        zeile = zeile + dash + upp2[i]  + semi
-      if leftp2[i] <> "" :
-        zeile = zeile + dash  + leftp2[i]  + semi
-      if right2[i] <> "" :
-        zeile = zeile + dash + right2[i]  + semi
-      if dir2[i] <> "" :
-        zeile = zeile + " {dir "+ str(dir2val[i]) + "}"  + semi    
-
-  
-      else : 
-        if tension[i] > "" :
-          zeile = zeile 
-        else :
-          if superright[i] > "" :
-            zeile = zeile 
-          else :
-            if superleft[i] > "" :
-              zeile = zeile 
-            else :
-              if tensionand[i] > "" :
-                zeile = zeile 
-              else :
-                if penshifted[i] > "" :
-                  zeile = zeile 
-                else :
-                  if doubledash[i] > "" :
-                    zeile = zeile 
-                  else :
-                    if tripledash[i] > "" :
-                      zeile = zeile 
-                    else :
-                        zeile = zeile + semi  
-
+    if  ( tension[i] <> "" and 
+          upp2[i] <> "") :
+            zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100-' + str(tensionval[i]) + '/100)))' + strtwo  + "{up}" 
     else :
-       zeile = zeile + semi 
+      if upp2[i] <> "" :
+        zeile = zeile + dash + "{up}" 
+
+    if  ( tension[i] <> "" and 
+          downp2[i] <> "") :
+            zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100-' + str(tensionval[i]) + '/100)))' + strtwo  + "{down}" 
+    else :
+      if downp2[i] <> "" :
+        zeile = zeile + dash + "{down}" 
+
+    if  ( tension[i] <> "" and 
+          rightp2[i] <> "") :
+            zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100-' + str(tensionval[i]) + '/100)))' + strtwo  + "{right}" 
+    else :
+      if rightp2[i] <> "" :
+        zeile = zeile + dash + "{right}" 
+
+    if  ( tension[i] <> "" and 
+          leftp2[i] <> "") :
+            zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100-' + str(tensionval[i]) + '/100)))' + strtwo  + "{left}" 
+    else :
+      if leftp2[i] <> "" :
+        zeile = zeile + dash + "{left}" 
+
+    if  ( tension[i] <> "" and 
+          dir2[i] <> "") :
+            zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100-' + str(tensionval[i]) + '/100)))' + strtwo  + "{dir "+ str(dir2val[i]) + "}" 
+    else :
+      if dir2[i] <> "" :
+        zeile = zeile + dash + "{dir "+ str(dir2val[i]) + "}" 
+
+    if  ( tension[i] <> "" and 
+          cycle[i] <> "") :
+            zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100-' + str(tensionval[i]) + '/100)))' + strtwo + "cycle"
+    else :
+      if  ( tensionand[i] <> "" and 
+            cycle[i] <> "") :
+            zeile = zeile + strtwo + "tension" + " ((" + str(tensionandval[i]) + '/100) + (metapolation * ((' + str(tensionandvalB[i]) + '/100) - (' + str(tensionandval[i]) + '/100))))' + " and ((" + str(tensionandval2[i]) + '/100) + (metapolation * ((' + str(tensionandval2B[i]) + '/100) - (' + str(tensionandval2[i]) + '/100))))' + strtwo + "cycle"
+      else :
+        if cycle[i] <> "" :
+          zeile = zeile + dash + "cycle" 
+
+
+    
+    zeile = zeile + semi 
   print zeile
 
 
-# parameters after final point 
+# parameters after final point ( +1 after i )
 
 
   zitemb = zzn[i+1]
@@ -2111,17 +2247,58 @@ for i in range (0,nnz-1) :
 if penshifted[i+1] <> "" :
  zeile = zeile + " shifted (" + str(penshiftedval[i+1]) + ")"       
 
-if penshiftedy[i+1] <> "" :
- zeile = zeile + " shifted (0, y" + str(penshiftedyval[i+1]) + ")"      
-
-if tension[i] <> "" :
- zeile = zeile + strtwo + "tension" + " ((" + tensionval[i] + '/100) + (metapolation * ((' + tensionvalB[i] + '/100) - (' + tensionval[i] + '/100))))' + strtwo 
-
 if cycle[i+1] <> "" :
- zeile = zeile + " cycle" 
+ zeile = zeile + dash + cycle[i+1] 
+
+if  ( tension[i+1] <> "" and 
+      upp2[i+1] <> "") :
+        zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i+1]) + '/100 + (metapolation * (' + str(tensionvalB[i+1]) + '/100-' + str(tensionval[i+1]) + '/100)))' + strtwo  + "{up}" 
+
+if  ( tension[i+1] <> "" and 
+      downp2[i+1] <> "") :
+        zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i+1]) + '/100 + (metapolation * (' + str(tensionvalB[i+1]) + '/100-' + str(tensionval[i+1]) + '/100)))' + strtwo  + "{down}" 
+
+if  ( tension[i+1] <> "" and 
+      rightp2[i+1] <> "") :
+        zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i+1]) + '/100 + (metapolation * (' + str(tensionvalB[i+1]) + '/100-' + str(tensionval[i+1]) + '/100)))' + strtwo  + "{right}" 
+
+if  ( tension[i+1] <> "" and 
+      leftp2[i+1] <> "") :
+        zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i+1]) + '/100 + (metapolation * (' + str(tensionvalB[i+1]) + '/100-' + str(tensionval[i+1]) + '/100)))' + strtwo  + "{left}" 
+
+if  ( tension[i+1] <> "" and 
+      dir2[i+1] <> "") :
+        zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i+1]) + '/100 + (metapolation * (' + str(tensionvalB[i+1]) + '/100-' + str(tensionval[i+1]) + '/100)))' + strtwo  + "{dir "+ str(dir2val[i+1]) + "}" 
+
+if upp2[i+1] <> "" :
+ zeile = zeile + dash + upp2[i+1]  
 
 else :
- zeile = zeile
+  if dir2[i+1] <> "" :
+    zeile = zeile + " ... {dir "+ str(dir2val[i+1]) + "}"   
+  else :
+    if downp2[i] <> "" :
+      zeile = zeile + dash + downp2[i]  
+    else :
+      if upp2[i] <> "" :
+        zeile = zeile + dash + upp2[i]  
+      else :
+        if leftp2[i] <> "" :
+          zeile = zeile + dash  + leftp2[i]  
+        else :
+          if rightp2[i] <> "" :
+            zeile = zeile + dash + rightp2[i]    
+
+
+          else :
+            if tension[i+1] <> "" :
+              zeile = zeile + strtwo + "tension" + " (" + tensionval[i+1] + '/100 + (metapolation * (' + tensionvalB[i+1] + '/100-' + tensionval[i+1] + '/100)))' + strtwo  + downp2[i+1] 
+
+
+
+
+            else :
+               zeile = zeile
 
 # print closing z point
 
@@ -2129,7 +2306,6 @@ print zeile
 print semi
 
 
- 
 print """
 
 % pen labels

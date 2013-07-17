@@ -1,5 +1,7 @@
 $def with (posts,master,fontsource,webglyph)
-<!-- <meta http-equiv="refresh" content="0;url=/view/1"> -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
 <h2>Glyph View</h2>
 <p> Selected Font : <br>
 $for fonts in fontsource:
@@ -25,7 +27,23 @@ Optimized for Chrome
 	font-weight:normal;
 	font-style:normal;
 }
+@font-face {
+  font-family: 'Inconsolata';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Inconsolata'), 
+  url('/static/Inconsolata/Inconsolata-Regular.ttf') format('truetype'),
+  url('/static/Inconsolata/Inconsolata-Regular.woff') format('woff');
+}
 
+@font-face {
+  font-family: 'Inconsolata';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Inconsolata Bold'), local('Inconsolata-Bold'), 
+  url('/static/Inconsolata/Inconsolata-Bold.ttf') format('truetype'),
+  url('/static/Inconsolata/Inconsolata-Bold.woff') format('woff');
+}
 left {
 	position:absolute;
 
@@ -64,7 +82,7 @@ right {
       }
 
 p,h2,#menu,table,th,td,#ruler {
-	font:normal 15px/19px "Courier New",Courier,mono;
+	font:normal 15px/19px Menlo,'Inconsolata',mono;
 	z-index:-5;
 }
 h2 {

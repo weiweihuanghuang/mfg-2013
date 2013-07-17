@@ -1,7 +1,0 @@
- 
-% File parsed with ufo2mf (UFO to Metafont) by Simon Egli and Walter Egli  %
-
-
-
-% box dimension definition %
-

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="h" format="1">
+  <advance width="578"/>
+  <unicode hex="0068"/>
+  <outline>
+    <contour>
+      <point x="86.0" y="0.0" type="line" name="z2r"/>
+      <point x="179.0" y="0.0" type="line" name="z2l"/>
+      <point x="179.0" y="700.0" type="line" name="z1l"/>
+      <point x="86.0" y="700.0" type="line" name="z1r"/>
+    </contour>
+    <contour>
+      <point x="185.0" y="394.0"/>
+      <point x="236.0" y="427.0"/>
+      <point x="309.0" y="427.0" type="curve" smooth="yes" name="z4r"/>
+      <point x="366.0" y="427.0"/>
+      <point x="406.0" y="395.0"/>
+      <point x="406.0" y="333.0" type="curve" smooth="yes" name="z5r"/>
+      <point x="406.0" y="0.0" type="line" name="z6r"/>
+      <point x="499.0" y="0.0" type="line" name="z6l"/>
+      <point x="499.0" y="349.0" type="line" smooth="yes" name="z5l"/>
+      <point x="499.0" y="449.0"/>
+      <point x="431.0" y="508.0"/>
+      <point x="325.0" y="508.0" type="curve" smooth="yes" name="z4l"/>
+      <point x="247.0" y="508.0"/>
+      <point x="173.0" y="465.0"/>
+      <point x="133.0" y="391.0" type="curve" name="z3l"/>
+      <point x="133.0" y="306.0" type="line" name="z3r"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.typemytype.robofont.layerData</key>
+      <dict>
+        <key>background</key>
+        <dict>
+          <key>anchors</key>
+          <array>
+          </array>
+          <key>components</key>
+          <array>
+          </array>
+          <key>contours</key>
+          <array>
+          </array>
+          <key>lib</key>
+          <dict>
+          </dict>
+          <key>name</key>
+          <string>h</string>
+          <key>unicodes</key>
+          <array>
+          </array>
+          <key>width</key>
+          <integer>578</integer>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

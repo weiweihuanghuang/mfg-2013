@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="W" format="1">
+  <advance width="902"/>
+  <unicode hex="0057"/>
+  <outline>
+    <contour>
+      <point x="126" y="650" type="line" name="z1l"/>
+      <point x="27" y="650" type="line" name="z1r"/>
+      <point x="140" y="247" type="line" name="z2r"/>
+      <point x="209" y="0" type="line" name="z3r"/>
+      <point x="298" y="0" type="line" name="z3l"/>
+      <point x="233" y="247" type="line" name="z2l"/>
+    </contour>
+    <contour>
+      <point x="425" y="351" type="line" name="z5l"/>
+      <point x="504" y="650" type="line" name="z4l"/>
+      <point x="413" y="650" type="line" name="z4r"/>
+      <point x="337" y="351" type="line" name="z5r"/>
+      <point x="310" y="247" type="line" name="z6r"/>
+      <point x="247" y="0" type="line" name="z7r"/>
+      <point x="332" y="0" type="line" name="z7l"/>
+      <point x="397" y="247" type="line" name="z6l"/>
+    </contour>
+    <contour>
+      <point x="604" y="0" type="line" name="z14r"/>
+      <point x="693" y="0" type="line" name="z14l"/>
+      <point x="762" y="247" type="line" name="z13l"/>
+      <point x="875" y="650" type="line" name="z12l"/>
+      <point x="776" y="650" type="line" name="z12r"/>
+      <point x="669" y="247" type="line" name="z13r"/>
+    </contour>
+    <contour>
+      <point x="570" y="0" type="line" name="z11r"/>
+      <point x="655" y="0" type="line" name="z11l"/>
+      <point x="592" y="247" type="line" name="z10l"/>
+      <point x="565" y="351" type="line" name="z9l"/>
+      <point x="489" y="650" type="line" name="z8l"/>
+      <point x="398" y="650" type="line" name="z8r"/>
+      <point x="477" y="351" type="line" name="z9r"/>
+      <point x="505" y="247" type="line" name="z10r"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.typemytype.robofont.layerData</key>
+      <dict>
+        <key>background</key>
+        <dict>
+          <key>anchors</key>
+          <array>
+          </array>
+          <key>components</key>
+          <array>
+          </array>
+          <key>contours</key>
+          <array>
+          </array>
+          <key>lib</key>
+          <dict>
+          </dict>
+          <key>name</key>
+          <string>W</string>
+          <key>unicodes</key>
+          <array>
+          </array>
+          <key>width</key>
+          <integer>902</integer>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

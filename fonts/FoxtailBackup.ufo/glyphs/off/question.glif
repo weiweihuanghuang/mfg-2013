@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="question" format="1">
+  <advance width="500"/>
+  <unicode hex="003F"/>
+  <outline>
+    <contour>
+      <point x="259" y="170" type="line" name="z7l"/>
+      <point x="259" y="211" type="line" smooth="yes" name="z6l"/>
+      <point x="259" y="294"/>
+      <point x="456" y="333"/>
+      <point x="456" y="467" type="curve" smooth="yes" name="z5l"/>
+      <point x="456" y="562"/>
+      <point x="385" y="658"/>
+      <point x="249" y="658" type="curve" smooth="yes" name="z4l"/>
+      <point x="153" y="658"/>
+      <point x="107" y="646"/>
+      <point x="42" y="609" type="curve" name="z3l"/>
+      <point x="42" y="514" type="line" name="z3r"/>
+      <point x="128" y="561"/>
+      <point x="179" y="569"/>
+      <point x="233" y="569" type="curve" smooth="yes" name="z4r"/>
+      <point x="318" y="569"/>
+      <point x="354" y="520"/>
+      <point x="354" y="465" type="curve" smooth="yes" name="z5r"/>
+      <point x="354" y="373"/>
+      <point x="171" y="337"/>
+      <point x="171" y="222" type="curve" smooth="yes" name="z6r"/>
+      <point x="171" y="170" type="line" name="z7r"/>
+    </contour>
+    <contour>
+      <point x="164" y="0" type="line" name="z2r"/>
+      <point x="267" y="0" type="line" name="z2l"/>
+      <point x="267" y="106" type="line" name="z1l"/>
+      <point x="164" y="106" type="line" name="z1r"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.typemytype.robofont.layerData</key>
+      <dict>
+        <key>background</key>
+        <dict>
+          <key>anchors</key>
+          <array>
+          </array>
+          <key>components</key>
+          <array>
+          </array>
+          <key>contours</key>
+          <array>
+          </array>
+          <key>lib</key>
+          <dict>
+          </dict>
+          <key>name</key>
+          <string>question</string>
+          <key>unicodes</key>
+          <array>
+          </array>
+          <key>width</key>
+          <integer>500</integer>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

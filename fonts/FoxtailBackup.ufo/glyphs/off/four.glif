@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="four" format="1">
+  <advance width="577"/>
+  <unicode hex="0034"/>
+  <outline>
+    <contour>
+      <point x="540" y="176" type="line" name="z12r"/>
+      <point x="540" y="254" type="line" name="z12l"/>
+      <point x="194" y="254" type="line" name="z11l"/>
+      <point x="81" y="254" type="line" name="z10l"/>
+      <point x="37" y="254" type="line" name="z9l"/>
+      <point x="37" y="176" type="line" name="z9r"/>
+      <point x="81" y="176" type="line" name="z10r"/>
+      <point x="194" y="176" type="line" name="z11r"/>
+    </contour>
+    <contour>
+      <point x="311" y="0" type="line" name="z4r"/>
+      <point x="408" y="0" type="line" name="z4l"/>
+      <point x="408" y="440" type="line" name="z3l"/>
+      <point x="408" y="582" type="line" name="z2l"/>
+      <point x="408" y="650" type="line" name="z1l"/>
+      <point x="311" y="650" type="line" name="z1r"/>
+      <point x="311" y="582" type="line" name="z2r"/>
+      <point x="311" y="440" type="line" name="z3r"/>
+    </contour>
+    <contour>
+      <point x="99" y="343" type="line" name="z7r"/>
+      <point x="37" y="254" type="line" name="z8r"/>
+      <point x="102" y="209" type="line" name="z8l"/>
+      <point x="164" y="298" type="line" name="z7l"/>
+      <point x="277" y="461" type="line" name="z6l"/>
+      <point x="376" y="605" type="line" name="z5l"/>
+      <point x="311" y="650" type="line" name="z5r"/>
+      <point x="212" y="506" type="line" name="z6r"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.typemytype.robofont.layerData</key>
+      <dict>
+        <key>background</key>
+        <dict>
+          <key>anchors</key>
+          <array>
+          </array>
+          <key>components</key>
+          <array>
+          </array>
+          <key>contours</key>
+          <array>
+          </array>
+          <key>lib</key>
+          <dict>
+          </dict>
+          <key>name</key>
+          <string>four</string>
+          <key>unicodes</key>
+          <array>
+          </array>
+          <key>width</key>
+          <integer>577</integer>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>
