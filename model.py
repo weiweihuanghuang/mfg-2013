@@ -40,10 +40,11 @@ def putFont():
   mfg.cFont.fontpath="fonts/"+str(mfg.cFont.idmaster)+"/"
   
   print mfg.cFont.glyphName
+  print mfg.cFont.glyphunic
   global glyphsource
   global glyphnameNew
   global glyphName
-  glyphName = mfg.cFont.glyphName 
+  glyphName = mfg.cFont.glyphunic 
   glyphsourceA = mfg.cFont.fontpath+mfg.cFont.fontna + "/glyphs/"+glyphName+".glif"
   glyphsourceB = mfg.cFont.fontpath+mfg.cFont.fontnb + "/glyphs/"+glyphName+".glif"
   glyphnameNew = glyphName+".glif"
@@ -214,21 +215,21 @@ def gidmast(idwork):
 
 def get_posts():
     idmaster = gidmast(mfg.cFont.idwork)
-    glyphName = mfg.cFont.glyphName 
+    glyphName = mfg.cFont.glyphunic 
     ids= " and idmaster="+'"'+str(idmaster)+'"'
     q1="SELECT IFNULL(PointName, '') PointNr,x,y,concat('position:absolute;left:',0+x,'px;top:',0-y,'px; ',IF (PointName > '', 'color:red;', IF (contrp > 0 , 'z-index:-1;color:blue;', 'z-index:-2;color:CCFFFF;')) ) position, id from vglyphoutline where GlyphName="+'"'+glyphName+'"'
     return list(db.query(q1+ids ))
 
 def get_postspa():
     idmaster = gidmast(mfg.cFont.idwork)
-    glyphName = mfg.cFont.glyphName 
+    glyphName = mfg.cFont.glyphunic 
     ids= " and idmaster="+'"'+str(idmaster)+'"'
     dbstr=db.select('vglyphoutlines', where='glyphName='+'"'+glyphName+'"' +ids, vars=locals())     
     return list(dbstr)
 
 
 def get_post(id):
-    glyphName = mfg.cFont.glyphName 
+    glyphName = mfg.cFont.glyphunic 
     idmaster = gidmast(mfg.cFont.idwork)
     ids= " and idmaster="+'"'+str(idmaster)+'"'
     try:
@@ -237,7 +238,7 @@ def get_post(id):
         return None
 
 def get_glyphparam(id):
-    glyphName = mfg.cFont.glyphName 
+    glyphName = mfg.cFont.glyphunic 
     idmaster = gidmast(mfg.cFont.idwork)
     ids= " and idmaster="+'"'+str(idmaster)+'"'
     try:
@@ -247,7 +248,7 @@ def get_glyphparam(id):
 
 
 def update_post(id, x, y):
-    glyphName = mfg.cFont.glyphName 
+    glyphName = mfg.cFont.glyphunic 
     idmaster = gidmast(mfg.cFont.idwork)
     ids= " and idmaster="+'"'+str(idmaster)+'"'
     db.update('glyphoutline', where='id=$id and GlyphName="'+glyphName+'"'+ids, vars=locals(),
@@ -257,7 +258,7 @@ def update_post(id, x, y):
 def update_glyphparamD(id, a, b):
 # string:syntax update glyphparam set leftp='1' where id=75 and Glyphname='p' and idmaster=1;
     print a,b
-    glyphName = mfg.cFont.glyphName 
+    glyphName = mfg.cFont.glyphunic 
     idmaster = gidmast(mfg.cFont.idwork)
     ids= " and idmaster="+'"'+str(idmaster)+'"'
     aa = a 
@@ -271,7 +272,7 @@ def update_glyphparamD(id, a, b):
     db.query("commit")
   
 def update_glyphparam(id, a):
-    glyphName = mfg.cFont.glyphName 
+    glyphName = mfg.cFont.glyphunic 
     idmaster = gidmast(mfg.cFont.idwork)
     ids= " and idmaster="+'"'+str(idmaster)+'"'
     if a != '' :
@@ -284,7 +285,7 @@ def update_glyphparam(id, a):
 
 def insert_glyphparam(id, a):
     
-    glyphName = mfg.cFont.glyphName 
+    glyphName = mfg.cFont.glyphunic 
     idmaster = gidmast(mfg.cFont.idwork)
     db.insert('glyphparam', id=id,GlyphName=glyphName, PointName=a, idmaster=idmaster)
 
@@ -387,7 +388,7 @@ def update_localparam(id, a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14 ):
 
 def writexml():
 
-     glyphName = mfg.cFont.glyphName 
+     glyphName = mfg.cFont.glyphunic 
      print "*** 000",glyphName
      if mfg.cFont.idwork =='0' :
         glyphsource  = mfg.cFont.fontpath+mfg.cFont.fontna + "/glyphs/"+glyphName+".glif"
@@ -567,7 +568,7 @@ def ufo2mf():
 
   for ch1 in charlist1: 
     fnb,ext=buildfname (ch1)
-    if ext in ["glif"] and ( fnb == mfg.cFont.glyphName or mfg.cFont.timestamp == 0 ) :
+    if ext in ["glif"] and ( fnb == mfg.cFont.glyphunic or mfg.cFont.timestamp == 0 ) :
 
       print "file",ch1
     

@@ -38,6 +38,7 @@ class cFont:
      idmaster = 1
      idwork   = '0'
      glyphName =""
+     glyphunic = "1"
      superness =1
      metapolation=0.5
      over=0.1
@@ -196,8 +197,11 @@ class Font1:
         )
     def GET(self,id):
         mmaster= list(model.get_masters())
-        if id > '0' : 
+        if id > '0' and id <'1000': 
            master= list(model.get_master(id))
+        if id > "1000" :
+              cFont.glyphName = chr(int(id)-1001+32)
+              cFont.glyphunic = str(int(id)-1001)
         fontname =cFont.fontname 
         fontna = cFont.fontna
         fontnb = cFont.fontnb
@@ -210,15 +214,20 @@ class Font1:
         return render.font1(fontlist,form,mmaster,cFont)
 
     def POST (self,id):
+        print "post",id
         mmaster= list(model.get_masters())
         form = Font1.form()
         form.fill()
         cFont.fontname = form.d.Name
         cFont.fontna = form.d.UFO_A
         cFont.fontnb = form.d.UFO_B
+        if id >'1000' :
+           form.d.GLYPH=chr(int(id)-1001+32)
+           cFont.glyphunic = str(int(id)-1001)
+           form.fill()
         cFont.glyphName  = form.d.GLYPH
         cFont.loadoption = form.d.loadoption
-        if id > '0':
+        if id > '0' and id <'1000':
            model.update_master(id)
            master= list(model.get_master(id))
         model.putFont()
