@@ -17,7 +17,7 @@ rm font-webfont.ttf
 
 # mf font.mf
 
-perl mf2pt1.pl --encoding=t1 --comment="Copyright (c) 2013" --family="font" --nofixedpitch --fullname="font" --name="font-regular" --weight="regular" fonts/1/font.mf
+perl mf2pt1.pl --encoding=mtpenc --comment="Copyright (c) 2013" --family="font" --nofixedpitch --fullname="font" --name="font-regular" --weight="regular" fonts/1/font.mf
 
 sfnt2woff font.otf && ./ttf2eot font.ttf > font.eot
 sfnt2woff font.otf > font.woff

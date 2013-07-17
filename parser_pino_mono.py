@@ -32,10 +32,10 @@ uni = minidom.parse(font_a)
 itemlist = uni.getElementsByTagName('unicode')
 u = itemlist[0].attributes['hex'].value
 
-mean = ['a', 'c', 'e', 'm', 'n', 'o', 'r', 's', 'u', 'v', 'w', 'x', 'z']
+mean = ['65', 'c', 'e', 'm', '78', 'n', 'o', 'r', 's', 'u', 'v', 'w', 'x', 'z']
 des = ['g', 'j', 'p', 'q', 'y']
 asc = ['b', 'h', 'd', 'k', 'i', 'l', 't', 'f']
-cap = ['f', 'A', 'B', 'C', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'zero', 'bar']
+cap = ['f', 'A', 'B', 'C', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'zero', '92']
 
 # ggroup=""
 
@@ -58,11 +58,11 @@ if g in asc :
 #    ggroup = 'asc#'
 
 
-print 'beginfontchar("' + g + '", (' + w + '*A_width + metapolation * (' + w + '*A_width - ' + w2 + '*B_width)) * width_' + g + "+ width_" +  g  + "R#, A_" + ggroup + " + metapolation * (B_" + ggroup + " - A_" + ggroup + "), " + ggroup2 + ");"
-print """if known ps_output:
-glyph_name "uni""" + u + """"; 
-fi
-"""
+print 'beginfontchar(' + g + ', (' + w + '*A_width + metapolation * (' + w + '*A_width - ' + w2 + '*B_width)) * width_' + g + "+ width_" +  g  + "R#, A_" + ggroup + " + metapolation * (B_" + ggroup + " - A_" + ggroup + "), " + ggroup2 + ");"
+# print """if known ps_output:
+# glyph_name "uni""" + u + """"; 
+# fi
+# """
 
 # reading l and r as pxl and pxr font A
 
@@ -392,10 +392,10 @@ glyph = glif.getElementsByTagName('glyph')
 g = glyph[0].attributes['name'].value
 
 
-mean = ['a', 'c', 'e', 'm', 'n', 'o', 'r', 's', 'u', 'v', 'w', 'x', 'z', 'h', 'b', 'd']
+mean = ['65', 'c', 'e', 'm', '78', 'n', 'o', 'r', 's', 'u', 'v', 'w', 'x', 'z']
 des = ['g', 'j', 'p', 'q', 'y']
-asc = ['bar','k', 'i', 'l', 't', 'f']
-cap = ['f', 'A', 'B', 'C', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+asc = ['b', 'h', 'd', 'k', 'i', 'l', 't', 'f']
+cap = ['f', 'A', 'B', 'C', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'zero', '92']
 
 # ggroup=""
 
@@ -841,10 +841,11 @@ glyph = glif.getElementsByTagName('glyph')
 g = glyph[0].attributes['name'].value
 
 
-mean = ['a', 'c', 'e', 'm', 'n', 'o', 'r', 's', 'u', 'v', 'w', 'x', 'z', 'h', 'b', 'd']
+mean = ['65', 'c', 'e', 'm', '78', 'n', 'o', 'r', 's', 'u', 'v', 'w', 'x', 'z']
 des = ['g', 'j', 'p', 'q', 'y']
-asc = ['bar','k', 'i', 'l', 't', 'f']
-cap = ['f', 'A', 'B', 'C', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+asc = ['b', 'h', 'd', 'k', 'i', 'l', 't', 'f']
+cap = ['f', 'A', 'B', 'C', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'zero', '92']
+
 
 # ggroup=""
 
