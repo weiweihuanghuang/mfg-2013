@@ -105,7 +105,7 @@ class View:
 
     formParam = web.form.Form(
         web.form.Dropdown('Param',
-            [('startp','startp'),('doubledash','doubledash'),('tripledash','tripledash'),('leftp','leftp'),('rightp','rightp'),('downp','downp'),('upp','upp'),('dir','dir'),('leftp2','leftp2'),('rightp2','rightp2'),('downp2','downp2'),('upp2','upp2'),('dir2','dir2'),('superright','superright'),('superleft','superleft'),('tension','tension'),('tensionand','tensionand'),('cycle','cycle'),('penshifted','penshifted'),('pointshift','pointshift'),('penwidth','penwidth'),('xHeight','xHeight'),('cardinal','cardinal'),('superness','superness'),('overx','overx'),('overbase','overbase'),('overcap','overcap'),('stemcutter','stemcutter'),('stemshift','stemshift'),('inktrap_l','inktrap_l'),('inktrap_r','inktrap_r')]), 
+            [('startp','startp'),('doubledash','doubledash'),('tripledash','tripledash'),('leftp','leftp'),('rightp','rightp'),('downp','downp'),('upp','upp'),('dir','dir'),('leftp2','leftp2'),('rightp2','rightp2'),('downp2','downp2'),('upp2','upp2'),('dir2','dir2'),('superright','superright'),('superleft','superleft'),('tension','tension'),('tensionand','tensionand'),('cycle','cycle'),('penshifted','penshifted'),('pointshifted','pointshifted'),('penwidth','penwidth'),('xHeight','xHeight'),('cardinal','cardinal'),('superness','superness'),('overx','overx'),('overbase','overbase'),('overcap','overcap'),('stemcutter','stemcutter'),('stemshift','stemshift'),('inktrap_l','inktrap_l'),('inktrap_r','inktrap_r')]), 
         web.form.Textbox('parmval',
             size=15, 
             description="parmval"),
