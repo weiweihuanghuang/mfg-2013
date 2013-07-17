@@ -9,7 +9,6 @@ db = web.database(dbn='mysql', db='blog', user='root', pw='' )
    
 def xxmlat(s, dbob, sattr, val):
 
-#   print "dbob",dbob,"atttt",sattr," vvvv",val
    if str(dbob) != 'None' :
       if not s.hasAttribute(sattr) :
           s.setAttribute(sattr,"")
@@ -23,7 +22,7 @@ def xxmlat(s, dbob, sattr, val):
       if s.hasAttribute(sattr) :
           s.removeAttribute(sattr)
 
-def xxmrlat( inum, s, db, sattr ):
+def xxmrlat( inum, s, sattr ):
              
    if s.hasAttribute(sattr) :
        val = s.getAttribute(sattr)
@@ -145,32 +144,32 @@ def putFont():
 #  find  all parameter and save it in db
 # add glyphparameters here:
 
-            xxmrlat(inum,s,db, 'startp' )
-            xxmrlat(inum,s,db, 'doubledash' )
-            xxmrlat(inum,s,db, 'tripledash')
-            xxmrlat(inum,s,db, 'superness')
-            xxmrlat(inum,s,db, 'leftp')
-            xxmrlat(inum,s,db, 'rightp')
-            xxmrlat(inum,s,db, 'downp')
-            xxmrlat(inum,s,db, 'upp')
-            xxmrlat(inum,s,db, 'dir')
-            xxmrlat(inum,s,db, 'superright')
-            xxmrlat(inum,s,db, 'superleft')
-            xxmrlat(inum,s,db, 'tension')
-            xxmrlat(inum,s,db, 'tensionand')
-            xxmrlat(inum,s,db, 'cycle')
-            xxmrlat(inum,s,db, 'penshifted')
-            xxmrlat(inum,s,db, 'pointshifted')
-            xxmrlat(inum,s,db, 'penwidth')
-            xxmrlat(inum,s,db, 'xHeight')
-            xxmrlat(inum,s,db, 'cardinal')
-            xxmrlat(inum,s,db, 'overx')
-            xxmrlat(inum,s,db, 'overbase')
-            xxmrlat(inum,s,db, 'overcap')
-            xxmrlat(inum,s,db, 'stemcutter')
-            xxmrlat(inum,s,db, 'stemshift')
-            xxmrlat(inum,s,db, 'inktrap_l')
-            xxmrlat(inum,s,db, 'inktrap_r')
+            xxmrlat( inum, s, 'startp' )
+            xxmrlat( inum, s, 'doubledash' )
+            xxmrlat( inum, s, 'tripledash')
+            xxmrlat( inum, s, 'superness')
+            xxmrlat( inum, s, 'leftp')
+            xxmrlat( inum, s, 'rightp')
+            xxmrlat( inum, s, 'downp')
+            xxmrlat( inum, s, 'upp')
+            xxmrlat( inum, s, 'dir')
+            xxmrlat( inum, s, 'superright')
+            xxmrlat( inum, s, 'superleft')
+            xxmrlat( inum, s, 'tension')
+            xxmrlat( inum, s, 'tensionand')
+            xxmrlat( inum, s, 'cycle')
+            xxmrlat( inum, s, 'penshifted')
+            xxmrlat( inum, s, 'pointshifted')
+            xxmrlat( inum, s, 'penwidth')
+            xxmrlat( inum, s, 'xHeight')
+            xxmrlat( inum, s, 'cardinal')
+            xxmrlat( inum, s, 'overx')
+            xxmrlat( inum, s, 'overbase')
+            xxmrlat( inum, s, 'overcap')
+            xxmrlat( inum, s, 'stemcutter')
+            xxmrlat( inum, s, 'stemshift')
+            xxmrlat( inum, s, 'inktrap_l')
+            xxmrlat( inum, s, 'inktrap_r')
 
           else :
             nameval = ""
@@ -264,9 +263,10 @@ def update_glyphparamD(id, a, b):
     aa = a 
     if b != '' :
       bb = b 
+      bbstr=str(bb) 
+      strg="update glyphparam set "+aa+"="+"'"+bbstr+"'"+" where id="+str(id)+" and GlyphName='"+glyphName+"'"+ids 
     else:
-      bb = 'NULL' 
-    strg="update glyphparam set "+aa+"="+str(bb)+" where id="+str(id)+" and GlyphName='"+glyphName+"'"+ids 
+      strg="update glyphparam set "+aa+"=NULL where id="+str(id)+" and GlyphName='"+glyphName+"'"+ids 
     print strg
     db.query(strg)
     db.query("commit")
