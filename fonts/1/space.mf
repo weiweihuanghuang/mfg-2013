@@ -51,7 +51,7 @@ width_r:=1.0;	width_rR#:=0pt#;	width_rL:=0pt;
 width_s:=1.0;	width_sR#:=0pt#;	width_sL:=0pt;
 width_seven:=1.0;	width_sevenR#:=0pt#;	width_sevenL:=0pt;
 width_six:=1.0;	width_sixR#:=0pt#;	width_sixL:=0pt;
-width_space:=1.0;	width_spaceR#:=0pt#;	width_spaceL:=0pt;
+width_95:=1.0;	width_95R#:=0pt#;	width_95L:=0pt;
 width_t:=1.0;	width_tR#:=0pt#;	width_tL:=0pt;
 width_three:=1.0;	width_threeR#:=0pt#;	width_threeL:=0pt;
 width_two:=1.0;	width_twoR#:=0pt#;	width_twoL:=0pt;
