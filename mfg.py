@@ -98,6 +98,9 @@ class View:
         web.form.Textbox('PointName',  
             size=5,
             description="name"),
+        web.form.Textbox('groupn',  
+            size=5,
+            description="groupn"),
         web.form.Button('save'), 
         )
 
@@ -105,11 +108,21 @@ class View:
 
     formParam = web.form.Form(
         web.form.Dropdown('Param',
-            [('startp','startp'),('doubledash','doubledash'),('tripledash','tripledash'),('leftp','leftp'),('rightp','rightp'),('downp','downp'),('upp','upp'),('dir','dir'),('leftp2','leftp2'),('rightp2','rightp2'),('downp2','downp2'),('upp2','upp2'),('dir2','dir2'),('superright','superright'),('superleft','superleft'),('tension','tension'),('tensionand','tensionand'),('cycle','cycle'),('penshifted','penshifted'),('pointshifted','pointshifted'),('penwidth','penwidth'),('xHeight','xHeight'),('cardinal','cardinal'),('superness','superness'),('overx','overx'),('overbase','overbase'),('overcap','overcap'),('stemcutter','stemcutter'),('stemshift','stemshift'),('inktrap_l','inktrap_l'),('inktrap_r','inktrap_r')]), 
+            [('select','select'),('startp','startp'),('doubledash','doubledash'),('tripledash','tripledash'),('leftp','leftp'),('rightp','rightp'),('downp','downp'),('upp','upp'),('dir','dir'),('leftp2','leftp2'),('rightp2','rightp2'),('downp2','downp2'),('upp2','upp2'),('dir2','dir2'),('superright','superright'),('superleft','superleft'),('tension','tension'),('tensionand','tensionand'),('cycle','cycle'),('penshifted','penshifted'),('pointshifted','pointshifted'),('penwidth','penwidth'),('xHeight','xHeight'),('cardinal','cardinal'),('superness','superness'),('overx','overx'),('overbase','overbase'),('overcap','overcap'),('stemcutter','stemcutter'),('stemshift','stemshift'),('inktrap_l','inktrap_l'),('inktrap_r','inktrap_r')]), 
         web.form.Textbox('parmval',
             size=15, 
             description="parmval"),
         web.form.Button('saveParam'), 
+        )
+# and the same parameters for groups here:
+
+    formParamG = web.form.Form(
+        web.form.Dropdown('Group',
+            [('select','select'),('startp','startp'),('doubledash','doubledash'),('tripledash','tripledash'),('leftp','leftp'),('rightp','rightp'),('downp','downp'),('upp','upp'),('dir','dir'),('leftp2','leftp2'),('rightp2','rightp2'),('downp2','downp2'),('upp2','upp2'),('dir2','dir2'),('superright','superright'),('superleft','superleft'),('tension','tension'),('tensionand','tensionand'),('cycle','cycle'),('penshifted','penshifted'),('pointshifted','pointshifted'),('penwidth','penwidth'),('xHeight','xHeight'),('cardinal','cardinal'),('superness','superness'),('overx','overx'),('overbase','overbase'),('overcap','overcap'),('stemcutter','stemcutter'),('stemshift','stemshift'),('inktrap_l','inktrap_l'),('inktrap_r','inktrap_r')]), 
+        web.form.Textbox('groupval',
+            size=15, 
+            description="groupval"),
+        web.form.Button('saveGroup'), 
         )
 
     def GET(self,id):
@@ -119,20 +132,25 @@ class View:
         if id > '0' : 
            post = model.get_post(int(id))
            glyphparam = model.get_glyphparam(int(id))
+           groupparam = model.get_groupparam(int(id))         
            form.fill(post)
         posts = model.get_posts()
         postspa = model.get_postspa()
         formParam = self.formParam()
+        formParamG = self.formParamG()
         if glyphparam != None :
            formParam.fill(glyphparam)
+        if groupparam != None :
+           formParamG.fill(groupparam)
         mastglobal = model.get_globalparam(cFont.idglobal)
         master = model.get_master(cFont.idmaster)
 	webglyph = cFont.glyphName
-        return render.view(posts,post,form,formParam,master,mastglobal,webglyph,glyphparam,cFont,postspa)
+        return render.view(posts,post,form,formParam,formParamG,master,mastglobal,webglyph,glyphparam,groupparam,cFont,postspa)
 
     def POST(self, id):
         form = View.form()
         formParam = View.formParam()
+        formParamG = View.formParamG()
         post = model.get_post(int(id))
         postspa = model.get_postspa()
         formParam = self.formParam()
@@ -141,16 +159,34 @@ class View:
             master = model.get_master(cFont.idmaster)
             mastglobal = model.get_globalparam(cFont.idglobal)
 	    webglyph = cFont.glyphName
-            return render.view(posts, post, form, formParam, master,mastglobal, webglyph,glyphparam,cFont,postspa)
+            return render.view(posts, post, form, formParam, master,mastglobal, webglyph,glyphparam,groupparam,cFont,postspa)
         if form.d.PointName != None :
             if not formParam.validates() :
                 return render.view(posts, post, form, formParam, master,mastglobal)
             if model.get_glyphparam(int(id)) != None :
-                model.update_glyphparam(int(id),form.d.PointName)
-
+                model.update_glyphparam(int(id),form.d.PointName,form.d.groupn)
                 model.update_glyphparamD(int(id),formParam.d.Param, formParam.d.parmval)
+                if model.get_groupparam0(form.d.groupn) != None: 
+                    model.update_groupparamD(form.d.groupn, formParamG.d.Group, formParamG.d.groupval)
+                else:
+                    model.insert_groupparam( form.d.groupn )
+             
             else :
                 model.insert_glyphparam(int(id),form.d.PointName )
+                model.update_glyphparam(int(id),form.d.PointName,form.d.groupn)
+                if model.get_groupparam0(form.d.groupn) != None: 
+                    model.update_groupparamD(form.d.groupn, formParamG.d.Group, formParamG.d.groupval)
+                else:
+                    model.insert_groupparam( form.d.groupn )
+           
+            if not formParamG.validates() :
+                return render.view(posts, post, form, formParam, formParamG, master,mastglobal)
+            if model.get_groupparam(int(id)) != None :
+                if form.d.groupn != None :
+                   if model.get_groupparam0(form.d.groupn) != None: 
+                      model.update_groupparamD(form.d.groupn, formParamG.d.Group, formParamG.d.groupval)
+                   else:
+                     model.insert_groupparam( form.d.groupn )
                 
         model.update_post(int(id), form.d.x, form.d.y)
         posts = model.get_posts()
@@ -158,6 +194,7 @@ class View:
         mastglobal = model.get_globalparam(cFont.idglobal)
 	webglyph = cFont.glyphName
         glyphparam = model.get_glyphparam(int(id))
+        groupparam = model.get_groupparam(int(id))
 
         model.writexml()        
         model.ufo2mf() 
@@ -165,9 +202,8 @@ class View:
 #        os.environ['MPINPUTS'] = cFont.fontpath
         model.writeGlyphlist()
         strms = "sh makefont.sh font.mf"
-        print strms
         os.system(strms)
-        return render.view(posts, post, form, formParam, master, mastglobal,webglyph,glyphparam,cFont,postspa)
+        return render.view(posts, post, form, formParam, formParamG, master, mastglobal,webglyph,glyphparam,groupparam,cFont,postspa)
 
 class ViewFont:
     def GET(self):

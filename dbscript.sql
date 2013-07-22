@@ -4,6 +4,7 @@ drop table glyphparam;
 drop table master;
 drop table globalparam;
 drop table localparam;
+drop table groupparam;
 
 CREATE TABLE glyph (
     idglyph INT AUTO_INCREMENT,
@@ -27,6 +28,7 @@ CREATE TABLE glyphparam (
     id INT ,
     glyphName VARCHAR(3),
     PointName VARCHAR(5),
+    groupname VARCHAR(10),
     startp INT,
     doubledash INT,
     tripledash INT,
@@ -61,6 +63,43 @@ CREATE TABLE glyphparam (
     idmaster INT,
     vdate    TIMESTAMP default now(),
     primary key (idmaster,id,glyphName)
+);
+CREATE TABLE groupparam (
+    groupname varchar(10), 
+    startp INT,
+    doubledash INT,
+    tripledash INT,
+    leftp   INT,
+    rightp  INT,
+    downp   INT,
+    upp     INT,
+    dir     varchar(30),
+    leftp2   INT,
+    rightp2  INT,
+    downp2   INT,
+    upp2     INT,
+    dir2     float,
+    superright float,
+    superleft float,
+    tension INT, 
+    tensionand varchar(10),
+    cycle     INT,
+    penshifted varchar(30), 
+    pointshift varchar(30),
+    superness INT, 
+    penwidth float,
+    xHeight  float,
+    cardinal VARCHAR(10),
+    overx VARCHAR(1), 
+    overbase VARCHAR(1),  
+    overcap VARCHAR(1), 
+    stemcutter float,
+    stemshift float,
+    inktrap_l float,
+    inktrap_r float,   
+    idmaster INT,
+    vdate    TIMESTAMP default now(),
+    primary key (idmaster,groupname)
 );
 CREATE TABLE master (
     idmaster INT AUTO_INCREMENT,

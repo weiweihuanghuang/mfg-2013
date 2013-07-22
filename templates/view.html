@@ -1,4 +1,4 @@
-$def with (posts,post,form,formparam,master,mastglobal,webglyph,glyphparam,cfont,postspa)
+$def with (posts,post,form,formparam,formparamG,master,mastglobal,webglyph,glyphparam,groupparam,cfont,postspa)
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge">
 </head>
@@ -174,6 +174,8 @@ $for mast in mastglobal:
 $:form.render() 
 $if form.d.PointName > "0" : 
     $:formparam.render() 
+$if form.d.groupn > "0" : 
+    $:formparamG.render() 
 
 <!-- add new parameters here: -->
 
@@ -241,6 +243,73 @@ $if form.d.PointName > "0" :
     $if glyphparam.inktrap_r != None :
        inktrap_r $glyphparam.inktrap_r <br>
 </p>
+
+<p id="menuleftgreen" > group-parameter
+    $if groupparam != None :
+     $if groupparam.startp != None :
+       startp $groupparam.startp </p> <br>
+     $if groupparam.doubledash != None :
+       doubledash $groupparam.doubledash </p> <br>
+     $if groupparam.tripledash != None :
+       tripledash $groupparam.tripledash </p> <br>
+     $if groupparam.leftp != None :
+       leftp $groupparam.leftp <br>
+     $if groupparam.rightp != None :
+       rightp $groupparam.rightp <br>
+     $if groupparam.downp != None :
+       downp $groupparam.downp <br>
+     $if groupparam.upp != None :
+       upp $groupparam.upp <br>
+     $if groupparam.dir != None :
+       dir $groupparam.dir <br>
+     $if groupparam.leftp2 != None :
+       leftp2 $groupparam.leftp2 <br>
+     $if groupparam.rightp2 != None :
+       rightp2 $groupparam.rightp2 <br>
+     $if groupparam.downp2 != None :
+       downp2 $groupparam.downp2 <br>
+     $if groupparam.upp2 != None :
+       upp2 $groupparam.upp2 <br>
+     $if groupparam.dir2 != None :
+       dir2 $groupparam.dir2 <br>
+     $if groupparam.superright != None :
+       superright  $groupparam.superright <br>
+     $if groupparam.superleft != None :
+       superleft $groupparam.superleft <br>
+     $if groupparam.tension != None :
+       tension $groupparam.tension <br>
+     $if groupparam.tensionand != None :
+       tensionand $groupparam.tensionand <br>
+     $if groupparam.cycle != None :
+       cycle $groupparam.cycle <br>
+     $if groupparam.penshifted != None :
+       penshifted $groupparam.penshifted <br>
+     $if groupparam.pointshifted != None :
+       pointshifted $groupparam.pointshifted <br>
+     $if groupparam.superness != None :
+       supernesnn $groupparam.superness <br>
+     $if groupparam.penwidth != None :
+       penwidth $groupparam.penwidth <br>
+     $if groupparam.xHeight != None :
+       xHeight $groupparam.xHeight <br>
+     $if groupparam.cardinal != None :
+       cardinal $groupparam.cardinal <br>
+     $if groupparam.overx != None :
+       overx $groupparam.overx <br>
+     $if groupparam.overbase != None :
+       overbase $groupparam.overbase <br>
+     $if groupparam.overcap != None :
+       overcap $groupparam.overcap <br>
+     $if groupparam.stemcutter != None :
+       stemcutter $groupparam.stemcutter <br>
+     $if groupparam.stemshift != None :
+       stemshift $groupparam.stemshift <br>
+     $if groupparam.inktrap_l != None :
+       inktrap_l $groupparam.inktrap_l <br>
+     $if groupparam.inktrap_r != None :
+       inktrap_r $groupparam.inktrap_r <br>
+</p>
+
 
 <p id="menuleft"> points - parameters </p>
 <p id="menuleft"> 
