@@ -200,7 +200,7 @@ def putFont():
                  nameval = im.value[iposa:ipose]
           else: 
             nameval="" 
-          update_glyphparam(inum,nameval)
+          update_glyphparamName(inum,nameval)
 #        s.toxml()
            
   return None  
@@ -305,6 +305,18 @@ def update_glyphparam(id, a, b):
       bb = 'NULL'
     db.update('glyphparam', where='id=$id and GlyphName="'+glyphName+'"'+ids, vars=locals(),
         pointName=aa, groupname=bb)
+    db.query("commit")
+
+def update_glyphparamName(id, a):
+    glyphName = mfg.cFont.glyphunic 
+    idmaster = gidmast(mfg.cFont.idwork)
+    ids= " and idmaster="+'"'+str(idmaster)+'"'
+    if a != '' :
+      aa = a
+    else:
+      aa = 'NULL'
+    db.update('glyphparam', where='id=$id and GlyphName="'+glyphName+'"'+ids, vars=locals(),
+        pointName=aa)
     db.query("commit")
 
 def update_glyphparamG(id, a):
