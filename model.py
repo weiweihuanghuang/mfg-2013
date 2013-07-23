@@ -3,8 +3,8 @@ from xml.dom import minidom
 import codecs
 import os.path, time
 
-db = web.database(dbn='mysql', db='blog', user='root', pw='' )
-#db = web.database(dbn='mysql', db='blog', user='wei', pw='' )
+# db = web.database(dbn='mysql', db='blog', user='root', pw='' )
+db = web.database(dbn='mysql', db='blog', user='wei', pw='' )
 
    
 def xxmlat(s, dbob, sattr, val):
@@ -439,10 +439,10 @@ def update_globalparam(id, a, b, c, d, e, f, g, h, i):
     db.query("commit")
     return None
 
-def update_localparam(id, a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14 ):
+def update_localparam(id, a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15 ):
     print "id local param update",id
     db.update('localparam', where='idlocal = $id', vars=locals(), 
-      px = a1, mean = a2, des=a3, ascl=a4, cap=a5, width=a6, xheight=a7, capital=a8, ascender=a9, descender=a10, inktrap=a11, stemcut=a12, skeleton=a13, superness=a14)
+      px = a1, mean = a2, des=a3, ascl=a4, cap=a5, box=a6, width=a7, xheight=a8, capital=a9, ascender=a10, descender=a11, inktrap=a12, stemcut=a13, skeleton=a14, superness=a15)
     db.query("commit")
     return None
 
@@ -556,6 +556,7 @@ def writeGlobalParam():
   des=2.45
   asc=0.8
   cap=0.8
+  box=1.0
 
   superness = imgl[0].superness
   metapolation = imgl[0].metapolation
@@ -586,11 +587,13 @@ def writeGlobalParam():
   ifile.write("A_px#:=%.1fpt#;\n"%imlo[0].px)
   ifile.write("A_mean#:=%.2fpt#;\n"%imlo[0].mean)
   ifile.write("A_des#:=%.2fpt#;\n"%imlo[0].des)
-  ifile.write("A_asc#:=%.1fht#;\n"%imlo[0].ascl)
-  ifile.write("A_cap#:=%.1fht#;\n"%imlo[0].cap)
+  ifile.write("A_asc#:=%.1fpt#;\n"%imlo[0].ascl)
+  ifile.write("A_cap#:=%.1fpt#;\n"%imlo[0].cap)
+  ifile.write("A_box#:=%.1fpt#;\n"%imlo[0].box)
   ifile.write("A_width:=%.2f;\n"%imlo[0].width)
   ifile.write("A_xheight:=%.0f;\n"%imlo[0].xheight)
   ifile.write("A_capital:=%.0f;\n"%imlo[0].capital)
+  ifile.write("A_boxheight:=%.0f;\n"%imlo[0].boxheight)
   ifile.write("A_ascender:=%.0f;\n"%imlo[0].ascender)
   ifile.write("A_descender:=%.0f;\n"%imlo[0].descender)
   ifile.write("A_inktrap:=%.0f;\n"%imlo[0].inktrap)
@@ -604,11 +607,13 @@ def writeGlobalParam():
   ifile.write("B_px#:=%.1fpt#;\n"%imlo[0].px)
   ifile.write("B_mean#:=%.2fpt#;\n"%imlo[0].mean)
   ifile.write("B_des#:=%.2fpt#;\n"%imlo[0].des)
-  ifile.write("B_asc#:=%.1fht#;\n"%imlo[0].ascl)
-  ifile.write("B_cap#:=%.1fht#;\n"%imlo[0].cap)
+  ifile.write("B_asc#:=%.1fpt#;\n"%imlo[0].ascl)
+  ifile.write("B_cap#:=%.1fpt#;\n"%imlo[0].cap)
+  ifile.write("B_box#:=%.1fpt#;\n"%imlo[0].box)
   ifile.write("B_width:=%.2f;\n"%imlo[0].width)
   ifile.write("B_xheight:=%.0f;\n"%imlo[0].xheight)
   ifile.write("B_capital:=%.0f;\n"%imlo[0].capital)
+  ifile.write("B_boxheight:=%.0f;\n"%imlo[0].boxheight)
   ifile.write("B_ascender:=%.0f;\n"%imlo[0].ascender)
   ifile.write("B_descender:=%.0f;\n"%imlo[0].descender)
   ifile.write("B_inktrap:=%.0f;\n"%imlo[0].inktrap)

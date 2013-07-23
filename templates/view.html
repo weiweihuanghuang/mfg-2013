@@ -38,7 +38,7 @@ left {
 	font-size:1000px;
 	color: rgba(120, 120, 120, 0.2);
 	right:0;
-bottom:-270;
+bottom:-360;
 	z-index:-6;
 
 
@@ -46,7 +46,7 @@ bottom:-270;
 }
 middle, right {
 	position:absolute;
-bottom:-270;
+bottom:-360;
 left:6;
 
 	font-family:"metapolator";
@@ -102,14 +102,14 @@ h2 {
 }
 
 #menuleft {
-	width:200px;
+	width:300px;
 
 }
 
 #menuleftgreen {
 	z-index:5;
 	background-color:green;
-	width:200px;
+	width:300px;
 	text-align:left;
 	color: yellow;
         border-style:solid;
@@ -121,7 +121,7 @@ h2 {
 #menuleftorange {
 	z-index:5;
 	background-color:orange;
-	width:200px;
+	width:300px;
 	text-align:left;
 	color: yellow;
         border-style:solid;
@@ -130,6 +130,7 @@ h2 {
 
 
 }
+
 
 a:visited {
 		color:inherit;
@@ -183,10 +184,10 @@ $for mast in mastglobal:
 <p id="menuleft" >
 	<form action="" method="post">
 $:form.render() 
+ <br>
+
 $if form.d.PointName > "0" : 
     $:formparam.render() 
-$if form.d.groupn > "0" : 
-    $:formparamG.render() 
 
 <!-- add new parameters here: -->
 
@@ -194,9 +195,9 @@ $if form.d.groupn > "0" :
     $if glyphparam.startp != None :
        startp $glyphparam.startp <br>
     $if glyphparam.doubledash != None :
-       doubledash $glyphparam.doubledash <br>
+       doubledash $glyphparam.doubledash  <br>
     $if glyphparam.tripledash != None :
-       tripledash $glyphparam.tripledash <br>
+       tripledash $glyphparam.tripledash  <br>
     $if glyphparam.leftp != None :
        leftp $glyphparam.leftp <br>
     $if glyphparam.rightp != None :
@@ -255,14 +256,21 @@ $if form.d.groupn > "0" :
        inktrap_r $glyphparam.inktrap_r <br>
 </p>
 
-<p id="menuleftorange" > group-parameter
+<p id="menuleft" >
+	<form action="" method="post">
+
+$if form.d.groupn > "0" : 
+    $:formparamG.render() 
+
+
+<p id="menuleftorange" > 
     $if groupparam != None :
      $if groupparam.startp != None :
-       startp $groupparam.startp <br>
+       startp $groupparam.startp  <br>
      $if groupparam.doubledash != None :
        doubledash $groupparam.doubledash <br>
      $if groupparam.tripledash != None :
-       tripledash $groupparam.tripledash <br>
+       tripledash $groupparam.tripledash  <br>
      $if groupparam.leftp != None :
        leftp $groupparam.leftp <br>
      $if groupparam.rightp != None :
@@ -325,10 +333,10 @@ $if form.d.groupn > "0" :
 <p id="menuleft"> points - parameters </p>
 <p id="menuleft"> 
 <!-- add new parameters here: -->
-
+ 
 $for ppp in postspa:
    $if ppp.PointName != '' :
-     $ppp.id  $ppp.PointName
+     $ppp.PointName
      $if ppp.startp != None :
          startp $ppp.startp
      $if ppp.doubledash != None :
