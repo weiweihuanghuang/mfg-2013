@@ -1,31 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<glyph name="bar" format="1">
+<?xml version="1.0" ?><glyph format="1" name="92">
   <advance width="47.0"/>
   <unicode hex="007C"/>
   <outline>
     <contour>
-      <point x="0" y="-1" type="line" name="z2l"/>
-      <point x="0" y="-200" type="line" name="z1l"/>
-      <point x="47" y="-200" type="line" name="z1r"/>
-      <point x="47" y="-1" type="line" name="z2r"/>
+      <point name="z2l" pointNo="p1" type="line" x="0" y="-1"/>
+      <point name="z1l" pointNo="p2" type="line" x="0" y="-200"/>
+      <point name="z1r" pointNo="p3" startp="1" type="line" x="47" y="-200"/>
+      <point name="z2r" pointNo="p4" type="line" x="47" y="-1"/>
     </contour>
     <contour>
-      <point x="0" y="499" type="line" name="z4l"/>
-      <point x="0" y="1" type="line" name="z3l"/>
-      <point x="47" y="1" type="line" name="z3r"/>
-      <point x="47" y="499" type="line" name="z4r"/>
+      <point name="z4l" pointNo="p5" type="line" x="0" y="499"/>
+      <point name="z3l" pointNo="p6" type="line" x="0" y="1"/>
+      <point name="z3r" pointNo="p7" startp="1" type="line" x="47" y="1"/>
+      <point name="z4r" pointNo="p8" type="line" x="47" y="499"/>
     </contour>
     <contour>
-      <point x="0" y="649" type="line" name="z6l"/>
-      <point x="0" y="501" type="line" name="z5l"/>
-      <point x="47" y="501" type="line" name="z5r"/>
-      <point x="47" y="649" type="line" smooth="yes" name="z6r"/>
+      <point name="z6l" pointNo="p9" type="line" x="0" y="649"/>
+      <point name="z5l" pointNo="p10" type="line" x="0" y="501"/>
+      <point name="z5r" pointNo="p11" startp="1" type="line" x="47" y="501"/>
+      <point name="z6r" pointNo="p12" smooth="yes" type="line" x="47" y="649"/>
     </contour>
     <contour>
-      <point x="0" y="700" type="line" name="z8l"/>
-      <point x="0" y="651" type="line" name="z7l"/>
-      <point x="47" y="651" type="line" name="z7r"/>
-      <point x="47" y="700" type="line" name="z8r"/>
+      <point name="z8l" pointNo="p13" type="line" x="0" y="700"/>
+      <point name="z7l" pointNo="p14" type="line" x="0" y="651"/>
+      <point name="z7r" pointNo="p15" type="line" x="47" y="651"/>
+      <point name="z8r" pointNo="p16" type="line" x="47" y="700"/>
     </contour>
   </outline>
   <lib>

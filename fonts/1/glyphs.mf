@@ -42,7 +42,7 @@ define_pixels(A_px,A_py,A_skeleton,B_skeleton);
 define_good_y_pixels(A_asc);
 define_good_y_pixels(A_des);
 define_good_y_pixels(A_cap);
-define_good_y_pixels(A_mean,A_box,over,);
+define_good_y_pixels(A_mean,A_box,over);
 
 define_pixels(B_px,B_py);
 define_good_y_pixels(B_asc);

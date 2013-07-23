@@ -59,7 +59,7 @@ if g in box :
 #    ggroup = 'asc#'
 
 
-print 'beginfontchar(' + g + ', (' + w + '*A_width + metapolation * (' + w + '*A_width - ' + w2 + '*B_width)) * width_' + g + "+ width_" +  g  + "R#, A_" + ggroup + " + metapolation * (B_" + ggroup + " - A_" + ggroup + "), " + ggroup2 + ");"
+print 'beginfontchar(' + g + ', (' + w + '*A_width + metapolation * (' + w + '*A_width - ' + w2 + '*B_width)) * width_' + g + "+ width_" +  g  + "R#, A_" + ggroup + " + metapolation * (B_" + ggroup + " - A_" + ggroup + "), " + "0" + ");"
 # print """if known ps_output:
 # glyph_name "uni""" + u + """"; 
 # fi

@@ -97,18 +97,17 @@ table,th,td {
 }
 #mmA {
      position:absolute;
-     top: 70px;
+     top: 50px;
      left: 10px;
      }
 #mmB {
      position:absolute;
-     top: 70px;
+     top: 50px;
      left: 300px;
      }
 
 </style>
 
-<p> global parameter table list </p>
 <div id="mmA" >
 <p> local A Param <a href="/font3/$cfont.idlocalA">local param A</a></p>
 <form action="" method="POST" name="formlA">
@@ -124,7 +123,7 @@ $:formlB.render()
 
 <div>
 <p>
-<a href="/font2/$cfont.idglobal">global parameter set</a>
+<a href="/font2/$cfont.idglobal">B Local Parameter Set</a>
 </p>
 <div>
 
@@ -152,7 +151,7 @@ $:formlB.render()
 
 <p>
 $for gm in glo:
-     idlocal <a href="/font4/$gm.idlocal">$gm.idlocal</a>  px $gm.px mean $gm.mean des $gm.des asc $gm.ascl cap $gm.cap box $gm.box width $gm.width xheight $gm.xheight capital $gm.capital $gm.boxheight ascender $gm.ascender descender $gm.descender inktrap $gm.inktrap stemcut $gm.stemcut skeleton $gm.skeleton superness $gm.superness <br>
+     idlocal <a href="/font4/$gm.idlocal">$gm.idlocal</a>  px $gm.px mean $gm.mean des $gm.des asc $gm.ascl cap $gm.cap box $gm.box width $gm.width xheight $gm.xheight capital $gm.capital boxheight $gm.boxheight ascender $gm.ascender descender $gm.descender inktrap $gm.inktrap stemcut $gm.stemcut skeleton $gm.skeleton superness $gm.superness <br>
 
 </p>
 

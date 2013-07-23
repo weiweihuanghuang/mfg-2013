@@ -428,14 +428,11 @@ def put_globalparam(id):
 
     superness=mfg.cFont.superness
     metapolation=mfg.cFont.metapolation
-    penwidth=mfg.cFont.penwidth
     unitwidth=mfg.cFont.unitwidth
-    xHeight=mfg.cFont.xHeight
-    ht = mfg.cFont.ht
     fontsize = mfg.cFont.fontsize
     over=mfg.cFont.over
     db.insert('globalparam', where='idglobal = $id',vars=locals(), 
-        superness=superness, metapolation=metapolation, penwidth=penwidth, unitwidth=unitwidth, xHeigth=xHeigth , ht=ht, fontsize=fontsize, over=over)
+        superness=superness, metapolation=metapolation, unitwidth=unitwidth, fontsize=fontsize, over=over)
     db.query("commit")
     return None
 
@@ -445,16 +442,16 @@ def updatemaster(id, a, b, c, d):
     db.query("commit")
     return None
 
-def update_globalparam(id, a, b, c, d, e, f, g, h, i):
+def update_globalparam(id, a, b, c, d, e, f):
     db.update('globalparam', where='idglobal = $id', vars=locals(), 
-      superness = a, metapolation = b, penwidth = c, unitwidth = d, xHeight = e, ht = f, fontsize = g, maxstemcut = h, over = i)
+      superness = a, metapolation = b, unitwidth = c, fontsize = d, maxstemcut = e, over = f)
     db.query("commit")
     return None
 
-def update_localparam(id, a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15 ):
+def update_localparam(id, a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16 ):
     print "id local param update",id
     db.update('localparam', where='idlocal = $id', vars=locals(), 
-      px = a1, mean = a2, des=a3, ascl=a4, cap=a5, box=a6, width=a7, xheight=a8, capital=a9, ascender=a10, descender=a11, inktrap=a12, stemcut=a13, skeleton=a14, superness=a15)
+      px = a1, mean = a2, des=a3, ascl=a4, cap=a5, box=a6, width=a7, xheight=a8, capital=a9, boxheight=a10, ascender=a11, descender=a12, inktrap=a13, stemcut=a14, skeleton=a15, superness=a16)
     db.query("commit")
     return None
 
@@ -572,11 +569,8 @@ def writeGlobalParam():
 
   superness = imgl[0].superness
   metapolation = imgl[0].metapolation
-  px = imgl[0].penwidth
   u = imgl[0].unitwidth
-  mean   = imgl[0].xHeight
   fontsize   = imgl[0].fontsize
-  ht    = imgl[0].ht
   maxstemcut = imgl[0].maxstemcut
   over = imgl[0].over
 
@@ -586,7 +580,6 @@ def writeGlobalParam():
   ifile.write("% parameter file \n")
   ifile.write("metapolation:=%.2f;\n"%metapolation)
   ifile.write("font_size:=%.0fpt#;\n"%fontsize)
-  ifile.write("ht#:=%.0fpt#;\n"%ht)
   ifile.write("u#:=%.0fpt#;\n"%u)
   ifile.write("max_stemcut:=%.0fpt;\n"%maxstemcut)
   ifile.write("superness:=%.2f;\n"%superness)
