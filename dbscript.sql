@@ -85,7 +85,7 @@ CREATE TABLE groupparam (
     tensionand varchar(10),
     cycle     INT,
     penshifted varchar(30), 
-    pointshift varchar(30),
+    pointshifted varchar(30),
     superness INT, 
     penwidth float,
     xHeight  float,

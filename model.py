@@ -483,7 +483,8 @@ def writexml():
 #
 #     first read group parameters
 #                 
-                   if str(db_rowparam[0].groupname) <> "None" :
+                   if str(db_rowparam[0].groupname) not in ["None",'NULL',''] :
+                     
                      groupname=db_rowparam[0].groupname
                      gstrp = "SELECT * from groupparam where groupname="+'"'+groupname+'"'+ids
 #     save the groupname in an xml attribute
@@ -514,7 +515,7 @@ def writexml():
                      xxmlat(s,db_rowgparam[0].tensionand,'tensionand','')
                      xxmlat(s,db_rowgparam[0].cycle,'cycle','')
                      xxmlat(s,db_rowgparam[0].penshifted,'penshifted','')
-                     xxmlat(s,db_rowgparam[0].pointshift,'pointshift','')
+                     xxmlat(s,db_rowgparam[0].pointshifted,'pointshifted','')
                      xxmlat(s,db_rowgparam[0].penwidth,'penwidth','')
                      xxmlat(s,db_rowgparam[0].xHeight,'xHeight','')
                      xxmlat(s,db_rowgparam[0].cardinal,'cardinal','')
