@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'metapolator';
+    src: url('/static/font-webfont.eot');
+    src: url('/static/font-webfont.eot?#iefix') format('embedded-opentype'),url('/static/font-webfont.woff') format('woff'),url('/static/font-webfont.ttf') format('truetype'),url('/static/font-webfont.svg#metapolator') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Inconsolata';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Inconsolata'), url('/static/Inconsolata/Inconsolata-Regular.ttf') format('truetype'), url('/static/Inconsolata/Inconsolata-Regular.woff') format('woff');
+}
+@font-face {
+    font-family: 'Inconsolata';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Inconsolata Bold'), local('Inconsolata-Bold'), url('/static/Inconsolata/Inconsolata-Bold.ttf') format('truetype'), url('/static/Inconsolata/Inconsolata-Bold.woff') format('woff');
+}

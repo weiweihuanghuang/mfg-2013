@@ -2,26 +2,9 @@ $def with (posts,master,fontsource,webglyph)
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge">
 <!-- <meta http-equiv="refresh" content="0;url=/view/1"> -->
-</head>
-<h2>Glyph View</h2>
-<p> Selected Font : <br>
-$for fonts in fontsource:
-  $fonts <br>
-</p> 
-
-<p> 
-<a href="/metap/0">Edit Font A</a> <br>
-<a href="/metap/1">Edit Font B</a> <br>
-</p> 
-
-<br>
-<p style="color:blue;">Click on point to start Editor or <br>
-choose Font in Settings  <br>
- <br>
-Optimized for Chrome
-</p>
-
-<style>@font-face {
+<link rel="stylesheet" type="text/css" href="/static/mfg.css"/>
+<style>
+@font-face {
 	font-family:'metapolator';
 	src:url('/static/font-webfont.eot');
 	src:url('/static/font-webfont.eot?#iefix') format('embedded-opentype'),url('/static/font-webfont.woff') format('woff'),url('/static/font-webfont.ttf') format('truetype'),url('/static/font-webfont.svg#metapolator') format('svg');
@@ -47,7 +30,6 @@ Optimized for Chrome
 }
 left {
 	position:absolute;
-
 	font-family:"metapolator";
 	font-size:1000px;
 	color:#FFA2F2;
@@ -64,7 +46,6 @@ middle, right {
 	font-size:1000px;
 	color:grey;
 	z-index:-5;
-
 
 }
 right {
@@ -118,6 +99,24 @@ table,th,td {
 	color: red;
 }
 </style>
+</head>
+<h2>Glyph View</h2>
+<p> Selected Font : <br>
+$for fonts in fontsource:
+  $fonts <br>
+</p> 
+
+<p> 
+<a href="/metap/0">Edit Font A</a> <br>
+<a href="/metap/1">Edit Font B</a> <br>
+</p> 
+
+<br>
+<p style="color:blue;">Click on point to start Editor or <br>
+choose Font in Settings  <br>
+ <br>
+Optimized for Chrome
+</p>
 
 <div id="center" >
 
