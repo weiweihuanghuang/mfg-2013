@@ -357,7 +357,8 @@ def update_groupparamD( groupname, a, b):
       db.query("commit")
   
 def insert_groupparam( a):
-    
+    if a == ''  :
+       return None 
     glyphName = mfg.cFont.glyphunic 
     idmaster = gidmast(mfg.cFont.idwork)
     db.insert('groupparam', groupname=a, idmaster=idmaster)
