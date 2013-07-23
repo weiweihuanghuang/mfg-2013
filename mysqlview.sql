@@ -36,7 +36,7 @@ ifnull(p.stemcutter ,(select g.stemcutter  from groupparam g where g.idmaster=v.
 ifnull(p.stemshift  ,(select g.stemshift   from groupparam g where g.idmaster=v.idmaster and g.groupname=p.groupname)) stemshift  ,
 ifnull(p.inktrap_l  ,(select g.inktrap_l   from groupparam g where g.idmaster=v.idmaster and g.groupname=p.groupname)) inktrap_l  ,
 ifnull(p.inktrap_r  ,(select g.inktrap_r   from groupparam g where g.idmaster=v.idmaster and g.groupname=p.groupname)) inktrap_r  
-from glyphoutline v left join glyphparam p on v.id=p.id and p.PointName>'' and v.glyphName=p.glyphName and v.idmaster=p.idmaster;
+from glyphoutline v left join glyphparam p on v.id=p.id and p.PointName>'' and v.glyphName=p.glyphName and v.idmaster=p.idmaster order by p.PointName;
 create view vglgroup as select v.id,v.idmaster,v.glyphName,v.groupname,
 p.startp,p.doubledash,p.tripledash,p.leftp,p.rightp,p.downp,p.upp,p.dir,p.leftp2,p.rightp2,p.downp2,p.upp2,p.dir2,p.superright,p.superleft,p.tension,p.tensionand,p.cycle,p.penshifted,p.pointshifted,p.superness,p.penwidth,p.xHeight,p.cardinal,p.overx,p.overbase,p.overcap,p.stemcutter,p.stemshift,p.inktrap_l,p.inktrap_r from glyphparam v , groupparam p where  p.groupname>'' and v.groupname=p.groupname and v.idmaster=p.idmaster;
 
