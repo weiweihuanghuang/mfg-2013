@@ -200,7 +200,7 @@ def putFont():
                  nameval = im.value[iposa:ipose]
           else: 
             nameval="" 
-          update_glyphparam(inum,nameval)
+          update_glyphparamName(inum,nameval)
 #        s.toxml()
            
   return None  
