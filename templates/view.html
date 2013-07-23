@@ -118,7 +118,18 @@ h2 {
 
 
 }
+#menuleftorange {
+	z-index:5;
+	background-color:orange;
+	width:200px;
+	text-align:left;
+	color: yellow;
+        border-style:solid;
+	border-color:orange;
+        border-width:5px;
 
+
+}
 
 a:visited {
 		color:inherit;
@@ -181,11 +192,11 @@ $if form.d.groupn > "0" :
 
 <p id="menuleftgreen" >
     $if glyphparam.startp != None :
-       startp $glyphparam.startp </p> <br>
+       startp $glyphparam.startp <br>
     $if glyphparam.doubledash != None :
-       doubledash $glyphparam.doubledash </p> <br>
+       doubledash $glyphparam.doubledash <br>
     $if glyphparam.tripledash != None :
-       tripledash $glyphparam.tripledash </p> <br>
+       tripledash $glyphparam.tripledash <br>
     $if glyphparam.leftp != None :
        leftp $glyphparam.leftp <br>
     $if glyphparam.rightp != None :
@@ -244,14 +255,14 @@ $if form.d.groupn > "0" :
        inktrap_r $glyphparam.inktrap_r <br>
 </p>
 
-<p id="menuleftgreen" > group-parameter
+<p id="menuleftorange" > group-parameter
     $if groupparam != None :
      $if groupparam.startp != None :
-       startp $groupparam.startp </p> <br>
+       startp $groupparam.startp <br>
      $if groupparam.doubledash != None :
-       doubledash $groupparam.doubledash </p> <br>
+       doubledash $groupparam.doubledash <br>
      $if groupparam.tripledash != None :
-       tripledash $groupparam.tripledash </p> <br>
+       tripledash $groupparam.tripledash <br>
      $if groupparam.leftp != None :
        leftp $groupparam.leftp <br>
      $if groupparam.rightp != None :
