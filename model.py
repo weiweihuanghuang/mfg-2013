@@ -484,49 +484,19 @@ def writexml():
 #     first read group parameters
 #                 
                    if str(db_rowparam[0].groupname) not in ["None",'NULL',''] :
-                     
                      groupname=db_rowparam[0].groupname
-                     gstrp = "SELECT * from groupparam where groupname="+'"'+groupname+'"'+ids
+
 #     save the groupname in an xml attribute
 #
-                     db_rowgparam = list(db.query(gstrp))
                      if s.hasAttribute('groupname') :
                         s.attributes['groupname']=groupname
                      else :
                         s.setAttribute('groupname',groupname)
 
-                     xxmlat(s,db_rowgparam[0].startp,'startp','1')
-                     xxmlat(s,db_rowgparam[0].doubledash,'doubledash','1')
-                     xxmlat(s,db_rowgparam[0].tripledash,'tripledash','1')
-                     xxmlat(s,db_rowgparam[0].superness,'superness','')
-                     xxmlat(s,db_rowgparam[0].leftp,'leftp','1')
-                     xxmlat(s,db_rowgparam[0].rightp,'rightp','1')
-                     xxmlat(s,db_rowgparam[0].downp,'downp','1')
-                     xxmlat(s,db_rowgparam[0].upp,'upp','1')
-                     xxmlat(s,db_rowgparam[0].dir,'dir','')
-                     xxmlat(s,db_rowgparam[0].leftp2,'leftp2','1')
-                     xxmlat(s,db_rowgparam[0].rightp2,'rightp2','1')
-                     xxmlat(s,db_rowgparam[0].downp2,'downp2','1')
-                     xxmlat(s,db_rowgparam[0].upp2,'upp2','1')
-                     xxmlat(s,db_rowgparam[0].dir2,'dir2','')
-                     xxmlat(s,db_rowgparam[0].superright,'superright','')
-                     xxmlat(s,db_rowgparam[0].superleft,'superleft','')
-                     xxmlat(s,db_rowgparam[0].tension,'tension','')
-                     xxmlat(s,db_rowgparam[0].tensionand,'tensionand','')
-                     xxmlat(s,db_rowgparam[0].cycle,'cycle','')
-                     xxmlat(s,db_rowgparam[0].penshifted,'penshifted','')
-                     xxmlat(s,db_rowgparam[0].pointshifted,'pointshifted','')
-                     xxmlat(s,db_rowgparam[0].penwidth,'penwidth','')
-                     xxmlat(s,db_rowgparam[0].xHeight,'xHeight','')
-                     xxmlat(s,db_rowgparam[0].cardinal,'cardinal','')
-                     xxmlat(s,db_rowgparam[0].overx,'overx','')
-                     xxmlat(s,db_rowgparam[0].overbase,'overbase','')
-                     xxmlat(s,db_rowgparam[0].overcap,'overcap','')
-                     xxmlat(s,db_rowgparam[0].stemcutter,'stemcutter','')
-                     xxmlat(s,db_rowgparam[0].stemshift,'stemshift','')
-                     xxmlat(s,db_rowgparam[0].inktrap_l,'inktrap_l','')
-                     xxmlat(s,db_rowgparam[0].inktrap_r,'inktrap_r','')
-                  
+#     get the parameter list included with group parameters (lower priority)
+                     qstrp = "SELECT * from vgls where id="+str(inum) +" and Glyphname="+'"'+glyphName+'"'+ids
+                     db_rowparam = list(db.query(qstrp))
+
 #
 #      read param value and write into xml
 #      add glyphparameters here:
