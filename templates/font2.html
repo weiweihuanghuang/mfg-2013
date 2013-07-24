@@ -70,20 +70,21 @@ h2 {
 	width:0px;
 	-webkit-transform:translate(0%,0%) scale(0.80,0.80);
 }
-#menu {
+#menu, #menu a:visited, #menu a:link {
 	position:relative;
 	z-index:5;
 	width:200px;
 	float:right;
 	color:red;
+	text-decoration:none;
 }
 a:visited {
-		color:inherit;
-	text-decoration:none;
+	color: green;
+	text-decoration:underline;
 }
 a:link {
-		color:inherit;
-	text-decoration:none;
+	color: green;
+	text-decoration:underline;
 }
 table,th,td {
 	width:200px;
@@ -116,18 +117,16 @@ $:form.render()
 </form>
 </div>
 
+<p>
+$for gmg in gmlist:
+     idglobal <a href="/font2/$gmg.idglobal">$gmg.idglobal</a>  interp $gmg.metapolation sz $gmg.fontsize <br>
+
 <div>
 <p>
 <a href="/font3/$cfont.idlocalA">local parameter set A</a>
 </p>
 <p>
 <a href="/font4/$cfont.idlocalB">local parameter set B</a>
-</p>
-
-<p>
-$for gmg in gmlist:
-     idglobal <a href="/font2/$gmg.idglobal">$gmg.idglobal</a>  interp $gmg.metapolation sup $gmg.superness unit $gmg.unitwidth  maxstemcut $gmg.maxstemcut ovr $gmg.over <br>
-
 </p>
 
 </body>

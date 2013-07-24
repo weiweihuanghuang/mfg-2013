@@ -68,20 +68,21 @@ h2 {
 	width:0px;
 	-webkit-transform:translate(0%,0%) scale(0.80,0.80);
 }
-#menu {
+#menu, #menu a:visited, #menu a:link {
 	position:relative;
+	z-index:5;
 	width:200px;
 	float:right;
 	color:red;
-	z-index:-5;
+	text-decoration:none;
 }
 a:visited {
-		color:inherit;
-	text-decoration:none;
+	color: green;
+	text-decoration:underline;
 }
 a:link {
-		color:inherit;
-	text-decoration:none;
+	color: green;
+	text-decoration:underline;
 }
 table,th,td {
 	width:200px;
@@ -103,7 +104,7 @@ table,th,td {
 <body>
 
 <div class="title">
-<a href="/font2/$cfont.idglobal">B Local Parameter Set</a>
+B Local Parameter Set
 </div>
 
 <div style="overflow: hidden; white-space: nowrap;">
@@ -127,6 +128,10 @@ $for gm in glo:
      idlocal <a href="/font3/$gm.idlocal">$gm.idlocal</a>  px $gm.px mean $gm.mean des $gm.des asc $gm.ascl cap $gm.cap box $gm.box width $gm.width xheight $gm.xheight capital $gm.capital boxheight $gm.boxheight ascender $gm.ascender descender $gm.descender inktrap $gm.inktrap stemcut $gm.stemcut skeleton $gm.skeleton superness $gm.superness <br>
 </p>
 </div>
+
+<p>
+<a href="/font2/$cfont.idglobal">Global Parameter Set</a>
+</p>
 
 </body>
 </html>

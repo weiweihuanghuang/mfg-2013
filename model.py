@@ -443,13 +443,11 @@ def get_localparam(id):
 
 def put_globalparam(id):
 
-    superness=mfg.cFont.superness
     metapolation=mfg.cFont.metapolation
     unitwidth=mfg.cFont.unitwidth
     fontsize = mfg.cFont.fontsize
-    over=mfg.cFont.over
     db.insert('globalparam', where='idglobal = $id',vars=locals(), 
-        superness=superness, metapolation=metapolation, unitwidth=unitwidth, fontsize=fontsize, over=over)
+        metapolation=metapolation, fontsize=fontsize)
     db.query("commit")
     return None
 
@@ -459,9 +457,9 @@ def updatemaster(id, a, b, c, d):
     db.query("commit")
     return None
 
-def update_globalparam(id, a, b, c, d, e, f):
+def update_globalparam(id, a, b):
     db.update('globalparam', where='idglobal = $id', vars=locals(), 
-      superness = a, metapolation = b, unitwidth = c, fontsize = d, maxstemcut = e, over = f)
+      metapolation = a, fontsize = b)
     db.query("commit")
     return None
 
@@ -584,12 +582,9 @@ def writeGlobalParam():
   cap=0.8
   box=1.0
 
-  superness = imgl[0].superness
   metapolation = imgl[0].metapolation
   u = imgl[0].unitwidth
   fontsize   = imgl[0].fontsize
-  maxstemcut = imgl[0].maxstemcut
-  over = imgl[0].over
 
 #
 # global parameters
@@ -598,10 +593,6 @@ def writeGlobalParam():
   ifile.write("metapolation:=%.2f;\n"%metapolation)
   ifile.write("font_size:=%.0fpt#;\n"%fontsize)
   ifile.write("u#:=%.0fpt#;\n"%u)
-  ifile.write("max_stemcut:=%.0fpt;\n"%maxstemcut)
-  ifile.write("superness:=%.2f;\n"%superness)
-  ifile.write("over#:=%.2fpt#;\n"%over)
-
 
 # local parameters A  
   imlo = list(get_localparam(mfg.cFont.idlocalA))

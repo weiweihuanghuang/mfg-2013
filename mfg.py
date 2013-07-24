@@ -39,9 +39,7 @@ class cFont:
      idwork   = '0'
      glyphName =""
      glyphunic = "1"
-     superness =1
      metapolation=0.5
-     over=0.05
      unitwidth=1
      xHeight=1
      fontsize=10
@@ -272,24 +270,15 @@ class Font1:
 class GlobalParam:
 
     formg = web.form.Form( 
-        web.form.Textbox('superness', web.form.notnull, 
-            size=3,
-            description="superness", value="1"),
         web.form.Textbox('metapolation', web.form.notnull, 
             size=3,
             description="metapolation", value="0.5"),
-        web.form.Textbox('unitwidth', web.form.notnull, 
-            size=3,
-            description="unitwidth", value="1.0"),
+#         web.form.Textbox('unitwidth', web.form.notnull, 
+#             size=3,
+#             description="unitwidth", value="1.0"),
         web.form.Textbox('fontsize', web.form.notnull, 
             size=3,
             description="fontsize", value="10"),
-        web.form.Textbox('maxstemcut', web.form.notnull, 
-            size=3,
-            description="maxstemcut", value="10"),
-        web.form.Textbox('over', web.form.notnull, 
-            size=3,
-            description="over", value="0.05"),
 
         web.form.Button('saveg'),
         )
@@ -305,7 +294,7 @@ class GlobalParam:
           gm = None
 
         if gm != None:
-             formg.fill({'superness':gm[0].superness,'metapolation':gm[0].metapolation,'unitwidth':gm[0].unitwidth,'fontsize':gm[0].fontsize,'maxstemcut':gm[0].maxstemcut,'over':gm[0].over})
+             formg.fill({'metapolation':gm[0].metapolation,'fontsize':gm[0].fontsize,})
         return render.font2(formg,gml,cFont)
 
     def POST (self,id):
@@ -315,7 +304,7 @@ class GlobalParam:
         formg = self.formg()
         formg.fill()
         if formg.validates  :
-               model.update_globalparam(id, formg.d.superness, formg.d.metapolation, formg.d.unitwidth, formg.d.fontsize, formg.d.maxstemcut, formg.d.over)
+               model.update_globalparam(id, formg.d.metapolation, formg.d.fontsize)
         if not formg.validates() :
                return render.font2(formg,gml,cFont)
 
@@ -386,7 +375,7 @@ class localParamA:
         formlA = self.formlocA()
         formlB = localParamB.formlocB()
         gm = list(model.get_globalparam(cFont.idglobal))
-        formg.fill({'superness':gm[0].superness,'metapolation':gm[0].metapolation,'unitwidth':gm[0].unitwidth,'fontsize':gm[0].fontsize,'maxstemcut':gm[0].maxstemcut,'over':gm[0].over})
+        formg.fill({'metapolation':gm[0].metapolation,'fontsize':gm[0].fontsize})
         idlA =id 
         
         idlB =cFont.idlocalB
@@ -497,7 +486,7 @@ class localParamB:
         formlA = localParamA.formlocA()
         formlB = self.formlocB()
         gm = list(model.get_globalparam(cFont.idglobal))
-        formg.fill({'superness':gm[0].superness,'metapolation':gm[0].metapolation,'unitwidth':gm[0].unitwidth,'fontsize':gm[0].fontsize,'maxstemcut':gm[0].maxstemcut,'over':gm[0].over})
+        formg.fill({'metapolation':gm[0].metapolation,'fontsize':gm[0].fontsize,})
         idlA = cFont.idlocalA  
         idlB =id 
         if idlA > '0' :

@@ -113,11 +113,8 @@ CREATE TABLE master (
 CREATE TABLE globalparam (
     idglobal INT ,
     metapolation float,
-    superness float,
     unitwidth float,
     fontsize  integer default 10,
-    maxstemcut float default 0.0,
-    over      float default 0.05,
     primary key (idglobal)
 );
 CREATE TABLE localparam (
@@ -143,12 +140,9 @@ CREATE TABLE localparam (
 insert into master (FontName,FontNameA,FontNameB,idglobal) Values ("My First Metapolator Font", "GaramondSansA.ufo","GaramondSansB.ufo",1);
 insert into master (FontName,FontNameA,FontNameB,idglobal) Values ("My second Metapolator Font", "Aeriel-Regular.ufo","Aeriel-Regular.ufo",2);
 insert into master (FontName,FontNameA,FontNameB,idglobal) Values ("combined Garamond and Aeriel", "GaramondSans.ufo","Aeriel-Regular.ufo",2);
-insert into globalparam (idglobal,metapolation,superness,unitwidth,fontsize,maxstemcut,over) Values (1, 0.5,1,1,10,10,0.05);
-insert into globalparam (idglobal,metapolation,superness,unitwidth,fontsize,maxstemcut,over) Values (2, 0.5,1,1,10,10,0.05);
+insert into globalparam (idglobal,metapolation,unitwidth,fontsize) Values (1, 0.5,1,10);
+insert into globalparam (idglobal,metapolation,unitwidth,fontsize) Values (2, 0.5,1,10);
 insert into localparam (idlocal) values (1);
 insert into localparam (idlocal) values (2);
 insert into localparam (idlocal) values (3);
 insert into localparam (idlocal) values (4);
-insert into localparam (idlocal) values (5);
-insert into localparam (idlocal) values (6);
-insert into localparam (idlocal) values (7);
