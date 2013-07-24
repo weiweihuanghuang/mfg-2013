@@ -2466,9 +2466,6 @@ if dir[i+1] <> "" :
 if penshifted[i+1] <> "" :
  zeile = zeile + " shifted (" + str(penshiftedval[i+1]) + ")"       
 
-if cycle[i+1] <> "" :
- zeile = zeile + dash + cycle[i+1] 
-
 if overx[i+1] <> "" :
       zeile = zeile + " shifted (0, (A_mean + metapolation * (B_mean - A_mean)) - y" + str(zitemb) + str(overxval[i+1]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
 
@@ -2478,6 +2475,8 @@ if overbase[i+1] <> "" :
 if overcap[i+1] <> "" :
       zeile = zeile + " shifted (0, (A_cap + metapolation * (A_cap - B_cap)) - y" + str(zitemb) + str(overcapval[i+1]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
 
+if cycle[i+1] <> "" :
+ zeile = zeile + dash + cycle[i+1] 
 
 if  ( tension[i+1] <> "" and 
       upp2[i+1] <> "") :

@@ -2,6 +2,11 @@
 
 input spacing
 
+mtpx:= A_px + metapolation * (B_px-A_px);
+mtwidth:= A_width + metapolation * (B_width-A_width);
+mtskeleton:= A_skeleton + metapolation * (B_skeleton-A_skeleton);
+mtover:= A_over + metapolation * (B_over-A_over);
+
 % this file contains all defenitions outside glyphs and extra parameters not listed on metaflop.com
 % py#:=px#;
 A_py#:=A_px#;

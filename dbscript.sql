@@ -139,9 +139,9 @@ CREATE TABLE localparam (
 	over float default 0.1,
     primary key (idlocal)
 );
-insert into master (FontName,FontNameA,FontNameB,idglobal) Values ("My First Metapolator Font", "GaramondSansA.ufo","GaramondSansB.ufo",1);
-insert into master (FontName,FontNameA,FontNameB,idglobal) Values ("Foxtail", "FoxtailA.ufo","FoxtailA.ufo",2);
-insert into master (FontName,FontNameA,FontNameB,idglobal) Values ("combined Garamond and Aeriel", "GaramondSans.ufo","Aeriel-Regular.ufo",2);
+insert into master (FontName,FontNameA,FontNameB,idglobal) Values ("Foxtail", "FoxtailA.ufo","FoxtailA.ufo",1);
+insert into master (FontName,FontNameA,FontNameB,idglobal) Values ("My First Metapolator Font", "GaramondSansA.ufo","GaramondSansB.ufo",2);
+insert into master (FontName,FontNameA,FontNameB,idglobal) Values ("combined Garamond and Aeriel", "GaramondSans.ufo","Aeriel-Regular.ufo",3);
 insert into globalparam (idglobal,metapolation,unitwidth,fontsize) Values (1, 0.5,1,10);
 insert into globalparam (idglobal,metapolation,unitwidth,fontsize) Values (2, 0.5,1,10);
 insert into localparam (idlocal) values (1);
