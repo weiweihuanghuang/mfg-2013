@@ -20,50 +20,11 @@ $def with (form,gmlist,cfont,glo,formlA,formlB)
     font-weight: 700;
     src: local('Inconsolata Bold'), local('Inconsolata-Bold'), url('/static/Inconsolata/Inconsolata-Bold.ttf') format('truetype'), url('/static/Inconsolata/Inconsolata-Bold.woff') format('woff');
 }
-h3_b {
-	position:absolute;
-	z-index:-5;
-	bottom:-350px;
-	left:9px;
-	font-family:"metapolator","backup";
-	font-size:1200px;
-	color:grey;
-}
-h3_a {
-	position:absolute;
-	z-index:-5;
-	bottom:-359px;
-	right:9px;
-	font-family:"metapolator","backup";
-	font-size:1200px;
-	color:grey;
-}
-h3_c {
-	position:absolute;
-	z-index:-5;
-	bottom:-350px;
-	left:619px;
-	font-family:"metapolator","backup";
-	font-size:1200px;
-	color:grey;
-}
 p,h2,#menu,table,th,td,#ruler,.paramset,a {
 	font:normal 15px/19px Menlo,'Inconsolata',mono;
 	}
 h2 {
 	color:red;
-}
-#center {
-	background:red;
-	bottom:0;
-	height:0px;
-	left:-300;
-	margin:auto;
-	position:absolute;
-	top:200;
-	right:0;
-	width:0px;
-	-webkit-transform:translate(0%,0%) scale(0.80,0.80);
 }
 a:visited {
 	color: green;
@@ -77,7 +38,7 @@ table,th,td {
 	width:200px;
 	text-align:left;
 	color: red;
-}
+	}
 #mmA {
      display:inline-block;
      z-index:10;
@@ -103,17 +64,18 @@ table,th,td {
 B Local Parameter Set
 </div>
 
-<a href="/font2/$cfont.idglobal">Global Parameter Set</a>
+<p><a href="/font2/$cfont.idglobal">Global Parameter Set</a></p>
 
-<div style="overflow: hidden; white-space: nowrap;">
+
+<div style="vertical-align:top;display:inline-block;">
 <div id="mmA" >
-<p><a href="/font3/$cfont.idlocalA">local param A</a></p>
+<a href="/font3/$cfont.idlocalA">local param A</a><br><br>
 <form action="" method="POST" name="formlA">
 $:formlA.render()
 </form>
 </div>
 <div id="mmB">
-<p><a href="/font4/$cfont.idlocalB">local param B</a></p>
+<a href="/font4/$cfont.idlocalB">local param B</a><br><br>
 <form action="" method="POST" name="formlB">
 $:formlB.render()
 </form>
@@ -123,7 +85,7 @@ $:formlB.render()
 <div class="paramset">
 $for gm in glo:
 	<a href="/font4/$gm.idlocal">
-	idlocal $gm.idlocal</a><br>
+	idlocal $gm.idlocal</a><br><br>
 	<span class="paramname">px</span> <span class="value">$gm.px</span><br>
 	<span class="paramname">mean</span> <span class="value">$gm.mean</span><br>
 	<span class="paramname">des</span> <span class="value">$gm.des</span><br>
