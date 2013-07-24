@@ -47,7 +47,7 @@ h3_c {
 	font-size:1200px;
 	color:grey;
 }
-p,h2,#menu,table,th,td,#ruler {
+p,h2,#menu,table,th,td,#ruler,.paramset,a {
 	font:normal 15px/19px Menlo,'Inconsolata',mono;
 	}
 h2 {
@@ -80,42 +80,69 @@ table,th,td {
 }
 #mmA {
      display:inline-block;
-     margin: 10;
      z-index:10;
      }
 #mmB {
      display:inline-block;
-     margin: 10;
      z-index:10;
      }
+.paramset {
+     display:inline-block;
+     margin: 0 50 20 0;
+}
+.paramname {
+	color:rgb(300,150,150);
+}
+.value {
+	float: right;
+    margin: 0 0 0 40;
+}
 </style>
 
 <div class="title">
 A Local Parameter Set
 </div>
 
+<a href="/font2/$cfont.idglobal">Global Parameter Set</a>
+
 <div style="overflow: hidden; white-space: nowrap;">
 <div id="mmA" >
-<p> local A Param <a href="/font3/$cfont.idlocalA">local param A</a></p>
+<p><a href="/font3/$cfont.idlocalA">local param A</a></p>
 <form action="" method="POST" name="formlA">
 $:formlA.render()
 </form>
 </div>
 <div id="mmB">
-<p> local B Param <a href="/font4/$cfont.idlocalB">local param B</a></p>
+<p><a href="/font4/$cfont.idlocalB">local param B</a></p>
 <form action="" method="POST" name="formlB">
 $:formlB.render()
 </form>
 </div>
 </div>
 
-<div>
 <p>
+<div class="paramset">
 $for gm in glo:
-     idlocal <a href="/font3/$gm.idlocal">$gm.idlocal</a>  px $gm.px mean $gm.mean des $gm.des asc $gm.ascl cap $gm.cap box $gm.box width $gm.width space $gm.space xheight $gm.xheight capital $gm.capital boxheight $gm.boxheight ascender $gm.ascender descender $gm.descender inktrap $gm.inktrap stemcut $gm.stemcut skeleton $gm.skeleton superness $gm.superness over $gm.over<br>
-</p>
+	<a href="/font3/$gm.idlocal">
+	idlocal $gm.idlocal</a><br>
+	<span class="paramname">px</span> <span class="value">$gm.px</span><br>
+	<span class="paramname">mean</span> <span class="value">$gm.mean</span><br>
+	<span class="paramname">des</span> <span class="value">$gm.des</span><br>
+	<span class="paramname">asc</span> <span class="value">$gm.ascl</span><br>
+	<span class="paramname">cap</span> <span class="value">$gm.cap</span><br>
+	<span class="paramname">box</span> <span class="value">$gm.box</span><br>
+	<span class="paramname">width</span> <span class="value">$gm.width</span><br>
+	<span class="paramname">space</span> <span class="value">$gm.space</span><br>
+	<span class="paramname">xheight</span> <span class="value">$gm.xheight</span><br>
+	<span class="paramname">capital</span> <span class="value">$gm.capital</span><br>
+	<span class="paramname">boxheight</span> <span class="value">$gm.boxheight</span><br>
+	<span class="paramname">ascender</span> <span class="value">$gm.ascender</span><br>
+	<span class="paramname">descender</span> <span class="value">$gm.descender</span><br>
+	<span class="paramname">inktrap</span> <span class="value">$gm.inktrap</span><br>
+	<span class="paramname">stemcut</span> <span class="value">$gm.stemcut</span><br>
+	<span class="paramname">skeleton</span> <span class="value">$gm.skeleton</span><br>
+	<span class="paramname">superness</span> <span class="value">$gm.superness</span><br>
+	<span class="paramname">over</span> <span class="value">$gm.over</span><br>
+	</div><div class="paramset">
 </div>
-
-<p>
-<a href="/font2/$cfont.idglobal">Global Parameter Set</a>
 </p>
