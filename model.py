@@ -224,7 +224,7 @@ def get_postspa():
     glyphName = mfg.cFont.glyphunic 
     ids= " and idmaster="+'"'+str(idmaster)+'"'
 #    dbstr=db.select('vglyphoutlines', where='glyphName='+'"'+glyphName+'"' +ids, vars=locals())     
-    dbstr=db.select('vgls', where='glyphName='+'"'+glyphName+'"' +ids, vars=locals())     
+    dbstr=db.select('vgls', where='glyphName='+'"'+glyphName+'"' +ids+' order by PointName asc', vars=locals())     
     return list(dbstr)
 
 
@@ -298,14 +298,21 @@ def update_glyphparam(id, a, b):
     if a != '' :
       aa = a
     else:
-      aa = 'NULL'
+      db.update('glyphparam', where='id=$id and GlyphName="'+glyphName+'"'+ids, vars=locals(),
+        pointName=None, groupname=None)
+      db.query("commit")
+      return None 
     if b != '' :
       bb = b
-    else:
-      bb = 'NULL'
-    db.update('glyphparam', where='id=$id and GlyphName="'+glyphName+'"'+ids, vars=locals(),
+      db.update('glyphparam', where='id=$id and GlyphName="'+glyphName+'"'+ids, vars=locals(),
         pointName=aa, groupname=bb)
-    db.query("commit")
+      db.query("commit")
+      return None 
+    else:
+      db.update('glyphparam', where='id=$id and GlyphName="'+glyphName+'"'+ids, vars=locals(),
+        pointName=aa, groupname=None)
+      db.query("commit")
+      return None 
 
 def update_glyphparamName(id, a):
     glyphName = mfg.cFont.glyphunic 
@@ -313,11 +320,15 @@ def update_glyphparamName(id, a):
     ids= " and idmaster="+'"'+str(idmaster)+'"'
     if a != '' :
       aa = a
-    else:
-      aa = 'NULL'
-    db.update('glyphparam', where='id=$id and GlyphName="'+glyphName+'"'+ids, vars=locals(),
+      db.update('glyphparam', where='id=$id and GlyphName="'+glyphName+'"'+ids, vars=locals(),
         pointName=aa)
-    db.query("commit")
+      db.query("commit")
+      return None
+    else:
+      db.update('glyphparam', where='id=$id and GlyphName="'+glyphName+'"'+ids, vars=locals(),
+        pointName=None)
+      db.query("commit")
+      return None
 
 def update_glyphparamG(id, a):
     glyphName = mfg.cFont.glyphunic 
@@ -325,10 +336,15 @@ def update_glyphparamG(id, a):
     ids= " and idmaster="+'"'+str(idmaster)+'"'
     if a != '' :
       aa = a
-    else:
-      aa = 'NULL'
-    db.update('glyphparam', where='id=$id and GlyphName="'+glyphName+'"'+ids, vars=locals(),
+      db.update('glyphparam', where='id=$id and GlyphName="'+glyphName+'"'+ids, vars=locals(),
         pointName=aa)
+      db.query("commit")
+      return None
+    else:
+      db.update('glyphparam', where='id=$id and GlyphName="'+glyphName+'"'+ids, vars=locals(),
+        pointName=None)
+      db.query("commit")
+      return None
 
 def insert_glyphparam(id, a):
     
@@ -357,7 +373,8 @@ def update_groupparamD( groupname, a, b):
       db.query("commit")
   
 def insert_groupparam( a):
-    
+    if a == ''  :
+       return None 
     glyphName = mfg.cFont.glyphunic 
     idmaster = gidmast(mfg.cFont.idwork)
     db.insert('groupparam', groupname=a, idmaster=idmaster)

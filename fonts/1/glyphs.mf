@@ -24,7 +24,6 @@ def endchar =
 %if charic<>0: r((w+charic*hppp,h.o_),(w+charic*hppp,.5h.o_)); 
 %fi enddef;
 
-
 % initiate output mode
 
 %mode=localfont;
@@ -42,7 +41,7 @@ define_pixels(A_px,A_py,A_skeleton,B_skeleton);
 define_good_y_pixels(A_asc);
 define_good_y_pixels(A_des);
 define_good_y_pixels(A_cap);
-define_good_y_pixels(A_mean,A_box,over);
+define_good_y_pixels(A_mean,A_box);
 
 define_pixels(B_px,B_py);
 define_good_y_pixels(B_asc);
@@ -51,8 +50,7 @@ define_good_y_pixels(B_cap);
 define_good_y_pixels(B_mean);
 define_good_y_pixels(B_box);
 define_good_y_pixels(over);
-
-
+define_pixels(A_w,B_w);
 
 
 vardef tanh(expr x) =
@@ -109,6 +107,9 @@ shifted (-0.5*a*(A_inktrap + metapolation * (B_inktrap-A_inktrap)),0) enddef;
 def inktrap_r(expr a)=
 shifted (0.5*a*(A_inktrap + metapolation * (B_inktrap-A_inktrap)),0) enddef;
 
+% metawidth
+
+w:=A_w + metapolation * (B_w - A_w)
 
 % width and sidebearing settings for each glyph
 
@@ -117,7 +118,6 @@ input space
 % glyph input
 
 input glyphlist
-
 
 % some extra font information for TeX and LaTeX
 

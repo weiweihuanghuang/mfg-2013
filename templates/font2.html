@@ -104,12 +104,10 @@ table,th,td {
 </style>
 </head>
 <body>
-<p> global parameters </p>
-<p> global parameter table list </p>
-<p>
-$for gmg in gmlist:
-     idglobal <a href="/font2/$gmg.idglobal">$gmg.idglobal</a>  interp $gmg.metapolation sup $gmg.superness unit $gmg.unitwidth  maxstemcut $gmg.maxstemcut ovr $gmg.over <br>
+<div class="title"> global parameters </div>
 
+<p>
+<a href="/font2/$cfont.idglobal">global parameter set</a>
 </p>
 
 <div>
@@ -120,15 +118,18 @@ $:form.render()
 
 <div>
 <p>
-<a href="/font2/$cfont.idglobal">global parameter set</a>
-</p>
-<p>
 <a href="/font3/$cfont.idlocalA">local parameter set A</a>
 </p>
 <p>
 <a href="/font4/$cfont.idlocalB">local parameter set B</a>
 </p>
-<div>
+
+<p>
+$for gmg in gmlist:
+     idglobal <a href="/font2/$gmg.idglobal">$gmg.idglobal</a>  interp $gmg.metapolation sup $gmg.superness unit $gmg.unitwidth  maxstemcut $gmg.maxstemcut ovr $gmg.over <br>
+
+</p>
+
 </body>
 </html>
 

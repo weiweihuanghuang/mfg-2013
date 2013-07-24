@@ -52,8 +52,7 @@ h3_c {
 }
 p,h2,#menu,table,th,td,#ruler {
 	font:normal 15px/19px Menlo,'Inconsolata',mono;
-	z-index:-5;
-}
+	}
 h2 {
 	color:red;
 }
@@ -71,10 +70,10 @@ h2 {
 }
 #menu {
 	position:relative;
-	z-index:5;
 	width:200px;
 	float:right;
 	color:red;
+	z-index:-5;
 }
 a:visited {
 		color:inherit;
@@ -90,19 +89,24 @@ table,th,td {
 	color: red;
 }
 #mmA {
-     position:absolute;
-     top: 50px;
-     left: 10px;
+     display:inline-block;
+     margin: 10;
+     z-index:1;
      }
 #mmB {
-     position:absolute;
-     top: 50px;
-     left: 300px;
+     display:inline-block;
+     margin: 10;
+     z-index:2;
      }
-
 </style>
 </head>
 <body>
+
+<div class="title">
+<a href="/font2/$cfont.idglobal">B Local Parameter Set</a>
+</div>
+
+<div style="overflow: hidden; white-space: nowrap;">
 <div id="mmA" >
 <p> local A Param <a href="/font3/$cfont.idlocalA">local param A</a></p>
 <form action="" method="POST" name="formlA">
@@ -115,41 +119,14 @@ $:formlA.render()
 $:formlB.render()
 </form>
 </div>
+</div>
 
 <div>
-<p>
-<a href="/font2/$cfont.idglobal">A Local Parameter Set</a>
-</p>
-<div>
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 <p>
 $for gm in glo:
      idlocal <a href="/font3/$gm.idlocal">$gm.idlocal</a>  px $gm.px mean $gm.mean des $gm.des asc $gm.ascl cap $gm.cap box $gm.box width $gm.width xheight $gm.xheight capital $gm.capital boxheight $gm.boxheight ascender $gm.ascender descender $gm.descender inktrap $gm.inktrap stemcut $gm.stemcut skeleton $gm.skeleton superness $gm.superness <br>
-
 </p>
+</div>
 
 </body>
 </html>
-
-
