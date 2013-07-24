@@ -3,8 +3,8 @@ from xml.dom import minidom
 import codecs
 import os.path, time
 
-db = web.database(dbn='mysql', db='blog', user='root', pw='' )
-#db = web.database(dbn='mysql', db='blog', user='wei', pw='' )
+# db = web.database(dbn='mysql', db='blog', user='root', pw='' )
+db = web.database(dbn='mysql', db='blog', user='wei', pw='' )
 
    
 def xxmlat(s, dbob, sattr, val):
@@ -443,16 +443,11 @@ def get_localparam(id):
 
 def put_globalparam(id):
 
-    superness=mfg.cFont.superness
     metapolation=mfg.cFont.metapolation
-    penwidth=mfg.cFont.penwidth
     unitwidth=mfg.cFont.unitwidth
-    xHeight=mfg.cFont.xHeight
-    ht = mfg.cFont.ht
     fontsize = mfg.cFont.fontsize
-    over=mfg.cFont.over
     db.insert('globalparam', where='idglobal = $id',vars=locals(), 
-        superness=superness, metapolation=metapolation, penwidth=penwidth, unitwidth=unitwidth, xHeigth=xHeigth , ht=ht, fontsize=fontsize, over=over)
+        metapolation=metapolation, unitwidth=unitwidth, fontsize=fontsize)
     db.query("commit")
     return None
 
@@ -462,16 +457,16 @@ def updatemaster(id, a, b, c, d):
     db.query("commit")
     return None
 
-def update_globalparam(id, a, b, c, d, e, f, g, h, i):
+def update_globalparam(id, a, b):
     db.update('globalparam', where='idglobal = $id', vars=locals(), 
-      superness = a, metapolation = b, penwidth = c, unitwidth = d, xHeight = e, ht = f, fontsize = g, maxstemcut = h, over = i)
+      metapolation = a, fontsize = b)
     db.query("commit")
     return None
 
-def update_localparam(id, a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14 ):
+def update_localparam(id, a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18 ):
     print "id local param update",id
     db.update('localparam', where='idlocal = $id', vars=locals(), 
-      px = a1, mean = a2, des=a3, ascl=a4, cap=a5, width=a6, xheight=a7, capital=a8, ascender=a9, descender=a10, inktrap=a11, stemcut=a12, skeleton=a13, superness=a14)
+      px = a1, mean = a2, des=a3, ascl=a4, cap=a5, box=a6, width=a7, space=a8, xheight=a9, capital=a10, boxheight=a11, ascender=a12, descender=a13, inktrap=a14, stemcut=a15, skeleton=a16, superness=a17, over=a18)
     db.query("commit")
     return None
 
@@ -585,29 +580,18 @@ def writeGlobalParam():
   des=2.45
   asc=0.8
   cap=0.8
+  box=1.0
 
-  superness = imgl[0].superness
   metapolation = imgl[0].metapolation
-  px = imgl[0].penwidth
   u = imgl[0].unitwidth
-  mean   = imgl[0].xHeight
   fontsize   = imgl[0].fontsize
-  ht    = imgl[0].ht
-  maxstemcut = imgl[0].maxstemcut
-  over = imgl[0].over
 
-#
 # global parameters
   ifile=open(mfg.cFont.fontpath+"font.mf","w")
   ifile.write("% parameter file \n")
   ifile.write("metapolation:=%.2f;\n"%metapolation)
   ifile.write("font_size:=%.0fpt#;\n"%fontsize)
-  ifile.write("ht#:=%.0fpt#;\n"%ht)
   ifile.write("u#:=%.0fpt#;\n"%u)
-  ifile.write("max_stemcut:=%.0fpt;\n"%maxstemcut)
-  ifile.write("superness:=%.2f;\n"%superness)
-  ifile.write("over#:=%.2fpt#;\n"%over)
-
 
 # local parameters A  
   imlo = list(get_localparam(mfg.cFont.idlocalA))
@@ -615,17 +599,22 @@ def writeGlobalParam():
   ifile.write("A_px#:=%.1fpt#;\n"%imlo[0].px)
   ifile.write("A_mean#:=%.2fpt#;\n"%imlo[0].mean)
   ifile.write("A_des#:=%.2fpt#;\n"%imlo[0].des)
-  ifile.write("A_asc#:=%.1fht#;\n"%imlo[0].ascl)
-  ifile.write("A_cap#:=%.1fht#;\n"%imlo[0].cap)
+  ifile.write("A_asc#:=%.1fpt#;\n"%imlo[0].ascl)
+  ifile.write("A_cap#:=%.1fpt#;\n"%imlo[0].cap)
+  ifile.write("A_box#:=%.1fpt#;\n"%imlo[0].box)
   ifile.write("A_width:=%.2f;\n"%imlo[0].width)
+  ifile.write("A_space:=%.2f;\n"%imlo[0].space)
+  ifile.write("A_space_pt:=%.2fpt;\n"%imlo[0].space)
   ifile.write("A_xheight:=%.0f;\n"%imlo[0].xheight)
   ifile.write("A_capital:=%.0f;\n"%imlo[0].capital)
+  ifile.write("A_boxheight:=%.0f;\n"%imlo[0].boxheight)
   ifile.write("A_ascender:=%.0f;\n"%imlo[0].ascender)
   ifile.write("A_descender:=%.0f;\n"%imlo[0].descender)
   ifile.write("A_inktrap:=%.0f;\n"%imlo[0].inktrap)
   ifile.write("A_stemcut:=%.0f;\n"%imlo[0].stemcut)
   ifile.write("A_skeleton#:=%.2fpt#;\n"%imlo[0].skeleton)
   ifile.write("A_superness:=%.2f;\n"%imlo[0].superness)
+  ifile.write("A_over:=%.2fpt;\n"%imlo[0].over)
   
 # local parameters B  
   imlo = list(get_localparam(mfg.cFont.idlocalB))
@@ -633,17 +622,22 @@ def writeGlobalParam():
   ifile.write("B_px#:=%.1fpt#;\n"%imlo[0].px)
   ifile.write("B_mean#:=%.2fpt#;\n"%imlo[0].mean)
   ifile.write("B_des#:=%.2fpt#;\n"%imlo[0].des)
-  ifile.write("B_asc#:=%.1fht#;\n"%imlo[0].ascl)
-  ifile.write("B_cap#:=%.1fht#;\n"%imlo[0].cap)
+  ifile.write("B_asc#:=%.1fpt#;\n"%imlo[0].ascl)
+  ifile.write("B_cap#:=%.1fpt#;\n"%imlo[0].cap)
+  ifile.write("B_box#:=%.1fpt#;\n"%imlo[0].box)
   ifile.write("B_width:=%.2f;\n"%imlo[0].width)
+  ifile.write("B_space:=%.2f;\n"%imlo[0].space)
+  ifile.write("B_space_pt:=%.2fpt;\n"%imlo[0].space)
   ifile.write("B_xheight:=%.0f;\n"%imlo[0].xheight)
   ifile.write("B_capital:=%.0f;\n"%imlo[0].capital)
+  ifile.write("B_boxheight:=%.0f;\n"%imlo[0].boxheight)
   ifile.write("B_ascender:=%.0f;\n"%imlo[0].ascender)
   ifile.write("B_descender:=%.0f;\n"%imlo[0].descender)
   ifile.write("B_inktrap:=%.0f;\n"%imlo[0].inktrap)
   ifile.write("B_stemcut:=%.0f;\n"%imlo[0].stemcut)
   ifile.write("B_skeleton#:=%.2fpt#;\n"%imlo[0].skeleton)
   ifile.write("B_superness:=%.2f;\n"%imlo[0].superness)
+  ifile.write("B_over:=%.2fpt;\n"%imlo[0].over)
 
   ifile.write("\n") 
   ifile.write("input glyphs\n") 

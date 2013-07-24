@@ -1,45 +1,32 @@
 $def with (fontlist,form,mmaster,cfont)
-<html>
-<head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge">
-</head>
-<body>
-<h2> fonts in directories</h2>
-<p>
-$for fontl in fontlist:
-   $fontl <br> 
-
-
-<style>@font-face {
-	font-family:'metapolator';
-	src:url('/static/font-webfont.eot');
-	src:url('/static/font-webfont.eot?#iefix') format('embedded-opentype'),url('/static/font-webfont.woff') format('woff'),url('/static/font-webfont.ttf') format('truetype'),url('/static/font-webfont.svg#metapolator') format('svg');
-	font-weight:normal;
-	font-style:normal;
+<link rel="stylesheet" type="text/css" href="/static/mfg.css"/>
+<style>
+@font-face {
+    font-family: 'metapolator';
+    src: url('/static/font-webfont.eot');
+    src: url('/static/font-webfont.eot?#iefix') format('embedded-opentype'),url('/static/font-webfont.woff') format('woff'),url('/static/font-webfont.ttf') format('truetype'),url('/static/font-webfont.svg#metapolator') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
 @font-face {
-  font-family: 'Inconsolata';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Inconsolata'), 
-  url('/static/Inconsolata/Inconsolata-Regular.ttf') format('truetype'),
-  url('/static/Inconsolata/Inconsolata-Regular.woff') format('woff');
+    font-family: 'Inconsolata';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Inconsolata'), url('/static/Inconsolata/Inconsolata-Regular.ttf') format('truetype'), url('/static/Inconsolata/Inconsolata-Regular.woff') format('woff');
 }
-
 @font-face {
-  font-family: 'Inconsolata';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Inconsolata Bold'), local('Inconsolata-Bold'), 
-  url('/static/Inconsolata/Inconsolata-Bold.ttf') format('truetype'),
-  url('/static/Inconsolata/Inconsolata-Bold.woff') format('woff');
+    font-family: 'Inconsolata';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Inconsolata Bold'), local('Inconsolata-Bold'), url('/static/Inconsolata/Inconsolata-Bold.ttf') format('truetype'), url('/static/Inconsolata/Inconsolata-Bold.woff') format('woff');
 }
 h3_b {
 	position:absolute;
 	z-index:-5;
 	bottom:-350px;
 	left:9px;
-	font-family:"metapolator";
+	font-family:"metapolator","backup";
 	font-size:1200px;
 	color:grey;
 }
@@ -48,7 +35,7 @@ h3_a {
 	z-index:-5;
 	bottom:-359px;
 	right:9px;
-	font-family:"metapolator";
+	font-family:"metapolator","backup";
 	font-size:1200px;
 	color:grey;
 }
@@ -57,13 +44,12 @@ h3_c {
 	z-index:-5;
 	bottom:-350px;
 	left:619px;
-	font-family:"metapolator";
+	font-family:"metapolator","backup";
 	font-size:1200px;
 	color:grey;
 }
 p,h2,#menu,table,th,td,#ruler {
 	font:normal 15px/19px Menlo,'Inconsolata',mono;
-	z-index:-5;
 }
 h2 {
 	color:red;
@@ -80,13 +66,6 @@ h2 {
 	width:0px;
 	-webkit-transform:translate(0%,0%) scale(0.80,0.80);
 }
-#menu {
-	position:relative;
-	z-index:5;
-	width:200px;
-	float:right;
-	color:red;
-}
 a:visited {
 		color:inherit;
 	text-decoration:none;
@@ -101,9 +80,14 @@ table,th,td {
 	color: red;
 }
 </style>
+
+<h2> fonts in directories</h2>
+<p>
+$for fontl in fontlist:
+   $fontl <br> 
 <p>
 $for mma in mmaster:
-   idma <a href="/font1/$mma.idmaster">$mma.idmaster</a> projname $mma.FontName fontA $mma.FontNameA fontB $mma.FontNameB idglobal $mma.idglobal vdate $mma.vdate <br>
+   idma <a href="/font1/$mma.idmaster" style="color:green;text-decoration:underline;">$mma.idmaster</a> projname $mma.FontName fontA $mma.FontNameA fontB $mma.FontNameB idglobal $mma.idglobal vdate $mma.vdate <br>
 </p>
 <div>
 <form action="" method="post">
@@ -112,7 +96,7 @@ $:form.render()
 </div>
 <div>
 <p>
-<a href="/font2/$cfont.idglobal">specify global and local parameter set</a>
+<a href="/font2/$cfont.idglobal" style="color:green;text-decoration:underline;">specify global and local parameter set</a>
 
 </p>
 <p><br><br>
@@ -348,7 +332,3 @@ loadoption [0]: default case, read parameters from the xml attributes <br>
 <a href="/font1/1224/">&#255;</a>
 <a href="/font1/1225/">&#256;</a>
 </p>
-</body>
-</html>
-
-

@@ -1,0 +1,47 @@
+<?xml version="1.0" ?><glyph format="1" name="73">
+  <advance width="265"/>
+  <unicode hex="0069"/>
+  <outline>
+    <contour>
+      <point name="z4r" pointNo="p1" type="line" x="86" y="0"/>
+      <point name="z4l" pointNo="p2" type="line" x="179" y="0"/>
+      <point name="z3l" pointNo="p3" type="line" x="179" y="500"/>
+      <point name="z3r" pointNo="p4" startp="1" type="line" x="86" y="500"/>
+    </contour>
+    <contour>
+      <point name="z2r" pointNo="p5" type="line" x="81" y="604"/>
+      <point name="z2l" pointNo="p6" type="line" x="184" y="604"/>
+      <point name="z1l" pointNo="p7" type="line" x="184" y="700"/>
+      <point name="z1r" pointNo="p8" startp="1" type="line" x="81" y="700"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.typemytype.robofont.layerData</key>
+      <dict>
+        <key>background</key>
+        <dict>
+          <key>anchors</key>
+          <array>
+          </array>
+          <key>components</key>
+          <array>
+          </array>
+          <key>contours</key>
+          <array>
+          </array>
+          <key>lib</key>
+          <dict>
+          </dict>
+          <key>name</key>
+          <string>i</string>
+          <key>unicodes</key>
+          <array>
+          </array>
+          <key>width</key>
+          <integer>265</integer>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

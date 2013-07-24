@@ -1,24 +1,59 @@
 $def with (page)
 
 <html>
-
 <head>
-    <title>Glyph Edit</title>
+<title>Glyph Edit</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge">
+<style>
+#menu {
+	position:relative;
+	z-index:1;
+	width:200px;
+	height:50px;
+	top:10px;
+	float:right;
+}
+#menu a:visited, #menu a:link {
+	color:red;
+	text-decoration:none;
+}
+left {
+	position:absolute;
+	font-family:"metapolator","backup";
+	font-size:1000px;
+	color: rgba(120, 120, 120, 0.2);
+	right:0;
+	bottom:-290;
+	z-index:-6;
 
-</head>
-</html>
+}
+middle, right {
+	position:absolute;
+	bottom:-290;
+	left:6;
+	font-family:"metapolator","backup";
+	font-size:1000px;
+	color:grey;
+	z-index:-5;
 
+}
+right {
+	color:CCFFFF;
+	z-index:-8;
+}
+.title {
+	font:bold 32px/36px Menlo,'Inconsolata',mono;
+</style>
 </head>
 <body>
 
-<ul id="menu">
-    <li><a href="/">Editor</a></li>
-    <li><a href="/viewfont/">Specimen(comming soon)</a></li>
-    <li><a href="/font1/0">Settings</a></li>
+<div id="menu">
+<a href="/"> Editor</a><BR>
+<a href="/viewfont/">Specimen(comming soon)</a><BR>
+<a href="/font1/0">Settings</a>
+</div>
 
-</ul>
 $:page
 
 </body>
 </html>
-

@@ -117,6 +117,10 @@
 				<string>period</string>
 				<string>space</string>
 				<string>bar</string>
+				<string>65</string>
+				<string>92</string>
+				<string>95</string>
+				<string>78</string>
 			</array>
 			<key>type</key>
 			<string>glyphList</string>
@@ -190,6 +194,10 @@
 		<string>period</string>
 		<string>space</string>
 		<string>bar</string>
+		<string>65</string>
+		<string>92</string>
+		<string>95</string>
+		<string>78</string>
 	</array>
 </dict>
 </plist>

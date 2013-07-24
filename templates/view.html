@@ -1,66 +1,26 @@
 $def with (posts,post,form,formparam,formparamG,master,mastglobal,webglyph,glyphparam,groupparam,cfont,postspa)
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge">
-</head>
-<p id="menuleft">Glyph Edit</p>
-
-
-<style>@font-face {
-	font-family:'metapolator';
-	src:url('/static/font-webfont.eot');
-	src:url('/static/font-webfont.eot?#iefix') format('embedded-opentype'),url('/static/font-webfont.woff') format('woff'),url('/static/font-webfont.ttf') format('truetype'),url('/static/font-webfont.svg#metapolator') format('svg');
-	font-weight:normal;
-	font-style:normal;
+<link rel="stylesheet" type="text/css" href="/static/mfg.css"/>
+<style>
+@font-face {
+    font-family: 'metapolator';
+    src: url('/static/font-webfont.eot');
+    src: url('/static/font-webfont.eot?#iefix') format('embedded-opentype'),url('/static/font-webfont.woff') format('woff'),url('/static/font-webfont.ttf') format('truetype'),url('/static/font-webfont.svg#metapolator') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
 @font-face {
-  font-family: 'Inconsolata';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Inconsolata'), 
-  url('/static/Inconsolata/Inconsolata-Regular.ttf') format('truetype'),
-  url('/static/Inconsolata/Inconsolata-Regular.woff') format('woff');
+    font-family: 'Inconsolata';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Inconsolata'), url('/static/Inconsolata/Inconsolata-Regular.ttf') format('truetype'), url('/static/Inconsolata/Inconsolata-Regular.woff') format('woff');
 }
-
 @font-face {
-  font-family: 'Inconsolata';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Inconsolata Bold'), local('Inconsolata-Bold'), 
-  url('/static/Inconsolata/Inconsolata-Bold.ttf') format('truetype'),
-  url('/static/Inconsolata/Inconsolata-Bold.woff') format('woff');
+    font-family: 'Inconsolata';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Inconsolata Bold'), local('Inconsolata-Bold'), url('/static/Inconsolata/Inconsolata-Bold.ttf') format('truetype'), url('/static/Inconsolata/Inconsolata-Bold.woff') format('woff');
 }
-
-
-left {
-	position:absolute;
-
-	font-family:"metapolator";
-	font-size:1000px;
-	color: rgba(120, 120, 120, 0.2);
-	right:0;
-bottom:-270;
-	z-index:-6;
-
-
-
-}
-middle, right {
-	position:absolute;
-bottom:-270;
-left:6;
-
-	font-family:"metapolator";
-	font-size:1000px;
-	z-index:-5;
-
-
-}
-right {
-	color:CCFFFF;
-	z-index:-8;
-}
-      
-      .first {
+     .first {
         color: grey;
       }
       .second { 
@@ -80,12 +40,12 @@ h2 {
 	left:-500;
 	margin:auto;
 	position:absolute;
-	top:400;
+	top:600;
 	right:0;
 	width:0px;
 	-webkit-transform:translate(0%,0%) scale(100%,100%);
 }
-#menu {
+#viewmenu {
 	position:relative;
 	z-index:5;
 	width:200px;
@@ -94,26 +54,36 @@ h2 {
 	width:200px;
 	text-align:left;
 	color: white;
-        border-style:solid;
+    border-style:solid;
 	border-color:black;
-        border-width:5px;
-
-
+    border-width:5px;
 }
 
 #menuleft {
-	width:200px;
+	width:300px;
 
 }
 
 #menuleftgreen {
 	z-index:5;
 	background-color:green;
-	width:200px;
+	width:300px;
 	text-align:left;
 	color: yellow;
         border-style:solid;
 	border-color:green;
+        border-width:5px;
+
+
+}
+#menuleftorange {
+	z-index:5;
+	background-color:orange;
+	width:300px;
+	text-align:left;
+	color: yellow;
+        border-style:solid;
+	border-color:orange;
         border-width:5px;
 
 
@@ -137,10 +107,9 @@ table,th,td, #menuleft{
         border-width:5px;
 
 }
- 
 </style>
 
-
+<p id="menuleft">Glyph Edit</p>
 <p id="menuleft">  
 $if cfont.idwork == '0' :
        Font A: $cfont.fontna 
@@ -153,17 +122,12 @@ $if cfont.idwork == '1' :
 <a id="menuleftgreen" href="/metap/1">Edit Font B</a> <br>
 </p> 
 
-<p id="menu">  
+<p id="viewmenu">  
 $for mast in master:
    $mast.FontName  
 
 $for mast in mastglobal:
    Metapolation $mast.metapolation <br> 
-   superness $mast.superness <br>
-   penwidth $mast.penwidth <br>
-   unitwidht $mast.unitwidth <br>
-   xHeight $mast.xHeight <br>
-   ht $mast.ht <br>
    fontsize $mast.fontsize <br>
    this is view.html
  <br>
@@ -172,20 +136,20 @@ $for mast in mastglobal:
 <p id="menuleft" >
 	<form action="" method="post">
 $:form.render() 
+ <br>
+
 $if form.d.PointName > "0" : 
     $:formparam.render() 
-$if form.d.groupn > "0" : 
-    $:formparamG.render() 
 
 <!-- add new parameters here: -->
 
 <p id="menuleftgreen" >
     $if glyphparam.startp != None :
-       startp $glyphparam.startp </p> <br>
+       startp $glyphparam.startp <br>
     $if glyphparam.doubledash != None :
-       doubledash $glyphparam.doubledash </p> <br>
+       doubledash $glyphparam.doubledash  <br>
     $if glyphparam.tripledash != None :
-       tripledash $glyphparam.tripledash </p> <br>
+       tripledash $glyphparam.tripledash  <br>
     $if glyphparam.leftp != None :
        leftp $glyphparam.leftp <br>
     $if glyphparam.rightp != None :
@@ -244,14 +208,21 @@ $if form.d.groupn > "0" :
        inktrap_r $glyphparam.inktrap_r <br>
 </p>
 
-<p id="menuleftgreen" > group-parameter
+<p id="menuleft" >
+	<form action="" method="post">
+
+$if form.d.groupn > "0" : 
+    $:formparamG.render() 
+
+
+<p id="menuleftorange" > 
     $if groupparam != None :
      $if groupparam.startp != None :
-       startp $groupparam.startp </p> <br>
+       startp $groupparam.startp  <br>
      $if groupparam.doubledash != None :
-       doubledash $groupparam.doubledash </p> <br>
+       doubledash $groupparam.doubledash <br>
      $if groupparam.tripledash != None :
-       tripledash $groupparam.tripledash </p> <br>
+       tripledash $groupparam.tripledash  <br>
      $if groupparam.leftp != None :
        leftp $groupparam.leftp <br>
      $if groupparam.rightp != None :
@@ -314,10 +285,10 @@ $if form.d.groupn > "0" :
 <p id="menuleft"> points - parameters </p>
 <p id="menuleft"> 
 <!-- add new parameters here: -->
-
+ 
 $for ppp in postspa:
    $if ppp.PointName != '' :
-     $ppp.id  $ppp.PointName
+     $ppp.id $ppp.PointName
      $if ppp.startp != None :
          startp $ppp.startp
      $if ppp.doubledash != None :
@@ -407,7 +378,3 @@ $for posti in posts:
 		</p>
 	</div>
 </div>
-
-
-
-

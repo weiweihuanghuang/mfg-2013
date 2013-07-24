@@ -32,10 +32,11 @@ uni = minidom.parse(font_a)
 itemlist = uni.getElementsByTagName('unicode')
 u = itemlist[0].attributes['hex'].value
 
-mean = ['65','95', 'c', 'e', 'm', '78', 'n', 'o', 'r', 's', 'u', 'v', 'w', 'x', 'z']
-des = ['g', 'j', 'p', 'q', 'y']
-asc = ['b', 'h', 'd', 'k', 'i', 'l', 't', 'f']
-cap = ['f', 'A', 'B', 'C', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'zero', '92']
+mean = ['13','14','26','29','65','67','69','77','78','79','82','83','85','86','87','88','90','94','95']
+des = ['12','27','63','71','80','81','89']
+asc = ['2','7','11','28','30','62','64','66','68','70','72','73','75','76','84']
+cap = ['1','3','5','6','10','16','17','18','19','20','21','22','23','24','25','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58']
+box = ['4','8','9','15','59','60','61','74','91','92','93']
 
 # ggroup=""
 
@@ -45,20 +46,20 @@ if g in mean :
 if g in des :
     ggroup = 'des#'
 
-else : 
-    ggroup2 = '0'
-
 if g in cap : 
     ggroup = 'cap#'
 
 if g in asc :
     ggroup = 'asc#'
 
+if g in box :
+    ggroup = 'box#'
+
 #else :
 #    ggroup = 'asc#'
 
 
-print 'beginfontchar(' + g + ', (' + w + '*A_width + metapolation * (' + w + '*A_width - ' + w2 + '*B_width)) * width_' + g + "+ width_" +  g  + "R#, A_" + ggroup + " + metapolation * (B_" + ggroup + " - A_" + ggroup + "), " + ggroup2 + ");"
+print 'beginfontchar(' + g + ', (' + w + '*A_width + metapolation * (' + w + '*A_width - ' + w2 + '*B_width)) * width_' + g + " + spacing_" +  g  + "R, A_" + ggroup + " + metapolation * (B_" + ggroup + " - A_" + ggroup + "), " + "0" + ");"
 # print """if known ps_output:
 # glyph_name "uni""" + u + """"; 
 # fi
@@ -392,10 +393,11 @@ glyph = glif.getElementsByTagName('glyph')
 g = glyph[0].attributes['name'].value
 
 
-mean = ['65','95', 'c', 'e', 'm', '78', 'n', 'o', 'r', 's', 'u', 'v', 'w', 'x', 'z']
-des = ['g', 'j', 'p', 'q', 'y']
-asc = ['b', 'h', 'd', 'k', 'i', 'l', 't', 'f']
-cap = ['f', 'A', 'B', 'C', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'zero', '92']
+mean = ['13','14','26','29','65','67','69','77','78','79','82','83','85','86','87','88','90','94','95']
+des = ['12','27','63','71','80','81','89']
+asc = ['2','7','11','28','30','62','64','66','68','70','72','73','75','76','84']
+cap = ['1','3','5','6','10','16','17','18','19','20','21','22','23','24','25','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58']
+box = ['4','8','9','15','59','60','61','74','91','92','93']
 
 # ggroup=""
 
@@ -410,6 +412,9 @@ if g in cap :
 
 if g in asc :
     ggroup = 'ascender'
+
+if g in box :
+    ggroup = 'boxheight'
 
 
 glif = minidom.parse(font_a)
@@ -579,10 +584,10 @@ for i in range (0,nnz) :
   zeileb = "ang" + str(zitem) + "V := ang" + str(zitem) + "; dist" + str(zitem) + "V := dist" + str(zitem) + ";" 
 #  zeilec = "ang" + str(zitemb) + "V := ang" + str(zitemb) + ";"
 
-#  zeile = "z"+str(zitem)+ "=(x2"+ str(zitem)+ "0 *width *width_" + g + "+ (metapolation * (x2"+str(zitem)+"A - x2" +str(zitem)+"0)), y2"+str(zitem)+ "0 *" + ggroup + " + (metapolation * (y2"+str(zitem)+ "A - y2" +str(zitem)+ "0))"
+#  zeile = "z"+str(zitem)+ "=(x2"+ str(zitem)+ "0 *width *spacing_" + g + "+ (metapolation * (x2"+str(zitem)+"A - x2" +str(zitem)+"0)), y2"+str(zitem)+ "0 *" + ggroup + " + (metapolation * (y2"+str(zitem)+ "A - y2" +str(zitem)+ "0))"
   
 #  zeileend =""
-#  zeileend = 'z'+str(zzn[nnz-1])+ "=(x2"+ str(zzn[nnz-1])+ "0 *width *width_" + g + " + (metapolation * (x2"+str(zzn[nnz-1])+"A - x2" +str(zzn[nnz-1])+"0)), y2"+str(zzn[nnz-1])+ "0 *" + ggroup + " + (metapolation * (y2"+str(zzn[nnz-1]) + "A - y2" +str(zzn[nnz-1])+ "0))"
+#  zeileend = 'z'+str(zzn[nnz-1])+ "=(x2"+ str(zzn[nnz-1])+ "0 *width *spacing_" + g + " + (metapolation * (x2"+str(zzn[nnz-1])+"A - x2" +str(zzn[nnz-1])+"0)), y2"+str(zzn[nnz-1])+ "0 *" + ggroup + " + (metapolation * (y2"+str(zzn[nnz-1]) + "A - y2" +str(zzn[nnz-1])+ "0))"
  
 
 # parameters 
@@ -617,10 +622,75 @@ for i in range (0,nnz) :
 ####### new penpos
 
 
+# reading font Pen Positions Font B
 
+
+glif = minidom.parse(font_b)
+itemlist = glif.getElementsByTagName('point') 
+
+
+
+inattr=0   
+ivn = 0
+strz = ""
+zzn = []
+
+
+# create empty variable list
+
+penwidth = []
+penwidthval = []
+B_penwidthval = []
+
+
+# add iteration to string
+
+for i in range (1,100):
+
+  penwidth.append("")
+  penwidthval.append(0)
+  B_penwidthval.append(0)
+
+
+# search for parameter values
+  
+for item in itemlist :
+  for i in range (1,100):
+     znamel = 'z'+str(i)+'l'
+     znamer = 'z'+str(i)+'r'
+     
+     ipn=0
+     try :
+       x = item.attributes['x'].value
+       y = item.attributes['y'].value
+       im =item.attributes['name'] 
+
+       try :
+	 ipenwidth = item.attributes['penwidth'].value   
+	 ipenwidth = True
+       except :
+       	 ipenwidth = False
+
+
+       ipn = 1   
+     except : 
+       inattr=inattr+1 
+
+
+     if ipn == 1 :
+       if im.value.find(znamel) > -1 :
+          zzn.append (i)
+       if im.value.find(znamel) > -1 or im.value.find(znamer) > -1:
+
+         if ipenwidth == True :
+           ipenwidthval = item.attributes['penwidth'].value
+           del penwidth[i-1]
+           penwidth.insert(i-1,"penwidth")
+	   del B_penwidthval[i-1]
+           B_penwidthval.insert(i-1,ipenwidthval)
 
         
-# reading font Pen Positions
+# reading font Pen Positions Font A
 
 print """
 
@@ -651,6 +721,11 @@ inktrap_r = []
 inktrap_rval = []
 
 
+penwidth = []
+penwidthval = []
+A_penwidthval = []
+
+
 # add iteration to string
 
 for i in range (1,100):
@@ -663,6 +738,11 @@ for i in range (1,100):
 
   inktrap_r.append("")
   inktrap_rval.append(0)
+
+  penwidth.append("")
+  penwidthval.append(0)
+  A_penwidthval.append(0)
+
 
 
 # search for parameter values
@@ -696,6 +776,12 @@ for item in itemlist :
        except :
        	 iinktrap_r = False
 
+       try :
+	 ipenwidth = item.attributes['penwidth'].value   
+	 ipenwidth = True
+       except :
+       	 ipenwidth = False
+
 
        ipn = 1   
      except : 
@@ -728,6 +814,13 @@ for item in itemlist :
 	   del inktrap_rval[i-1]
            inktrap_rval.insert(i-1,iinktrap_rval)
 
+         if ipenwidth == True :
+           ipenwidthval = item.attributes['penwidth'].value
+           del penwidth[i-1]
+           penwidth.insert(i-1,"penwidth")
+	   del A_penwidthval[i-1]
+           A_penwidthval.insert(i-1,ipenwidthval)
+
 nnz = 0
 for zitem in zzn :
   nnz = nnz +1 
@@ -749,13 +842,21 @@ for i in range (0,nnz) :
 
   zeile =""
 
-  zeile = """penpos"""  +str(zitem) + "(dist" +str(zitem) + " + (A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist" +str(zitem) + ")"
+#  zeile = """penpos"""  +str(zitem) + "(dist" +str(zitem) + " + ((A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist" +str(zitem) + "))"
 
 
 #  zeile = """penpos""" + znamel[1:-1] + "(dist" + znamel[1:-1] + " + (metapolation * (px - (dist"+znamel[1:-1] + " + (distV * (dist" + znamel[1:-1] + "V - dist" +znamel[1:-1] + "))))), (ang"+znamel[1:-1] + " + (angV * (ang" + znamel[1:-1] + "V - ang" + znamel[1:-1] +"))));"
 
 
 # parameters 
+  
+  if penwidth[i] <> "" :
+    zeile = """penpos"""  +str(zitem) + "(dist" +str(zitem) + " * (" + str(A_penwidthval[i]) +" + metapolation * (" + str(B_penwidthval[i]) + " - " + str(A_penwidthval[i]) + ")) + ((A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist" +str(zitem) + "))"
+  else :
+    zeile = """penpos"""  +str(zitem) + "(dist" +str(zitem) + " + ((A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist" +str(zitem) + "))"
+
+#    zeile = zeile + " * (" + str(A_penwidthval[i]) +" + metapolation * (" + str(B_penwidthval[i]) + " - " + str(A_penwidthval[i]) + "))"
+#    zeile = zeile + " * (" + str(A_penwidthval[i]) +")"
 
   if stemcutter[i] <> "" :
     zeile = zeile + "-" + stemcutter[i] + "(" +  str(stemcutterval[i]) + ")"      
@@ -784,50 +885,6 @@ for i in range (0,nnz) :
 
 
 
-
-
-
-############
-
-
-
-
-#print """
-#% pen positions 
-#""" 
-
-
-# reading font Pen Positions
-
-#glif = minidom.parse(font_a)
-#itemlist = glif.getElementsByTagName('point') 
-
-#inattr=0   
-#for item in itemlist :
-#  for i in range (1,100):
-#     znamel = 'z'+str(i)+'l'
-#     znamer = 'z'+str(i)+'r'
-#     zname = 'z'+str(i)+'r'
-
-#     ipn=0
-#     try :
-#       x = item.attributes['x'].value
-#       y = item.attributes['y'].value
-#       im =item.attributes['name'] 
-#       ipn = 1   
-#     except : 
-#       inattr=inattr+1 
-#        
-#     if ipn == 1 :
-#       if im.value.find(znamer)>-1 or im.value.find(znamel)>-1: 
-#         if im.value.find(znamer)>-1 :
-         
-#            print """penpos""" + znamel[1:-1] + "(dist"+znamel[1:-1] + " + (metapolation * (px - dist"+znamel[1:-1] + ")), ang"+znamel[1:-1] + ");"
-#            print """penpos""" + znamel[1:-1] + "(dist" + znamel[1:-1] + " + (metapolation * (px - (dist"+znamel[1:-1] + " + (distV * (dist" + znamel[1:-1] + "V - dist" +znamel[1:-1] + "))))), (ang"+znamel[1:-1] + " + (angV * (ang" + znamel[1:-1] + "V - ang" + znamel[1:-1] +"))));"
-
-
-
-
         
 # reading font Pen strokes
 
@@ -841,11 +898,11 @@ glyph = glif.getElementsByTagName('glyph')
 g = glyph[0].attributes['name'].value
 
 
-mean = ['65','95', 'c', 'e', 'm', '78', 'n', 'o', 'r', 's', 'u', 'v', 'w', 'x', 'z']
-des = ['g', 'j', 'p', 'q', 'y']
-asc = ['b', 'h', 'd', 'k', 'i', 'l', 't', 'f']
-cap = ['f', 'A', 'B', 'C', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'zero', '92']
-
+mean = ['13','14','26','29','65','67','69','77','78','79','82','83','85','86','87','88','90','94','95']
+des = ['12','27','63','71','80','81','89']
+asc = ['2','7','11','28','30','62','64','66','68','70','72','73','75','76','84']
+cap = ['1','3','5','6','10','16','17','18','19','20','21','22','23','24','25','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58']
+box = ['4','8','9','15','59','60','61','74','91','92','93']
 
 # ggroup=""
 
@@ -860,6 +917,9 @@ if g in cap :
 
 if g in asc :
     ggroup = 'ascender'
+
+if g in box :
+    ggroup = 'boxheight'
 
 
 glif = minidom.parse(font_a)
@@ -1151,20 +1211,15 @@ for i in range (0,nnz) :
 
   zeile =""
 
-  zeile = "z"+str(zitem)+ "=((A_width + metapolation * (A_width - B_width)) * (x2"+ str(zitem)+ "0 + metapolation * (x2"+str(zitem)+"A - x2" +str(zitem)+"0) + width_" + g + "L) * width_" + g + ", (A_" + ggroup + " + metapolation * (B_" + ggroup + " - A_" + ggroup + "))*(y2"+str(zitem)+ "0 + metapolation *(y2"+str(zitem)+ "A - y2" +str(zitem)+ "0)))"
+  zeile = "z"+str(zitem)+ "=((A_width + metapolation * (A_width - B_width)) * (x2"+ str(zitem)+ "0 + metapolation * (x2"+str(zitem)+"A - x2" +str(zitem)+"0) + spacing_" + g + "L) * width_" + g + ", (A_" + ggroup + " + metapolation * (B_" + ggroup + " - A_" + ggroup + "))*(y2"+str(zitem)+ "0 + metapolation *(y2"+str(zitem)+ "A - y2" +str(zitem)+ "0)))"
 
 #  zeileend =""
-#  zeileend = 'z'+str(zzn[nnz-1])+ "=(x2"+ str(zzn[nnz-1])+ "0 *width *width_" + g + " + (metapolation * (x2"+str(zzn[nnz-1])+"A - x2" +str(zzn[nnz-1])+"0)), y2"+str(zzn[nnz-1])+ "0 *" + ggroup + " + (metapolation * (y2"+str(zzn[nnz-1]) + "A - y2" +str(zzn[nnz-1])+ "0)))"
+#  zeileend = 'z'+str(zzn[nnz-1])+ "=(x2"+ str(zzn[nnz-1])+ "0 *width *spacing_" + g + " + (metapolation * (x2"+str(zzn[nnz-1])+"A - x2" +str(zzn[nnz-1])+"0)), y2"+str(zzn[nnz-1])+ "0 *" + ggroup + " + (metapolation * (y2"+str(zzn[nnz-1]) + "A - y2" +str(zzn[nnz-1])+ "0)))"
  
 
 # parameters 
-
-  if overx[i] <> "" :
-      zeile = zeile + " shifted (0, (A_mean + metapolation * (A_mean - B_mean)) - y" + str(zitem) + str(overxval[i]) + ") + (0, over)" 
-
-
   if pointshifted[i] <> "" :
-      zeile = zeile +" shifted (" + str(pointshiftedval[i]) + ",0)"       
+      zeile = zeile +" shifted (" + str(pointshiftedval[i]) + ")"       
 
 
   if stemshift[i] <> "" :
@@ -1178,13 +1233,6 @@ for i in range (0,nnz) :
   if inktrap_r[i] <> "" :
       zeile = zeile +" inktrap_r (" + str(inktrap_rval[i]) + ")"       
 
-  if overbase[i] <> "" :
-      zeile = zeile + " shifted (0, - y" + str(zitem) + str(overbaseval[i]) + ") - (0, over)" 
-
-  if overcap[i] <> "" :
-      zeile = zeile + " shifted (0, (A_cap + metapolation * (A_cap - B_cap)) - y" + str(zitem) + str(overcapval[i]) + ") + (0, over)" 
-
- 
  
   else: 
      zeile = zeile 
@@ -1222,9 +1270,11 @@ tripledash = []
 tripledashvalB = []
 
 tension = []
+tensionB = []
 tensionvalB = []
 
 tensionand = []
+tensionandB = []
 tensionandvalB = []
 tensionandval2B = []
 
@@ -1235,7 +1285,12 @@ superleft = []
 superleftvalB = []
 
 dir = []
+dirB = []
 dirvalB = []
+
+dir2 = []
+dir2B = []
+dir2valB = []
 
 leftp = []
 leftpvalB = []
@@ -1267,9 +1322,11 @@ for i in range (1,100):
   tripledashvalB.append(0)
 
   tension.append("")
+  tensionB.append("")
   tensionvalB.append(0)
   
   tensionand.append("")
+  tensionandB.append("")
   tensionandvalB.append(0)
   tensionandval2B.append(0)
 
@@ -1280,7 +1337,13 @@ for i in range (1,100):
   superleftvalB.append(0)
   
   dir.append("")
+  dirB.append("")
   dirvalB.append(0)
+
+  dir2.append("")
+  dir2B.append("")
+  dir2valB.append(0)
+
 
   leftp.append("")
   leftpvalB.append(0)
@@ -1332,6 +1395,12 @@ for item in itemlist :
 	 idir = True
        except :
        	 idir = False
+
+       try :
+	 idir2 = item.attributes['dir2'].value   
+	 idir2 = True
+       except :
+       	 idir2 = False
 
        try :
 	 ileftp = item.attributes['leftp'].value   
@@ -1425,9 +1494,16 @@ for item in itemlist :
          if idir == True :
            idirval = item.attributes['dir'].value
            del dir[i-1]
-           dir.insert(i-1,"dir")
+           dirB.insert(i-1,"dir")
 	   del dirvalB[i-1]
            dirvalB.insert(i-1,idirval)
+
+         if idir2 == True :
+           idir2val = item.attributes['dir2'].value
+           del dir2[i-1]
+           dir2B.insert(i-1,"dir")
+	   del dir2valB[i-1]
+           dir2valB.insert(i-1,idir2val)
       
          if iupp == True :
            iuppval = item.attributes['upp'].value
@@ -1460,14 +1536,14 @@ for item in itemlist :
          if itension == True :
            itensionval = item.attributes['tension'].value
            del tension[i-1]
-           tension.insert(i-1,"tension")
+           tensionB.insert(i-1,"tension")
 	   del tensionvalB[i-1]
            tensionvalB.insert(i-1,itensionval)
 
          if itensionand == True :
            itensionandval = item.attributes['tensionand'].value
            del tensionand[i-1]
-           tensionand.insert(i-1,"tensionand")
+           tensionandB.insert(i-1,"tensionand")
 	   del tensionandvalB[i-1]
            del tensionandval2B[i-1]
            tensionandvalB.insert(i-1,itensionandval[:3])
@@ -2084,6 +2160,23 @@ for i in range (0,nnz-1) :
                 if dir2[i] <> "" :
                   dash = ""
 
+                else :
+                  if upp2[i] <> "" :
+                    dash = ""
+
+                  else :
+                    if downp2[i] <> "" :
+                      dash = ""
+
+                    else :
+                      if rightp2[i] <> "" :
+                        dash = ""
+
+                      else :
+                        if leftp2[i] <> "" :
+                          dash = ""
+
+
 
     if upp[i] <> "" :
       zeile = zeile + "{up}"      
@@ -2098,10 +2191,22 @@ for i in range (0,nnz-1) :
       zeile = zeile + "{right}"      
 
     if dir[i] <> "" :
-      zeile = zeile + " {dir "+ str(dirval[i]) + "}"      
+       if dirB[i] <> "" :
+          zeile = zeile + " {dir ("+ str(dirval[i]) + " + metapolation * (" + str(dirvalB[i]) + " - " + str(dirval[i]) + "))}"      
+       else :
+          zeile = zeile + " {dir ("+ str(dirval[i]) + " + metapolation * (" + str(dirval[i]) + " - " + str(dirval[i]) + "))}"      
 
     if penshifted[i] <> "" :
       zeile = zeile + " shifted (" + str(penshiftedval[i]) + ")"      
+
+    if overx[i] <> "" :
+      zeile = zeile + " shifted (0, (A_mean + metapolation * (B_mean - A_mean)) - y" + str(zitem) + str(overxval[i]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
+
+    if overbase[i] <> "" :
+      zeile = zeile + " shifted (0, - y" + str(zitem) + str(overbaseval[i]) + ") - (0, A_over + metapolation * (B_over - A_over))" 
+
+    if overcap[i] <> "" :
+      zeile = zeile + " shifted (0, (A_cap + metapolation * (A_cap - B_cap)) - y" + str(zitem) + str(overcapval[i]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
 
     if penshiftedy[i] <> "" :
       zeile = zeile + " shifted (0, y" + str(penshiftedyval[i]) + ")"      
@@ -2111,68 +2216,144 @@ for i in range (0,nnz-1) :
 
     if superright[i] <> "" :
       zeile = zeile + strtwo + superright[i]+"("+str(zitem)+"e," +str(zitemsuper)+"e, ["+str(superrightval[i]) + '+ (metapolation * (' + str(superrightvalB[i])+ '-' +str(superrightval[i]) + '))])' + strtwo      
-      
-    if  ( tension[i] <> "" and 
-          upp2[i] <> "") :
-            zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100 -' + str(tensionval[i]) + '/100)))' + strtwo  + "{up}" 
-
-    if  ( tension[i] <> "" and 
-          downp2[i] <> "") :
-            zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100 -' + str(tensionval[i]) + '/100)))' + strtwo  + "{down}" 
-
-    if  ( tension[i] <> "" and 
-          rightp2[i] <> "") :
-            zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100 -' + str(tensionval[i]) + '/100)))' + strtwo  + "{right}" 
-
-    if  ( tension[i] <> "" and 
-          leftp2[i] <> "") :
-            zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100 -' + str(tensionval[i]) + '/100)))' + strtwo  + "{left}" 
-
-    if  ( tension[i] <> "" and 
-          dir2[i] <> "") :
-            zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100 -' + str(tensionval[i]) + '/100)))' + strtwo  + "{dir "+ str(dir2val[i]) + "}" 
-
-    else :
-      if dir2[i] <> "" :
-        zeile = zeile + " ... {dir "+ str(dir2val[i]) + "}"   
-
-      else :
-        if tension[i] <> "" :
-          zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100 -' + str(tensionval[i]) + '/100 )))' + strtwo  + downp2[i] 
-
-        else :
-          if tensionand[i] <> "" :
-             zeile = zeile + strtwo + "tension" + " ((" + str(tensionandval[i]) + '/100) + (metapolation * ((' + str(tensionandvalB[i]) + '/100) - (' + str(tensionandval[i]) + '/100))))' + " and ((" + str(tensionandval2[i]) + '/100) + (metapolation * ((' + str(tensionandval2B[i]) + '/100) - (' + str(tensionandval2[i]) + '/100))))'  + strtwo
 
 
-          else :
-            if superright[i] > "" :
-             zeile = zeile 
+             
+## tension and leftp2
+
+    if  (tension[i] <> "" and 
+         leftp2[i] <> "") :
+            if tensionB[i] <> "" :
+              zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100 -' + str(tensionval[i]) + '/100 )))' + strtwo  + "{left}"  
             else :
-              if superleft[i] > "" :
-                zeile = zeile 
-              else :
-                if tensionand[i] > "" :
-                 zeile = zeile 
-                else :
-                  if penshifted[i] > "" :
-                   zeile = zeile 
-                  else :
-                     zeile = zeile   
-   
+              zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionval[i]) + '/100 -' + str(tensionval[i]) + '/100 )))' + strtwo  + "{left}" 
 
-    if downp2[i] <> "" :
-      zeile = zeile  + dash + downp2[i]  
-    else:
-      if upp2[i] <> "" :
-        zeile = zeile  + dash + upp2[i]  
+    if  (tensionand[i] <> "" and 
+         leftp2[i] <> "") :
+            if tensionandB[i] <> "" :
+              zeile = zeile + strtwo + "tension" + " ((" + str(tensionandval[i]) + '/100) + (metapolation * ((' + str(tensionandvalB[i]) + '/100) - (' + str(tensionandval[i]) + '/100))))' + " and ((" + str(tensionandval2[i]) + '/100) + (metapolation * ((' + str(tensionandval2B[i]) + '/100) - (' + str(tensionandval2[i]) + '/100))))'  + strtwo  + "{left}"  
+            else :
+              zeile = zeile + strtwo + "tension" + " ((" + str(tensionandval[i]) + '/100) + (metapolation * ((' + str(tensionandval[i]) + '/100) - (' + str(tensionandval[i]) + '/100))))' + " and ((" + str(tensionandval2[i]) + '/100) + (metapolation * ((' + str(tensionandval2[i]) + '/100) - (' + str(tensionandval2[i]) + '/100))))'  + strtwo  + "{left}" 
+  
+    else :
+      if leftp2[i] <> "" :
+        zeile = zeile  + ' ... ' + leftp2[i]  
+
       else :
-        if leftp2[i] <> "" :
-          zeile = zeile  + dash + leftp2[i]  
+        zeile = zeile 
+
+           
+## tension and rightp2
+
+        if  (tension[i] <> "" and 
+             rightp2[i] <> "") :
+               if tensionB[i] <> "" :
+                  zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100 -' + str(tensionval[i]) + '/100 )))' + strtwo  + "{right}"  
+               else :
+                  zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionval[i]) + '/100 -' + str(tensionval[i]) + '/100 )))' + strtwo  + "{right}" 
+
+        if  (tensionand[i] <> "" and 
+             rightp2[i] <> "") :
+               if tensionandB[i] <> "" :
+                  zeile = zeile + strtwo + "tension" + " ((" + str(tensionandval[i]) + '/100) + (metapolation * ((' + str(tensionandvalB[i]) + '/100) - (' + str(tensionandval[i]) + '/100))))' + " and ((" + str(tensionandval2[i]) + '/100) + (metapolation * ((' + str(tensionandval2B[i]) + '/100) - (' + str(tensionandval2[i]) + '/100))))'  + strtwo  + "{right}"  
+               else :
+                  zeile = zeile + strtwo + "tension" + " ((" + str(tensionandval[i]) + '/100) + (metapolation * ((' + str(tensionandval[i]) + '/100) - (' + str(tensionandval[i]) + '/100))))' + " and ((" + str(tensionandval2[i]) + '/100) + (metapolation * ((' + str(tensionandval2[i]) + '/100) - (' + str(tensionandval2[i]) + '/100))))'  + strtwo  + "{right}" 
+
         else :
           if rightp2[i] <> "" :
-            zeile = zeile  + dash + rightp2[i]  
-   
+            zeile = zeile  + ' ... ' + rightp2[i]  
+
+          else :
+            zeile = zeile 
+
+## tension and downp2
+
+            if  (tension[i] <> "" and 
+                 downp2[i] <> "") :
+                   if tensionB[i] <> "" :
+                     zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100 -' + str(tensionval[i]) + '/100 )))' + strtwo  + "{down}"  
+                   else :
+                     zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionval[i]) + '/100 -' + str(tensionval[i]) + '/100 )))' + strtwo  + "{down}" 
+
+            if  (tensionand[i] <> "" and 
+                 downp2[i] <> "") :
+                   if tensionandB[i] <> "" :
+                      zeile = zeile + strtwo + "tension" + " ((" + str(tensionandval[i]) + '/100) + (metapolation * ((' + str(tensionandvalB[i]) + '/100) - (' + str(tensionandval[i]) + '/100))))' + " and ((" + str(tensionandval2[i]) + '/100) + (metapolation * ((' + str(tensionandval2B[i]) + '/100) - (' + str(tensionandval2[i]) + '/100))))'  + strtwo  + "{down}"  
+                   else :
+                      zeile = zeile + strtwo + "tension" + " ((" + str(tensionandval[i]) + '/100) + (metapolation * ((' + str(tensionandval[i]) + '/100) - (' + str(tensionandval[i]) + '/100))))' + " and ((" + str(tensionandval2[i]) + '/100) + (metapolation * ((' + str(tensionandval2[i]) + '/100) - (' + str(tensionandval2[i]) + '/100))))'  + strtwo  + "{down}" 
+
+
+            else :
+              if downp2[i] <> "" :
+                zeile = zeile  + ' ... ' + downp2[i]  
+
+              else :
+                zeile = zeile  
+
+## tension and upp2    
+    
+                if  (tension[i] <> "" and 
+                     upp2[i] <> "") :
+                       if tensionB[i] <> "" :
+                         zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100 -' + str(tensionval[i]) + '/100 )))' + strtwo  + "{up}"  
+                       else :
+                         zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionval[i]) + '/100 -' + str(tensionval[i]) + '/100 )))' + strtwo  + "{up}" 
+
+                if  (tensionand[i] <> "" and 
+                     upp2[i] <> "") :
+                       if tensionandB[i] <> "" :
+                          zeile = zeile + strtwo + "tension" + " ((" + str(tensionandval[i]) + '/100) + (metapolation * ((' + str(tensionandvalB[i]) + '/100) - (' + str(tensionandval[i]) + '/100))))' + " and ((" + str(tensionandval2[i]) + '/100) + (metapolation * ((' + str(tensionandval2B[i]) + '/100) - (' + str(tensionandval2[i]) + '/100))))'  + strtwo  + "{up}"  
+                       else :
+                          zeile = zeile + strtwo + "tension" + " ((" + str(tensionandval[i]) + '/100) + (metapolation * ((' + str(tensionandval[i]) + '/100) - (' + str(tensionandval[i]) + '/100))))' + " and ((" + str(tensionandval2[i]) + '/100) + (metapolation * ((' + str(tensionandval2[i]) + '/100) - (' + str(tensionandval2[i]) + '/100))))'  + strtwo  + "{up}" 
+
+
+                else :
+                  if upp2[i] <> "" :
+                    zeile = zeile  + ' ... ' + upp2[i]  
+
+                  else :
+                    zeile = zeile  
+
+## tension and dir2 
+
+                    if  (tension[i] <> "" and 
+                         dir2[i] <> "") :
+                           if tensionB[i] <> "" :
+                             zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100 -' + str(tensionval[i]) + '/100 )))' + strtwo + " {dir ("+ str(dir2val[i]) + " + metapolation * (" + str(dir2valB[i]) + " - " + str(dir2val[i]) + "))}"  
+                           else :
+                             zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionval[i]) + '/100 -' + str(tensionval[i]) + '/100 )))' + strtwo + " {dir ("+ str(dir2val[i]) + " + metapolation * (" + str(dir2valB[i]) + " - " + str(dir2val[i]) + "))}" 
+
+
+                    if  (tensionand[i] <> "" and 
+                         dir2[i] <> "") :
+                           if tensionandB[i] <> "" :
+                              zeile = zeile + strtwo + "tension" + " ((" + str(tensionandval[i]) + '/100) + (metapolation * ((' + str(tensionandvalB[i]) + '/100) - (' + str(tensionandval[i]) + '/100))))' + " and ((" + str(tensionandval2[i]) + '/100) + (metapolation * ((' + str(tensionandval2B[i]) + '/100) - (' + str(tensionandval2[i]) + '/100))))'  + strtwo  + " {dir ("+ str(dir2val[i]) + " + metapolation * (" + str(dir2valB[i]) + " - " + str(dir2val[i]) + "))}"  
+                           else :
+                              zeile = zeile + strtwo + "tension" + " ((" + str(tensionandval[i]) + '/100) + (metapolation * ((' + str(tensionandval[i]) + '/100) - (' + str(tensionandval[i]) + '/100))))' + " and ((" + str(tensionandval2[i]) + '/100) + (metapolation * ((' + str(tensionandval2[i]) + '/100) - (' + str(tensionandval2[i]) + '/100))))'  + strtwo  + " {dir ("+ str(dir2val[i]) + " + metapolation * (" + str(dir2valB[i]) + " - " + str(dir2val[i]) + "))}" 
+
+
+                    else :
+                      if dir2[i] <> "" :
+                        zeile = zeile  + " ... {dir ("+ str(dir2val[i]) + " + metapolation * (" + str(dir2valB[i]) + " - " + str(dir2val[i]) + "))}" 
+
+                      else :
+                         if tension[i] <> "" :
+                              if tensionB[i] <> "" :
+                                zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100 -' + str(tensionval[i]) + '/100 )))' + strtwo
+                              else :
+                                zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionval[i]) + '/100 -' + str(tensionval[i]) + '/100 )))' + strtwo
+
+                         else :
+                           if  tensionand[i] <> "" : 
+                              if tensionandB[i] <> "" :
+                                zeile = zeile + strtwo + "tension" + " ((" + str(tensionandval[i]) + '/100) + (metapolation * ((' + str(tensionandvalB[i]) + '/100) - (' + str(tensionandval[i]) + '/100))))' + " and ((" + str(tensionandval2[i]) + '/100) + (metapolation * ((' + str(tensionandval2B[i]) + '/100) - (' + str(tensionandval2[i]) + '/100))))'  + strtwo
+                              else :
+                                zeile = zeile + strtwo + "tension" + " ((" + str(tensionandval[i]) + '/100) + (metapolation * ((' + str(tensionandval[i]) + '/100) - (' + str(tensionandval[i]) + '/100))))' + " and ((" + str(tensionandval2[i]) + '/100) + (metapolation * ((' + str(tensionandval2[i]) + '/100) - (' + str(tensionandval2[i]) + '/100))))'  + strtwo
+  
+
+ 
+
+
     zeile = zeile + dash 
 
 
@@ -2183,6 +2364,23 @@ for i in range (0,nnz-1) :
 
 
   else: 
+
+
+
+    if dir[i] <> "" :
+       if dirB[i] <> "" :
+          zeile = zeile + " {dir ("+ str(dirval[i]) + " + metapolation * (" + str(dirvalB[i]) + " - " + str(dirval[i]) + "))}"      
+       else :
+          zeile = zeile + " {dir ("+ str(dirval[i]) + " + metapolation * (" + str(dirval[i]) + " - " + str(dirval[i]) + "))}"      
+
+    if overx[i] <> "" :
+      zeile = zeile + " shifted (0, (A_mean + metapolation * (B_mean - A_mean)) - y" + str(zitem) + str(overxval[i]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
+
+    if overbase[i] <> "" :
+      zeile = zeile + " shifted (0, - y" + str(zitem) + str(overbaseval[i]) + ") - (0, A_over + metapolation * (B_over - A_over))" 
+
+    if overcap[i] <> "" :
+      zeile = zeile + " shifted (0, (A_cap + metapolation * (A_cap - B_cap)) - y" + str(zitem) + str(overcapval[i]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
 
     if penshifted[i] <> "" :
       zeile = zeile + " shifted (" + str(penshiftedval[i]) + ")"       
@@ -2233,6 +2431,18 @@ for i in range (0,nnz-1) :
         if cycle[i] <> "" :
           zeile = zeile + dash + "cycle" 
 
+        else :
+          if tension[i] <> "" :
+            if tensionB[i] <> "" :
+              zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100 -' + str(tensionval[i]) + '/100 )))' + strtwo  
+            else :
+              zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionval[i]) + '/100 -' + str(tensionval[i]) + '/100 )))' + strtwo 
+ 
+       
+          else :
+            if tensionand[i] <> "" :
+               zeile = zeile + strtwo + "tension" + " ((" + str(tensionandval[i]) + '/100) + (metapolation * ((' + str(tensionandvalB[i]) + '/100) - (' + str(tensionandval[i]) + '/100))))' + " and ((" + str(tensionandval2[i]) + '/100) + (metapolation * ((' + str(tensionandval2B[i]) + '/100) - (' + str(tensionandval2[i]) + '/100))))'  + strtwo
+
 
     
     zeile = zeile + semi 
@@ -2245,8 +2455,25 @@ for i in range (0,nnz-1) :
   zitemb = zzn[i+1]
   zeile = "z"+str(zitemb)+"e" 
 
+
+
+if dir[i+1] <> "" :
+       if dirB[i+1] <> "" :
+          zeile = zeile + " {dir ("+ str(dirval[i+1]) + " + metapolation * (" + str(dirvalB[i+1]) + " - " + str(dirval[i+1]) + "))}"      
+       else :
+          zeile = zeile + " {dir ("+ str(dirval[i+1]) + " + metapolation * (" + str(dirval[i+1]) + " - " + str(dirval[i+1]) + "))}"      
+
 if penshifted[i+1] <> "" :
  zeile = zeile + " shifted (" + str(penshiftedval[i+1]) + ")"       
+
+if overx[i+1] <> "" :
+      zeile = zeile + " shifted (0, (A_mean + metapolation * (B_mean - A_mean)) - y" + str(zitemb) + str(overxval[i+1]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
+
+if overbase[i+1] <> "" :
+      zeile = zeile + " shifted (0, - y" + str(zitemb) + str(overbaseval[i+1]) + ") - (0, A_over + metapolation * (B_over - A_over))" 
+
+if overcap[i+1] <> "" :
+      zeile = zeile + " shifted (0, (A_cap + metapolation * (A_cap - B_cap)) - y" + str(zitemb) + str(overcapval[i+1]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
 
 if cycle[i+1] <> "" :
  zeile = zeile + dash + cycle[i+1] 
@@ -2278,17 +2505,17 @@ else :
   if dir2[i+1] <> "" :
     zeile = zeile + " ... {dir "+ str(dir2val[i+1]) + "}"   
   else :
-    if downp2[i] <> "" :
-      zeile = zeile + dash + downp2[i]  
+    if downp2[i+1] <> "" :
+      zeile = zeile + dash + downp2[i+1]  
     else :
-      if upp2[i] <> "" :
-        zeile = zeile + dash + upp2[i]  
+      if upp2[i+1] <> "" :
+        zeile = zeile + dash + upp2[i+1]  
       else :
-        if leftp2[i] <> "" :
-          zeile = zeile + dash  + leftp2[i]  
+        if leftp2[i+1] <> "" :
+          zeile = zeile + dash  + leftp2[i+1]  
         else :
-          if rightp2[i] <> "" :
-            zeile = zeile + dash + rightp2[i]    
+          if rightp2[i+1] <> "" :
+            zeile = zeile + dash + rightp2[i+1]    
 
 
           else :

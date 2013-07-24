@@ -1,0 +1,187 @@
+% File parsed with ufo2mf (UFO to Metafont) by Walter Egli, Simon Egli, Wei Huang  %
+
+% box dimension definition %
+
+beginfontchar(85, (5.78*A_width + metapolation * (5.78*A_width - 5.78*B_width)) * width_85 + spacing_85R, A_mean# + metapolation * (B_mean# - A_mean#), 0);
+ 
+% point coordinates font A
+
+px5r := 2.69u ; py5r := 0.73u ;
+px6r := 1.72u ; py6r := 1.67u ;
+px7r := 1.72u ; py7r := 5.0u ;
+px7l := 0.79u ; py7l := 5.0u ;
+px6l := 0.79u ; py6l := 1.51u ;
+px5l := 2.53u ; py5l := -0.08u ;
+px4l := 4.45u ; py4l := 1.09u ;
+px4r := 4.45u ; py4r := 1.94u ;
+px2r := 4.92u ; py2r := 0.97u ;
+px3r := 4.92u ; py3r := 5.0u ;
+px3l := 3.99u ; py3l := 5.0u ;
+px2l := 3.99u ; py2l := 0.97u ;
+px1l := 3.99u ; py1l := 0.0u ;
+px1r := 4.92u ; py1r := 0.0u ;
+
+% reading mid points font A
+
+.5(px5l + px5r) = x250;
+.5(py5l + py5r) = y250;
+.5(px6l + px6r) = x260;
+.5(py6l + py6r) = y260;
+.5(px7l + px7r) = x270;
+.5(py7l + py7r) = y270;
+.5(px4l + px4r) = x240;
+.5(py4l + py4r) = y240;
+.5(px2l + px2r) = x220;
+.5(py2l + py2r) = y220;
+.5(px3l + px3r) = x230;
+.5(py3l + py3r) = y230;
+.5(px1l + px1r) = x210;
+.5(py1l + py1r) = y210;
+
+% fake extra l an r for metafont
+
+px5l = x5Bl; py5l = y5Bl; 
+px5r = x5Br; py5r = y5Br; 
+px6l = x6Bl; py6l = y6Bl; 
+px6r = x6Br; py6r = y6Br; 
+px7l = x7Bl; py7l = y7Bl; 
+px7r = x7Br; py7r = y7Br; 
+px4l = x4Bl; py4l = y4Bl; 
+px4r = x4Br; py4r = y4Br; 
+px2l = x2Bl; py2l = y2Bl; 
+px2r = x2Br; py2r = y2Br; 
+px3l = x3Bl; py3l = y3Bl; 
+px3r = x3Br; py3r = y3Br; 
+px1l = x1Bl; py1l = y1Bl; 
+px1r = x1Br; py1r = y1Br; 
+
+% pen width
+
+dist5 := length (z5Bl-z5Br) ;
+dist6 := length (z6Bl-z6Br) ;
+dist7 := length (z7Bl-z7Br) ;
+dist4 := length (z4Bl-z4Br) ;
+dist2 := length (z2Bl-z2Br) ;
+dist3 := length (z3Bl-z3Br) ;
+dist1 := length (z1Bl-z1Br) ;
+ 
+% point coordinates font B
+
+ppx5r := 2.69u ; ppy5r := 0.73u ;
+ppx6r := 1.72u ; ppy6r := 1.67u ;
+ppx7r := 1.72u ; ppy7r := 5.0u ;
+ppx7l := 0.79u ; ppy7l := 5.0u ;
+ppx6l := 0.79u ; ppy6l := 1.51u ;
+ppx5l := 2.53u ; ppy5l := -0.08u ;
+ppx4l := 4.45u ; ppy4l := 1.09u ;
+ppx4r := 4.45u ; ppy4r := 1.94u ;
+ppx2r := 4.92u ; ppy2r := 0.97u ;
+ppx3r := 4.92u ; ppy3r := 5.0u ;
+ppx3l := 3.99u ; ppy3l := 5.0u ;
+ppx2l := 3.99u ; ppy2l := 0.97u ;
+ppx1l := 3.99u ; ppy1l := 0.0u ;
+ppx1r := 4.92u ; ppy1r := 0.0u ;
+
+% reading mid points font B
+
+.5(ppx5l + ppx5r) = x25A;
+.5(ppy5l + ppy5r) = y25A;
+.5(ppx6l + ppx6r) = x26A;
+.5(ppy6l + ppy6r) = y26A;
+.5(ppx7l + ppx7r) = x27A;
+.5(ppy7l + ppy7r) = y27A;
+.5(ppx4l + ppx4r) = x24A;
+.5(ppy4l + ppy4r) = y24A;
+.5(ppx2l + ppx2r) = x22A;
+.5(ppy2l + ppy2r) = y22A;
+.5(ppx3l + ppx3r) = x23A;
+.5(ppy3l + ppy3r) = y23A;
+.5(ppx1l + ppx1r) = x21A;
+.5(ppy1l + ppy1r) = y21A;
+
+% fake extra l an r for font B
+
+ppx5l = x5Cl; ppy5l = y5Cl; 
+ppx5r = x5Cr; ppy5r = y5Cr; 
+ppx6l = x6Cl; ppy6l = y6Cl; 
+ppx6r = x6Cr; ppy6r = y6Cr; 
+ppx7l = x7Cl; ppy7l = y7Cl; 
+ppx7r = x7Cr; ppy7r = y7Cr; 
+ppx4l = x4Cl; ppy4l = y4Cl; 
+ppx4r = x4Cr; ppy4r = y4Cr; 
+ppx2l = x2Cl; ppy2l = y2Cl; 
+ppx2r = x2Cr; ppy2r = y2Cr; 
+ppx3l = x3Cl; ppy3l = y3Cl; 
+ppx3r = x3Cr; ppy3r = y3Cr; 
+ppx1l = x1Cl; ppy1l = y1Cl; 
+ppx1r = x1Cr; ppy1r = y1Cr; 
+
+% pen width Font B
+
+dist5B := length (z5Cl-z5Cr) ;
+dist6B := length (z6Cl-z6Cr) ;
+dist7B := length (z7Cl-z7Cr) ;
+dist4B := length (z4Cl-z4Cr) ;
+dist2B := length (z2Cl-z2Cr) ;
+dist3B := length (z3Cl-z3Cr) ;
+dist1B := length (z1Cl-z1Cr) ;
+
+% pen angle Font A
+
+ang5 := angle((z5Br + (metapolation * (z5Cr -z5Br))) - (z5Bl + (metapolation * (z5Cl -z5Bl))));
+ang6 := angle((z6Br + (metapolation * (z6Cr -z6Br))) - (z6Bl + (metapolation * (z6Cl -z6Bl))));
+ang7 := angle((z7Br + (metapolation * (z7Cr -z7Br))) - (z7Bl + (metapolation * (z7Cl -z7Bl))));
+ang4 := angle((z4Br + (metapolation * (z4Cr -z4Br))) - (z4Bl + (metapolation * (z4Cl -z4Bl))));
+ang2 := angle((z2Br + (metapolation * (z2Cr -z2Br))) - (z2Bl + (metapolation * (z2Cl -z2Bl))));
+ang3 := angle((z3Br + (metapolation * (z3Cr -z3Br))) - (z3Bl + (metapolation * (z3Cl -z3Bl))));
+ang1 := angle((z1Br + (metapolation * (z1Cr -z1Br))) - (z1Bl + (metapolation * (z1Cl -z1Bl))));
+
+
+% test new vertical and horizontal option
+
+ang1V := ang1; dist1V := dist1;
+ang2V := ang2; dist2V := dist2;
+ang3V := ang3; dist3V := dist3;
+ang4V := ang4; dist4V := dist4;
+ang5V := ang5; dist5V := dist5;
+ang6V := ang6; dist6V := dist6;
+ang7V := ang7; dist7V := dist7;
+
+
+% test new penpos
+
+penpos1(dist1 + ((A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist1)), ang1);
+penpos2(dist2 + ((A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist2)), ang2);
+penpos3(dist3 + ((A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist3)), ang3);
+penpos4(dist4 + ((A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist4)), ang4);
+penpos5(dist5 + ((A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist5)), ang5);
+penpos6(dist6 + ((A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist6)), ang6);
+penpos7(dist7 + ((A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist7)), ang7);
+
+
+% test new center (z) points
+
+z1=((A_width + metapolation * (A_width - B_width)) * (x210 + metapolation * (x21A - x210) + spacing_85L) * width_85, (A_xheight + metapolation * (B_xheight - A_xheight))*(y210 + metapolation *(y21A - y210)));
+z2=((A_width + metapolation * (A_width - B_width)) * (x220 + metapolation * (x22A - x220) + spacing_85L) * width_85, (A_xheight + metapolation * (B_xheight - A_xheight))*(y220 + metapolation *(y22A - y220)));
+z3=((A_width + metapolation * (A_width - B_width)) * (x230 + metapolation * (x23A - x230) + spacing_85L) * width_85, (A_xheight + metapolation * (B_xheight - A_xheight))*(y230 + metapolation *(y23A - y230)));
+z4=((A_width + metapolation * (A_width - B_width)) * (x240 + metapolation * (x24A - x240) + spacing_85L) * width_85, (A_xheight + metapolation * (B_xheight - A_xheight))*(y240 + metapolation *(y24A - y240)));
+z5=((A_width + metapolation * (A_width - B_width)) * (x250 + metapolation * (x25A - x250) + spacing_85L) * width_85, (A_xheight + metapolation * (B_xheight - A_xheight))*(y250 + metapolation *(y25A - y250)));
+z6=((A_width + metapolation * (A_width - B_width)) * (x260 + metapolation * (x26A - x260) + spacing_85L) * width_85, (A_xheight + metapolation * (B_xheight - A_xheight))*(y260 + metapolation *(y26A - y260)));
+z7=((A_width + metapolation * (A_width - B_width)) * (x270 + metapolation * (x27A - x270) + spacing_85L) * width_85, (A_xheight + metapolation * (B_xheight - A_xheight))*(y270 + metapolation *(y27A - y270)));
+
+% penstrokes
+
+penstroke z1e ... 
+z2e ... 
+z3e;
+penstroke z4e ... 
+z5e ... 
+z6e{up} ... 
+z7e
+;
+
+
+% pen labels
+penlabels(range 1 thru 99);
+endchar;
+
