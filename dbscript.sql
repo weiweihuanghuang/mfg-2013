@@ -135,6 +135,7 @@ CREATE TABLE localparam (
     stemcut   integer default 20,
     skeleton  float default 0.0,
     superness float default 1.0,
+	over float default 0.1,
     primary key (idlocal)
 );
 insert into master (FontName,FontNameA,FontNameB,idglobal) Values ("My First Metapolator Font", "GaramondSansA.ufo","GaramondSansB.ufo",1);

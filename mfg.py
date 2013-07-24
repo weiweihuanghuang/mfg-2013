@@ -364,6 +364,9 @@ class localParamA:
         web.form.Textbox('superness', web.form.notnull, 
             size=3,
             description="superness", value="30"),
+        web.form.Textbox('over', web.form.notnull, 
+            size=3,
+            description="over", value="0.05"),
         web.form.Button('saveA'),
         )
     def GET(self,id):
@@ -390,9 +393,9 @@ class localParamA:
           gloB = None
 
         if gloA != None:
-           formlA.fill({'px':gloA[0].px,'mean':gloA[0].mean,'des':gloA[0].des,'asc':gloA[0].ascl,'cap':gloA[0].cap,'box':gloA[0].box,'width':gloA[0].width,'xheight':gloA[0].xheight,'capital':gloA[0].capital,'boxheight':gloA[0].boxheight,'ascender':gloA[0].ascender,'descender':gloA[0].descender,'inktrap':gloA[0].inktrap,'stemcut':gloA[0].stemcut,'skeleton':gloA[0].skeleton,'superness':gloA[0].superness})
+           formlA.fill({'px':gloA[0].px,'mean':gloA[0].mean,'des':gloA[0].des,'asc':gloA[0].ascl,'cap':gloA[0].cap,'box':gloA[0].box,'width':gloA[0].width,'xheight':gloA[0].xheight,'capital':gloA[0].capital,'boxheight':gloA[0].boxheight,'ascender':gloA[0].ascender,'descender':gloA[0].descender,'inktrap':gloA[0].inktrap,'stemcut':gloA[0].stemcut,'skeleton':gloA[0].skeleton,'superness':gloA[0].superness,'over':gloA[0].over})
         if gloB != None:
-           formlB.fill({'px':gloB[0].px,'mean':gloB[0].mean,'des':gloB[0].des,'asc':gloB[0].ascl,'cap':gloB[0].cap,'box':gloB[0].box,'width':gloB[0].width,'xheight':gloB[0].xheight,'capital':gloB[0].capital,'boxheight':gloB[0].boxheight,'ascender':gloB[0].ascender,'descender':gloB[0].descender,'inktrap':gloB[0].inktrap,'stemcut':gloB[0].stemcut,'skeleton':gloB[0].skeleton,'superness':gloB[0].superness})
+           formlB.fill({'px':gloB[0].px,'mean':gloB[0].mean,'des':gloB[0].des,'asc':gloB[0].ascl,'cap':gloB[0].cap,'box':gloB[0].box,'width':gloB[0].width,'xheight':gloB[0].xheight,'capital':gloB[0].capital,'boxheight':gloB[0].boxheight,'ascender':gloB[0].ascender,'descender':gloB[0].descender,'inktrap':gloB[0].inktrap,'stemcut':gloB[0].stemcut,'skeleton':gloB[0].skeleton,'superness':gloB[0].superness,'over':gloB[0].over})
 
         return render.font3(formg,gml,cFont,glo,formlA,formlB)
 
@@ -409,10 +412,10 @@ class localParamA:
         formlB = localParamB.formlocB() 
         formlA.fill()
 
-        formlB.fill({'px':gloB[0].px,'mean':gloB[0].mean,'des':gloB[0].des,'asc':gloB[0].ascl,'cap':gloB[0].cap,'box':gloB[0].box,'width':gloA[0].width,'xheight':gloB[0].xheight,'capital':gloB[0].capital,'boxheight':gloB[0].boxheight,'ascender':gloB[0].ascender,'descender':gloB[0].descender,'inktrap':gloB[0].inktrap,'stemcut':gloB[0].stemcut,'skeleton':gloB[0].skeleton,'superness':gloB[0].superness})
+        formlB.fill({'px':gloB[0].px,'mean':gloB[0].mean,'des':gloB[0].des,'asc':gloB[0].ascl,'cap':gloB[0].cap,'box':gloB[0].box,'width':gloA[0].width,'xheight':gloB[0].xheight,'capital':gloB[0].capital,'boxheight':gloB[0].boxheight,'ascender':gloB[0].ascender,'descender':gloB[0].descender,'inktrap':gloB[0].inktrap,'stemcut':gloB[0].stemcut,'skeleton':gloB[0].skeleton,'superness':gloB[0].superness,'over':gloB[0].over})
 
         if formlA.validates() :
-               model.update_localparam(idlA,formlA.d.px,formlA.d.mean,formlA.d.des,formlA.d.asc,formlA.d.cap,formlA.d.box,formlA.d.width,formlA.d.xheight,formlA.d.capital,formlA.d.boxheight,formlA.d.ascender,formlA.d.descender,formlA.d.inktrap,formlA.d.stemcut,formlA.d.skeleton,formlA.d.superness)
+               model.update_localparam(idlA,formlA.d.px,formlA.d.mean,formlA.d.des,formlA.d.asc,formlA.d.cap,formlA.d.box,formlA.d.width,formlA.d.xheight,formlA.d.capital,formlA.d.boxheight,formlA.d.ascender,formlA.d.descender,formlA.d.inktrap,formlA.d.stemcut,formlA.d.skeleton,formlA.d.superness,formlA.d.over)
 
         if not formlA.validates() :
                return render.font3(formg,gml,cFont,glo,formlA,formlB)
@@ -476,6 +479,9 @@ class localParamB:
         web.form.Textbox('superness', web.form.notnull, 
             size=3,
             description="superness", value="20"),
+        web.form.Textbox('over', web.form.notnull, 
+            size=3,
+            description="over", value="0.05"),
         web.form.Button('saveB'),
         )
     def GET(self,id):
@@ -499,9 +505,9 @@ class localParamB:
           gloB = None
 
         if gloA != None:
-           formlA.fill({'px':gloA[0].px,'mean':gloA[0].mean,'des':gloA[0].des,'asc':gloA[0].ascl,'cap':gloA[0].cap,'box':gloA[0].box,'width':gloA[0].width,'xheight':gloA[0].xheight,'capital':gloA[0].capital,'boxheight':gloA[0].boxheight,'ascender':gloA[0].ascender,'descender':gloA[0].descender,'inktrap':gloA[0].inktrap,'stemcut':gloA[0].stemcut,'skeleton':gloA[0].skeleton,'superness':gloA[0].superness})
+           formlA.fill({'px':gloA[0].px,'mean':gloA[0].mean,'des':gloA[0].des,'asc':gloA[0].ascl,'cap':gloA[0].cap,'box':gloA[0].box,'width':gloA[0].width,'xheight':gloA[0].xheight,'capital':gloA[0].capital,'boxheight':gloA[0].boxheight,'ascender':gloA[0].ascender,'descender':gloA[0].descender,'inktrap':gloA[0].inktrap,'stemcut':gloA[0].stemcut,'skeleton':gloA[0].skeleton,'superness':gloA[0].superness,'over':gloA[0].over})
         if gloB != None:
-           formlB.fill({'px':gloB[0].px,'mean':gloB[0].mean,'des':gloB[0].des,'asc':gloB[0].ascl,'cap':gloB[0].cap,'box':gloB[0].box,'width':gloB[0].width,'xheight':gloB[0].xheight,'capital':gloB[0].capital,'boxheight':gloB[0].boxheight,'ascender':gloB[0].ascender,'descender':gloB[0].descender,'inktrap':gloB[0].inktrap,'stemcut':gloB[0].stemcut,'skeleton':gloB[0].skeleton,'superness':gloB[0].superness})
+           formlB.fill({'px':gloB[0].px,'mean':gloB[0].mean,'des':gloB[0].des,'asc':gloB[0].ascl,'cap':gloB[0].cap,'box':gloB[0].box,'width':gloB[0].width,'xheight':gloB[0].xheight,'capital':gloB[0].capital,'boxheight':gloB[0].boxheight,'ascender':gloB[0].ascender,'descender':gloB[0].descender,'inktrap':gloB[0].inktrap,'stemcut':gloB[0].stemcut,'skeleton':gloB[0].skeleton,'superness':gloB[0].superness,'over':gloB[0].over})
 
         return render.font4(formg,gml,cFont,glo,formlA,formlB)
 
@@ -520,10 +526,10 @@ class localParamB:
         formg = GlobalParam.formg()
         formlB.fill()
 
-        formlA.fill({'px':gloA[0].px,'mean':gloA[0].mean,'des':gloA[0].des,'asc':gloA[0].ascl,'cap':gloA[0].cap,'box':gloA[0].box,'width':gloA[0].width,'xheight':gloA[0].xheight,'capital':gloA[0].capital,'boxheight':gloA[0].boxheight,'ascender':gloA[0].ascender,'descender':gloA[0].descender,'inktrap':gloA[0].inktrap,'stemcut':gloA[0].stemcut,'skeleton':gloA[0].skeleton,'superness':gloA[0].superness})
+        formlA.fill({'px':gloA[0].px,'mean':gloA[0].mean,'des':gloA[0].des,'asc':gloA[0].ascl,'cap':gloA[0].cap,'box':gloA[0].box,'width':gloA[0].width,'xheight':gloA[0].xheight,'capital':gloA[0].capital,'boxheight':gloA[0].boxheight,'ascender':gloA[0].ascender,'descender':gloA[0].descender,'inktrap':gloA[0].inktrap,'stemcut':gloA[0].stemcut,'skeleton':gloA[0].skeleton,'superness':gloA[0].superness,'over':gloA[0].over})
 
         if formlB.validates() :
-              model.update_localparam(idlB,formlB.d.px,formlB.d.mean,formlB.d.des,formlB.d.asc,formlB.d.cap,formlB.d.box,formlB.d.width,formlB.d.xheight,formlB.d.capital,formlB.d.boxheight,formlB.d.ascender,formlB.d.descender,formlB.d.inktrap,formlB.d.stemcut,formlB.d.skeleton,formlB.d.superness)
+              model.update_localparam(idlB,formlB.d.px,formlB.d.mean,formlB.d.des,formlB.d.asc,formlB.d.cap,formlB.d.box,formlB.d.width,formlB.d.xheight,formlB.d.capital,formlB.d.boxheight,formlB.d.ascender,formlB.d.descender,formlB.d.inktrap,formlB.d.stemcut,formlB.d.skeleton,formlB.d.superness,formlB.d.over)
         if not formlB.validates() :
                return render.font4(formg,gml,cFont,glo,formlA,formlB)
 

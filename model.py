@@ -463,10 +463,10 @@ def update_globalparam(id, a, b):
     db.query("commit")
     return None
 
-def update_localparam(id, a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16 ):
+def update_localparam(id, a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17 ):
     print "id local param update",id
     db.update('localparam', where='idlocal = $id', vars=locals(), 
-      px = a1, mean = a2, des=a3, ascl=a4, cap=a5, box=a6, width=a7, xheight=a8, capital=a9, boxheight=a10, ascender=a11, descender=a12, inktrap=a13, stemcut=a14, skeleton=a15, superness=a16)
+      px = a1, mean = a2, des=a3, ascl=a4, cap=a5, box=a6, width=a7, xheight=a8, capital=a9, boxheight=a10, ascender=a11, descender=a12, inktrap=a13, stemcut=a14, skeleton=a15, superness=a16, over=a17)
     db.query("commit")
     return None
 
@@ -613,6 +613,7 @@ def writeGlobalParam():
   ifile.write("A_stemcut:=%.0f;\n"%imlo[0].stemcut)
   ifile.write("A_skeleton#:=%.2fpt#;\n"%imlo[0].skeleton)
   ifile.write("A_superness:=%.2f;\n"%imlo[0].superness)
+  ifile.write("A_over:=%.2f;\n"%imlo[0].over)
   
 # local parameters B  
   imlo = list(get_localparam(mfg.cFont.idlocalB))
@@ -633,6 +634,7 @@ def writeGlobalParam():
   ifile.write("B_stemcut:=%.0f;\n"%imlo[0].stemcut)
   ifile.write("B_skeleton#:=%.2fpt#;\n"%imlo[0].skeleton)
   ifile.write("B_superness:=%.2f;\n"%imlo[0].superness)
+  ifile.write("B_over:=%.2f;\n"%imlo[0].over)
 
   ifile.write("\n") 
   ifile.write("input glyphs\n") 

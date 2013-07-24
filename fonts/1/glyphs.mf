@@ -37,21 +37,11 @@ mode_setup;
 define_pixels(s,u);
 
 define_pixels(px,py);
-define_pixels(A_px,A_py,A_skeleton,B_skeleton);
-define_good_y_pixels(A_asc);
-define_good_y_pixels(A_des);
-define_good_y_pixels(A_cap);
-define_good_y_pixels(A_mean,A_box);
-
-define_pixels(B_px,B_py);
-define_good_y_pixels(B_asc);
-define_good_y_pixels(B_des);
-define_good_y_pixels(B_cap);
-define_good_y_pixels(B_mean);
-define_good_y_pixels(B_box);
-define_good_y_pixels(over);
+define_pixels(A_px,A_py,A_skeleton);
+define_pixels(B_px,B_py,B_skeleton);
 define_pixels(A_w,B_w);
-
+define_good_y_pixels(A_asc,A_des,A_cap,A_mean,A_box,A_over);
+define_good_y_pixels(B_asc,B_des,B_cap,B_mean,B_box,B_over);
 
 vardef tanh(expr x) =
 numeric ee_;
@@ -84,11 +74,11 @@ numeric aa_, bb_, cc_; bb_=b/y; cc_=c/y; aa_=a-(b/y)*(b/y);
 
 % left curves (superness) %
 def super_ql(suffix i,j,m) =
- z.i{0,y.j-y.i}...((m * superness)[x.j,x.i], (m * superness)[y.i,y.j]){z.j-z.i}...z.j{x.j-x.i,0} enddef;
+ z.i{0,y.j-y.i}...((m * (A_superness + metapolation * (B_superness - A_superness))[x.j,x.i], (m * (A_superness + metapolation * (B_superness - A_superness))[y.i,y.j]){z.j-z.i}...z.j{x.j-x.i,0} enddef;
 
-% right curves (superness) %
+% right curves ((A_superness + metapolation * (B_superness - A_superness)) %
 def super_qr(suffix j,k, m) =
-z.j{x.k-x.j,0}...((m * superness)[x.j,x.k],(m * superness)[y.k,y.j]){z.k-z.j}...z.k{0,y.k-y.j} enddef;
+z.j{x.k-x.j,0}...((m * (A_superness + metapolation * (B_superness - A_superness))[x.j,x.k],(m * (A_superness + metapolation * (B_superness - A_superness))[y.k,y.j]){z.k-z.j}...z.k{0,y.k-y.j} enddef;
 
 % stem cut and ink trap macros
 

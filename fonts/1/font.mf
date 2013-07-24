@@ -2,9 +2,6 @@
 metapolation:=0.00;
 font_size:=10pt#;
 u#:=1pt#;
-max_stemcut:=10pt;
-superness:=1.00;
-over#:=0.05pt#;
 A_px#:=0.0pt#;
 A_mean#:=5.00pt#;
 A_des#:=2.00pt#;
@@ -21,6 +18,7 @@ A_inktrap:=10;
 A_stemcut:=20;
 A_skeleton#:=0.00pt#;
 A_superness:=1.00;
+A_over:=0.10;
 B_px#:=0.0pt#;
 B_mean#:=5.00pt#;
 B_des#:=2.00pt#;
@@ -37,6 +35,7 @@ B_inktrap:=10;
 B_stemcut:=20;
 B_skeleton#:=0.00pt#;
 B_superness:=1.00;
+B_over:=0.10;
 
 input glyphs
 bye
