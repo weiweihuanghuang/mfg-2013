@@ -586,7 +586,6 @@ def writeGlobalParam():
   u = imgl[0].unitwidth
   fontsize   = imgl[0].fontsize
 
-#
 # global parameters
   ifile=open(mfg.cFont.fontpath+"font.mf","w")
   ifile.write("% parameter file \n")
@@ -605,6 +604,7 @@ def writeGlobalParam():
   ifile.write("A_box#:=%.1fpt#;\n"%imlo[0].box)
   ifile.write("A_width:=%.2f;\n"%imlo[0].width)
   ifile.write("A_space:=%.2f;\n"%imlo[0].space)
+  ifile.write("A_space_pt:=%.2fpt;\n"%imlo[0].space)
   ifile.write("A_xheight:=%.0f;\n"%imlo[0].xheight)
   ifile.write("A_capital:=%.0f;\n"%imlo[0].capital)
   ifile.write("A_boxheight:=%.0f;\n"%imlo[0].boxheight)
@@ -614,7 +614,7 @@ def writeGlobalParam():
   ifile.write("A_stemcut:=%.0f;\n"%imlo[0].stemcut)
   ifile.write("A_skeleton#:=%.2fpt#;\n"%imlo[0].skeleton)
   ifile.write("A_superness:=%.2f;\n"%imlo[0].superness)
-  ifile.write("A_over:=%.2f;\n"%imlo[0].over)
+  ifile.write("A_over:=%.2fpt;\n"%imlo[0].over)
   
 # local parameters B  
   imlo = list(get_localparam(mfg.cFont.idlocalB))
@@ -627,6 +627,7 @@ def writeGlobalParam():
   ifile.write("B_box#:=%.1fpt#;\n"%imlo[0].box)
   ifile.write("B_width:=%.2f;\n"%imlo[0].width)
   ifile.write("B_space:=%.2f;\n"%imlo[0].space)
+  ifile.write("B_space_pt:=%.2fpt;\n"%imlo[0].space)
   ifile.write("B_xheight:=%.0f;\n"%imlo[0].xheight)
   ifile.write("B_capital:=%.0f;\n"%imlo[0].capital)
   ifile.write("B_boxheight:=%.0f;\n"%imlo[0].boxheight)
@@ -636,7 +637,7 @@ def writeGlobalParam():
   ifile.write("B_stemcut:=%.0f;\n"%imlo[0].stemcut)
   ifile.write("B_skeleton#:=%.2fpt#;\n"%imlo[0].skeleton)
   ifile.write("B_superness:=%.2f;\n"%imlo[0].superness)
-  ifile.write("B_over:=%.2f;\n"%imlo[0].over)
+  ifile.write("B_over:=%.2fpt;\n"%imlo[0].over)
 
   ifile.write("\n") 
   ifile.write("input glyphs\n") 

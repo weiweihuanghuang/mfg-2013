@@ -59,7 +59,7 @@ if g in box :
 #    ggroup = 'asc#'
 
 
-print 'beginfontchar(' + g + ', (' + w + '*A_width + metapolation * (' + w + '*A_width - ' + w2 + '*B_width)) * width_' + g + " + spacing_" +  g  + "R#, A_" + ggroup + " + metapolation * (B_" + ggroup + " - A_" + ggroup + "), " + "0" + ");"
+print 'beginfontchar(' + g + ', (' + w + '*A_width + metapolation * (' + w + '*A_width - ' + w2 + '*B_width)) * width_' + g + " + spacing_" +  g  + "R, A_" + ggroup + " + metapolation * (B_" + ggroup + " - A_" + ggroup + "), " + "0" + ");"
 # print """if known ps_output:
 # glyph_name "uni""" + u + """"; 
 # fi
@@ -1233,13 +1233,6 @@ for i in range (0,nnz) :
   if inktrap_r[i] <> "" :
       zeile = zeile +" inktrap_r (" + str(inktrap_rval[i]) + ")"       
 
-  if overbase[i] <> "" :
-      zeile = zeile + " shifted (0, - y" + str(zitem) + str(overbaseval[i]) + ") - (0, over)" 
-
-  if overcap[i] <> "" :
-      zeile = zeile + " shifted (0, (A_cap + metapolation * (A_cap - B_cap)) - y" + str(zitem) + str(overcapval[i]) + ") + (0, over)" 
-
- 
  
   else: 
      zeile = zeile 
@@ -2206,12 +2199,14 @@ for i in range (0,nnz-1) :
     if penshifted[i] <> "" :
       zeile = zeile + " shifted (" + str(penshiftedval[i]) + ")"      
 
-
-
     if overx[i] <> "" :
-      zeile = zeile + " shifted (0, (A_mean + metapolation * (B_mean - A_mean)) - y" + str(zitem) + str(overxval[i]) + ") + (0, over)" 
+      zeile = zeile + " shifted (0, (A_mean + metapolation * (B_mean - A_mean)) - y" + str(zitem) + str(overxval[i]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
 
+    if overbase[i] <> "" :
+      zeile = zeile + " shifted (0, - y" + str(zitem) + str(overbaseval[i]) + ") - (0, A_over + metapolation * (B_over - A_over))" 
 
+    if overcap[i] <> "" :
+      zeile = zeile + " shifted (0, (A_cap + metapolation * (A_cap - B_cap)) - y" + str(zitem) + str(overcapval[i]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
 
     if penshiftedy[i] <> "" :
       zeile = zeile + " shifted (0, y" + str(penshiftedyval[i]) + ")"      
@@ -2370,6 +2365,23 @@ for i in range (0,nnz-1) :
 
   else: 
 
+
+
+    if dir[i] <> "" :
+       if dirB[i] <> "" :
+          zeile = zeile + " {dir ("+ str(dirval[i]) + " + metapolation * (" + str(dirvalB[i]) + " - " + str(dirval[i]) + "))}"      
+       else :
+          zeile = zeile + " {dir ("+ str(dirval[i]) + " + metapolation * (" + str(dirval[i]) + " - " + str(dirval[i]) + "))}"      
+
+    if overx[i] <> "" :
+      zeile = zeile + " shifted (0, (A_mean + metapolation * (B_mean - A_mean)) - y" + str(zitem) + str(overxval[i]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
+
+    if overbase[i] <> "" :
+      zeile = zeile + " shifted (0, - y" + str(zitem) + str(overbaseval[i]) + ") - (0, A_over + metapolation * (B_over - A_over))" 
+
+    if overcap[i] <> "" :
+      zeile = zeile + " shifted (0, (A_cap + metapolation * (A_cap - B_cap)) - y" + str(zitem) + str(overcapval[i]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
+
     if penshifted[i] <> "" :
       zeile = zeile + " shifted (" + str(penshiftedval[i]) + ")"       
 
@@ -2443,11 +2455,29 @@ for i in range (0,nnz-1) :
   zitemb = zzn[i+1]
   zeile = "z"+str(zitemb)+"e" 
 
+
+
+if dir[i+1] <> "" :
+       if dirB[i+1] <> "" :
+          zeile = zeile + " {dir ("+ str(dirval[i+1]) + " + metapolation * (" + str(dirvalB[i+1]) + " - " + str(dirval[i+1]) + "))}"      
+       else :
+          zeile = zeile + " {dir ("+ str(dirval[i+1]) + " + metapolation * (" + str(dirval[i+1]) + " - " + str(dirval[i+1]) + "))}"      
+
 if penshifted[i+1] <> "" :
  zeile = zeile + " shifted (" + str(penshiftedval[i+1]) + ")"       
 
 if cycle[i+1] <> "" :
  zeile = zeile + dash + cycle[i+1] 
+
+if overx[i+1] <> "" :
+      zeile = zeile + " shifted (0, (A_mean + metapolation * (B_mean - A_mean)) - y" + str(zitemb) + str(overxval[i+1]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
+
+if overbase[i+1] <> "" :
+      zeile = zeile + " shifted (0, - y" + str(zitemb) + str(overbaseval[i+1]) + ") - (0, A_over + metapolation * (B_over - A_over))" 
+
+if overcap[i+1] <> "" :
+      zeile = zeile + " shifted (0, (A_cap + metapolation * (A_cap - B_cap)) - y" + str(zitemb) + str(overcapval[i+1]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
+
 
 if  ( tension[i+1] <> "" and 
       upp2[i+1] <> "") :
@@ -2477,16 +2507,16 @@ else :
     zeile = zeile + " ... {dir "+ str(dir2val[i+1]) + "}"   
   else :
     if downp2[i+1] <> "" :
-      zeile = zeile + dash + downp2[i]  
+      zeile = zeile + dash + downp2[i+1]  
     else :
       if upp2[i+1] <> "" :
-        zeile = zeile + dash + upp2[i]  
+        zeile = zeile + dash + upp2[i+1]  
       else :
         if leftp2[i+1] <> "" :
-          zeile = zeile + dash  + leftp2[i]  
+          zeile = zeile + dash  + leftp2[i+1]  
         else :
           if rightp2[i+1] <> "" :
-            zeile = zeile + dash + rightp2[i]    
+            zeile = zeile + dash + rightp2[i+1]    
 
 
           else :

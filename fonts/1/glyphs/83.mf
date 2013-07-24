@@ -2,7 +2,7 @@
 
 % box dimension definition %
 
-beginfontchar(83, (4.43*(A_width + metapolation * (4.43*A_width - 4.43*B_width))) * width_83+ spacing_83R#, A_mean# + metapolation * (B_mean# - A_mean#), 0);
+beginfontchar(83, (4.43*A_width + metapolation * (4.43*A_width - 4.43*B_width)) * width_83 + spacing_83R, A_mean# + metapolation * (B_mean# - A_mean#), 0);
  
 % point coordinates font A
 

@@ -1,0 +1,33 @@
+%!PS
+%%BoundingBox: -22 -210 184 698 
+%%HiResBoundingBox: -21.91801 -209.23466 183.3118 697.38316 
+%%Creator: MetaPost 1.504
+%%CreationDate: 2013.07.24:1821
+%%Pages: 1
+%%BeginProlog
+%%EndProlog
+%%Page: 1 1
+% MF2PT1: glyph_dimensions 0 0 265 80
+% MF2PT1: font_size 10
+% MF2PT1: font_slant 0
+% MF2PT1: charwd 2.65
+% MF2PT1: font_identifier UNSPECIFIED
+% MF2PT1: font_coding_scheme UNSPECIFIED
+% MF2PT1: font_fixed_pitch 0
+ 0 0 0 setrgbcolor
+newpath 183.3118 697.38316 moveto
+80.69696 697.38316 lineto
+80.69696 601.74138 lineto
+183.3118 601.74138 lineto
+ closepath fill
+newpath 178.33017 498.13083 moveto
+85.67857 498.13083 lineto
+85.67857 498.0831 85.67854 -88.61942 85.67854 -88.66716 curveto
+85.67854 -104.99722 73.56564 -118.40395 57.78313 -123.53679 curveto
+37.56195 -130.1132 15.4089 -122.86285 2.9888 -105.60342 curveto
+-21.91801 -170.36153 lineto
+4.11386 -200.71504 44.4198 -214.78394 83.68587 -207.22281 curveto
+138.84679 -196.60098 178.33023 -147.93874 178.33023 -91.65596 curveto
+178.33023 -91.60797 178.33017 498.08286 178.33017 498.13083 curveto closepath fill
+showpage
+%%EOF

@@ -1,3 +1,7 @@
+% width and sidebearing settings for each glyph
+
+input spacing
+
 % this file contains all defenitions outside glyphs and extra parameters not listed on metaflop.com
 % py#:=px#;
 A_py#:=A_px#;
@@ -39,9 +43,8 @@ define_pixels(s,u);
 define_pixels(px,py);
 define_pixels(A_px,A_py,A_skeleton);
 define_pixels(B_px,B_py,B_skeleton);
-define_pixels(A_space,B_space);
-define_good_y_pixels(A_asc,A_des,A_cap,A_mean,A_box,A_over);
-define_good_y_pixels(B_asc,B_des,B_cap,B_mean,B_box,B_over);
+define_good_y_pixels(A_asc,A_des,A_cap,A_mean,A_box);
+define_good_y_pixels(B_asc,B_des,B_cap,B_mean,B_box);
 
 vardef tanh(expr x) =
 numeric ee_;
@@ -96,15 +99,6 @@ shifted (-0.5*a*(A_inktrap + metapolation * (B_inktrap-A_inktrap)),0) enddef;
 
 def inktrap_r(expr a)=
 shifted (0.5*a*(A_inktrap + metapolation * (B_inktrap-A_inktrap)),0) enddef;
-
-% metawidth
-
-space:=
-A_space + metapolation * (B_space - A_space);
-
-% width and sidebearing settings for each glyph
-
-input spacing
 
 % glyph input
 

@@ -1,0 +1,31 @@
+%!PS
+%%BoundingBox: 23 0 283 657 
+%%HiResBoundingBox: 23.91084 0 282.93796 656.53638 
+%%Creator: MetaPost 1.504
+%%CreationDate: 2013.07.24:1821
+%%Pages: 1
+%%BeginProlog
+%%EndProlog
+%%Page: 1 1
+% MF2PT1: glyph_dimensions 0 0 303 80
+% MF2PT1: font_size 10
+% MF2PT1: font_slant 0
+% MF2PT1: charwd 3.04
+% MF2PT1: font_identifier UNSPECIFIED
+% MF2PT1: font_coding_scheme UNSPECIFIED
+% MF2PT1: font_fixed_pitch 0
+ 0 0 0 setrgbcolor
+newpath 23.91084 498.13083 moveto
+23.91084 415.44093 lineto
+282.93796 415.44093 lineto
+282.93796 498.13083 lineto
+ closepath fill
+newpath 189.28926 656.53638 moveto
+96.63731 596.76097 lineto
+96.6378 110.58493 lineto
+96.6375 0 lineto
+189.28911 0 lineto
+189.2888 160.39836 lineto
+ closepath fill
+showpage
+%%EOF

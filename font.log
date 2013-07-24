@@ -1,5 +1,5 @@
-This is MetaPost, version 1.504 (kpathsea version 6.1.0)  24 JUL 2013 15:34
-**\mode:=localfont; mag:=100.375; bpppix 0.02; nonstopmode; input font.mf
+This is MetaPost, version 1.504 (kpathsea version 6.1.0)  24 JUL 2013 18:21
+**\mode:=localfont; mag:=100; bpppix 0.02; nonstopmode; input font.mf
 (mf2pt1.mp (/usr/local/texlive/2012/texmf-dist/metapost/base/mfplain.mp
 Preloading the plain base, version 0.99: preliminaries,
  basic constants and mathematical macros,
@@ -14,10 +14,48 @@ and a few last-minute items.)))
 [69]) (fonts/1/glyphs/70.mf [70]) (fonts/1/glyphs/71.mf [71])
 (fonts/1/glyphs/72.mf [72]) (fonts/1/glyphs/73.mf [73]) (fonts/1/glyphs/74.mf
 [74]) (fonts/1/glyphs/75.mf [75]) (fonts/1/glyphs/77.mf [77])
-(fonts/1/glyphs/78.mf [78]) (fonts/1/glyphs/79.mf [79]) (fonts/1/glyphs/82.mf
-[82]) (fonts/1/glyphs/83.mf [83]) (fonts/1/glyphs/84.mf [84])
-(fonts/1/glyphs/85.mf [85]) (fonts/1/glyphs/87.mf [87]) (fonts/1/glyphs/92.mf
-[92]) (fonts/1/glyphs/95.mf [95])))
+(fonts/1/glyphs/78.mf [78]) (fonts/1/glyphs/79.mf
+! Extra tokens will be flushed.
+<to be read again> 
+                   shifted
+<for(l)> ...IX0){up}...z4(SUFFIX0)...cycle.shifted
+                                                  (0,(A_mean+metapolation*(B...
+
+penstroke->...ffixes.e=l,r:path_.e:=(TEXT0);endfor
+                                                  .fill.path_.l--reverse.pat...
+<to be read again> 
+                   ;
+l.124 ;
+       
+I've just read as much of that statement as I could fathom,
+so a semicolon should have been next. It's very puzzling...
+but I'll try to get myself back together, by ignoring
+everything up to the next `;'. Please insert a semicolon
+now in front of anything that you don't want me to delete.
+(See Chapter 27 of The METAFONTbook for an example.)
+
+! Extra tokens will be flushed.
+<to be read again> 
+                   shifted
+<for(r)> ...IX0){up}...z4(SUFFIX0)...cycle.shifted
+                                                  (0,(A_mean+metapolation*(B...
+
+penstroke->...ffixes.e=l,r:path_.e:=(TEXT0);endfor
+                                                  .fill.path_.l--reverse.pat...
+<to be read again> 
+                   ;
+l.124 ;
+       
+I've just read as much of that statement as I could fathom,
+so a semicolon should have been next. It's very puzzling...
+but I'll try to get myself back together, by ignoring
+everything up to the next `;'. Please insert a semicolon
+now in front of anything that you don't want me to delete.
+(See Chapter 27 of The METAFONTbook for an example.)
+
+[79]) (fonts/1/glyphs/82.mf [82]) (fonts/1/glyphs/83.mf [83])
+(fonts/1/glyphs/84.mf [84]) (fonts/1/glyphs/85.mf [85]) (fonts/1/glyphs/87.mf
+[87]) (fonts/1/glyphs/92.mf [92]) (fonts/1/glyphs/95.mf [95])))
 Font metrics written on font.tfm.
 19 output files written: font.65 .. font.95
 

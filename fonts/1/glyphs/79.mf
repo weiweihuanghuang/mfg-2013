@@ -2,7 +2,7 @@
 
 % box dimension definition %
 
-beginfontchar(79, (5.77*(A_width + metapolation * (5.77*A_width - 5.77*B_width))) * width_79+ spacing_79R#, A_mean# + metapolation * (B_mean# - A_mean#), 0);
+beginfontchar(79, (5.77*A_width + metapolation * (5.77*A_width - 5.77*B_width)) * width_79 + spacing_79R, A_mean# + metapolation * (B_mean# - A_mean#), 0);
  
 % point coordinates font A
 
@@ -120,7 +120,7 @@ z4=((A_width + metapolation * (A_width - B_width)) * (x240 + metapolation * (x24
 penstroke z1e{down} ... 
 z2e{left} ... 
 z3e{up} ... 
-z4e ... cycle
+z4e ... cycle shifted (0, (A_mean + metapolation * (B_mean - A_mean)) - y4l) + (0, A_over + metapolation * (B_over - A_over))
 ;
 
 
