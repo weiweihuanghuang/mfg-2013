@@ -447,7 +447,7 @@ def put_globalparam(id):
     unitwidth=mfg.cFont.unitwidth
     fontsize = mfg.cFont.fontsize
     db.insert('globalparam', where='idglobal = $id',vars=locals(), 
-        metapolation=metapolation, fontsize=fontsize)
+        metapolation=metapolation, unitwidth=unitwidth, fontsize=fontsize)
     db.query("commit")
     return None
 
