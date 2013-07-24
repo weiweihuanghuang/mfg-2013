@@ -6,6 +6,14 @@ beginfontchar(92, (0.47*A_width + metapolation * (0.47*A_width - 0.47*B_width)) 
  
 % point coordinates font A
 
+px11l := 0.0u ; py11l := -2.1u ;
+px12l := 0.0u ; py12l := -2.2u ;
+px12r := 0.47u ; py12r := -2.2u ;
+px11r := 0.47u ; py11r := -2.1u ;
+px9l := 0.0u ; py9l := 7.2u ;
+px10l := 0.0u ; py10l := 7.1u ;
+px10r := 0.47u ; py10r := 7.1u ;
+px9r := 0.47u ; py9r := 7.2u ;
 px2l := 0.0u ; py2l := -0.01u ;
 px1l := 0.0u ; py1l := -2.0u ;
 px1r := 0.47u ; py1r := -2.0u ;
@@ -25,6 +33,14 @@ px8r := 0.47u ; py8r := 7.0u ;
 
 % reading mid points font A
 
+.5(px12l + px12r) = x2120;
+.5(py12l + py12r) = y2120;
+.5(px11l + px11r) = x2110;
+.5(py11l + py11r) = y2110;
+.5(px10l + px10r) = x2100;
+.5(py10l + py10r) = y2100;
+.5(px9l + px9r) = x290;
+.5(py9l + py9r) = y290;
 .5(px1l + px1r) = x210;
 .5(py1l + py1r) = y210;
 .5(px2l + px2r) = x220;
@@ -44,6 +60,14 @@ px8r := 0.47u ; py8r := 7.0u ;
 
 % fake extra l an r for metafont
 
+px12l = x12Bl; py12l = y12Bl; 
+px12r = x12Br; py12r = y12Br; 
+px11l = x11Bl; py11l = y11Bl; 
+px11r = x11Br; py11r = y11Br; 
+px10l = x10Bl; py10l = y10Bl; 
+px10r = x10Br; py10r = y10Br; 
+px9l = x9Bl; py9l = y9Bl; 
+px9r = x9Br; py9r = y9Br; 
 px1l = x1Bl; py1l = y1Bl; 
 px1r = x1Br; py1r = y1Br; 
 px2l = x2Bl; py2l = y2Bl; 
@@ -63,6 +87,10 @@ px8r = x8Br; py8r = y8Br;
 
 % pen width
 
+dist12 := length (z12Bl-z12Br) ;
+dist11 := length (z11Bl-z11Br) ;
+dist10 := length (z10Bl-z10Br) ;
+dist9 := length (z9Bl-z9Br) ;
 dist1 := length (z1Bl-z1Br) ;
 dist2 := length (z2Bl-z2Br) ;
 dist3 := length (z3Bl-z3Br) ;
@@ -74,6 +102,14 @@ dist8 := length (z8Bl-z8Br) ;
  
 % point coordinates font B
 
+ppx11l := 0.0u ; ppy11l := -2.1u ;
+ppx12l := 0.0u ; ppy12l := -2.2u ;
+ppx12r := 0.47u ; ppy12r := -2.2u ;
+ppx11r := 0.47u ; ppy11r := -2.1u ;
+ppx9l := 0.0u ; ppy9l := 7.2u ;
+ppx10l := 0.0u ; ppy10l := 7.1u ;
+ppx10r := 0.47u ; ppy10r := 7.1u ;
+ppx9r := 0.47u ; ppy9r := 7.2u ;
 ppx2l := 0.0u ; ppy2l := -0.01u ;
 ppx1l := 0.0u ; ppy1l := -2.0u ;
 ppx1r := 0.47u ; ppy1r := -2.0u ;
@@ -93,6 +129,14 @@ ppx8r := 0.47u ; ppy8r := 7.0u ;
 
 % reading mid points font B
 
+.5(ppx12l + ppx12r) = x212A;
+.5(ppy12l + ppy12r) = y212A;
+.5(ppx11l + ppx11r) = x211A;
+.5(ppy11l + ppy11r) = y211A;
+.5(ppx10l + ppx10r) = x210A;
+.5(ppy10l + ppy10r) = y210A;
+.5(ppx9l + ppx9r) = x29A;
+.5(ppy9l + ppy9r) = y29A;
 .5(ppx1l + ppx1r) = x21A;
 .5(ppy1l + ppy1r) = y21A;
 .5(ppx2l + ppx2r) = x22A;
@@ -112,6 +156,14 @@ ppx8r := 0.47u ; ppy8r := 7.0u ;
 
 % fake extra l an r for font B
 
+ppx12l = x12Cl; ppy12l = y12Cl; 
+ppx12r = x12Cr; ppy12r = y12Cr; 
+ppx11l = x11Cl; ppy11l = y11Cl; 
+ppx11r = x11Cr; ppy11r = y11Cr; 
+ppx10l = x10Cl; ppy10l = y10Cl; 
+ppx10r = x10Cr; ppy10r = y10Cr; 
+ppx9l = x9Cl; ppy9l = y9Cl; 
+ppx9r = x9Cr; ppy9r = y9Cr; 
 ppx1l = x1Cl; ppy1l = y1Cl; 
 ppx1r = x1Cr; ppy1r = y1Cr; 
 ppx2l = x2Cl; ppy2l = y2Cl; 
@@ -131,6 +183,10 @@ ppx8r = x8Cr; ppy8r = y8Cr;
 
 % pen width Font B
 
+dist12B := length (z12Cl-z12Cr) ;
+dist11B := length (z11Cl-z11Cr) ;
+dist10B := length (z10Cl-z10Cr) ;
+dist9B := length (z9Cl-z9Cr) ;
 dist1B := length (z1Cl-z1Cr) ;
 dist2B := length (z2Cl-z2Cr) ;
 dist3B := length (z3Cl-z3Cr) ;
@@ -142,6 +198,10 @@ dist8B := length (z8Cl-z8Cr) ;
 
 % pen angle Font A
 
+ang12 := angle((z12Br + (metapolation * (z12Cr -z12Br))) - (z12Bl + (metapolation * (z12Cl -z12Bl))));
+ang11 := angle((z11Br + (metapolation * (z11Cr -z11Br))) - (z11Bl + (metapolation * (z11Cl -z11Bl))));
+ang10 := angle((z10Br + (metapolation * (z10Cr -z10Br))) - (z10Bl + (metapolation * (z10Cl -z10Bl))));
+ang9 := angle((z9Br + (metapolation * (z9Cr -z9Br))) - (z9Bl + (metapolation * (z9Cl -z9Bl))));
 ang1 := angle((z1Br + (metapolation * (z1Cr -z1Br))) - (z1Bl + (metapolation * (z1Cl -z1Bl))));
 ang2 := angle((z2Br + (metapolation * (z2Cr -z2Br))) - (z2Bl + (metapolation * (z2Cl -z2Bl))));
 ang3 := angle((z3Br + (metapolation * (z3Cr -z3Br))) - (z3Bl + (metapolation * (z3Cl -z3Bl))));
@@ -162,6 +222,10 @@ ang5V := ang5; dist5V := dist5;
 ang6V := ang6; dist6V := dist6;
 ang7V := ang7; dist7V := dist7;
 ang8V := ang8; dist8V := dist8;
+ang9V := ang9; dist9V := dist9;
+ang10V := ang10; dist10V := dist10;
+ang11V := ang11; dist11V := dist11;
+ang12V := ang12; dist12V := dist12;
 
 
 % test new penpos
@@ -174,6 +238,10 @@ penpos5(dist5 + ((A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metap
 penpos6(dist6 + ((A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist6)), ang6);
 penpos7(dist7 + ((A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist7)), ang7);
 penpos8(dist8 + ((A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist8)), ang8);
+penpos9(dist9 + ((A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist9)), ang9);
+penpos10(dist10 + ((A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist10)), ang10);
+penpos11(dist11 + ((A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist11)), ang11);
+penpos12(dist12 + ((A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist12)), ang12);
 
 
 % test new center (z) points
@@ -186,6 +254,10 @@ z5=((A_width + metapolation * (A_width - B_width)) * (x250 + metapolation * (x25
 z6=((A_width + metapolation * (A_width - B_width)) * (x260 + metapolation * (x26A - x260) + width_92L) * width_92, (A_boxheight + metapolation * (B_boxheight - A_boxheight))*(y260 + metapolation *(y26A - y260)));
 z7=((A_width + metapolation * (A_width - B_width)) * (x270 + metapolation * (x27A - x270) + width_92L) * width_92, (A_boxheight + metapolation * (B_boxheight - A_boxheight))*(y270 + metapolation *(y27A - y270)));
 z8=((A_width + metapolation * (A_width - B_width)) * (x280 + metapolation * (x28A - x280) + width_92L) * width_92, (A_boxheight + metapolation * (B_boxheight - A_boxheight))*(y280 + metapolation *(y28A - y280)));
+z9=((A_width + metapolation * (A_width - B_width)) * (x290 + metapolation * (x29A - x290) + width_92L) * width_92, (A_boxheight + metapolation * (B_boxheight - A_boxheight))*(y290 + metapolation *(y29A - y290)));
+z10=((A_width + metapolation * (A_width - B_width)) * (x2100 + metapolation * (x210A - x2100) + width_92L) * width_92, (A_boxheight + metapolation * (B_boxheight - A_boxheight))*(y2100 + metapolation *(y210A - y2100)));
+z11=((A_width + metapolation * (A_width - B_width)) * (x2110 + metapolation * (x211A - x2110) + width_92L) * width_92, (A_boxheight + metapolation * (B_boxheight - A_boxheight))*(y2110 + metapolation *(y211A - y2110)));
+z12=((A_width + metapolation * (A_width - B_width)) * (x2120 + metapolation * (x212A - x2120) + width_92L) * width_92, (A_boxheight + metapolation * (B_boxheight - A_boxheight))*(y2120 + metapolation *(y212A - y2120)));
 
 % penstrokes
 
@@ -194,9 +266,13 @@ z2e;
 penstroke z3e ... 
 z4e;
 penstroke z5e ... 
-z6e ... 
-z7e ... 
-z8e
+z6e;
+penstroke z7e ... 
+z8e;
+penstroke z9e ... 
+z10e;
+penstroke z11e ... 
+z12e
 ;
 
 

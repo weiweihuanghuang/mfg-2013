@@ -1,4 +1,4 @@
-This is MetaPost, version 1.504 (kpathsea version 6.1.0)  23 JUL 2013 15:01
+This is MetaPost, version 1.504 (kpathsea version 6.1.0)  23 JUL 2013 19:04
 **\mode:=localfont; mag:=100.375; bpppix 0.02; nonstopmode; input font.mf
 (mf2pt1.mp (/usr/local/texlive/2012/texmf-dist/metapost/base/mfplain.mp
 Preloading the plain base, version 0.99: preliminaries,
@@ -10,8 +10,14 @@ Preloading the plain base, version 0.99: preliminaries,
  macros for character and font administration,
 and a few last-minute items.)))
 (fonts/1/font.mf (fonts/1/glyphs.mf (fonts/1/space.mf) (fonts/1/glyphlist.mf
-(fonts/1/glyphs/65.mf [65]) (fonts/1/glyphs/78.mf [78]) (fonts/1/glyphs/92.mf
+(fonts/1/glyphs/65.mf [65]) (fonts/1/glyphs/66.mf [66]) (fonts/1/glyphs/69.mf
+[69]) (fonts/1/glyphs/70.mf [70]) (fonts/1/glyphs/71.mf [71])
+(fonts/1/glyphs/72.mf [72]) (fonts/1/glyphs/73.mf [73]) (fonts/1/glyphs/74.mf
+[74]) (fonts/1/glyphs/75.mf [75]) (fonts/1/glyphs/77.mf [77])
+(fonts/1/glyphs/78.mf [78]) (fonts/1/glyphs/79.mf [79]) (fonts/1/glyphs/82.mf
+[82]) (fonts/1/glyphs/83.mf [83]) (fonts/1/glyphs/84.mf [84])
+(fonts/1/glyphs/85.mf [85]) (fonts/1/glyphs/87.mf [87]) (fonts/1/glyphs/92.mf
 [92]) (fonts/1/glyphs/95.mf [95])))
 Font metrics written on font.tfm.
-4 output files written: font.65 .. font.95
+19 output files written: font.65 .. font.95
 

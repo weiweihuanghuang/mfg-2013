@@ -5,10 +5,10 @@
     <contour>
       <point pointNo="p1" x="319" y="293"/>
       <point pointNo="p2" x="257" y="285"/>
-      <point name="z8r" pointNo="p3" smooth="yes" type="curve" x="221" y="281"/>
+      <point dir="-174" name="z8r" pointNo="p3" smooth="yes" tension="90" type="curve" x="221" y="281"/>
       <point pointNo="p4" x="115" y="270"/>
       <point pointNo="p5" x="48" y="229"/>
-      <point name="z9r" pointNo="p6" type="curve" x="48" y="133"/>
+      <point name="z9r" pointNo="p6" tension="95" type="curve" x="48" y="133"/>
       <point pointNo="p7" x="48" y="36"/>
       <point pointNo="p8" x="132" y="-8"/>
       <point name="z10r" pointNo="p9" rightp="1" smooth="yes" type="curve" x="201" y="-8"/>
@@ -33,7 +33,7 @@
     <contour>
       <point pointNo="p27" x="121" y="396"/>
       <point pointNo="p28" x="183" y="427"/>
-      <point name="z2r" pointNo="p29" rightp="1" type="curve" x="228" y="427"/>
+      <point name="z2r" pointNo="p29" rightp="1" tension="90" type="curve" x="228" y="427"/>
       <point pointNo="p30" x="302" y="427"/>
       <point pointNo="p31" x="328" y="390"/>
       <point name="z3r" pointNo="p32" smooth="yes" type="curve" x="328" y="315"/>
@@ -57,8 +57,8 @@
       <point name="z2l" pointNo="p50" type="curve" x="243" y="508"/>
       <point pointNo="p51" x="170" y="508"/>
       <point pointNo="p52" x="123" y="475"/>
-      <point dir="20.0" name="z1l" pointNo="p53" type="curve" x="67" y="466"/>
-      <point name="z1r" pointNo="p54" startp="1" type="line" x="67" y="390"/>
+      <point name="z1l" pointNo="p53" type="curve" x="67" y="466"/>
+      <point dir="6.4" name="z1r" pointNo="p54" startp="1" type="line" x="67" y="390"/>
     </contour>
   </outline>
   <lib>
