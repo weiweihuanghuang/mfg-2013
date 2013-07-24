@@ -1,6 +1,4 @@
 $def with (posts,post,form,formparam,formparamG,master,mastglobal,webglyph,glyphparam,groupparam,cfont,postspa)
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge">
 <link rel="stylesheet" type="text/css" href="/static/mfg.css"/>
 <style>
 @font-face {
@@ -47,7 +45,7 @@ h2 {
 	width:0px;
 	-webkit-transform:translate(0%,0%) scale(100%,100%);
 }
-#menu {
+#viewmenu {
 	position:relative;
 	z-index:5;
 	width:200px;
@@ -56,11 +54,9 @@ h2 {
 	width:200px;
 	text-align:left;
 	color: white;
-        border-style:solid;
+    border-style:solid;
 	border-color:black;
-        border-width:5px;
-
-
+    border-width:5px;
 }
 
 #menuleft {
@@ -111,9 +107,8 @@ table,th,td, #menuleft{
         border-width:5px;
 
 }
- 
 </style>
-</head>
+
 <p id="menuleft">Glyph Edit</p>
 <p id="menuleft">  
 $if cfont.idwork == '0' :
@@ -127,7 +122,7 @@ $if cfont.idwork == '1' :
 <a id="menuleftgreen" href="/metap/1">Edit Font B</a> <br>
 </p> 
 
-<p id="menu">  
+<p id="viewmenu">  
 $for mast in master:
    $mast.FontName  
 
@@ -383,7 +378,3 @@ $for posti in posts:
 		</p>
 	</div>
 </div>
-
-
-
-

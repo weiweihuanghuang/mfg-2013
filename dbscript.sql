@@ -126,6 +126,7 @@ CREATE TABLE localparam (
     cap       float default 0.8,
     box       float default 0.8,
     width  float default 1,
+	space  float default 0,
     xheight   float default 1,
     capital   float default 1,
     boxheight   float default 1,
@@ -139,7 +140,7 @@ CREATE TABLE localparam (
     primary key (idlocal)
 );
 insert into master (FontName,FontNameA,FontNameB,idglobal) Values ("My First Metapolator Font", "GaramondSansA.ufo","GaramondSansB.ufo",1);
-insert into master (FontName,FontNameA,FontNameB,idglobal) Values ("My second Metapolator Font", "Aeriel-Regular.ufo","Aeriel-Regular.ufo",2);
+insert into master (FontName,FontNameA,FontNameB,idglobal) Values ("Foxtail", "FoxtailA.ufo","FoxtailA.ufo",2);
 insert into master (FontName,FontNameA,FontNameB,idglobal) Values ("combined Garamond and Aeriel", "GaramondSans.ufo","Aeriel-Regular.ufo",2);
 insert into globalparam (idglobal,metapolation,unitwidth,fontsize) Values (1, 0.5,1,10);
 insert into globalparam (idglobal,metapolation,unitwidth,fontsize) Values (2, 0.5,1,10);

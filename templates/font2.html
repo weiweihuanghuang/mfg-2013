@@ -1,7 +1,4 @@
 $def with (form,gmlist,cfont)
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge">
 <link rel="stylesheet" type="text/css" href="/static/mfg.css"/>
 <style>
 @font-face {
@@ -23,7 +20,6 @@ $def with (form,gmlist,cfont)
     font-weight: 700;
     src: local('Inconsolata Bold'), local('Inconsolata-Bold'), url('/static/Inconsolata/Inconsolata-Bold.ttf') format('truetype'), url('/static/Inconsolata/Inconsolata-Bold.woff') format('woff');
 }
-
 h3_b {
 	position:absolute;
 	z-index:-5;
@@ -53,7 +49,6 @@ h3_c {
 }
 p,h2,#menu,table,th,td,#ruler {
 	font:normal 15px/19px Menlo,'Inconsolata',mono;
-	z-index:-5;
 }
 h2 {
 	color:red;
@@ -69,14 +64,6 @@ h2 {
 	right:0;
 	width:0px;
 	-webkit-transform:translate(0%,0%) scale(0.80,0.80);
-}
-#menu, #menu a:visited, #menu a:link {
-	position:relative;
-	z-index:5;
-	width:200px;
-	float:right;
-	color:red;
-	text-decoration:none;
 }
 a:visited {
 	color: green;
@@ -103,8 +90,7 @@ table,th,td {
      }
 
 </style>
-</head>
-<body>
+
 <div class="title"> global parameters </div>
 
 <p>
@@ -128,8 +114,3 @@ $for gmg in gmlist:
 <p>
 <a href="/font4/$cfont.idlocalB">local parameter set B</a>
 </p>
-
-</body>
-</html>
-
-

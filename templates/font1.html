@@ -1,6 +1,4 @@
 $def with (fontlist,form,mmaster,cfont)
-<html>
-<head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge">
 <link rel="stylesheet" type="text/css" href="/static/mfg.css"/>
 <style>
@@ -52,7 +50,6 @@ h3_c {
 }
 p,h2,#menu,table,th,td,#ruler {
 	font:normal 15px/19px Menlo,'Inconsolata',mono;
-	z-index:-5;
 }
 h2 {
 	color:red;
@@ -69,13 +66,6 @@ h2 {
 	width:0px;
 	-webkit-transform:translate(0%,0%) scale(0.80,0.80);
 }
-#menu {
-	position:relative;
-	z-index:5;
-	width:200px;
-	float:right;
-	color:red;
-}
 a:visited {
 		color:inherit;
 	text-decoration:none;
@@ -90,8 +80,7 @@ table,th,td {
 	color: red;
 }
 </style>
-</head>
-<body>
+
 <h2> fonts in directories</h2>
 <p>
 $for fontl in fontlist:
@@ -343,7 +332,3 @@ loadoption [0]: default case, read parameters from the xml attributes <br>
 <a href="/font1/1224/">&#255;</a>
 <a href="/font1/1225/">&#256;</a>
 </p>
-</body>
-</html>
-
-

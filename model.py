@@ -463,10 +463,10 @@ def update_globalparam(id, a, b):
     db.query("commit")
     return None
 
-def update_localparam(id, a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17 ):
+def update_localparam(id, a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18 ):
     print "id local param update",id
     db.update('localparam', where='idlocal = $id', vars=locals(), 
-      px = a1, mean = a2, des=a3, ascl=a4, cap=a5, box=a6, width=a7, xheight=a8, capital=a9, boxheight=a10, ascender=a11, descender=a12, inktrap=a13, stemcut=a14, skeleton=a15, superness=a16, over=a17)
+      px = a1, mean = a2, des=a3, ascl=a4, cap=a5, box=a6, width=a7, space=a8, xheight=a9, capital=a10, boxheight=a11, ascender=a12, descender=a13, inktrap=a14, stemcut=a15, skeleton=a16, superness=a17, over=a18)
     db.query("commit")
     return None
 
@@ -604,6 +604,7 @@ def writeGlobalParam():
   ifile.write("A_cap#:=%.1fpt#;\n"%imlo[0].cap)
   ifile.write("A_box#:=%.1fpt#;\n"%imlo[0].box)
   ifile.write("A_width:=%.2f;\n"%imlo[0].width)
+  ifile.write("A_space:=%.2f;\n"%imlo[0].space)
   ifile.write("A_xheight:=%.0f;\n"%imlo[0].xheight)
   ifile.write("A_capital:=%.0f;\n"%imlo[0].capital)
   ifile.write("A_boxheight:=%.0f;\n"%imlo[0].boxheight)
@@ -625,6 +626,7 @@ def writeGlobalParam():
   ifile.write("B_cap#:=%.1fpt#;\n"%imlo[0].cap)
   ifile.write("B_box#:=%.1fpt#;\n"%imlo[0].box)
   ifile.write("B_width:=%.2f;\n"%imlo[0].width)
+  ifile.write("B_space:=%.2f;\n"%imlo[0].space)
   ifile.write("B_xheight:=%.0f;\n"%imlo[0].xheight)
   ifile.write("B_capital:=%.0f;\n"%imlo[0].capital)
   ifile.write("B_boxheight:=%.0f;\n"%imlo[0].boxheight)

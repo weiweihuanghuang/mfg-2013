@@ -2,7 +2,7 @@
 
 % box dimension definition %
 
-beginfontchar(95, (2.42*A_width + metapolation * (2.42*A_width - 2.42*B_width)) * width_95+ width_95R#, A_mean# + metapolation * (B_mean# - A_mean#), 0);
+beginfontchar(95, (2.42*(A_width + metapolation * (2.42*A_width - 2.42*B_width))) * width_95+ spacing_95R#, A_mean# + metapolation * (B_mean# - A_mean#), 0);
  
 % point coordinates font A
 
@@ -59,7 +59,7 @@ penpos1(dist1 + ((A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metap
 
 % test new center (z) points
 
-z1=((A_width + metapolation * (A_width - B_width)) * (x210 + metapolation * (x21A - x210) + width_95L) * width_95, (A_xheight + metapolation * (B_xheight - A_xheight))*(y210 + metapolation *(y21A - y210)));
+z1=((A_width + metapolation * (A_width - B_width)) * (x210 + metapolation * (x21A - x210) + spacing_95L) * width_95, (A_xheight + metapolation * (B_xheight - A_xheight))*(y210 + metapolation *(y21A - y210)));
 
 % penstrokes
 

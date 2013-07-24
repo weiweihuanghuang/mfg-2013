@@ -2,7 +2,7 @@
 
 % box dimension definition %
 
-beginfontchar(73, (2.65*A_width + metapolation * (2.65*A_width - 2.65*B_width)) * width_73+ width_73R#, A_asc# + metapolation * (B_asc# - A_asc#), 0);
+beginfontchar(73, (2.65*(A_width + metapolation * (2.65*A_width - 2.65*B_width))) * width_73+ spacing_73R#, A_asc# + metapolation * (B_asc# - A_asc#), 0);
  
 % point coordinates font A
 
@@ -110,10 +110,10 @@ penpos4(dist4 + ((A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metap
 
 % test new center (z) points
 
-z1=((A_width + metapolation * (A_width - B_width)) * (x210 + metapolation * (x21A - x210) + width_73L) * width_73, (A_ascender + metapolation * (B_ascender - A_ascender))*(y210 + metapolation *(y21A - y210)));
-z2=((A_width + metapolation * (A_width - B_width)) * (x220 + metapolation * (x22A - x220) + width_73L) * width_73, (A_ascender + metapolation * (B_ascender - A_ascender))*(y220 + metapolation *(y22A - y220)));
-z3=((A_width + metapolation * (A_width - B_width)) * (x230 + metapolation * (x23A - x230) + width_73L) * width_73, (A_ascender + metapolation * (B_ascender - A_ascender))*(y230 + metapolation *(y23A - y230)));
-z4=((A_width + metapolation * (A_width - B_width)) * (x240 + metapolation * (x24A - x240) + width_73L) * width_73, (A_ascender + metapolation * (B_ascender - A_ascender))*(y240 + metapolation *(y24A - y240)));
+z1=((A_width + metapolation * (A_width - B_width)) * (x210 + metapolation * (x21A - x210) + spacing_73L) * width_73, (A_ascender + metapolation * (B_ascender - A_ascender))*(y210 + metapolation *(y21A - y210)));
+z2=((A_width + metapolation * (A_width - B_width)) * (x220 + metapolation * (x22A - x220) + spacing_73L) * width_73, (A_ascender + metapolation * (B_ascender - A_ascender))*(y220 + metapolation *(y22A - y220)));
+z3=((A_width + metapolation * (A_width - B_width)) * (x230 + metapolation * (x23A - x230) + spacing_73L) * width_73, (A_ascender + metapolation * (B_ascender - A_ascender))*(y230 + metapolation *(y23A - y230)));
+z4=((A_width + metapolation * (A_width - B_width)) * (x240 + metapolation * (x24A - x240) + spacing_73L) * width_73, (A_ascender + metapolation * (B_ascender - A_ascender))*(y240 + metapolation *(y24A - y240)));
 
 % penstrokes
 

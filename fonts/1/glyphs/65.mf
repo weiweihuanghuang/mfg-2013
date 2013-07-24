@@ -2,7 +2,7 @@
 
 % box dimension definition %
 
-beginfontchar(65, (4.92*A_width + metapolation * (4.92*A_width - 4.92*B_width)) * width_65+ width_65R#, A_mean# + metapolation * (B_mean# - A_mean#), 0);
+beginfontchar(65, (4.92*A_width + metapolation * (4.92*A_width - 4.92*B_width)) * width_65 + spacing_65R#, A_mean# + metapolation * (B_mean# - A_mean#), 0);
  
 % point coordinates font A
 
@@ -229,17 +229,17 @@ penpos11(dist11 + ((A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + met
 
 % test new center (z) points
 
-z1=((A_width + metapolation * (A_width - B_width)) * (x210 + metapolation * (x21A - x210) + width_65L) * width_65, (A_xheight + metapolation * (B_xheight - A_xheight))*(y210 + metapolation *(y21A - y210)));
-z2=((A_width + metapolation * (A_width - B_width)) * (x220 + metapolation * (x22A - x220) + width_65L) * width_65, (A_xheight + metapolation * (B_xheight - A_xheight))*(y220 + metapolation *(y22A - y220)));
-z3=((A_width + metapolation * (A_width - B_width)) * (x230 + metapolation * (x23A - x230) + width_65L) * width_65, (A_xheight + metapolation * (B_xheight - A_xheight))*(y230 + metapolation *(y23A - y230)));
-z4=((A_width + metapolation * (A_width - B_width)) * (x240 + metapolation * (x24A - x240) + width_65L) * width_65, (A_xheight + metapolation * (B_xheight - A_xheight))*(y240 + metapolation *(y24A - y240)));
-z5=((A_width + metapolation * (A_width - B_width)) * (x250 + metapolation * (x25A - x250) + width_65L) * width_65, (A_xheight + metapolation * (B_xheight - A_xheight))*(y250 + metapolation *(y25A - y250)));
-z6=((A_width + metapolation * (A_width - B_width)) * (x260 + metapolation * (x26A - x260) + width_65L) * width_65, (A_xheight + metapolation * (B_xheight - A_xheight))*(y260 + metapolation *(y26A - y260)));
-z7=((A_width + metapolation * (A_width - B_width)) * (x270 + metapolation * (x27A - x270) + width_65L) * width_65, (A_xheight + metapolation * (B_xheight - A_xheight))*(y270 + metapolation *(y27A - y270)));
-z8=((A_width + metapolation * (A_width - B_width)) * (x280 + metapolation * (x28A - x280) + width_65L) * width_65, (A_xheight + metapolation * (B_xheight - A_xheight))*(y280 + metapolation *(y28A - y280)));
-z9=((A_width + metapolation * (A_width - B_width)) * (x290 + metapolation * (x29A - x290) + width_65L) * width_65, (A_xheight + metapolation * (B_xheight - A_xheight))*(y290 + metapolation *(y29A - y290)));
-z10=((A_width + metapolation * (A_width - B_width)) * (x2100 + metapolation * (x210A - x2100) + width_65L) * width_65, (A_xheight + metapolation * (B_xheight - A_xheight))*(y2100 + metapolation *(y210A - y2100)));
-z11=((A_width + metapolation * (A_width - B_width)) * (x2110 + metapolation * (x211A - x2110) + width_65L) * width_65, (A_xheight + metapolation * (B_xheight - A_xheight))*(y2110 + metapolation *(y211A - y2110)));
+z1=((A_width + metapolation * (A_width - B_width)) * (x210 + metapolation * (x21A - x210) + spacing_65L) * width_65, (A_xheight + metapolation * (B_xheight - A_xheight))*(y210 + metapolation *(y21A - y210)));
+z2=((A_width + metapolation * (A_width - B_width)) * (x220 + metapolation * (x22A - x220) + spacing_65L) * width_65, (A_xheight + metapolation * (B_xheight - A_xheight))*(y220 + metapolation *(y22A - y220)));
+z3=((A_width + metapolation * (A_width - B_width)) * (x230 + metapolation * (x23A - x230) + spacing_65L) * width_65, (A_xheight + metapolation * (B_xheight - A_xheight))*(y230 + metapolation *(y23A - y230)));
+z4=((A_width + metapolation * (A_width - B_width)) * (x240 + metapolation * (x24A - x240) + spacing_65L) * width_65, (A_xheight + metapolation * (B_xheight - A_xheight))*(y240 + metapolation *(y24A - y240)));
+z5=((A_width + metapolation * (A_width - B_width)) * (x250 + metapolation * (x25A - x250) + spacing_65L) * width_65, (A_xheight + metapolation * (B_xheight - A_xheight))*(y250 + metapolation *(y25A - y250)));
+z6=((A_width + metapolation * (A_width - B_width)) * (x260 + metapolation * (x26A - x260) + spacing_65L) * width_65, (A_xheight + metapolation * (B_xheight - A_xheight))*(y260 + metapolation *(y26A - y260)));
+z7=((A_width + metapolation * (A_width - B_width)) * (x270 + metapolation * (x27A - x270) + spacing_65L) * width_65, (A_xheight + metapolation * (B_xheight - A_xheight))*(y270 + metapolation *(y27A - y270)));
+z8=((A_width + metapolation * (A_width - B_width)) * (x280 + metapolation * (x28A - x280) + spacing_65L) * width_65, (A_xheight + metapolation * (B_xheight - A_xheight))*(y280 + metapolation *(y28A - y280)));
+z9=((A_width + metapolation * (A_width - B_width)) * (x290 + metapolation * (x29A - x290) + spacing_65L) * width_65, (A_xheight + metapolation * (B_xheight - A_xheight))*(y290 + metapolation *(y29A - y290)));
+z10=((A_width + metapolation * (A_width - B_width)) * (x2100 + metapolation * (x210A - x2100) + spacing_65L) * width_65, (A_xheight + metapolation * (B_xheight - A_xheight))*(y2100 + metapolation *(y210A - y2100)));
+z11=((A_width + metapolation * (A_width - B_width)) * (x2110 + metapolation * (x211A - x2110) + spacing_65L) * width_65, (A_xheight + metapolation * (B_xheight - A_xheight))*(y2110 + metapolation *(y211A - y2110)));
 
 % penstrokes
 

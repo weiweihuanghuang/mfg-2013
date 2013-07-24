@@ -59,7 +59,7 @@ if g in box :
 #    ggroup = 'asc#'
 
 
-print 'beginfontchar(' + g + ', (' + w + '*A_width + metapolation * (' + w + '*A_width - ' + w2 + '*B_width)) * width_' + g + "+ width_" +  g  + "R#, A_" + ggroup + " + metapolation * (B_" + ggroup + " - A_" + ggroup + "), " + "0" + ");"
+print 'beginfontchar(' + g + ', (' + w + '*A_width + metapolation * (' + w + '*A_width - ' + w2 + '*B_width)) * width_' + g + " + spacing_" +  g  + "R#, A_" + ggroup + " + metapolation * (B_" + ggroup + " - A_" + ggroup + "), " + "0" + ");"
 # print """if known ps_output:
 # glyph_name "uni""" + u + """"; 
 # fi
@@ -584,10 +584,10 @@ for i in range (0,nnz) :
   zeileb = "ang" + str(zitem) + "V := ang" + str(zitem) + "; dist" + str(zitem) + "V := dist" + str(zitem) + ";" 
 #  zeilec = "ang" + str(zitemb) + "V := ang" + str(zitemb) + ";"
 
-#  zeile = "z"+str(zitem)+ "=(x2"+ str(zitem)+ "0 *width *width_" + g + "+ (metapolation * (x2"+str(zitem)+"A - x2" +str(zitem)+"0)), y2"+str(zitem)+ "0 *" + ggroup + " + (metapolation * (y2"+str(zitem)+ "A - y2" +str(zitem)+ "0))"
+#  zeile = "z"+str(zitem)+ "=(x2"+ str(zitem)+ "0 *width *spacing_" + g + "+ (metapolation * (x2"+str(zitem)+"A - x2" +str(zitem)+"0)), y2"+str(zitem)+ "0 *" + ggroup + " + (metapolation * (y2"+str(zitem)+ "A - y2" +str(zitem)+ "0))"
   
 #  zeileend =""
-#  zeileend = 'z'+str(zzn[nnz-1])+ "=(x2"+ str(zzn[nnz-1])+ "0 *width *width_" + g + " + (metapolation * (x2"+str(zzn[nnz-1])+"A - x2" +str(zzn[nnz-1])+"0)), y2"+str(zzn[nnz-1])+ "0 *" + ggroup + " + (metapolation * (y2"+str(zzn[nnz-1]) + "A - y2" +str(zzn[nnz-1])+ "0))"
+#  zeileend = 'z'+str(zzn[nnz-1])+ "=(x2"+ str(zzn[nnz-1])+ "0 *width *spacing_" + g + " + (metapolation * (x2"+str(zzn[nnz-1])+"A - x2" +str(zzn[nnz-1])+"0)), y2"+str(zzn[nnz-1])+ "0 *" + ggroup + " + (metapolation * (y2"+str(zzn[nnz-1]) + "A - y2" +str(zzn[nnz-1])+ "0))"
  
 
 # parameters 
@@ -1211,18 +1211,13 @@ for i in range (0,nnz) :
 
   zeile =""
 
-  zeile = "z"+str(zitem)+ "=((A_width + metapolation * (A_width - B_width)) * (x2"+ str(zitem)+ "0 + metapolation * (x2"+str(zitem)+"A - x2" +str(zitem)+"0) + width_" + g + "L) * width_" + g + ", (A_" + ggroup + " + metapolation * (B_" + ggroup + " - A_" + ggroup + "))*(y2"+str(zitem)+ "0 + metapolation *(y2"+str(zitem)+ "A - y2" +str(zitem)+ "0)))"
+  zeile = "z"+str(zitem)+ "=((A_width + metapolation * (A_width - B_width)) * (x2"+ str(zitem)+ "0 + metapolation * (x2"+str(zitem)+"A - x2" +str(zitem)+"0) + spacing_" + g + "L) * width_" + g + ", (A_" + ggroup + " + metapolation * (B_" + ggroup + " - A_" + ggroup + "))*(y2"+str(zitem)+ "0 + metapolation *(y2"+str(zitem)+ "A - y2" +str(zitem)+ "0)))"
 
 #  zeileend =""
-#  zeileend = 'z'+str(zzn[nnz-1])+ "=(x2"+ str(zzn[nnz-1])+ "0 *width *width_" + g + " + (metapolation * (x2"+str(zzn[nnz-1])+"A - x2" +str(zzn[nnz-1])+"0)), y2"+str(zzn[nnz-1])+ "0 *" + ggroup + " + (metapolation * (y2"+str(zzn[nnz-1]) + "A - y2" +str(zzn[nnz-1])+ "0)))"
+#  zeileend = 'z'+str(zzn[nnz-1])+ "=(x2"+ str(zzn[nnz-1])+ "0 *width *spacing_" + g + " + (metapolation * (x2"+str(zzn[nnz-1])+"A - x2" +str(zzn[nnz-1])+"0)), y2"+str(zzn[nnz-1])+ "0 *" + ggroup + " + (metapolation * (y2"+str(zzn[nnz-1]) + "A - y2" +str(zzn[nnz-1])+ "0)))"
  
 
 # parameters 
-
-  if overx[i] <> "" :
-      zeile = zeile + " shifted (0, (A_mean + metapolation * (A_mean - B_mean)) - y" + str(zitem) + str(overxval[i]) + ") + (0, over)" 
-
-
   if pointshifted[i] <> "" :
       zeile = zeile +" shifted (" + str(pointshiftedval[i]) + ")"       
 
@@ -2210,6 +2205,13 @@ for i in range (0,nnz-1) :
 
     if penshifted[i] <> "" :
       zeile = zeile + " shifted (" + str(penshiftedval[i]) + ")"      
+
+
+
+    if overx[i] <> "" :
+      zeile = zeile + " shifted (0, (A_mean + metapolation * (B_mean - A_mean)) - y" + str(zitem) + str(overxval[i]) + ") + (0, over)" 
+
+
 
     if penshiftedy[i] <> "" :
       zeile = zeile + " shifted (0, y" + str(penshiftedyval[i]) + ")"      
