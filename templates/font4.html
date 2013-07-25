@@ -60,22 +60,20 @@ table,th,td {
 }
 </style>
 
-<div class="title">
-B Local Parameter Set
-</div>
+<div class="title">B Local Parameter Set</div>
 
-<p><a href="/font2/$cfont.idglobal">Global Parameter Set</a></p>
-
+<p><span class="button"><a href="/font2/$cfont.idglobal">Global Parameter Set</a></span></p>
+<br>
 
 <div style="vertical-align:top;display:inline-block;">
-<div id="mmA" >
-<a href="/font3/$cfont.idlocalA">local param A</a><br><br>
+<div id="mmA" ><span class="button">
+<a href="/font3/$cfont.idlocalA">Local Param A</a></span><br><br>
 <form action="" method="POST" name="formlA">
 $:formlA.render()
 </form>
 </div>
-<div id="mmB">
-<a href="/font4/$cfont.idlocalB">local param B</a><br><br>
+<div id="mmB"><span class="button">
+<a href="/font4/$cfont.idlocalB">Local Param B</a></span><br><br>
 <form action="" method="POST" name="formlB">
 $:formlB.render()
 </form>

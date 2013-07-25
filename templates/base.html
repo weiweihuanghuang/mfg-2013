@@ -8,14 +8,14 @@ $def with (page)
 #menu {
 	position:relative;
 	z-index:1;
-	width:200px;
-	height:50px;
-	top:10px;
 	float:right;
+	top:5px;
+	margin:7 7;
 }
 #menu a:visited, #menu a:link {
-	color:red;
 	text-decoration:none;
+	color:white;
+	font-size:1.05em;
 }
 left {
 	position:absolute;
@@ -23,13 +23,13 @@ left {
 	font-size:1000px;
 	color: rgba(120, 120, 120, 0.2);
 	right:0;
-	bottom:-290;
+	bottom:-275;
 	z-index:-6;
 
 }
 middle, right {
 	position:absolute;
-	bottom:-290;
+	bottom:-275;
 	left:6;
 	font-family:"metapolator","backup";
 	font-size:1000px;
@@ -44,14 +44,29 @@ right {
 .title {
 	font:bold 32px/36px Menlo,'Inconsolata',mono;
 	margin:10 0;
+}
+.button {
+	background-color:green;
+	width:300px;
+	color: white;
+	border-style:solid;
+	border-color:green;
+	border-width:5px;
+	font-size:1.05em;
+}
+.button a:link, .button a:visited{
+	color: white;
+	text-decoration:none;
+	font-size:1.05em;
+}
 </style>
 </head>
 <body>
 
 <div id="menu">
-<a href="/"> Editor</a><BR>
-<a href="/viewfont/">Specimen(comming soon)</a><BR>
-<a href="/font1/0">Settings</a>
+<span class="button"><a href="/"> Editor</a></span>
+<span class="button"><a href="/viewfont/">Specimen</a></span>
+<span class="button"><a href="/font1/0">Settings</a></span>
 </div>
 
 $:page

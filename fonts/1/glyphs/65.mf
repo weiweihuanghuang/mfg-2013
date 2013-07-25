@@ -243,7 +243,7 @@ z11=((A_width + metapolation * (A_width - B_width)) * (x2110 + metapolation * (x
 
 % penstrokes
 
-penstroke z1e {dir (6.4 + metapolation * (6.4 - 6.4))} ... {right} 
+penstroke z1e {dir (6.4 + metapolation * (6.4 - 6.4))} ... 
 z2e .. tension (90/100 + (metapolation * (90/100 -90/100 ))) .. 
 z3e --- 
 z4e ... 

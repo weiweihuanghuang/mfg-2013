@@ -30,7 +30,9 @@ $def with (posts,post,form,formparam,formparamG,master,mastglobal,webglyph,glyph
 p,h2,table,th,td, #menu, input, select, textarea {
 	font:normal 15px/19px Menlo,'Inconsolata',mono;
 	z-index:5;
+	margin:0 0 8 0;
 }
+
 h2 {
 	color:red;
 }
@@ -40,23 +42,19 @@ h2 {
 	left:-500;
 	margin:auto;
 	position:absolute;
-	top:600;
+	top:630px;
 	right:0;
 	width:0px;
 	-webkit-transform:translate(0%,0%) scale(100%,100%);
 }
+
 #viewmenu {
-	position:relative;
 	z-index:5;
-	width:200px;
-	float:right;
-	background-color:black;
-	width:200px;
-	text-align:left;
-	color: white;
-    border-style:solid;
-	border-color:black;
-    border-width:5px;
+	position: fixed;
+	right: 0px;
+	top: 50px;
+	color: black;
+	margin: 0 0 0 0;
 }
 
 #menuleft {
@@ -64,17 +62,15 @@ h2 {
 
 }
 
-#menuleftgreen {
+.menuleftgreen {
 	z-index:5;
 	background-color:green;
 	width:300px;
 	text-align:left;
 	color: yellow;
-        border-style:solid;
+	border-style:solid;
 	border-color:green;
-        border-width:5px;
-
-
+	border-width:5px;
 }
 #menuleftorange {
 	z-index:5;
@@ -82,14 +78,10 @@ h2 {
 	width:300px;
 	text-align:left;
 	color: yellow;
-        border-style:solid;
+	border-style:solid;
 	border-color:orange;
-        border-width:5px;
-
-
+	border-width:5px;
 }
-
-
 a:visited {
 		color:inherit;
 	text-decoration:none;
@@ -98,18 +90,17 @@ a:link {
 		color:inherit;
 	text-decoration:none;
 }
-table,th,td, #menuleft{
+table,tr, #menuleft{
 	background-color:black;
 	text-align:left;
 	color: white;
-        border-style:solid;
+	border-style:solid;
 	border-color:black;
-        border-width:5px;
-
+	border-width:4px;
 }
+
 </style>
 
-<p id="menuleft">Glyph Edit</p>
 <p id="menuleft">  
 $if cfont.idwork == '0' :
        Font A: $cfont.fontna 
@@ -117,9 +108,9 @@ $if cfont.idwork == '1' :
        Font B: $cfont.fontnb 
 </p> 
 
-<p> 
-<a id="menuleftgreen" href="/metap/0">Edit Font A</a> <br><br>
-<a id="menuleftgreen" href="/metap/1">Edit Font B</a> <br>
+<p style="margin:20px 0px;">
+<span class="button"><a href="/metap/0">Edit Font A</a></span>&nbsp
+<span class="button"><a href="/metap/1">Edit Font B</a></span>
 </p> 
 
 <p id="viewmenu">  
@@ -130,20 +121,16 @@ $for mast in mastglobal:
    Metapolation $mast.metapolation <br> 
    fontsize $mast.fontsize <br>
    this is view.html
- <br>
 </p>
-
-<p id="menuleft" >
-	<form action="" method="post">
+<form action="" method="post">
 $:form.render() 
- <br>
-
+<p>
 $if form.d.PointName > "0" : 
     $:formparam.render() 
-
+</p>
 <!-- add new parameters here: -->
 
-<p id="menuleftgreen" >
+<p class="menuleftgreen" >
     $if glyphparam.startp != None :
        startp $glyphparam.startp <br>
     $if glyphparam.doubledash != None :
@@ -198,6 +185,10 @@ $if form.d.PointName > "0" :
        overbase $glyphparam.overbase <br>
     $if glyphparam.overcap != None :
        overcap $glyphparam.overcap <br>
+    $if glyphparam.overasc != None :
+       overasc $glyphparam.overasc <br>
+    $if glyphparam.overdesc != None :
+       overdesc $glyphparam.overdesc <br>
     $if glyphparam.stemcutter != None :
        stemcutter $glyphparam.stemcutter <br>
     $if glyphparam.stemshift != None :
@@ -213,7 +204,7 @@ $if form.d.PointName > "0" :
 
 $if form.d.groupn > "0" : 
     $:formparamG.render() 
-
+</p>
 
 <p id="menuleftorange" > 
     $if groupparam != None :
@@ -343,6 +334,10 @@ $for ppp in postspa:
        overbase $ppp.overbase
      $if ppp.overcap != None :
        overcap $ppp.overcap
+     $if ppp.overasc != None :
+       overasc $ppp.overasc
+     $if ppp.overdesc != None :
+       overdesc $ppp.overdesc
      $if ppp.stemcutter != None :
        stemcutter $ppp.stemcutter
      $if ppp.stemshift != None :
@@ -354,7 +349,7 @@ $for ppp in postspa:
    <br>
 </p>
 
-<p style="color:red"> &#9678; z points </p>
+<p style="color:black"> &#9678; z points </p>
 <p style="color:blue"> &#9678; undefined points </p>
 <p style="color:CCFFFF"> &#9678; control points </p>
 
@@ -362,13 +357,14 @@ $for ppp in postspa:
 
 
 <div id="center">
-
 	<div>
-		<left> &#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;	 </left>
+		<left>&#124;&#124;&#124;&#124;&#124;&#124;&#124;</left>
 	</div>
+	
 	<div>
 		<middle>
-<span class="first">$webglyph</span><span class="second">&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;</span> 
+			<span class="first">$webglyph</span><span class="second">&#124;&#124;&#124;&#124;&#124;&#124;&#124;</span> 
+		<middle>
 	</div>
 
 $for posti in posts:

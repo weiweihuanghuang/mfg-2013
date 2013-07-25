@@ -87,7 +87,7 @@ table,th,td {
 
 <div class="title"> global parameters </div>
 
-<a href="/font2/$cfont.idglobal">global parameter set</a>
+<p><a href="/font2/$cfont.idglobal">Global Parameter Set</a></p>
 
 <div id="mm">
 <form action="" method="POST" name="form">
@@ -98,11 +98,7 @@ $:form.render()
 <p>
 $for gmg in gmlist:
      idglobal <a href="/font2/$gmg.idglobal">$gmg.idglobal</a>  interp $gmg.metapolation sz $gmg.fontsize <br>
-
-<div>
 <p>
-<a href="/font3/$cfont.idlocalA">local parameter set A</a>
-</p>
-<p>
-<a href="/font4/$cfont.idlocalB">local parameter set B</a>
+<span class="button"><a href="/font3/$cfont.idlocalA">Local Param A</a></span><br><br>
+<span class="button"><a href="/font4/$cfont.idlocalB">Local Param B</a></span>
 </p>

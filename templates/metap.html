@@ -28,8 +28,10 @@ $def with (posts,master,fontsource,webglyph)
         color: #95F5FF;
       }
 
-p,h2,#menu,table,th,td,#ruler {
+p,h2,table,th,td, #menu, input, select, textarea {
 	font:normal 15px/19px Menlo,'Inconsolata',mono;
+	z-index:5;
+	margin:0 0 10 0;
 }
 h2 {
 	color:red;
@@ -60,7 +62,6 @@ table,th,td {
 }
 </style>
 
-<h2>Glyph View</h2>
 <p>
 Selected Font :</p>
 <div class="title">
@@ -69,8 +70,8 @@ $for fonts in fontsource:
 </div>
 
 <p> 
-<a href="/metap/0">Edit Font A</a> <br>
-<a href="/metap/1">Edit Font B</a> <br>
+<span class="button"><a href="/metap/0">Edit Font A</a></span>
+<span class="button"><a href="/metap/1">Edit Font B</a></span>
 </p> 
 
 <br>
