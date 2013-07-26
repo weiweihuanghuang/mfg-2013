@@ -84,14 +84,16 @@ numeric aa_, bb_, cc_; bb_=b/y; cc_=c/y; aa_=a-(b/y)*(b/y);
 (a*(cc_++sqrt aa_)-bb_*cc_)/aa_ enddef;
 
 % superness macros, can be used for quarter circle segments %
+mtsuperness:=A_superness+metapolation*(B_superness-A_superness);
 
 % left curves (superness) %
 def super_ql(suffix i,j,m) =
- z.i{0,y.j-y.i}...((m * (A_superness + metapolation * (B_superness - A_superness))[x.j,x.i], (m * (A_superness + metapolation * (B_superness - A_superness))[y.i,y.j]){z.j-z.i}...z.j{x.j-x.i,0} enddef;
+z.i{0,y.j-y.i} ... ( ( m * mtsuperness) [x.j,x.i], (m * mtsuperness) [y.i,y.j] ) {z.j-z.i}...z.j{x.j-x.i,0} enddef;
 
 % right curves ((A_superness + metapolation * (B_superness - A_superness)) %
 def super_qr(suffix j,k, m) =
-z.j{x.k-x.j,0}...((m * (A_superness + metapolation * (B_superness - A_superness))[x.j,x.k],(m * (A_superness + metapolation * (B_superness - A_superness))[y.k,y.j]){z.k-z.j}...z.k{0,y.k-y.j} enddef;
+z.j{x.k-x.j,0} ... ( ( m * mtsuperness) [x.j,x.k], (m * mtsuperness) [y.k,y.j] ) {z.k-z.j}...z.k{0,y.k-y.j} enddef;
+
 
 % stem cut and ink trap macros
 def stemcutter(expr a) =

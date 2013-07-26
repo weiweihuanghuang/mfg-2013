@@ -1,5 +1,6 @@
 $def with (form,gmlist,cfont)
 <link rel="stylesheet" type="text/css" href="/static/mfg.css"/>
+<style>
 h3_b {
 	position:absolute;
 	z-index:-5;
@@ -67,7 +68,7 @@ table,th,td {
 
 <div class="title">Global Parameters</div>
 
-<p><a href="/font2/$cfont.idglobal">Edit Global Parameters</a></p>
+<p><a href="/font2/$cfont.idglobal">Global Parameters Edit</a></p>
 
 <div id="mm">
 <form action="" method="POST" name="form">
@@ -78,6 +79,6 @@ $:form.render()
 $for gmg in gmlist:
      <a href="/font2/$gmg.idglobal">Global $gmg.idglobal</a>  interp $gmg.metapolation sz $gmg.fontsize <br>
 <p>
-<span><a href="/font3/$cfont.idlocalA">Edit A Local Param</a></span><br>
-<span><a href="/font4/$cfont.idlocalB">Edit B Local Param</a></span>
+<span><a href="/font3/$cfont.idlocalA">A Local Params Edit</a></span><br>
+<span><a href="/font4/$cfont.idlocalB">B Local Params Edit</a></span>
 </p>

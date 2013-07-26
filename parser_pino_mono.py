@@ -32,31 +32,6 @@ uni = minidom.parse(font_a)
 itemlist = uni.getElementsByTagName('unicode')
 u = itemlist[0].attributes['hex'].value
 
-#mean = ['13','14','26','29','65','67','69','77','78','79','82','83','85','86','87','88','90','94','95']
-#des = ['12','27','63','71','80','81','89']
-#asc = ['2','7','11','28','30','62','64','66','68','70','72','73','75','76','84']
-#cap = ['1','3','5','6','10','16','17','18','19','20','21','22','23','24','25','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58']
-#box = ['4','8','9','15','59','60','61','74','91','92','93']
-
-# ggroup=""
-
-#if g in mean :
-#    ggroup = 'mean#'
-    
-#if g in des :
-#    ggroup = 'des#'
-
-#if g in cap : 
-#    ggroup = 'cap#'
-
-#if g in asc :
-#    ggroup = 'asc#'
-
-#if g in box :
-#    ggroup = 'box#'
-
-#else :
-#    ggroup = 'asc#'
 
 
 print 'beginfontchar(' + g + ', (' + w + '*A_width + metapolation * (' + w + '*B_width - ' + w2 + '*A_width)) * width_' + g + "+ spacing_" +  g  + "R, 0, 0 );"
@@ -382,10 +357,11 @@ for item in itemlist :
 
 
 
+# reading extra pen angle 
 
 print """
 
-% test new vertical and horizontal option
+% test extra pen angle
 """ 
 
 
@@ -409,18 +385,8 @@ startpval = []
 
 # create empty variable list
 
-
-pointshifted= []
-pointshiftedval= []
-
-pointshiftedy = []
-pointshiftedyval = []
-
-v = []
-vval = []
-
-h = []
-hval = []
+angle = []
+angleval = []
 
 
 # add iteration to string
@@ -428,18 +394,9 @@ hval = []
 for i in range (1,100):
   startp.append("")
   startpval.append(0)
-  
-  pointshifted.append("")
-  pointshiftedval.append(0)
 
-  pointshiftedy.append("")
-  pointshiftedyval.append(0)
-
-  v.append("")
-  vval.append(0)
-
-  h.append("")
-  hval.append(0)
+  angle.append("")
+  angleval.append(0)
 
 
 
@@ -456,19 +413,6 @@ for item in itemlist :
        x = item.attributes['x'].value
        y = item.attributes['y'].value
        im =item.attributes['name'] 
-
-       try :
-	 ipointshifted = item.attributes['pointshifted'].value   
-	 ipointshifted = True
-       except :
-       	 ipointshifted = False
-
-       try :
-	 ipointshiftedy = item.attributes['pointshiftedy'].value   
-	 ipointshiftedy = True
-       except :
-       	 ipointshiftedy = False
-
        try :
 	 istartp = item.attributes['startp'].value   
 	 istartp = True
@@ -476,16 +420,11 @@ for item in itemlist :
        	 istartp = False
 
        try :
-	 iv = item.attributes['v'].value   
-	 iv = True
+	 iangle = item.attributes['angle'].value   
+	 iangle = True
        except :
-       	 iv = False
+       	 iangle = False
 
-       try :
-	 ih = item.attributes['h'].value   
-	 ih = True
-       except :
-       	 ih = False
 
 
 
@@ -498,9 +437,7 @@ for item in itemlist :
        if im.value.find(znamel) > -1 :
           zzn.append (i)
        if im.value.find(znamel) > -1 or im.value.find(znamer) > -1:
-#         if im.value.find("startp") >-1 :
-#           del startp[i-1]
-#           startp.insert(i-1,"")
+
          if istartp == True :
            istartpval = item.attributes['startp'].value
            del startp[i-1]
@@ -508,33 +445,13 @@ for item in itemlist :
 	   del startpval[i-1]
            startpval.insert(i-1,istartpval)
 
-         if ipointshifted== True :
-           ipointshiftedval= item.attributes['pointshifted'].value
-           del pointshifted[i-1]
-           pointshifted.insert(i-1,"shifted")
-	   del pointshiftedval[i-1]
-           pointshiftedval.insert(i-1,ipointshiftedval)
+         if iangle == True :
+           iangleval = item.attributes['angle'].value
+           del angle[i-1]
+           angle.insert(i-1,"angle")
+	   del angleval[i-1]
+           angleval.insert(i-1,iangleval)
 
-         if ipointshiftedy == True :
-           ipointshiftedyval = item.attributes['pointshiftedy'].value
-           del pointshiftedy[i-1]
-           pointshiftedy.insert(i-1,"shifted")
-	   del pointshiftedyval[i-1]
-           pointshiftedyval.insert(i-1,ipointshiftedyval)
-
-         if iv == True :
-           ivval = item.attributes['v'].value
-           del v[i-1]
-           v.insert(i-1,"v")
-	   del vval[i-1]
-           vval.insert(i-1,ivval)
-
-         if ih == True :
-           ihval = item.attributes['h'].value
-           del h[i-1]
-           h.insert(i-1,"h")
-	   del hval[i-1]
-           hval.insert(i-1,ihval)
 
 
 
@@ -556,39 +473,19 @@ for i in range (0,nnz) :
 
 ## default string
 
-  zeile =""
+  zeile = ""
 
-  zeileb = "ang" + str(zitem) + "V := ang" + str(zitem) + "; dist" + str(zitem) + "V := dist" + str(zitem) + ";" 
-#  zeilec = "ang" + str(zitemb) + "V := ang" + str(zitemb) + ";"
 
 # parameters 
 
-#  if pointshifted[i] <> "" :
-#    zeile = zeile + "dist" +str(zitem) + "vertical := length (py"  +str(zitem) + "l-py"  +str(zitem) + "r) ;"
-  if h[i] <> "" :
-   zeile = zeile + "dist" +str(zitem) + "V := length (px"  +str(zitem) + "l-px"  +str(zitem) + "r) ;"
-   zeile = zeile + "if px" + str(zitem) + "l < px"  +str(zitem) + "r: ang" + str(zitem) + "V := 0; else: ang" + str(zitem) + "V := 180; fi" 
+  if angle[i] <> "" :
+     zeile = zeile + "ang" + str(zitem) + " := ang" + str(zitem) + "  " + str(angleval[i]) + ";" 
   
   else :
-     if v[i] <> "" :
-       zeile = zeile + "dist" +str(zitem) + "V := length (py"  +str(zitem) + "l-py"  +str(zitem) + "r) ;"
-       zeile = zeile + "if py" + str(zitem) + "l < py"  +str(zitem) + "r: ang" + str(zitem) + "V := 90; else: ang" + str(zitem) + "V := -90; fi" 
-
-     else: 
-       zeile = zeile + zeileb
-
+     zeile = zeile + "ang" + str(zitem) + " := ang" + str(zitem) + ";"
+  zeile = zeile
   print zeile
   
-
-
-
-
-#
-
-#zeile = zeile
-#print zeile
- 
-
 
 ####### new penpos
 
@@ -659,6 +556,80 @@ for item in itemlist :
            penwidth.insert(i-1,"penwidth")
 	   del B_penwidthval[i-1]
            B_penwidthval.insert(i-1,ipenwidthval)
+
+
+
+
+
+        
+# reading font Pen Positions Font B
+
+glif = minidom.parse(font_b)
+itemlist = glif.getElementsByTagName('point') 
+
+inattr=0   
+ivn = 0
+strz = ""
+zzn = []
+
+# create empty variable list
+
+
+penwidth = []
+penwidthval = []
+B_penwidthval = []
+
+
+# add iteration to string
+
+for i in range (1,100):
+
+  penwidth.append("")
+  penwidthval.append(0)
+  B_penwidthval.append(0)
+
+
+
+# search for parameter values
+  
+for item in itemlist :
+  for i in range (1,100):
+     znamel = 'z'+str(i)+'l'
+     znamer = 'z'+str(i)+'r'
+     
+     ipn=0
+     try :
+       x = item.attributes['x'].value
+       y = item.attributes['y'].value
+       im =item.attributes['name'] 
+
+
+       try :
+	 ipenwidth = item.attributes['penwidth'].value   
+	 ipenwidth = True
+       except :
+       	 ipenwidth = False
+
+
+       ipn = 1   
+     except : 
+       inattr=inattr+1 
+
+
+     if ipn == 1 :
+       if im.value.find(znamel) > -1 :
+          zzn.append (i)
+       if im.value.find(znamel) > -1 or im.value.find(znamer) > -1:
+
+         if ipenwidth == True :
+           ipenwidthval = item.attributes['penwidth'].value
+           del penwidth[i-1]
+           penwidth.insert(i-1,"penwidth")
+	   del B_penwidthval[i-1]
+           B_penwidthval.insert(i-1,ipenwidthval)
+
+
+
 
         
 # reading font Pen Positions Font A
@@ -822,9 +793,9 @@ for i in range (0,nnz) :
 # parameters 
   
   if penwidth[i] <> "" :
-    zeile = """penpos"""  +str(zitem) + "(dist" +str(zitem) + " * (" + str(A_penwidthval[i]) +" + metapolation * (" + str(B_penwidthval[i]) + " - " + str(A_penwidthval[i]) + ")) + ((A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist" +str(zitem) + "))"
+    zeile = zeile +"""penpos"""  +str(zitem) + "(dist" +str(zitem) + " * (" + str(A_penwidthval[i]) +" + metapolation * (" + str(B_penwidthval[i]) + " - " + str(A_penwidthval[i]) + ")) + ((A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist" +str(zitem) + "))"
   else :
-    zeile = """penpos"""  +str(zitem) + "(dist" +str(zitem) + " + ((A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist" +str(zitem) + "))"
+    zeile = zeile + """penpos"""  +str(zitem) + "(dist" +str(zitem) + " + ((A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist" +str(zitem) + "))"
 
 #    zeile = zeile + " * (" + str(A_penwidthval[i]) +" + metapolation * (" + str(B_penwidthval[i]) + " - " + str(A_penwidthval[i]) + "))"
 #    zeile = zeile + " * (" + str(A_penwidthval[i]) +")"
@@ -839,7 +810,7 @@ for i in range (0,nnz) :
     zeile = zeile + "- inktrapcut (" +  str(inktrap_rval[i]) + ")"      
  
   else: 
-     zeile = zeile 
+    zeile = zeile 
   zeile = zeile + ", ang" +str(zitem) + ");"
   print zeile
 
@@ -1184,13 +1155,13 @@ for i in range (0,nnz) :
 
 #  zeile = "z"+str(zitem)+ "=((A_width + metapolation * (B_width - A_width)) * (x2"+ str(zitem)+ "0 + metapolation * (x2"+str(zitem)+"A - x2" +str(zitem)+"0) + spacing_" + g + "L) * width_" + g + ", (A_" + ggroup + " + metapolation * (B_" + ggroup + " - A_" + ggroup + "))*(y2"+str(zitem)+ "0 + metapolation *(y2"+str(zitem)+ "A - y2" +str(zitem)+ "0)))"
 
-  if overcap[i] <> "":
+#  if overcap[i] <> "":
  
-     zeile = "z"+str(zitem)+ "=((A_width + metapolation * (B_width - A_width)) * (x2"+ str(zitem)+ "0 + metapolation * (x2"+str(zitem)+"A - x2" +str(zitem)+"0) + spacing_" + g + "L) * width_" + g + ", (y2" +str(zitem)+ "0 + metapolation *(y2"+str(zitem)+ "A - y2" +str(zitem)+ "0))*((A_capital + metapolation * (B_capital - A_capital)) / A_cap#) )"
+#     zeile = "z"+str(zitem)+ "=((A_width + metapolation * (B_width - A_width)) * (x2"+ str(zitem)+ "0 + metapolation * (x2"+str(zitem)+"A - x2" +str(zitem)+"0) + spacing_" + g + "L) * width_" + g + ", (y2" +str(zitem)+ "0 + metapolation *(y2"+str(zitem)+ "A - y2" +str(zitem)+ "0))*((A_capital + metapolation * (B_capital - A_capital)) / A_cap#) )"
 
-  else :
+#  else :
 
-     zeile = "z"+str(zitem)+ "=((A_width + metapolation * (B_width - A_width)) * (x2"+ str(zitem)+ "0 + metapolation * (x2"+str(zitem)+"A - x2" +str(zitem)+"0) + spacing_" + g + "L) * width_" + g + ", (y2" +str(zitem)+ "0 + metapolation *(y2"+str(zitem)+ "A - y2" +str(zitem)+ "0))*((A_xheight + metapolation * (B_xheight - A_xheight)) / A_mean#) )"
+  zeile = "z"+str(zitem)+ "=((A_width + metapolation * (B_width - A_width)) * (x2"+ str(zitem)+ "0 + metapolation * (x2"+str(zitem)+"A - x2" +str(zitem)+"0) + spacing_" + g + "L) * width_" + g + ", (y2" +str(zitem)+ "0 + metapolation *(y2"+str(zitem)+ "A - y2" +str(zitem)+ "0))*((A_xheight + metapolation * (B_xheight - A_xheight)) / A_mean#) )"
 
 
 
@@ -2528,11 +2499,6 @@ if overdesc[i+1] <> "" :
 
 
 
-if cycle[i+1] <> "" :
- zeile = zeile + dash + cycle[i+1] 
-
-
-
 if  ( tension[i+1] <> "" and 
       upp2[i+1] <> "") :
         zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i+1]) + '/100 + (metapolation * (' + str(tensionvalB[i+1]) + '/100-' + str(tensionval[i+1]) + '/100)))' + strtwo  + "{up}" 
@@ -2556,6 +2522,9 @@ if  ( tension[i+1] <> "" and
 if upp2[i+1] <> "" :
  zeile = zeile + dash + upp2[i+1]  
 
+
+
+
 else :
   if dir2[i+1] <> "" :
     zeile = zeile + " ... {dir "+ str(dir2val[i+1]) + "}"   
@@ -2572,16 +2541,22 @@ else :
           if rightp2[i+1] <> "" :
             zeile = zeile + dash + rightp2[i+1]    
 
-
           else :
             if tension[i+1] <> "" :
               zeile = zeile + strtwo + "tension" + " (" + tensionval[i+1] + '/100 + (metapolation * (' + tensionvalB[i+1] + '/100-' + tensionval[i+1] + '/100)))' + strtwo  + downp2[i+1] 
 
-
-
-
             else :
-               zeile = zeile
+              if  ( tensionand[i+1] <> "" and 
+                 cycle[i+1] <> "") :
+                 zeile = zeile + strtwo + "tension" + " ((" + str(tensionandval[i+1]) + '/100) + (metapolation * ((' + str(tensionandvalB[i+1]) + '/100) - (' + str(tensionandval[i+1]) + '/100))))' + " and ((" + str(tensionandval2[i+1]) + '/100) + (metapolation * ((' + str(tensionandval2B[i+1]) + '/100) - (' + str(tensionandval2[i+1]) + '/100))))' + strtwo + "cycle"
+
+              else :
+                if cycle[i+1] <> "" :
+                  zeile = zeile + dash + cycle[i+1] 
+
+
+                else :
+                   zeile = zeile
 
 # print closing z point
 

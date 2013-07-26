@@ -114,6 +114,10 @@ $if form.d.PointName > "0" :
        doubledash $glyphparam.doubledash  <br>
     $if glyphparam.tripledash != None :
        tripledash $glyphparam.tripledash  <br>
+    $if glyphparam.superleft != None :
+       superleft $glyphparam.superleft  <br>
+    $if glyphparam.superright != None :
+       superright $glyphparam.superright  <br>
     $if glyphparam.leftp != None :
        leftp $glyphparam.leftp <br>
     $if glyphparam.rightp != None :
@@ -134,10 +138,6 @@ $if form.d.PointName > "0" :
        upp2 $glyphparam.upp2 <br>
     $if glyphparam.dir2 != None :
        dir2 $glyphparam.dir2 <br>
-    $if glyphparam.superright != None :
-       superright  $glyphparam.superright <br>
-    $if glyphparam.superleft != None :
-       superleft $glyphparam.superleft <br>
     $if glyphparam.tension != None :
        tension $glyphparam.tension <br>
     $if glyphparam.tensionand != None :
@@ -148,14 +148,10 @@ $if form.d.PointName > "0" :
        penshifted $glyphparam.penshifted <br>
     $if glyphparam.pointshifted != None :
        pointshifted $glyphparam.pointshifted <br>
-    $if glyphparam.superness != None :
-       supernesnn $glyphparam.superness <br>
+    $if glyphparam.angle != None :
+       angle $glyphparam.angle <br>
     $if glyphparam.penwidth != None :
        penwidth $glyphparam.penwidth <br>
-    $if glyphparam.xHeight != None :
-       xHeight $glyphparam.xHeight <br>
-    $if glyphparam.cardinal != None :
-       cardinal $glyphparam.cardinal <br>
     $if glyphparam.overx != None :
        overx $glyphparam.overx <br>
     $if glyphparam.overbase != None :
@@ -191,6 +187,10 @@ $if form.d.groupn > "0" :
        doubledash $groupparam.doubledash <br>
      $if groupparam.tripledash != None :
        tripledash $groupparam.tripledash  <br>
+     $if groupparam.superleft != None :
+       superleft $groupparam.superleft  <br>
+     $if groupparam.superright != None :
+       superright $groupparam.superright  <br>
      $if groupparam.leftp != None :
        leftp $groupparam.leftp <br>
      $if groupparam.rightp != None :
@@ -211,10 +211,6 @@ $if form.d.groupn > "0" :
        upp2 $groupparam.upp2 <br>
      $if groupparam.dir2 != None :
        dir2 $groupparam.dir2 <br>
-     $if groupparam.superright != None :
-       superright  $groupparam.superright <br>
-     $if groupparam.superleft != None :
-       superleft $groupparam.superleft <br>
      $if groupparam.tension != None :
        tension $groupparam.tension <br>
      $if groupparam.tensionand != None :
@@ -225,14 +221,10 @@ $if form.d.groupn > "0" :
        penshifted $groupparam.penshifted <br>
      $if groupparam.pointshifted != None :
        pointshifted $groupparam.pointshifted <br>
-     $if groupparam.superness != None :
-       supernesnn $groupparam.superness <br>
+     $if groupparam.angle != None :
+       angle $groupparam.angle <br>
      $if groupparam.penwidth != None :
        penwidth $groupparam.penwidth <br>
-     $if groupparam.xHeight != None :
-       xHeight $groupparam.xHeight <br>
-     $if groupparam.cardinal != None :
-       cardinal $groupparam.cardinal <br>
      $if groupparam.overx != None :
        overx $groupparam.overx <br>
      $if groupparam.overbase != None :
@@ -263,6 +255,10 @@ $for ppp in postspa:
          doubledash $ppp.doubledash
      $if ppp.tripledash != None :
          tripledash $ppp.tripledash
+     $if ppp.superleft != None :
+         superleft $ppp.superleft
+     $if ppp.superright != None :
+         superright $ppp.superright
      $if ppp.leftp != None :
        leftp $ppp.leftp
      $if ppp.rightp != None :
@@ -283,10 +279,6 @@ $for ppp in postspa:
        upp2 $ppp.upp2
      $if ppp.dir2 != None :
        dir2 $ppp.dir2
-     $if ppp.superright != None :
-       superright  $ppp.superright
-     $if ppp.superleft != None :
-       superleft $ppp.superleft
      $if ppp.tension != None :
        tension $ppp.tension
      $if ppp.tensionand != None :
@@ -297,14 +289,10 @@ $for ppp in postspa:
        penshifted $ppp.penshifted
      $if ppp.pointshifted != None :
        pointshifted $ppp.pointshifted
-     $if ppp.superness != None :
-       supernesnn $ppp.superness
+     $if ppp.angle != None :
+       angle $ppp.angle
      $if ppp.penwidth != None :
        penwidth $ppp.penwidth
-     $if ppp.xHeight != None :
-       xHeight $ppp.xHeight
-     $if ppp.cardinal != None :
-       cardinal $ppp.cardinal
      $if ppp.overx != None :
        overx $ppp.overx
      $if ppp.overbase != None :

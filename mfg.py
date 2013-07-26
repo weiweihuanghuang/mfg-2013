@@ -104,7 +104,7 @@ class View:
 
     formParam = web.form.Form(
         web.form.Dropdown('Param',
-            [('select','select'),('startp','startp'),('doubledash','doubledash'),('tripledash','tripledash'),('leftp','leftp'),('rightp','rightp'),('downp','downp'),('upp','upp'),('dir','dir'),('leftp2','leftp2'),('rightp2','rightp2'),('downp2','downp2'),('upp2','upp2'),('dir2','dir2'),('superright','superright'),('superleft','superleft'),('tension','tension'),('tensionand','tensionand'),('cycle','cycle'),('penshifted','penshifted'),('pointshifted','pointshifted'),('penwidth','penwidth'),('xHeight','xHeight'),('cardinal','cardinal'),('superness','superness'),('overx','overx'),('overbase','overbase'),('overcap','overcap'),('overasc','overasc'),('overdesc','overdesc'),('stemcutter','stemcutter'),('stemshift','stemshift'),('inktrap_l','inktrap_l'),('inktrap_r','inktrap_r')]), 
+            [('select','select'),('startp','startp'),('doubledash','doubledash'),('tripledash','tripledash'),('superleft','superleft'),('superright','superright'),('leftp','leftp'),('rightp','rightp'),('downp','downp'),('upp','upp'),('dir','dir'),('leftp2','leftp2'),('rightp2','rightp2'),('downp2','downp2'),('upp2','upp2'),('dir2','dir2'),('tension','tension'),('tensionand','tensionand'),('cycle','cycle'),('penshifted','penshifted'),('pointshifted','pointshifted'),('angle','angle'),('penwidth','penwidth'),('overx','overx'),('overbase','overbase'),('overcap','overcap'),('overasc','overasc'),('overdesc','overdesc'),('stemcutter','stemcutter'),('stemshift','stemshift'),('inktrap_l','inktrap_l'),('inktrap_r','inktrap_r')]), 
         web.form.Textbox('parmval',
             size=15, 
             description="parmval"),
@@ -114,7 +114,7 @@ class View:
 
     formParamG = web.form.Form(
         web.form.Dropdown('Group',
-            [('select','select'),('startp','startp'),('doubledash','doubledash'),('tripledash','tripledash'),('leftp','leftp'),('rightp','rightp'),('downp','downp'),('upp','upp'),('dir','dir'),('leftp2','leftp2'),('rightp2','rightp2'),('downp2','downp2'),('upp2','upp2'),('dir2','dir2'),('superright','superright'),('superleft','superleft'),('tension','tension'),('tensionand','tensionand'),('cycle','cycle'),('penshifted','penshifted'),('pointshifted','pointshifted'),('penwidth','penwidth'),('xHeight','xHeight'),('cardinal','cardinal'),('superness','superness'),('overx','overx'),('overbase','overbase'),('overcap','overcap'),('overasc','overasc'),('overdesc','overdesc'),('stemcutter','stemcutter'),('stemshift','stemshift'),('inktrap_l','inktrap_l'),('inktrap_r','inktrap_r')]), 
+            [('select','select'),('startp','startp'),('doubledash','doubledash'),('tripledash','tripledash'),('superleft','superleft'),('superright','superright'),('leftp','leftp'),('rightp','rightp'),('downp','downp'),('upp','upp'),('dir','dir'),('leftp2','leftp2'),('rightp2','rightp2'),('downp2','downp2'),('upp2','upp2'),('dir2','dir2'),('tension','tension'),('tensionand','tensionand'),('cycle','cycle'),('penshifted','penshifted'),('pointshifted','pointshifted'),('angle','angle'),('penwidth','penwidth'),('overx','overx'),('overbase','overbase'),('overcap','overcap'),('overasc','overasc'),('overdesc','overdesc'),('stemcutter','stemcutter'),('stemshift','stemshift'),('inktrap_l','inktrap_l'),('inktrap_r','inktrap_r')]), 
         web.form.Textbox('groupval',
             size=15, 
             description="groupval"),
