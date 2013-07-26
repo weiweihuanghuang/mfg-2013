@@ -1,2 +1,2 @@
-input glyphs/74.mf
+input glyphs/65.mf
 input glyphs/92.mf
