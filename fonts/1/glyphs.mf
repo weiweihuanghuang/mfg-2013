@@ -1,11 +1,20 @@
 % width and sidebearing settings for each glyph
-
 input spacing
 
-mtpx:= A_px + metapolation * (B_px-A_px);
-mtwidth:= A_width + metapolation * (B_width-A_width);
-mtskeleton:= A_skeleton + metapolation * (B_skeleton-A_skeleton);
-mtover:= A_over + metapolation * (B_over-A_over);
+% meta parameters
+mtpx:=A_px+metapolation*(B_px-A_px);
+mtwidth:=A_width+metapolation*(B_width-A_width);
+mtspace:=A_space+metapolation*(B_space-A_space);
+mtxheight:=A_xheight+metapolation*(B_xheight-A_xheight);
+mtxheightpt:=A_xheightpt+metapolation*(B_xheightpt-A_xheightpt);
+mtcapital:=A_capital+metapolation*(B_capital-A_capital);
+mtcapitalpt:=A_capitalpt+metapolation*(B_capitalpt-A_capitalpt);
+mtascender:=A_ascender+metapolation*(B_ascender-A_ascender);
+mtascenderpt:=A_ascenderpt+metapolation*(B_ascenderpt-A_ascenderpt);
+mtdescender:=A_descender+metapolation*(B_descender-A_descender);
+mtdescenderpt:=A_descenderpt+metapolation*(B_descenderpt-A_descenderpt);
+mtskeleton:=A_skeleton+metapolation*(B_skeleton-A_skeleton);
+mtover:=A_over+metapolation*(B_over-A_over);
 
 % this file contains all defenitions outside glyphs and extra parameters not listed on metaflop.com
 % py#:=px#;
@@ -13,7 +22,6 @@ A_py#:=A_px#;
 B_py#:=B_px#;
 
 % some defenitions for the output and proof sheets
-
 def endchar =
  scantokens extra_endchar;
  chardx:=w;
@@ -37,12 +45,10 @@ def endchar =
 
 %mode=localfont;
 mode=luxo;
-
 mode_setup;
 
 % pixel conversions into real points %
 % metafont needs these pixel definitions to calculate the final dimensions of the parameter values
-
 define_pixels(s,u);
 
 define_pixels(px,py);
@@ -63,7 +69,6 @@ beginchar(code,unit_width*u#,h,d);
 pickup font_pen;
 enddef;
 
-
 % fixed pen settings %
 %pickup pencircle xscaled px yscaled py rotated 15;
 %font_pen:=savepen;
@@ -79,17 +84,18 @@ numeric aa_, bb_, cc_; bb_=b/y; cc_=c/y; aa_=a-(b/y)*(b/y);
 (a*(cc_++sqrt aa_)-bb_*cc_)/aa_ enddef;
 
 % superness macros, can be used for quarter circle segments %
+mtsuperness:=A_superness+metapolation*(B_superness-A_superness);
 
 % left curves (superness) %
 def super_ql(suffix i,j,m) =
- z.i{0,y.j-y.i}...((m * (A_superness + metapolation * (B_superness - A_superness))[x.j,x.i], (m * (A_superness + metapolation * (B_superness - A_superness))[y.i,y.j]){z.j-z.i}...z.j{x.j-x.i,0} enddef;
+z.i{0,y.j-y.i} ... ( ( m * mtsuperness) [x.j,x.i], (m * mtsuperness) [y.i,y.j] ) {z.j-z.i}...z.j{x.j-x.i,0} enddef;
 
 % right curves ((A_superness + metapolation * (B_superness - A_superness)) %
 def super_qr(suffix j,k, m) =
-z.j{x.k-x.j,0}...((m * (A_superness + metapolation * (B_superness - A_superness))[x.j,x.k],(m * (A_superness + metapolation * (B_superness - A_superness))[y.k,y.j]){z.k-z.j}...z.k{0,y.k-y.j} enddef;
+z.j{x.k-x.j,0} ... ( ( m * mtsuperness) [x.j,x.k], (m * mtsuperness) [y.k,y.j] ) {z.k-z.j}...z.k{0,y.k-y.j} enddef;
+
 
 % stem cut and ink trap macros
-
 def stemcutter(expr a) =
 a*(A_stemcut+metapolation*(B_stemcut-A_stemcut)) enddef;
 
@@ -106,15 +112,4 @@ def inktrap_r(expr a)=
 shifted (0.5*a*(A_inktrap + metapolation * (B_inktrap-A_inktrap)),0) enddef;
 
 % glyph input
-
 input glyphlist
-
-% some extra font information for TeX and LaTeX
-
-%font_quad:=3u#+0s#;
-%font_normal_space:=0s#;
-%font_normal_stretch:=0u#;
-%font_normal_shrink:=0u#;
-
-% font_coding_scheme:="OT1";
-

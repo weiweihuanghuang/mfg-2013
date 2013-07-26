@@ -1,5 +1,5 @@
 mtspace:=A_space+metapolation*(A_space-B_space) ;							
-mtspace_pt:= A_space_pt+metapolation*(A_space_pt-B_space_pt);							
+mtspace_pt:=A_spacept+metapolation*(A_spacept-B_spacept);							
 
 width_1:=1.0;		spacing_1L:=0pt+mtspace_pt;		spacing_1R:=0+mtspace;			% exclam
 width_2:=1.0;		spacing_2L:=0pt+mtspace_pt;		spacing_2R:=0+mtspace;			% quotedbl

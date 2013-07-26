@@ -1,25 +1,6 @@
 $def with (posts,post,form,formparam,formparamG,master,mastglobal,webglyph,glyphparam,groupparam,cfont,postspa)
 <link rel="stylesheet" type="text/css" href="/static/mfg.css"/>
 <style>
-@font-face {
-    font-family: 'metapolator';
-    src: url('/static/font-webfont.eot');
-    src: url('/static/font-webfont.eot?#iefix') format('embedded-opentype'),url('/static/font-webfont.woff') format('woff'),url('/static/font-webfont.ttf') format('truetype'),url('/static/font-webfont.svg#metapolator') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Inconsolata';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Inconsolata'), url('/static/Inconsolata/Inconsolata-Regular.ttf') format('truetype'), url('/static/Inconsolata/Inconsolata-Regular.woff') format('woff');
-}
-@font-face {
-    font-family: 'Inconsolata';
-    font-style: normal;
-    font-weight: 700;
-    src: local('Inconsolata Bold'), local('Inconsolata-Bold'), url('/static/Inconsolata/Inconsolata-Bold.ttf') format('truetype'), url('/static/Inconsolata/Inconsolata-Bold.woff') format('woff');
-}
      .first {
         color: grey;
       }
@@ -27,10 +8,12 @@ $def with (posts,post,form,formparam,formparamG,master,mastglobal,webglyph,glyph
         color: rgba(120, 120, 120, 0.2);
       }
 
-p,h2,table,th,td, #menu, input, select, textarea {
+p,h2,table,th,td, .menu, input, select, textarea {
 	font:normal 15px/19px Menlo,'Inconsolata',mono;
 	z-index:5;
+	margin:0 0 8 0;
 }
+
 h2 {
 	color:red;
 }
@@ -40,23 +23,17 @@ h2 {
 	left:-500;
 	margin:auto;
 	position:absolute;
-	top:600;
+	top:630px;
 	right:0;
 	width:0px;
 	-webkit-transform:translate(0%,0%) scale(100%,100%);
 }
+
 #viewmenu {
-	position:relative;
-	z-index:5;
-	width:200px;
 	float:right;
-	background-color:black;
-	width:200px;
-	text-align:left;
-	color: white;
-    border-style:solid;
-	border-color:black;
-    border-width:5px;
+	z-index:5;
+	color: black;
+	margin: 5px 20px 0 0;
 }
 
 #menuleft {
@@ -64,17 +41,15 @@ h2 {
 
 }
 
-#menuleftgreen {
+.menuleftgreen {
 	z-index:5;
 	background-color:green;
 	width:300px;
 	text-align:left;
 	color: yellow;
-        border-style:solid;
+	border-style:solid;
 	border-color:green;
-        border-width:5px;
-
-
+	border-width:5px;
 }
 #menuleftorange {
 	z-index:5;
@@ -82,34 +57,36 @@ h2 {
 	width:300px;
 	text-align:left;
 	color: yellow;
-        border-style:solid;
+	border-style:solid;
 	border-color:orange;
-        border-width:5px;
-
-
+	border-width:5px;
 }
-
-
 a:visited {
-		color:inherit;
+	color:inherit;
 	text-decoration:none;
 }
 a:link {
-		color:inherit;
+	color:inherit;
 	text-decoration:none;
 }
-table,th,td, #menuleft{
+table,tr, #menuleft{
 	background-color:black;
 	text-align:left;
 	color: white;
-        border-style:solid;
+	border-style:solid;
 	border-color:black;
-        border-width:5px;
-
+	border-width:4px;
 }
 </style>
 
-<p id="menuleft">Glyph Edit</p>
+<p id="viewmenu">  
+$for mast in master:
+   $mast.FontName  
+$for mast in mastglobal:
+   Metapolation $mast.metapolation <br> 
+   fontsize $mast.fontsize <br>
+</p>
+
 <p id="menuleft">  
 $if cfont.idwork == '0' :
        Font A: $cfont.fontna 
@@ -117,39 +94,30 @@ $if cfont.idwork == '1' :
        Font B: $cfont.fontnb 
 </p> 
 
-<p> 
-<a id="menuleftgreen" href="/metap/0">Edit Font A</a> <br><br>
-<a id="menuleftgreen" href="/metap/1">Edit Font B</a> <br>
+<p style="margin:10px 0;">
+<span class="button"><a href="/metap/0">Edit Font A</a></span>&nbsp
+<span class="button"><a href="/metap/1">Edit Font B</a></span>
 </p> 
 
-<p id="viewmenu">  
-$for mast in master:
-   $mast.FontName  
-
-$for mast in mastglobal:
-   Metapolation $mast.metapolation <br> 
-   fontsize $mast.fontsize <br>
-   this is view.html
- <br>
-</p>
-
-<p id="menuleft" >
-	<form action="" method="post">
+<form action="" method="post">
 $:form.render() 
- <br>
-
+<p>
 $if form.d.PointName > "0" : 
     $:formparam.render() 
-
+</p>
 <!-- add new parameters here: -->
 
-<p id="menuleftgreen" >
+<p class="menuleftgreen" >
     $if glyphparam.startp != None :
        startp $glyphparam.startp <br>
     $if glyphparam.doubledash != None :
        doubledash $glyphparam.doubledash  <br>
     $if glyphparam.tripledash != None :
        tripledash $glyphparam.tripledash  <br>
+    $if glyphparam.superleft != None :
+       superleft $glyphparam.superleft  <br>
+    $if glyphparam.superright != None :
+       superright $glyphparam.superright  <br>
     $if glyphparam.leftp != None :
        leftp $glyphparam.leftp <br>
     $if glyphparam.rightp != None :
@@ -170,10 +138,6 @@ $if form.d.PointName > "0" :
        upp2 $glyphparam.upp2 <br>
     $if glyphparam.dir2 != None :
        dir2 $glyphparam.dir2 <br>
-    $if glyphparam.superright != None :
-       superright  $glyphparam.superright <br>
-    $if glyphparam.superleft != None :
-       superleft $glyphparam.superleft <br>
     $if glyphparam.tension != None :
        tension $glyphparam.tension <br>
     $if glyphparam.tensionand != None :
@@ -184,20 +148,20 @@ $if form.d.PointName > "0" :
        penshifted $glyphparam.penshifted <br>
     $if glyphparam.pointshifted != None :
        pointshifted $glyphparam.pointshifted <br>
-    $if glyphparam.superness != None :
-       supernesnn $glyphparam.superness <br>
+    $if glyphparam.angle != None :
+       angle $glyphparam.angle <br>
     $if glyphparam.penwidth != None :
        penwidth $glyphparam.penwidth <br>
-    $if glyphparam.xHeight != None :
-       xHeight $glyphparam.xHeight <br>
-    $if glyphparam.cardinal != None :
-       cardinal $glyphparam.cardinal <br>
     $if glyphparam.overx != None :
        overx $glyphparam.overx <br>
     $if glyphparam.overbase != None :
        overbase $glyphparam.overbase <br>
     $if glyphparam.overcap != None :
        overcap $glyphparam.overcap <br>
+    $if glyphparam.overasc != None :
+       overasc $glyphparam.overasc <br>
+    $if glyphparam.overdesc != None :
+       overdesc $glyphparam.overdesc <br>
     $if glyphparam.stemcutter != None :
        stemcutter $glyphparam.stemcutter <br>
     $if glyphparam.stemshift != None :
@@ -213,7 +177,7 @@ $if form.d.PointName > "0" :
 
 $if form.d.groupn > "0" : 
     $:formparamG.render() 
-
+</p>
 
 <p id="menuleftorange" > 
     $if groupparam != None :
@@ -223,6 +187,10 @@ $if form.d.groupn > "0" :
        doubledash $groupparam.doubledash <br>
      $if groupparam.tripledash != None :
        tripledash $groupparam.tripledash  <br>
+     $if groupparam.superleft != None :
+       superleft $groupparam.superleft  <br>
+     $if groupparam.superright != None :
+       superright $groupparam.superright  <br>
      $if groupparam.leftp != None :
        leftp $groupparam.leftp <br>
      $if groupparam.rightp != None :
@@ -243,10 +211,6 @@ $if form.d.groupn > "0" :
        upp2 $groupparam.upp2 <br>
      $if groupparam.dir2 != None :
        dir2 $groupparam.dir2 <br>
-     $if groupparam.superright != None :
-       superright  $groupparam.superright <br>
-     $if groupparam.superleft != None :
-       superleft $groupparam.superleft <br>
      $if groupparam.tension != None :
        tension $groupparam.tension <br>
      $if groupparam.tensionand != None :
@@ -257,14 +221,10 @@ $if form.d.groupn > "0" :
        penshifted $groupparam.penshifted <br>
      $if groupparam.pointshifted != None :
        pointshifted $groupparam.pointshifted <br>
-     $if groupparam.superness != None :
-       supernesnn $groupparam.superness <br>
+     $if groupparam.angle != None :
+       angle $groupparam.angle <br>
      $if groupparam.penwidth != None :
        penwidth $groupparam.penwidth <br>
-     $if groupparam.xHeight != None :
-       xHeight $groupparam.xHeight <br>
-     $if groupparam.cardinal != None :
-       cardinal $groupparam.cardinal <br>
      $if groupparam.overx != None :
        overx $groupparam.overx <br>
      $if groupparam.overbase != None :
@@ -295,6 +255,10 @@ $for ppp in postspa:
          doubledash $ppp.doubledash
      $if ppp.tripledash != None :
          tripledash $ppp.tripledash
+     $if ppp.superleft != None :
+         superleft $ppp.superleft
+     $if ppp.superright != None :
+         superright $ppp.superright
      $if ppp.leftp != None :
        leftp $ppp.leftp
      $if ppp.rightp != None :
@@ -315,10 +279,6 @@ $for ppp in postspa:
        upp2 $ppp.upp2
      $if ppp.dir2 != None :
        dir2 $ppp.dir2
-     $if ppp.superright != None :
-       superright  $ppp.superright
-     $if ppp.superleft != None :
-       superleft $ppp.superleft
      $if ppp.tension != None :
        tension $ppp.tension
      $if ppp.tensionand != None :
@@ -329,20 +289,20 @@ $for ppp in postspa:
        penshifted $ppp.penshifted
      $if ppp.pointshifted != None :
        pointshifted $ppp.pointshifted
-     $if ppp.superness != None :
-       supernesnn $ppp.superness
+     $if ppp.angle != None :
+       angle $ppp.angle
      $if ppp.penwidth != None :
        penwidth $ppp.penwidth
-     $if ppp.xHeight != None :
-       xHeight $ppp.xHeight
-     $if ppp.cardinal != None :
-       cardinal $ppp.cardinal
      $if ppp.overx != None :
        overx $ppp.overx
      $if ppp.overbase != None :
        overbase $ppp.overbase
      $if ppp.overcap != None :
        overcap $ppp.overcap
+     $if ppp.overasc != None :
+       overasc $ppp.overasc
+     $if ppp.overdesc != None :
+       overdesc $ppp.overdesc
      $if ppp.stemcutter != None :
        stemcutter $ppp.stemcutter
      $if ppp.stemshift != None :
@@ -354,7 +314,7 @@ $for ppp in postspa:
    <br>
 </p>
 
-<p style="color:red"> &#9678; z points </p>
+<p style="color:black"> &#9678; z points </p>
 <p style="color:blue"> &#9678; undefined points </p>
 <p style="color:CCFFFF"> &#9678; control points </p>
 
@@ -362,13 +322,14 @@ $for ppp in postspa:
 
 
 <div id="center">
-
 	<div>
-		<left> &#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;	 </left>
+		<left>&#124;&#124;&#124;&#124;&#124;&#124;&#124;</left>
 	</div>
+	
 	<div>
 		<middle>
-<span class="first">$webglyph</span><span class="second">&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;&#124;</span> 
+			<span class="first">$webglyph</span><span class="second">&#124;&#124;&#124;&#124;&#124;&#124;&#124;</span> 
+		<middle>
 	</div>
 
 $for posti in posts:

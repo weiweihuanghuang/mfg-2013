@@ -1,69 +1,11 @@
 $def with (form,gmlist,cfont,glo,formlA,formlB)
 <link rel="stylesheet" type="text/css" href="/static/mfg.css"/>
 <style>
-@font-face {
-    font-family: 'metapolator';
-    src: url('/static/font-webfont.eot');
-    src: url('/static/font-webfont.eot?#iefix') format('embedded-opentype'),url('/static/font-webfont.woff') format('woff'),url('/static/font-webfont.ttf') format('truetype'),url('/static/font-webfont.svg#metapolator') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Inconsolata';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Inconsolata'), url('/static/Inconsolata/Inconsolata-Regular.ttf') format('truetype'), url('/static/Inconsolata/Inconsolata-Regular.woff') format('woff');
-}
-@font-face {
-    font-family: 'Inconsolata';
-    font-style: normal;
-    font-weight: 700;
-    src: local('Inconsolata Bold'), local('Inconsolata-Bold'), url('/static/Inconsolata/Inconsolata-Bold.ttf') format('truetype'), url('/static/Inconsolata/Inconsolata-Bold.woff') format('woff');
-}
-h3_b {
-	position:absolute;
-	z-index:-5;
-	bottom:-350px;
-	left:9px;
-	font-family:"metapolator","backup";
-	font-size:1200px;
-	color:grey;
-}
-h3_a {
-	position:absolute;
-	z-index:-5;
-	bottom:-359px;
-	right:9px;
-	font-family:"metapolator","backup";
-	font-size:1200px;
-	color:grey;
-}
-h3_c {
-	position:absolute;
-	z-index:-5;
-	bottom:-350px;
-	left:619px;
-	font-family:"metapolator","backup";
-	font-size:1200px;
-	color:grey;
-}
-p,h2,#menu,table,th,td,#ruler,.paramset,a {
+p,h2,.menu,table,th,td,#ruler,.paramset,a {
 	font:normal 15px/19px Menlo,'Inconsolata',mono;
 	}
 h2 {
 	color:red;
-}
-#center {
-	background:red;
-	bottom:0;
-	height:0px;
-	left:-300;
-	margin:auto;
-	position:absolute;
-	top:200;
-	right:0;
-	width:0px;
-	-webkit-transform:translate(0%,0%) scale(0.80,0.80);
 }
 a:visited {
 	color: green;
@@ -77,7 +19,7 @@ table,th,td {
 	width:200px;
 	text-align:left;
 	color: red;
-}
+	}
 #mmA {
      display:inline-block;
      z-index:10;
@@ -88,32 +30,31 @@ table,th,td {
      }
 .paramset {
      display:inline-block;
-     margin: 0 50 20 0;
+     margin: 0 75 20 0;
 }
 .paramname {
 	color:rgb(300,150,150);
 }
 .value {
 	float: right;
-    margin: 0 0 0 40;
+    margin: 0 0 0 15;
 }
 </style>
 
-<div class="title">
-A Local Parameter Set
-</div>
+<div class="title">A Local Parameter</div>
 
-<a href="/font2/$cfont.idglobal">Global Parameter Set</a>
+<p><span><a href="/font2/$cfont.idglobal">Global Parameters Edit</a></span></p>
+<br>
 
-<div style="overflow: hidden; white-space: nowrap;">
-<div id="mmA" >
-<p><a href="/font3/$cfont.idlocalA">local param A</a></p>
+<div style="vertical-align:top;display:inline-block;">
+<div id="mmA" ><span>
+<a href="/font3/$cfont.idlocalA">A Params Edit</a></span><br><br>
 <form action="" method="POST" name="formlA">
 $:formlA.render()
 </form>
 </div>
-<div id="mmB">
-<p><a href="/font4/$cfont.idlocalB">local param B</a></p>
+<div id="mmB"><span>
+<a href="/font4/$cfont.idlocalB">B Params Edit</a></span><br><br>
 <form action="" method="POST" name="formlB">
 $:formlB.render()
 </form>
@@ -123,7 +64,7 @@ $:formlB.render()
 <div class="paramset">
 $for gm in glo:
 	<a href="/font3/$gm.idlocal">
-	idlocal $gm.idlocal</a><br>
+	Local Param $gm.idlocal</a><br><br>
 	<span class="paramname">px</span> <span class="value">$gm.px</span><br>
 	<span class="paramname">mean</span> <span class="value">$gm.mean</span><br>
 	<span class="paramname">des</span> <span class="value">$gm.des</span><br>
