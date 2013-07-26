@@ -63,12 +63,13 @@ table,th,td {
      position:relative;
      top: 10;
      }
-
 </style>
 
 <div class="title">Global Parameters</div>
 
-<p><a href="/font2/$cfont.idglobal">Global Parameters Edit</a></p>
+<p><a href="/font2/$cfont.idglobal">Global Parameters Edit</a>&nbsp;
+<span><a href="/font3/$cfont.idlocalA">A Local Params Edit</a>&nbsp;</span>
+<span><a href="/font4/$cfont.idlocalB">B Local Params Edit</a>&nbsp;</span></p>
 
 <div id="mm">
 <form action="" method="POST" name="form">
@@ -77,8 +78,4 @@ $:form.render()
 </div>
 <p>
 $for gmg in gmlist:
-     <a href="/font2/$gmg.idglobal">Global $gmg.idglobal</a>  interp $gmg.metapolation sz $gmg.fontsize <br>
-<p>
-<span><a href="/font3/$cfont.idlocalA">A Local Params Edit</a></span><br>
-<span><a href="/font4/$cfont.idlocalB">B Local Params Edit</a></span>
-</p>
+     <a href="/font2/$gmg.idglobal">Global $gmg.idglobal</a> interp $gmg.metapolation sz $gmg.fontsize mean $gmg.mean cap $gmg.cap asc $gmg.ascl desc $gmg.des box $gmg.box <br>

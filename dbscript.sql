@@ -116,16 +116,16 @@ CREATE TABLE globalparam (
     metapolation float,
     unitwidth float,
     fontsize  integer default 10,
+    mean      float default 0.5,
+    cap       float default 0.8,
+    ascl       float default 0.2,
+    des       float default 0.2,
+    box       float default 1.0,
     primary key (idglobal)
 );
 CREATE TABLE localparam (
     idlocal INT ,
     px        float default 0.1,
-    mean      float default 5.0,
-    des       float default 2.0,
-    ascl       float default 0.8,
-    cap       float default 0.8,
-    box       float default 0.8,
     width  float default 1,
 	space  float default 0,
     xheight   float default 5.0,

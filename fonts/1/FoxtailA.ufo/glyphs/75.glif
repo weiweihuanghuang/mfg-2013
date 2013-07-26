@@ -10,7 +10,7 @@
     </contour>
     <contour>
       <point name="z4l" pointNo="p5" type="line" x="376" y="500"/>
-      <point name="z3l" pointNo="p6" type="line" x="130" y="249"/>
+      <point name="z2l" pointNo="p6" type="line" x="184" y="604"/>
       <point name="z3r" pointNo="p7" startp="1" type="line" x="130" y="138"/>
       <point name="z4r" pointNo="p8" type="line" x="486" y="500"/>
     </contour>

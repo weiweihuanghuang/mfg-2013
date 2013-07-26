@@ -41,8 +41,12 @@ class cFont:
      glyphunic = "1"
      metapolation=0.5
      unitwidth=1
-     xHeight=1
      fontsize=10
+     mean=0.5
+     cap=0.8
+     ascl=0.2
+     des=0.2
+     box=1
      timestamp=0
      idlocalA = 1
      idlocalB = 2
@@ -279,7 +283,21 @@ class GlobalParam:
         web.form.Textbox('fontsize', web.form.notnull, 
             size=3,
             description="fontsize", value="10"),
-
+        web.form.Textbox('mean', web.form.notnull, 
+            size=3,
+            description="mean", value="0.5"),
+        web.form.Textbox('cap', web.form.notnull, 
+            size=3,
+            description="cap", value="0.8"),
+        web.form.Textbox('ascl', web.form.notnull, 
+            size=3,
+            description="asc", value="0.2"),
+        web.form.Textbox('des', web.form.notnull, 
+            size=3,
+            description="desc", value="0.2"),
+        web.form.Textbox('box', web.form.notnull, 
+            size=3,
+            description="box", value="1"),
         web.form.Button('saveg'),
         )
 
@@ -294,7 +312,7 @@ class GlobalParam:
           gm = None
 
         if gm != None:
-             formg.fill({'metapolation':gm[0].metapolation,'fontsize':gm[0].fontsize,})
+             formg.fill({'metapolation':gm[0].metapolation,'fontsize':gm[0].fontsize,'mean':gm[0].mean,'cap':gm[0].cap,'ascl':gm[0].ascl,'des':gm[0].des,'box':gm[0].box})
         return render.font2(formg,gml,cFont)
 
     def POST (self,id):
@@ -304,7 +322,7 @@ class GlobalParam:
         formg = self.formg()
         formg.fill()
         if formg.validates  :
-               model.update_globalparam(id, formg.d.metapolation, formg.d.fontsize)
+               model.update_globalparam(id, formg.d.metapolation, formg.d.fontsize, formg.d.mean, formg.d.cap, formg.d.ascl, formg.d.des, formg.d.box)
         if not formg.validates() :
                return render.font2(formg,gml,cFont)
 
@@ -317,26 +335,11 @@ class localParamA:
         web.form.Textbox('px', web.form.notnull, 
             size=3,
             description="px", value="1"),
-        web.form.Textbox('mean', web.form.notnull, 
-            size=3,
-            description="mean", value="5"),
-        web.form.Textbox('des', web.form.notnull, 
-            size=3,
-            description="des", value="2"),
-        web.form.Textbox('asc', web.form.notnull, 
-            size=3,
-            description="asc", value="1.0"),
-        web.form.Textbox('cap', web.form.notnull, 
-            size=3,
-            description="cap", value="1.0"),
-        web.form.Textbox('box', web.form.notnull, 
-            size=3,
-            description="box", value="1.0"),            
-		web.form.Textbox('width', web.form.notnull, 
-			size=3,
+	web.form.Textbox('width', web.form.notnull, 
+	    size=3,
             description="width", value="1"),
-		web.form.Textbox('space', web.form.notnull, 
-			size=3,
+	web.form.Textbox('space', web.form.notnull, 
+	    size=3,
             description="space", value="0"),
         web.form.Textbox('xheight', web.form.notnull, 
             size=3,
@@ -379,7 +382,7 @@ class localParamA:
         formlA = self.formlocA()
         formlB = localParamB.formlocB()
         gm = list(model.get_globalparam(cFont.idglobal))
-        formg.fill({'metapolation':gm[0].metapolation,'fontsize':gm[0].fontsize})
+        formg.fill({'metapolation':gm[0].metapolation,'fontsize':gm[0].fontsize,'mean':gm[0].mean,'cap':gm[0].cap,'ascl':gm[0].ascl,'des':gm[0].des,'box':gm[0].box})
         idlA =id 
         
         idlB =cFont.idlocalB
@@ -394,9 +397,9 @@ class localParamA:
           gloB = None
 
         if gloA != None:
-           formlA.fill({'px':gloA[0].px,'mean':gloA[0].mean,'des':gloA[0].des,'asc':gloA[0].ascl,'cap':gloA[0].cap,'box':gloA[0].box,'width':gloA[0].width,'space':gloA[0].space,'xheight':gloA[0].xheight,'capital':gloA[0].capital,'boxheight':gloA[0].boxheight,'ascender':gloA[0].ascender,'descender':gloA[0].descender,'inktrap':gloA[0].inktrap,'stemcut':gloA[0].stemcut,'skeleton':gloA[0].skeleton,'superness':gloA[0].superness,'over':gloA[0].over})
+           formlA.fill({'px':gloA[0].px,'width':gloA[0].width,'space':gloA[0].space,'xheight':gloA[0].xheight,'capital':gloA[0].capital,'boxheight':gloA[0].boxheight,'ascender':gloA[0].ascender,'descender':gloA[0].descender,'inktrap':gloA[0].inktrap,'stemcut':gloA[0].stemcut,'skeleton':gloA[0].skeleton,'superness':gloA[0].superness,'over':gloA[0].over})
         if gloB != None:
-           formlB.fill({'px':gloB[0].px,'mean':gloB[0].mean,'des':gloB[0].des,'asc':gloB[0].ascl,'cap':gloB[0].cap,'box':gloB[0].box,'width':gloB[0].width,'space':gloB[0].space,'xheight':gloB[0].xheight,'capital':gloB[0].capital,'boxheight':gloB[0].boxheight,'ascender':gloB[0].ascender,'descender':gloB[0].descender,'inktrap':gloB[0].inktrap,'stemcut':gloB[0].stemcut,'skeleton':gloB[0].skeleton,'superness':gloB[0].superness,'over':gloB[0].over})
+           formlB.fill({'px':gloB[0].px,'width':gloB[0].width,'space':gloB[0].space,'xheight':gloB[0].xheight,'capital':gloB[0].capital,'boxheight':gloB[0].boxheight,'ascender':gloB[0].ascender,'descender':gloB[0].descender,'inktrap':gloB[0].inktrap,'stemcut':gloB[0].stemcut,'skeleton':gloB[0].skeleton,'superness':gloB[0].superness,'over':gloB[0].over})
 
         return render.font3(formg,gml,cFont,glo,formlA,formlB)
 
@@ -413,10 +416,10 @@ class localParamA:
         formlB = localParamB.formlocB() 
         formlA.fill()
 
-        formlB.fill({'px':gloB[0].px,'mean':gloB[0].mean,'des':gloB[0].des,'asc':gloB[0].ascl,'cap':gloB[0].cap,'box':gloB[0].box,'width':gloA[0].width,'space':gloB[0].space,'xheight':gloB[0].xheight,'capital':gloB[0].capital,'boxheight':gloB[0].boxheight,'ascender':gloB[0].ascender,'descender':gloB[0].descender,'inktrap':gloB[0].inktrap,'stemcut':gloB[0].stemcut,'skeleton':gloB[0].skeleton,'superness':gloB[0].superness,'over':gloB[0].over})
+        formlB.fill({'px':gloB[0].px,'width':gloA[0].width,'space':gloB[0].space,'xheight':gloB[0].xheight,'capital':gloB[0].capital,'boxheight':gloB[0].boxheight,'ascender':gloB[0].ascender,'descender':gloB[0].descender,'inktrap':gloB[0].inktrap,'stemcut':gloB[0].stemcut,'skeleton':gloB[0].skeleton,'superness':gloB[0].superness,'over':gloB[0].over})
 
         if formlA.validates() :
-               model.update_localparam(idlA,formlA.d.px,formlA.d.mean,formlA.d.des,formlA.d.asc,formlA.d.cap,formlA.d.box,formlA.d.width,formlA.d.space,formlA.d.xheight,formlA.d.capital,formlA.d.boxheight,formlA.d.ascender,formlA.d.descender,formlA.d.inktrap,formlA.d.stemcut,formlA.d.skeleton,formlA.d.superness,formlA.d.over)
+               model.update_localparam(idlA,formlA.d.px,formlA.d.width,formlA.d.space,formlA.d.xheight,formlA.d.capital,formlA.d.boxheight,formlA.d.ascender,formlA.d.descender,formlA.d.inktrap,formlA.d.stemcut,formlA.d.skeleton,formlA.d.superness,formlA.d.over)
 
         if not formlA.validates() :
                return render.font3(formg,gml,cFont,glo,formlA,formlB)
@@ -431,25 +434,10 @@ class localParamB:
         web.form.Textbox('px', web.form.notnull, 
             size=3,
             description="px", value="1"),
-        web.form.Textbox('mean', web.form.notnull, 
-            size=3,
-            description="mean", value="5"),
-        web.form.Textbox('des', web.form.notnull, 
-            size=3,
-            description="des", value="2"),
-        web.form.Textbox('asc', web.form.notnull, 
-            size=3,
-            description="asc", value="1.0"),
-        web.form.Textbox('cap', web.form.notnull, 
-            size=3,
-            description="cap", value="1.0"),
-        web.form.Textbox('box', web.form.notnull, 
-            size=3,
-            description="box", value="1.0"),
-		web.form.Textbox('width', web.form.notnull, 
+	web.form.Textbox('width', web.form.notnull, 
             size=3,
             description="width", value="1"),
-		web.form.Textbox('space', web.form.notnull, 
+	web.form.Textbox('space', web.form.notnull, 
             size=3,
             description="space", value="0"),
         web.form.Textbox('xheight', web.form.notnull, 
@@ -492,7 +480,7 @@ class localParamB:
         formlA = localParamA.formlocA()
         formlB = self.formlocB()
         gm = list(model.get_globalparam(cFont.idglobal))
-        formg.fill({'metapolation':gm[0].metapolation,'fontsize':gm[0].fontsize,})
+        formg.fill({'metapolation':gm[0].metapolation,'fontsize':gm[0].fontsize,'mean':gm[0].mean,'cap':gm[0].cap,'ascl':gm[0].ascl,'des':gm[0].des,'box':gm[0].box})
         idlA = cFont.idlocalA  
         idlB =id 
         if idlA > '0' :
@@ -505,9 +493,9 @@ class localParamB:
           gloB = None
 
         if gloA != None:
-           formlA.fill({'px':gloA[0].px,'mean':gloA[0].mean,'des':gloA[0].des,'asc':gloA[0].ascl,'cap':gloA[0].cap,'box':gloA[0].box,'width':gloA[0].width,'space':gloA[0].space,'xheight':gloA[0].xheight,'capital':gloA[0].capital,'boxheight':gloA[0].boxheight,'ascender':gloA[0].ascender,'descender':gloA[0].descender,'inktrap':gloA[0].inktrap,'stemcut':gloA[0].stemcut,'skeleton':gloA[0].skeleton,'superness':gloA[0].superness,'over':gloA[0].over})
+           formlA.fill({'px':gloA[0].px,'width':gloA[0].width,'space':gloA[0].space,'xheight':gloA[0].xheight,'capital':gloA[0].capital,'boxheight':gloA[0].boxheight,'ascender':gloA[0].ascender,'descender':gloA[0].descender,'inktrap':gloA[0].inktrap,'stemcut':gloA[0].stemcut,'skeleton':gloA[0].skeleton,'superness':gloA[0].superness,'over':gloA[0].over})
         if gloB != None:
-           formlB.fill({'px':gloB[0].px,'mean':gloB[0].mean,'des':gloB[0].des,'asc':gloB[0].ascl,'cap':gloB[0].cap,'box':gloB[0].box,'width':gloB[0].width,'space':gloB[0].space,'xheight':gloB[0].xheight,'capital':gloB[0].capital,'boxheight':gloB[0].boxheight,'ascender':gloB[0].ascender,'descender':gloB[0].descender,'inktrap':gloB[0].inktrap,'stemcut':gloB[0].stemcut,'skeleton':gloB[0].skeleton,'superness':gloB[0].superness,'over':gloB[0].over})
+           formlB.fill({'px':gloB[0].px,'width':gloB[0].width,'space':gloB[0].space,'xheight':gloB[0].xheight,'capital':gloB[0].capital,'boxheight':gloB[0].boxheight,'ascender':gloB[0].ascender,'descender':gloB[0].descender,'inktrap':gloB[0].inktrap,'stemcut':gloB[0].stemcut,'skeleton':gloB[0].skeleton,'superness':gloB[0].superness,'over':gloB[0].over})
 
         return render.font4(formg,gml,cFont,glo,formlA,formlB)
 
@@ -526,10 +514,10 @@ class localParamB:
         formg = GlobalParam.formg()
         formlB.fill()
 
-        formlA.fill({'px':gloA[0].px,'mean':gloA[0].mean,'des':gloA[0].des,'asc':gloA[0].ascl,'cap':gloA[0].cap,'box':gloA[0].box,'width':gloA[0].width,'space':gloA[0].space,'xheight':gloA[0].xheight,'capital':gloA[0].capital,'boxheight':gloA[0].boxheight,'ascender':gloA[0].ascender,'descender':gloA[0].descender,'inktrap':gloA[0].inktrap,'stemcut':gloA[0].stemcut,'skeleton':gloA[0].skeleton,'superness':gloA[0].superness,'over':gloA[0].over})
+        formlA.fill({'px':gloA[0].px,'width':gloA[0].width,'space':gloA[0].space,'xheight':gloA[0].xheight,'capital':gloA[0].capital,'boxheight':gloA[0].boxheight,'ascender':gloA[0].ascender,'descender':gloA[0].descender,'inktrap':gloA[0].inktrap,'stemcut':gloA[0].stemcut,'skeleton':gloA[0].skeleton,'superness':gloA[0].superness,'over':gloA[0].over})
 
         if formlB.validates() :
-              model.update_localparam(idlB,formlB.d.px,formlB.d.mean,formlB.d.des,formlB.d.asc,formlB.d.cap,formlB.d.box,formlB.d.width,formlB.d.space,formlB.d.xheight,formlB.d.capital,formlB.d.boxheight,formlB.d.ascender,formlB.d.descender,formlB.d.inktrap,formlB.d.stemcut,formlB.d.skeleton,formlB.d.superness,formlB.d.over)
+              model.update_localparam(idlB,formlB.d.px,formlB.d.width,formlB.d.space,formlB.d.xheight,formlB.d.capital,formlB.d.boxheight,formlB.d.ascender,formlB.d.descender,formlB.d.inktrap,formlB.d.stemcut,formlB.d.skeleton,formlB.d.superness,formlB.d.over)
         if not formlB.validates() :
                return render.font4(formg,gml,cFont,glo,formlA,formlB)
 

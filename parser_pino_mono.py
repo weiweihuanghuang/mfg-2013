@@ -808,7 +808,10 @@ for i in range (0,nnz) :
  
   if inktrap_r[i] <> "" :
     zeile = zeile + "- inktrapcut (" +  str(inktrap_rval[i]) + ")"      
- 
+
+#   if angleval[i] <> "" :
+#     zeile = zeile + ",ang" + str(angleval[i]) + ");"      
+#      
   else: 
     zeile = zeile 
   zeile = zeile + ", ang" +str(zitem) + ");"
@@ -1161,7 +1164,7 @@ for i in range (0,nnz) :
 
 #  else :
 
-  zeile = "z"+str(zitem)+ "=((A_width + metapolation * (B_width - A_width)) * (x2"+ str(zitem)+ "0 + metapolation * (x2"+str(zitem)+"A - x2" +str(zitem)+"0) + spacing_" + g + "L) * width_" + g + ", (y2" +str(zitem)+ "0 + metapolation *(y2"+str(zitem)+ "A - y2" +str(zitem)+ "0))*((A_xheight + metapolation * (B_xheight - A_xheight)) / A_mean#) )"
+  zeile = "z"+str(zitem)+ "=((A_width + metapolation * (B_width - A_width)) * (x2"+ str(zitem)+ "0 + metapolation * (x2"+str(zitem)+"A - x2" +str(zitem)+"0) + spacing_" + g + "L) * width_" + g + ", (y2" +str(zitem)+ "0 + metapolation *(y2"+str(zitem)+ "A - y2" +str(zitem)+ "0))*((A_xheight + metapolation * (B_xheight - A_xheight)) / mean))"
 
 
 

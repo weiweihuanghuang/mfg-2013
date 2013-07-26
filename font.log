@@ -1,5 +1,5 @@
-This is MetaPost, version 1.504 (kpathsea version 6.1.0)  26 JUL 2013 12:18
-**\mode:=localfont; mag:=100.375; bpppix 0.02; nonstopmode; input font.mf
+This is MetaPost, version 1.504 (kpathsea version 6.1.0)  26 JUL 2013 17:41
+**\mode:=localfont; mag:=100; bpppix 0.02; nonstopmode; input font.mf
 (mf2pt1.mp (/usr/local/texlive/2012/texmf-dist/metapost/base/mfplain.mp
 Preloading the plain base, version 0.99: preliminaries,
  basic constants and mathematical macros,
@@ -10,14 +10,310 @@ Preloading the plain base, version 0.99: preliminaries,
  macros for character and font administration,
 and a few last-minute items.)))
 (fonts/1/font.mf (fonts/1/glyphs.mf (fonts/1/spacing.mf) (fonts/1/glyphlist.mf
-(fonts/1/glyphs/65.mf [65]) (fonts/1/glyphs/66.mf [66]) (fonts/1/glyphs/69.mf
-[69]) (fonts/1/glyphs/70.mf [70]) (fonts/1/glyphs/71.mf [71])
-(fonts/1/glyphs/72.mf [72]) (fonts/1/glyphs/73.mf [73]) (fonts/1/glyphs/74.mf
-[74]) (fonts/1/glyphs/75.mf [75]) (fonts/1/glyphs/77.mf [77])
-(fonts/1/glyphs/78.mf [78]) (fonts/1/glyphs/79.mf [79]) (fonts/1/glyphs/82.mf
-[82]) (fonts/1/glyphs/83.mf [83]) (fonts/1/glyphs/84.mf [84])
-(fonts/1/glyphs/85.mf [85]) (fonts/1/glyphs/87.mf [87]) (fonts/1/glyphs/92.mf
-[92]) (fonts/1/glyphs/95.mf [95])))
+(fonts/1/glyphs/74.mf
+>> 0.5
+>> mean
+! Not implemented: (known numeric)/(unknown numeric).
+<to be read again> 
+                   )
+l.147 ...lation * (B_xheight - A_xheight)) / mean)
+                                                  );
+I'm afraid I don't know how to apply that operation to that
+combination of types. Continue, and I'll return the second
+argument (see above) as the result of the operation.
+
+>> 0.5
+>> 0.00287y1r
+! Not implemented: (known numeric)/(unknown numeric).
+<to be read again> 
+                   )
+l.148 ...lation * (B_xheight - A_xheight)) / mean)
+                                                  );
+I'm afraid I don't know how to apply that operation to that
+combination of types. Continue, and I'll return the second
+argument (see above) as the result of the operation.
+
+>> 0.5
+>> 0.00287y1r
+! Not implemented: (known numeric)/(unknown numeric).
+<to be read again> 
+                   )
+l.149 ...lation * (B_xheight - A_xheight)) / mean)
+                                                  );
+I'm afraid I don't know how to apply that operation to that
+combination of types. Continue, and I'll return the second
+argument (see above) as the result of the operation.
+
+>> 0.5
+>> 0.00287y1r
+! Not implemented: (known numeric)/(unknown numeric).
+<to be read again> 
+                   )
+l.150 ...lation * (B_xheight - A_xheight)) / mean)
+                                                  );
+I'm afraid I don't know how to apply that operation to that
+combination of types. Continue, and I'll return the second
+argument (see above) as the result of the operation.
+
+>> 0.5
+>> 0.00287y1r
+! Not implemented: (known numeric)/(unknown numeric).
+<to be read again> 
+                   )
+l.151 ...lation * (B_xheight - A_xheight)) / mean)
+                                                  );
+I'm afraid I don't know how to apply that operation to that
+combination of types. Continue, and I'll return the second
+argument (see above) as the result of the operation.
+
+>> 0.5
+>> 0.00287y1r
+! Not implemented: (known numeric)/(unknown numeric).
+<to be read again> 
+                   )
+l.152 ...lation * (B_xheight - A_xheight)) / mean)
+                                                  );
+I'm afraid I don't know how to apply that operation to that
+combination of types. Continue, and I'll return the second
+argument (see above) as the result of the operation.
+
+>> y1r
+! Undefined y coordinate has been replaced by 0.
+<to be read again> 
+                   ..
+...->..
+       tension.atleast1..
+<for(l)> path_(SUFFIX0):=z1(SUFFIX0)...
+                                       z2(SUFFIX0); ENDFOR
+penstroke->...ffixes.e=l,r:path_.e:=(TEXT0);endfor
+                                                  .fill.path_.l--reverse.pat...
+<to be read again> 
+                   ;
+l.157 z2e;
+          
+I need a `known' y value for this part of the path.
+The value I found (see above) was no good;
+so I'll try to keep going by using zero instead.
+(Chapter 27 of The METAFONTbook explains that
+you might want to type `I ???' now.)
+
+>> 0.86285y1r
+! Undefined y coordinate has been replaced by 0.
+<to be read again> 
+                   ;
+<for(l)> ..._(SUFFIX0):=z1(SUFFIX0)...z2(SUFFIX0);
+                                                   ENDFOR
+penstroke->...ffixes.e=l,r:path_.e:=(TEXT0);endfor
+                                                  .fill.path_.l--reverse.pat...
+<to be read again> 
+                   ;
+l.157 z2e;
+          
+I need a `known' y value for this part of the path.
+The value I found (see above) was no good;
+so I'll try to keep going by using zero instead.
+(Chapter 27 of The METAFONTbook explains that
+you might want to type `I ???' now.)
+
+>> y1r
+! Undefined y coordinate has been replaced by 0.
+<to be read again> 
+                   ..
+...->..
+       tension.atleast1..
+<for(r)> path_(SUFFIX0):=z1(SUFFIX0)...
+                                       z2(SUFFIX0); ENDFOR
+penstroke->...ffixes.e=l,r:path_.e:=(TEXT0);endfor
+                                                  .fill.path_.l--reverse.pat...
+<to be read again> 
+                   ;
+l.157 z2e;
+          
+I need a `known' y value for this part of the path.
+The value I found (see above) was no good;
+so I'll try to keep going by using zero instead.
+(Chapter 27 of The METAFONTbook explains that
+you might want to type `I ???' now.)
+
+>> 0.86285y1r
+! Undefined y coordinate has been replaced by 0.
+<to be read again> 
+                   ;
+<for(r)> ..._(SUFFIX0):=z1(SUFFIX0)...z2(SUFFIX0);
+                                                   ENDFOR
+penstroke->...ffixes.e=l,r:path_.e:=(TEXT0);endfor
+                                                  .fill.path_.l--reverse.pat...
+<to be read again> 
+                   ;
+l.157 z2e;
+          
+I need a `known' y value for this part of the path.
+The value I found (see above) was no good;
+so I'll try to keep going by using zero instead.
+(Chapter 27 of The METAFONTbook explains that
+you might want to type `I ???' now.)
+
+>> 0.71428y1r
+! Undefined y coordinate has been replaced by 0.
+<to be read again> 
+                   ..
+---->..
+       tension.infinity..
+<for(l)> path_(SUFFIX0):=z3(SUFFIX0)---
+                                       z4(SUFFIX0)...z5(SUFFIX0)...z6(SUFFIX...
+
+penstroke->...ffixes.e=l,r:path_.e:=(TEXT0);endfor
+                                                  .fill.path_.l--reverse.pat...
+<to be read again> 
+                   ;
+l.162 ;
+       
+I need a `known' y value for this part of the path.
+The value I found (see above) was no good;
+so I'll try to keep going by using zero instead.
+(Chapter 27 of The METAFONTbook explains that
+you might want to type `I ???' now.)
+
+>> -0.12929y1r-0.74704
+! Undefined y coordinate has been replaced by 0.
+<to be read again> 
+                   ..
+...->..
+       tension.atleast1..
+<for(l)> ...SUFFIX0):=z3(SUFFIX0)---z4(SUFFIX0)...
+                                                  z5(SUFFIX0)...z6(SUFFIX0);...
+
+penstroke->...ffixes.e=l,r:path_.e:=(TEXT0);endfor
+                                                  .fill.path_.l--reverse.pat...
+<to be read again> 
+                   ;
+l.162 ;
+       
+I need a `known' y value for this part of the path.
+The value I found (see above) was no good;
+so I'll try to keep going by using zero instead.
+(Chapter 27 of The METAFONTbook explains that
+you might want to type `I ???' now.)
+
+>> -0.23714y1r-20.91704
+! Undefined y coordinate has been replaced by 0.
+<to be read again> 
+                   ..
+...->..
+       tension.atleast1..
+<for(l)> ...UFFIX0)---z4(SUFFIX0)...z5(SUFFIX0)...
+                                                  z6(SUFFIX0); ENDFOR
+penstroke->...ffixes.e=l,r:path_.e:=(TEXT0);endfor
+                                                  .fill.path_.l--reverse.pat...
+<to be read again> 
+                   ;
+l.162 ;
+       
+I need a `known' y value for this part of the path.
+The value I found (see above) was no good;
+so I'll try to keep going by using zero instead.
+(Chapter 27 of The METAFONTbook explains that
+you might want to type `I ???' now.)
+
+>> -0.19786y1r-16.18607
+! Undefined y coordinate has been replaced by 0.
+<to be read again> 
+                   ;
+<for(l)> ...(SUFFIX0)...z5(SUFFIX0)...z6(SUFFIX0);
+                                                   ENDFOR
+penstroke->...ffixes.e=l,r:path_.e:=(TEXT0);endfor
+                                                  .fill.path_.l--reverse.pat...
+<to be read again> 
+                   ;
+l.162 ;
+       
+I need a `known' y value for this part of the path.
+The value I found (see above) was no good;
+so I'll try to keep going by using zero instead.
+(Chapter 27 of The METAFONTbook explains that
+you might want to type `I ???' now.)
+
+>> 0.71428y1r
+! Undefined y coordinate has been replaced by 0.
+<to be read again> 
+                   ..
+---->..
+       tension.infinity..
+<for(r)> path_(SUFFIX0):=z3(SUFFIX0)---
+                                       z4(SUFFIX0)...z5(SUFFIX0)...z6(SUFFIX...
+
+penstroke->...ffixes.e=l,r:path_.e:=(TEXT0);endfor
+                                                  .fill.path_.l--reverse.pat...
+<to be read again> 
+                   ;
+l.162 ;
+       
+I need a `known' y value for this part of the path.
+The value I found (see above) was no good;
+so I'll try to keep going by using zero instead.
+(Chapter 27 of The METAFONTbook explains that
+you might want to type `I ???' now.)
+
+>> -0.12929y1r+0.74704
+! Undefined y coordinate has been replaced by 0.
+<to be read again> 
+                   ..
+...->..
+       tension.atleast1..
+<for(r)> ...SUFFIX0):=z3(SUFFIX0)---z4(SUFFIX0)...
+                                                  z5(SUFFIX0)...z6(SUFFIX0);...
+
+penstroke->...ffixes.e=l,r:path_.e:=(TEXT0);endfor
+                                                  .fill.path_.l--reverse.pat...
+<to be read again> 
+                   ;
+l.162 ;
+       
+I need a `known' y value for this part of the path.
+The value I found (see above) was no good;
+so I'll try to keep going by using zero instead.
+(Chapter 27 of The METAFONTbook explains that
+you might want to type `I ???' now.)
+
+>> -0.23714y1r+20.91704
+! Undefined y coordinate has been replaced by 0.
+<to be read again> 
+                   ..
+...->..
+       tension.atleast1..
+<for(r)> ...UFFIX0)---z4(SUFFIX0)...z5(SUFFIX0)...
+                                                  z6(SUFFIX0); ENDFOR
+penstroke->...ffixes.e=l,r:path_.e:=(TEXT0);endfor
+                                                  .fill.path_.l--reverse.pat...
+<to be read again> 
+                   ;
+l.162 ;
+       
+I need a `known' y value for this part of the path.
+The value I found (see above) was no good;
+so I'll try to keep going by using zero instead.
+(Chapter 27 of The METAFONTbook explains that
+you might want to type `I ???' now.)
+
+>> -0.19786y1r+16.18607
+! Undefined y coordinate has been replaced by 0.
+<to be read again> 
+                   ;
+<for(r)> ...(SUFFIX0)...z5(SUFFIX0)...z6(SUFFIX0);
+                                                   ENDFOR
+penstroke->...ffixes.e=l,r:path_.e:=(TEXT0);endfor
+                                                  .fill.path_.l--reverse.pat...
+<to be read again> 
+                   ;
+l.162 ;
+       
+I need a `known' y value for this part of the path.
+The value I found (see above) was no good;
+so I'll try to keep going by using zero instead.
+(Chapter 27 of The METAFONTbook explains that
+you might want to type `I ???' now.)
+
+[74]) (fonts/1/glyphs/92.mf [92])))
 Font metrics written on font.tfm.
-19 output files written: font.65 .. font.95
+2 output files written: font.74 .. font.92
 

@@ -11,7 +11,7 @@
     <contour>
       <point name="z7l" pointNo="p5" type="line" x="644" y="500"/>
       <point name="z7r" pointNo="p6" startp="1" type="line" x="551" y="500"/>
-      <point name="z8r" pointNo="p7" type="line" x="460" y="0"/>
+      <point name="z7r" pointNo="p7" type="line" x="172" y="500"/>
       <point name="z8l" pointNo="p8" type="line" x="538" y="0"/>
     </contour>
     <contour>

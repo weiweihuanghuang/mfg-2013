@@ -54,8 +54,7 @@ define_pixels(s,u);
 define_pixels(px,py);
 define_pixels(A_px,A_py,A_skeleton);
 define_pixels(B_px,B_py,B_skeleton);
-define_good_y_pixels(A_asc,A_des,A_cap,A_mean,A_box);
-define_good_y_pixels(B_asc,B_des,B_cap,B_mean,B_box);
+define_good_y_pixels(mean,cap,asc,desc,box);
 
 vardef tanh(expr x) =
 numeric ee_;

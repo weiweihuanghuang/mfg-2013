@@ -22,13 +22,13 @@
       <point name="z3r" pointNo="p15" smooth="yes" type="curve" upp="1" x="143" y="250"/>
       <point pointNo="p16" x="143" y="365"/>
       <point pointNo="p17" x="206" y="430"/>
-      <point angle="-ang4" cycle="1" groupname="angle" name="z4r" pointNo="p18" rightp="1" smooth="yes" type="curve" x="289" y="430"/>
+      <point cycle="1" groupname="angle" name="z4r" pointNo="p18" rightp="1" smooth="yes" type="curve" x="289" y="430"/>
       <point pointNo="p19" x="372" y="430"/>
       <point pointNo="p20" x="434" y="365"/>
-      <point angle="-ang1" downp="1" name="z1r" pointNo="p21" smooth="yes" startp="1" superleft="1.0" type="curve" x="434" y="250"/>
+      <point downp="1" name="z1r" pointNo="p21" smooth="yes" startp="1" type="curve" x="434" y="250"/>
       <point pointNo="p22" x="434" y="135"/>
       <point pointNo="p23" x="372" y="70"/>
-      <point angle="-ang2" leftp="1" name="z2r" pointNo="p24" smooth="yes" type="curve" x="289" y="70"/>
+      <point leftp="1" name="z2r" pointNo="p24" smooth="yes" type="curve" x="289" y="70"/>
     </contour>
   </outline>
   <lib>

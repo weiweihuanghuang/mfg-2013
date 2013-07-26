@@ -444,8 +444,13 @@ def put_globalparam(id):
     metapolation=mfg.cFont.metapolation
     unitwidth=mfg.cFont.unitwidth
     fontsize = mfg.cFont.fontsize
+    mean = mfg.cFont.mean
+    cap = mfg.cFont.cap
+    ascl = mfg.cFont.ascl
+    des = mfg.cFont.des
+    box = mfg.cFont.box
     db.insert('globalparam', where='idglobal = $id',vars=locals(), 
-        metapolation=metapolation, unitwidth=unitwidth, fontsize=fontsize)
+        metapolation=metapolation, unitwidth=unitwidth, fontsize=fontsize, mean=mean, cap=cap, ascl=ascl, des=des, box=box)
     db.query("commit")
     return None
 
@@ -455,16 +460,16 @@ def updatemaster(id, a, b, c, d):
     db.query("commit")
     return None
 
-def update_globalparam(id, a, b):
+def update_globalparam(id, a, b, c, d, e, f, g):
     db.update('globalparam', where='idglobal = $id', vars=locals(), 
-      metapolation = a, fontsize = b)
+      metapolation = a, fontsize = b, mean=c, cap=d, ascl=e, des=f, box=g)
     db.query("commit")
     return None
 
-def update_localparam(id, a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18 ):
+def update_localparam(id, a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13):
     print "id local param update",id
     db.update('localparam', where='idlocal = $id', vars=locals(), 
-      px = a1, mean = a2, des=a3, ascl=a4, cap=a5, box=a6, width=a7, space=a8, xheight=a9, capital=a10, boxheight=a11, ascender=a12, descender=a13, inktrap=a14, stemcut=a15, skeleton=a16, superness=a17, over=a18)
+      px = a1, width=a2, space=a3, xheight=a4, capital=a5, boxheight=a6, ascender=a7, descender=a8, inktrap=a9, stemcut=a10, skeleton=a11, superness=a12, over=a13)
     db.query("commit")
     return None
 
@@ -573,31 +578,41 @@ def writeGlobalParam():
   master = list(get_master(mfg.cFont.idmaster)) 
   imgl = list(get_globalparam(mfg.cFont.idglobal))
 
-  des=2.45
-  asc=0.8
+  mean=5.0
   cap=0.8
+  ascl=0.2
+  des=0.2
   box=1.0
 
   metapolation = imgl[0].metapolation
   u = imgl[0].unitwidth
   fontsize   = imgl[0].fontsize
+  mean   = imgl[0].mean
+  cap   = imgl[0].cap
+  ascl   = imgl[0].ascl
+  des   = imgl[0].des
+  box   = imgl[0].box
 
 # global parameters
   ifile=open(mfg.cFont.fontpath+"font.mf","w")
   ifile.write("% parameter file \n")
   ifile.write("metapolation:=%.2f;\n"%metapolation)
-  ifile.write("font_size:=%.0fpt#;\n"%fontsize)
-  ifile.write("u#:=%.0fpt#;\n"%u)
+  ifile.write("font_size:=%.3fpt#;\n"%fontsize)
+  ifile.write("mean:=%.3fpt#;\n"%mean)
+  ifile.write("cap:=%.3fpt#;\n"%cap)
+  ifile.write("cappt:=%.3fpt#;\n"%cap)
+  ifile.write("asc:=%.3fpt#;\n"%ascl)
+  ifile.write("ascpt:=%.3fpt#;\n"%ascl)
+  ifile.write("desc:=%.3fpt#;\n"%des)
+  ifile.write("descpt:=%.3fpt#;\n"%des)
+  ifile.write("box:=%.3pt#;\n"%box)
+  ifile.write("boxpt:=%.3fpt#;\n"%box)
+  ifile.write("u#:=%.3fpt#;\n"%u)
 
 # local parameters A  
   imlo = list(get_localparam(mfg.cFont.idlocalA))
 
   ifile.write("A_px#:=%.2fpt#;\n"%imlo[0].px)
-  ifile.write("A_mean#:=%.2fpt#;\n"%imlo[0].mean)
-  ifile.write("A_des#:=%.2fpt#;\n"%imlo[0].des)
-  ifile.write("A_asc#:=%.2fpt#;\n"%imlo[0].ascl)
-  ifile.write("A_cap#:=%.2fpt#;\n"%imlo[0].cap)
-  ifile.write("A_box#:=%.2fpt#;\n"%imlo[0].box)
   ifile.write("A_width:=%.2f;\n"%imlo[0].width)
   ifile.write("A_space:=%.2f;\n"%imlo[0].space)
   ifile.write("A_spacept:=%.2fpt;\n"%imlo[0].space)
@@ -619,11 +634,6 @@ def writeGlobalParam():
   imlo = list(get_localparam(mfg.cFont.idlocalB))
 
   ifile.write("B_px#:=%.2fpt#;\n"%imlo[0].px)
-  ifile.write("B_mean#:=%.2fpt#;\n"%imlo[0].mean)
-  ifile.write("B_des#:=%.2fpt#;\n"%imlo[0].des)
-  ifile.write("B_asc#:=%.2fpt#;\n"%imlo[0].ascl)
-  ifile.write("B_cap#:=%.2fpt#;\n"%imlo[0].cap)
-  ifile.write("B_box#:=%.2fpt#;\n"%imlo[0].box)
   ifile.write("B_width:=%.2f;\n"%imlo[0].width)
   ifile.write("B_space:=%.2f;\n"%imlo[0].space)
   ifile.write("B_spacept:=%.2fpt;\n"%imlo[0].space)
