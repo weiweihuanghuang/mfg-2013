@@ -48,7 +48,7 @@ h3_c {
 	font-size:1200px;
 	color:grey;
 }
-p,h2,#menu,table,th,td,#ruler {
+p,h2,.menu,table,th,td,#ruler {
 	font:normal 15px/19px Menlo,'Inconsolata',mono;
 }
 h2 {
@@ -87,7 +87,7 @@ $for fontl in fontlist:
    $fontl <br> 
 <p>
 $for mma in mmaster:
-   idma <a href="/font1/$mma.idmaster" style="color:green;text-decoration:underline;">$mma.idmaster</a> projname $mma.FontName fontA $mma.FontNameA fontB $mma.FontNameB idglobal $mma.idglobal vdate $mma.vdate <br>
+   <a href="/font1/$mma.idmaster" style="color:green;text-decoration:underline;">Project $mma.idmaster</a> projname $mma.FontName fontA $mma.FontNameA fontB $mma.FontNameB idglobal $mma.idglobal vdate $mma.vdate <br>
 </p>
 <div>
 <form action="" method="post">
@@ -96,7 +96,7 @@ $:form.render()
 </div>
 <div>
 <p>
-<a href="/font2/$cfont.idglobal" style="color:green;text-decoration:underline;">specify global and local parameter set</a>
+<a href="/font2/$cfont.idglobal" style="color:green;text-decoration:underline;">Edit Global and Local Parameters</a>
 
 </p>
 <p><br><br>

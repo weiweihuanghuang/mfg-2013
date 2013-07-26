@@ -20,7 +20,7 @@ $def with (form,gmlist,cfont,glo,formlA,formlB)
     font-weight: 700;
     src: local('Inconsolata Bold'), local('Inconsolata-Bold'), url('/static/Inconsolata/Inconsolata-Bold.ttf') format('truetype'), url('/static/Inconsolata/Inconsolata-Bold.woff') format('woff');
 }
-p,h2,#menu,table,th,td,#ruler,.paramset,a {
+p,h2,.menu,table,th,td,#ruler,.paramset,a {
 	font:normal 15px/19px Menlo,'Inconsolata',mono;
 	}
 h2 {
@@ -60,20 +60,20 @@ table,th,td {
 }
 </style>
 
-<div class="title">B Local Parameter Set</div>
+<div class="title">B Local Parameter</div>
 
-<p><span class="button"><a href="/font2/$cfont.idglobal">Global Parameter Set</a></span></p>
+<p><span><a href="/font2/$cfont.idglobal">Edit Global Parameters</a></span></p>
 <br>
 
 <div style="vertical-align:top;display:inline-block;">
-<div id="mmA" ><span class="button">
-<a href="/font3/$cfont.idlocalA">Local Param A</a></span><br><br>
+<div id="mmA" ><span>
+<a href="/font3/$cfont.idlocalA">Edit A Params</a></span><br><br>
 <form action="" method="POST" name="formlA">
 $:formlA.render()
 </form>
 </div>
-<div id="mmB"><span class="button">
-<a href="/font4/$cfont.idlocalB">Local Param B</a></span><br><br>
+<div id="mmB"><span>
+<a href="/font4/$cfont.idlocalB">Edit B Params</a></span><br><br>
 <form action="" method="POST" name="formlB">
 $:formlB.render()
 </form>
@@ -83,7 +83,7 @@ $:formlB.render()
 <div class="paramset">
 $for gm in glo:
 	<a href="/font4/$gm.idlocal">
-	idlocal $gm.idlocal</a><br><br>
+	Local Param $gm.idlocal</a><br><br>
 	<span class="paramname">px</span> <span class="value">$gm.px</span><br>
 	<span class="paramname">mean</span> <span class="value">$gm.mean</span><br>
 	<span class="paramname">des</span> <span class="value">$gm.des</span><br>

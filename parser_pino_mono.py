@@ -32,34 +32,34 @@ uni = minidom.parse(font_a)
 itemlist = uni.getElementsByTagName('unicode')
 u = itemlist[0].attributes['hex'].value
 
-mean = ['13','14','26','29','65','67','69','77','78','79','82','83','85','86','87','88','90','94','95']
-des = ['12','27','63','71','80','81','89']
-asc = ['2','7','11','28','30','62','64','66','68','70','72','73','75','76','84']
-cap = ['1','3','5','6','10','16','17','18','19','20','21','22','23','24','25','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58']
-box = ['4','8','9','15','59','60','61','74','91','92','93']
+#mean = ['13','14','26','29','65','67','69','77','78','79','82','83','85','86','87','88','90','94','95']
+#des = ['12','27','63','71','80','81','89']
+#asc = ['2','7','11','28','30','62','64','66','68','70','72','73','75','76','84']
+#cap = ['1','3','5','6','10','16','17','18','19','20','21','22','23','24','25','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58']
+#box = ['4','8','9','15','59','60','61','74','91','92','93']
 
 # ggroup=""
 
-if g in mean :
-    ggroup = 'mean#'
+#if g in mean :
+#    ggroup = 'mean#'
     
-if g in des :
-    ggroup = 'des#'
+#if g in des :
+#    ggroup = 'des#'
 
-if g in cap : 
-    ggroup = 'cap#'
+#if g in cap : 
+#    ggroup = 'cap#'
 
-if g in asc :
-    ggroup = 'asc#'
+#if g in asc :
+#    ggroup = 'asc#'
 
-if g in box :
-    ggroup = 'box#'
+#if g in box :
+#    ggroup = 'box#'
 
 #else :
 #    ggroup = 'asc#'
 
 
-print 'beginfontchar(' + g + ', (' + w + '*A_width + metapolation * (' + w + '*A_width - ' + w2 + '*B_width)) * width_' + g + " + spacing_" +  g  + "R, A_" + ggroup + " + metapolation * (B_" + ggroup + " - A_" + ggroup + "), " + "0" + ");"
+print 'beginfontchar(' + g + ', (' + w + '*A_width + metapolation * (' + w + '*B_width - ' + w2 + '*A_width)) * width_' + g + "+ spacing_" +  g  + "R, 0, 0 );"
 # print """if known ps_output:
 # glyph_name "uni""" + u + """"; 
 # fi
@@ -393,29 +393,6 @@ glyph = glif.getElementsByTagName('glyph')
 g = glyph[0].attributes['name'].value
 
 
-mean = ['13','14','26','29','65','67','69','77','78','79','82','83','85','86','87','88','90','94','95']
-des = ['12','27','63','71','80','81','89']
-asc = ['2','7','11','28','30','62','64','66','68','70','72','73','75','76','84']
-cap = ['1','3','5','6','10','16','17','18','19','20','21','22','23','24','25','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58']
-box = ['4','8','9','15','59','60','61','74','91','92','93']
-
-# ggroup=""
-
-if g in mean :
-    ggroup = 'xheight'
-    
-if g in des :
-    ggroup = 'descender'
-        
-if g in cap : 
-    ggroup = 'capital'
-
-if g in asc :
-    ggroup = 'ascender'
-
-if g in box :
-    ggroup = 'boxheight'
-
 
 glif = minidom.parse(font_a)
 itemlist = glif.getElementsByTagName('point') 
@@ -583,12 +560,6 @@ for i in range (0,nnz) :
 
   zeileb = "ang" + str(zitem) + "V := ang" + str(zitem) + "; dist" + str(zitem) + "V := dist" + str(zitem) + ";" 
 #  zeilec = "ang" + str(zitemb) + "V := ang" + str(zitemb) + ";"
-
-#  zeile = "z"+str(zitem)+ "=(x2"+ str(zitem)+ "0 *width *spacing_" + g + "+ (metapolation * (x2"+str(zitem)+"A - x2" +str(zitem)+"0)), y2"+str(zitem)+ "0 *" + ggroup + " + (metapolation * (y2"+str(zitem)+ "A - y2" +str(zitem)+ "0))"
-  
-#  zeileend =""
-#  zeileend = 'z'+str(zzn[nnz-1])+ "=(x2"+ str(zzn[nnz-1])+ "0 *width *spacing_" + g + " + (metapolation * (x2"+str(zzn[nnz-1])+"A - x2" +str(zzn[nnz-1])+"0)), y2"+str(zzn[nnz-1])+ "0 *" + ggroup + " + (metapolation * (y2"+str(zzn[nnz-1]) + "A - y2" +str(zzn[nnz-1])+ "0))"
- 
 
 # parameters 
 
@@ -898,28 +869,28 @@ glyph = glif.getElementsByTagName('glyph')
 g = glyph[0].attributes['name'].value
 
 
-mean = ['13','14','26','29','65','67','69','77','78','79','82','83','85','86','87','88','90','94','95']
-des = ['12','27','63','71','80','81','89']
-asc = ['2','7','11','28','30','62','64','66','68','70','72','73','75','76','84']
-cap = ['1','3','5','6','10','16','17','18','19','20','21','22','23','24','25','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58']
-box = ['4','8','9','15','59','60','61','74','91','92','93']
+#mean = ['13','14','26','29','65','67','69','77','78','79','82','83','85','86','87','88','90','94','95']
+#des = ['12','27','63','71','80','81','89']
+#asc = ['2','7','11','28','30','62','64','66','68','70','72','73','75','76','84']
+#cap = ['1','3','5','6','10','16','17','18','19','20','21','22','23','24','25','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58']
+#box = ['4','8','9','15','59','60','61','74','91','92','93']
 
 # ggroup=""
 
-if g in mean :
-    ggroup = 'xheight'
+#if g in mean :
+#    ggroup = 'xheight'
     
-if g in des :
-    ggroup = 'descender'
+#if g in des :
+#    ggroup = 'descender'
         
-if g in cap : 
-    ggroup = 'capital'
+#if g in cap : 
+#    ggroup = 'capital'
 
-if g in asc :
-    ggroup = 'ascender'
+#if g in asc :
+#    ggroup = 'ascender'
 
-if g in box :
-    ggroup = 'boxheight'
+#if g in box :
+#    ggroup = 'boxheight'
 
 
 glif = minidom.parse(font_a)
@@ -1211,10 +1182,20 @@ for i in range (0,nnz) :
 
   zeile =""
 
-  zeile = "z"+str(zitem)+ "=((A_width + metapolation * (A_width - B_width)) * (x2"+ str(zitem)+ "0 + metapolation * (x2"+str(zitem)+"A - x2" +str(zitem)+"0) + spacing_" + g + "L) * width_" + g + ", (A_" + ggroup + " + metapolation * (B_" + ggroup + " - A_" + ggroup + "))*(y2"+str(zitem)+ "0 + metapolation *(y2"+str(zitem)+ "A - y2" +str(zitem)+ "0)))"
+#  zeile = "z"+str(zitem)+ "=((A_width + metapolation * (B_width - A_width)) * (x2"+ str(zitem)+ "0 + metapolation * (x2"+str(zitem)+"A - x2" +str(zitem)+"0) + spacing_" + g + "L) * width_" + g + ", (A_" + ggroup + " + metapolation * (B_" + ggroup + " - A_" + ggroup + "))*(y2"+str(zitem)+ "0 + metapolation *(y2"+str(zitem)+ "A - y2" +str(zitem)+ "0)))"
+
+  if overcap[i] <> "":
+ 
+     zeile = "z"+str(zitem)+ "=((A_width + metapolation * (B_width - A_width)) * (x2"+ str(zitem)+ "0 + metapolation * (x2"+str(zitem)+"A - x2" +str(zitem)+"0) + spacing_" + g + "L) * width_" + g + ", (y2" +str(zitem)+ "0 + metapolation *(y2"+str(zitem)+ "A - y2" +str(zitem)+ "0))*((A_capital + metapolation * (B_capital - A_capital)) / A_cap#) )"
+
+  else :
+
+     zeile = "z"+str(zitem)+ "=((A_width + metapolation * (B_width - A_width)) * (x2"+ str(zitem)+ "0 + metapolation * (x2"+str(zitem)+"A - x2" +str(zitem)+"0) + spacing_" + g + "L) * width_" + g + ", (y2" +str(zitem)+ "0 + metapolation *(y2"+str(zitem)+ "A - y2" +str(zitem)+ "0))*((A_xheight + metapolation * (B_xheight - A_xheight)) / A_mean#) )"
+
+
 
 #  zeileend =""
-#  zeileend = 'z'+str(zzn[nnz-1])+ "=(x2"+ str(zzn[nnz-1])+ "0 *width *spacing_" + g + " + (metapolation * (x2"+str(zzn[nnz-1])+"A - x2" +str(zzn[nnz-1])+"0)), y2"+str(zzn[nnz-1])+ "0 *" + ggroup + " + (metapolation * (y2"+str(zzn[nnz-1]) + "A - y2" +str(zzn[nnz-1])+ "0)))"
+#  zeileend = 'z'+str(zzn[nnz-1])+ "=(x2"+ str(zzn[nnz-1])+ "0 *width *width_" + g + " + (metapolation * (x2"+str(zzn[nnz-1])+"A - x2" +str(zzn[nnz-1])+"0)), y2"+str(zzn[nnz-1])+ "0 *" + ggroup + " + (metapolation * (y2"+str(zzn[nnz-1]) + "A - y2" +str(zzn[nnz-1])+ "0)))"
  
 
 # parameters 
@@ -1672,6 +1653,14 @@ overcap = []
 overcapval = []
 
 
+overasc = []
+overascval = []
+
+
+overdesc = []
+overdescval = []
+
+
 cycle = []
 cycleval = []
 
@@ -1743,6 +1732,14 @@ for i in range (1,100):
 
   overcap.append("")
   overcapval.append(0)
+
+
+  overasc.append("")
+  overascval.append(0)
+
+
+  overdesc.append("")
+  overdescval.append(0)
 
   cycle.append("")
   cycleval.append(0)
@@ -1898,6 +1895,18 @@ for item in itemlist :
 	 iovercap = True
        except :
        	 iovercap = False
+
+       try :
+	 ioverasc = item.attributes['overasc'].value   
+	 ioverasc = True
+       except :
+       	 ioverasc = False
+
+       try :
+	 ioverdesc = item.attributes['overdesc'].value   
+	 ioverdesc = True
+       except :
+       	 ioverdesc = False
 
        try :
 	 icycle = item.attributes['cycle'].value   
@@ -2094,6 +2103,23 @@ for item in itemlist :
 	   del overcapval[i-1]
            overcapval.insert(i-1,iovercapval)
 
+         if ioverasc == True :
+           ioverascval = item.attributes['overasc'].value
+	   del overasc[i-1]
+           overasc.insert(i-1,"shifted")
+	   del overascval[i-1]
+           overascval.insert(i-1,ioverascval)
+
+         if ioverdesc == True :
+           ioverdescval = item.attributes['overdesc'].value
+	   del overdesc[i-1]
+           overdesc.insert(i-1,"shifted")
+	   del overdescval[i-1]
+           overdescval.insert(i-1,ioverdescval)
+
+
+
+
 
 
 
@@ -2199,14 +2225,22 @@ for i in range (0,nnz-1) :
     if penshifted[i] <> "" :
       zeile = zeile + " shifted (" + str(penshiftedval[i]) + ")"      
 
+
     if overx[i] <> "" :
-      zeile = zeile + " shifted (0, (A_mean + metapolation * (B_mean - A_mean)) - y" + str(zitem) + str(overxval[i]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
+      zeile = zeile + " shifted (0, (A_xheightpt + metapolation * (B_xheightpt - A_xheightpt)) - " + str(overxval[i]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
 
     if overbase[i] <> "" :
-      zeile = zeile + " shifted (0, - y" + str(zitem) + str(overbaseval[i]) + ") - (0, A_over + metapolation * (B_over - A_over))" 
+      zeile = zeile + " shifted (0, - " + str(overbaseval[i]) + ") - (0, A_over + metapolation * (B_over - A_over))" 
 
     if overcap[i] <> "" :
-      zeile = zeile + " shifted (0, (A_cap + metapolation * (A_cap - B_cap)) - y" + str(zitem) + str(overcapval[i]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
+      zeile = zeile + " shifted (0, (A_capitalpt + metapolation * (B_capitalpt - A_capitalpt)) - " + str(overcapval[i]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
+
+    if overasc[i] <> "" :
+      zeile = zeile + " shifted (0, (A_ascenderpt + metapolation * (B_ascenderpt - A_ascenderpt )) - " + str(overascval[i]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
+
+    if overdesc[i] <> "" :
+      zeile = zeile + " shifted (0, (A_descenderpt + metapolation * (B_descenderpt  - A_descenderpt )) - " + str(overdescval[i]) + ") - (0, A_over + metapolation * (B_over - A_over))" 
+
 
     if penshiftedy[i] <> "" :
       zeile = zeile + " shifted (0, y" + str(penshiftedyval[i]) + ")"      
@@ -2373,14 +2407,22 @@ for i in range (0,nnz-1) :
        else :
           zeile = zeile + " {dir ("+ str(dirval[i]) + " + metapolation * (" + str(dirval[i]) + " - " + str(dirval[i]) + "))}"      
 
+
     if overx[i] <> "" :
-      zeile = zeile + " shifted (0, (A_mean + metapolation * (B_mean - A_mean)) - y" + str(zitem) + str(overxval[i]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
+      zeile = zeile + " shifted (0, (A_xheightpt + metapolation * (B_xheightpt - A_xheightpt)) - " + str(overxval[i]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
 
     if overbase[i] <> "" :
-      zeile = zeile + " shifted (0, - y" + str(zitem) + str(overbaseval[i]) + ") - (0, A_over + metapolation * (B_over - A_over))" 
+      zeile = zeile + " shifted (0, - " + str(overbaseval[i]) + ") - (0, A_over + metapolation * (B_over - A_over))" 
 
     if overcap[i] <> "" :
-      zeile = zeile + " shifted (0, (A_cap + metapolation * (A_cap - B_cap)) - y" + str(zitem) + str(overcapval[i]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
+      zeile = zeile + " shifted (0, (A_capitalpt + metapolation * (B_capitalpt - A_capitalpt)) - " + str(overcapval[i]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
+
+    if overasc[i] <> "" :
+      zeile = zeile + " shifted (0, (A_ascenderpt + metapolation * (B_ascenderpt - A_ascenderpt )) - " + str(overascval[i]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
+
+    if overdesc[i] <> "" :
+      zeile = zeile + " shifted (0, (A_descenderpt + metapolation * (B_descenderpt  - A_descenderpt )) - " + str(overdescval[i]) + ") - (0, A_over + metapolation * (B_over - A_over))" 
+
 
     if penshifted[i] <> "" :
       zeile = zeile + " shifted (" + str(penshiftedval[i]) + ")"       
@@ -2466,17 +2508,30 @@ if dir[i+1] <> "" :
 if penshifted[i+1] <> "" :
  zeile = zeile + " shifted (" + str(penshiftedval[i+1]) + ")"       
 
+
+
+
 if overx[i+1] <> "" :
-      zeile = zeile + " shifted (0, (A_mean + metapolation * (B_mean - A_mean)) - y" + str(zitemb) + str(overxval[i+1]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
+      zeile = zeile + " shifted (0, (A_xheightpt + metapolation * (B_xheightpt - A_xheightpt)) - " + str(overxval[i+1]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
 
 if overbase[i+1] <> "" :
-      zeile = zeile + " shifted (0, - y" + str(zitemb) + str(overbaseval[i+1]) + ") - (0, A_over + metapolation * (B_over - A_over))" 
+      zeile = zeile + " shifted (0, - " + str(overbaseval[i+1]) + ") - (0, A_over + metapolation * (B_over - A_over))" 
 
 if overcap[i+1] <> "" :
-      zeile = zeile + " shifted (0, (A_cap + metapolation * (A_cap - B_cap)) - y" + str(zitemb) + str(overcapval[i+1]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
+      zeile = zeile + " shifted (0, (A_capitalpt + metapolation * (B_capitalpt - A_capitalpt)) - " + str(overcapval[i+1]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
+
+if overasc[i+1] <> "" :
+      zeile = zeile + " shifted (0, (A_ascenderpt + metapolation * (B_ascenderpt - A_ascenderpt )) - " + str(overascval[i+1]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
+
+if overdesc[i+1] <> "" :
+      zeile = zeile + " shifted (0, (A_descenderpt + metapolation * (B_descenderpt  - A_descenderpt )) - " + str(overdescval[i+1]) + ") - (0, A_over + metapolation * (B_over - A_over))" 
+
+
 
 if cycle[i+1] <> "" :
  zeile = zeile + dash + cycle[i+1] 
+
+
 
 if  ( tension[i+1] <> "" and 
       upp2[i+1] <> "") :

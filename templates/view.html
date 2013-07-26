@@ -1,25 +1,6 @@
 $def with (posts,post,form,formparam,formparamG,master,mastglobal,webglyph,glyphparam,groupparam,cfont,postspa)
 <link rel="stylesheet" type="text/css" href="/static/mfg.css"/>
 <style>
-@font-face {
-    font-family: 'metapolator';
-    src: url('/static/font-webfont.eot');
-    src: url('/static/font-webfont.eot?#iefix') format('embedded-opentype'),url('/static/font-webfont.woff') format('woff'),url('/static/font-webfont.ttf') format('truetype'),url('/static/font-webfont.svg#metapolator') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Inconsolata';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Inconsolata'), url('/static/Inconsolata/Inconsolata-Regular.ttf') format('truetype'), url('/static/Inconsolata/Inconsolata-Regular.woff') format('woff');
-}
-@font-face {
-    font-family: 'Inconsolata';
-    font-style: normal;
-    font-weight: 700;
-    src: local('Inconsolata Bold'), local('Inconsolata-Bold'), url('/static/Inconsolata/Inconsolata-Bold.ttf') format('truetype'), url('/static/Inconsolata/Inconsolata-Bold.woff') format('woff');
-}
      .first {
         color: grey;
       }
@@ -27,7 +8,7 @@ $def with (posts,post,form,formparam,formparamG,master,mastglobal,webglyph,glyph
         color: rgba(120, 120, 120, 0.2);
       }
 
-p,h2,table,th,td, #menu, input, select, textarea {
+p,h2,table,th,td, .menu, input, select, textarea {
 	font:normal 15px/19px Menlo,'Inconsolata',mono;
 	z-index:5;
 	margin:0 0 8 0;
@@ -49,12 +30,10 @@ h2 {
 }
 
 #viewmenu {
+	float:right;
 	z-index:5;
-	position: fixed;
-	right: 0px;
-	top: 50px;
 	color: black;
-	margin: 0 0 0 0;
+	margin: 5px 20px 0 0;
 }
 
 #menuleft {
@@ -101,6 +80,14 @@ table,tr, #menuleft{
 
 </style>
 
+<p id="viewmenu">  
+$for mast in master:
+   $mast.FontName  
+$for mast in mastglobal:
+   Metapolation $mast.metapolation <br> 
+   fontsize $mast.fontsize <br>
+</p>
+
 <p id="menuleft">  
 $if cfont.idwork == '0' :
        Font A: $cfont.fontna 
@@ -108,20 +95,11 @@ $if cfont.idwork == '1' :
        Font B: $cfont.fontnb 
 </p> 
 
-<p style="margin:20px 0px;">
+<p style="margin:20px 0;">
 <span class="button"><a href="/metap/0">Edit Font A</a></span>&nbsp
 <span class="button"><a href="/metap/1">Edit Font B</a></span>
 </p> 
 
-<p id="viewmenu">  
-$for mast in master:
-   $mast.FontName  
-
-$for mast in mastglobal:
-   Metapolation $mast.metapolation <br> 
-   fontsize $mast.fontsize <br>
-   this is view.html
-</p>
 <form action="" method="post">
 $:form.render() 
 <p>

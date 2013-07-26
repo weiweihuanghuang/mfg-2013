@@ -47,7 +47,7 @@ h3_c {
 	font-size:1200px;
 	color:grey;
 }
-p,h2,#menu,table,th,td,#ruler,a {
+p,h2,.menu,table,th,td,#ruler,a {
 	font:normal 15px/19px Menlo,'Inconsolata',mono;
 }
 h2 {
@@ -85,20 +85,19 @@ table,th,td {
 
 </style>
 
-<div class="title"> global parameters </div>
+<div class="title">Global Parameters</div>
 
-<p><a href="/font2/$cfont.idglobal">Global Parameter Set</a></p>
+<p><a href="/font2/$cfont.idglobal">Edit Global Parameters</a></p>
 
 <div id="mm">
 <form action="" method="POST" name="form">
 $:form.render()
 </form>
 </div>
-
 <p>
 $for gmg in gmlist:
-     idglobal <a href="/font2/$gmg.idglobal">$gmg.idglobal</a>  interp $gmg.metapolation sz $gmg.fontsize <br>
+     <a href="/font2/$gmg.idglobal">Global $gmg.idglobal</a>  interp $gmg.metapolation sz $gmg.fontsize <br>
 <p>
-<span class="button"><a href="/font3/$cfont.idlocalA">Local Param A</a></span><br><br>
-<span class="button"><a href="/font4/$cfont.idlocalB">Local Param B</a></span>
+<span><a href="/font3/$cfont.idlocalA">Edit A Local Param</a></span><br>
+<span><a href="/font4/$cfont.idlocalB">Edit B Local Param</a></span>
 </p>
