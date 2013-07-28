@@ -222,7 +222,7 @@ def get_postspa():
     glyphName = mfg.cFont.glyphunic 
     ids= " and idmaster="+'"'+str(idmaster)+'"'
 #    dbstr=db.select('vglyphoutlines', where='glyphName='+'"'+glyphName+'"' +ids, vars=locals())     
-    dbstr=db.select('vgls', where='glyphName='+'"'+glyphName+'"' +ids+' order by PointName asc', vars=locals())     
+    dbstr=db.select('vgls', where='glyphName='+'"'+glyphName+'"' +ids+' order by length(PointName) asc,PointName asc', vars=locals())     
     return list(dbstr)
 
 
@@ -467,6 +467,66 @@ def update_localparam(id, a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16
       px = a1, mean = a2, des=a3, ascl=a4, cap=a5, box=a6, width=a7, space=a8, xheight=a9, capital=a10, boxheight=a11, ascender=a12, descender=a13, inktrap=a14, stemcut=a15, skeleton=a16, superness=a17, over=a18)
     db.query("commit")
     return None
+
+
+def copyproject ():
+
+
+  idmaster=int(mfg.cFont.idmaster)
+#
+# copy unix font ufo files
+# 
+# mkdir -p fonts/3
+# cp -rpu fonts/1/* fonts/3/
+#
+  strg="select max(idmaster) maxid from master"
+  idma=list(db.query(strg))
+  idmasternew=idma[0].maxid  + 1
+  print "idmasternew", idmasternew
+#
+  strg = "mkdir -p fonts/"+str(idmasternew)
+  print "mkdir **",strg
+  os.system(strg)
+  strg = "cp -rpu fonts/"+str(idmaster)+"/* fonts/"+str(idmasternew)+"/"
+#
+  print "cp **",strg
+  os.system(strg)
+#
+#
+  for iloop in [1,-1]:
+    idmnew = "'"+str(iloop*idmasternew)+"'"
+    idm = "'"+str(iloop*idmaster)+"'"
+    strg="insert into master (idmaster,FontName,FontNameA,FontNameB,idglobal,vdate) select "+idmnew+", FontName,FontNameA,FontNameB,idglobal,now() from master where idmaster="+idm
+    print strg
+    db.query(strg)
+
+    strg="drop table if exists tmp"
+    db.query(strg)
+    strg="create temporary table tmp select * from glyphoutline where idmaster="+idm
+    db.query(strg)
+    strg="update tmp set idmaster="+idmnew+",vdate=now() where idmaster="+idm 
+    db.query(strg)
+    strg="insert into glyphoutline select * from tmp where idmaster="+idmnew
+    db.query(strg)
+
+    strg="drop table if exists tmp"
+    db.query(strg)
+    strg="create temporary table tmp select * from groupparam where idmaster="+idm
+    db.query(strg)
+    strg="update tmp set idmaster="+idmnew+",vdate=now() where idmaster="+idm 
+    db.query(strg)
+    strg="insert into groupparam select * from tmp where idmaster="+idmnew
+    db.query(strg)
+
+    strg="drop table if exists tmp"
+    db.query(strg)
+    strg="create temporary table tmp select * from glyphparam where idmaster="+idm
+    db.query(strg)
+    strg="update tmp set idmaster="+idmnew+",vdate=now() where idmaster="+idm 
+    db.query(strg)
+    strg="insert into glyphparam select * from tmp where idmaster="+idmnew
+    db.query(strg)
+
 
 
 def writexml():
