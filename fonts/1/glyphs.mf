@@ -2,7 +2,7 @@
 input spacing
 
 % meta parameters
-mtpx:=A_px+metapolation*(B_px-A_px);
+mtpx:=A_px#+metapolation*(B_px#-A_px#);
 mtwidth:=A_width+metapolation*(B_width-A_width);
 mtspace:=A_space+metapolation*(B_space-A_space);
 mtxheight:=A_xheight+metapolation*(B_xheight-A_xheight);
