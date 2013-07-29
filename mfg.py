@@ -15,7 +15,7 @@ urls = (
     '/font2/(\d+)', 'GlobalParam',
     '/font3/(\d+)', 'localParamA',
     '/font4/(\d+)', 'localParamB',
-)
+    '/cproject/(\d+)', 'copyproject')
 
 
 ### Templates
@@ -233,9 +233,9 @@ class Font1:
         )
     def GET(self,id):
         mmaster= list(model.get_masters())
-        if id > '0' and id <'1000': 
+        if int(id) > 0 and int(id) <1000: 
            master= list(model.get_master(id))
-        if id > "1000" :
+        if int(id) > 1000 :
               cFont.glyphName = chr(int(id)-1001+32)
               cFont.glyphunic = str(int(id)-1001)
         fontname =cFont.fontname 
@@ -257,18 +257,20 @@ class Font1:
         cFont.fontname = form.d.Name
         cFont.fontna = form.d.UFO_A
         cFont.fontnb = form.d.UFO_B
-        if id >'1000' :
+        if int(id) >1000 :
            form.d.GLYPH=chr(int(id)-1001+32)
            cFont.glyphunic = str(int(id)-1001)
            form.fill()
         cFont.glyphName  = form.d.GLYPH
         cFont.loadoption = form.d.loadoption
-        if id > '0' and id <'1000':
+        if int(id) > 0 and int(id) <1000:
            model.update_master(id)
            master= list(model.get_master(id))
         model.putFont()
         fontlist = [f for f in glob.glob("fonts/*/*.ufo")]
         fontlist.sort()
+        if cFont.loadoption == '1001':
+            return render.cproject() 
         return render.font1(fontlist,form,mmaster,cFont)
 
 class GlobalParam:
@@ -524,6 +526,16 @@ class localParamB:
         model.writeGlobalParam()
 
         return render.font4(formg,gml,cFont,glo,formlA,formlB)
+
+class copyproject:
+
+   def GET (selfi,id):
+       print "** in cproject copy project ",cFont.idmaster
+       if id == '1001' :
+          ip=model.copyproject()
+       cFont.loadoption='0'
+       return render.cproject()
+   
 
 app = web.application(urls, globals())
 
