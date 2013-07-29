@@ -492,7 +492,7 @@ def copyproject ():
   strg = "mkdir -p fonts/"+str(idmasternew)
   print "mkdir **",strg
   os.system(strg)
-  strg = "cp -rpu fonts/"+str(idmaster)+"/* fonts/"+str(idmasternew)+"/"
+  strg = "cp -rp fonts/"+str(idmaster)+"/* fonts/"+str(idmasternew)+"/"
 #
   print "cp **",strg
   os.system(strg)
