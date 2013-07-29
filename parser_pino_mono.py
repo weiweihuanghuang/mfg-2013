@@ -2274,18 +2274,6 @@ for i in range (0,nnz-1) :
 
 
 
-    if upp[i] <> "" :
-      zeile = zeile + "{up}"      
-
-    if downp[i] <> "" :
-      zeile = zeile + "{down}"      
-
-    if leftp[i] <> "" :
-      zeile = zeile + "{left}"      
-
-    if rightp[i] <> "" :
-      zeile = zeile + "{right}"      
-
     if penshifted[i] <> "" :
       zeile = zeile + " shifted (" + str(penshiftedval[i]) + ")"      
 
@@ -2314,7 +2302,17 @@ for i in range (0,nnz-1) :
     if superright[i] <> "" :
       zeile = zeile + strtwo + superright[i]+"("+str(zitem)+"e," +str(zitemsuper)+"e, ["+str(superrightval[i]) + '+ (metapolation * (' + str(superrightvalB[i])+ '-' +str(superrightval[i]) + '))])' + strtwo      
 
+    if upp[i] <> "" :
+      zeile = zeile + "{up}"      
 
+    if downp[i] <> "" :
+      zeile = zeile + "{down}"      
+
+    if leftp[i] <> "" :
+      zeile = zeile + "{left}"      
+
+    if rightp[i] <> "" :
+      zeile = zeile + "{right}"      
 
     if dir[i] <> "" :
        if dirB[i] <> "" :
