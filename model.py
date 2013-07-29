@@ -623,6 +623,32 @@ def writexml():
      with codecs.open(glyphsource, "w", "utf-8") as out:
           xmldoc.writexml(out) 
 
+
+def get_activeglyph():
+    glyphName = mfg.cFont.glyphunic 
+    idmaster = gidmast(mfg.cFont.idwork)
+    ids= " idmaster="+'"'+str(idmaster)+'"'
+    strg='select distinct(glyphname)  from glyphoutline where '+ids
+    print strg
+    return db.query(strg)
+
+
+def writeallxmlfromdb():
+     print "**** in writeallxmlfromdb "
+     for idwork in ['0','1']:
+        mfg.cFont.idwork = idwork
+        idmaster = mfg.cFont.idmaster
+        idmaster = gidmast(mfg.cFont.idwork)
+        ids= " idmaster="+'"'+str(idmaster)+'"'
+        alist=list(get_activeglyph())
+        for glyphn in alist :
+          mfg.cFont.glyphunic = glyphn.glyphname
+          mfg.cFont.glyphName = glyphn.glyphname
+          writexml()
+     mfg.cFont.idwork = 0
+     mfg.cFont.loadoption = 0
+     return None
+
 def writeGlyphlist():
   ifile=open(mfg.cFont.fontpath+"glyphlist.mf","w")
   
