@@ -65,7 +65,7 @@ width_61:=1.0;		spacing_61L:=0pt+mtspace_pt;		spacing_61R:=0+mtspace*2;			% brac
 width_62:=1.0;		spacing_62L:=0pt+mtspace_pt;		spacing_62R:=0+mtspace*2;			% asciicircum
 width_63:=1.0;		spacing_63L:=0pt+mtspace_pt;		spacing_63R:=0+mtspace*2;			% underscore
 width_64:=1.0;		spacing_64L:=0pt+mtspace_pt;		spacing_64R:=0+mtspace*2;			% grave
-width_65:=1.0;		spacing_65L:=0pt+mtspace_pt;		spacing_65R:=0+metapolation*(0.5-0)+mtspace*2;			% a
+width_65:=1.2;		spacing_65L:=0pt+mtspace_pt;		spacing_65R:=0+metapolation*(0.5-0)+mtspace*2;			% a
 width_66:=1.0;		spacing_66L:=0pt+mtspace_pt;		spacing_66R:=0+mtspace*2;			% b
 width_67:=1.0;		spacing_67L:=0pt+mtspace_pt;		spacing_67R:=0+mtspace*2;			% c
 width_68:=1.0;		spacing_68L:=0pt+mtspace_pt;		spacing_68R:=0+mtspace*2;			% d

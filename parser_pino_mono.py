@@ -34,7 +34,7 @@ u = itemlist[0].attributes['hex'].value
 
 
 
-print 'beginfontchar(' + g + ', (' + w + '*A_width + metapolation * (' + w2 + '*B_width - ' + w + '*A_width)) * width_' + g + "+ spacing_" +  g  + "R, 0, 0 );"
+print 'beginfontchar(' + g + ', ((' + w + '*A_width + metapolation * (' + w2 + '*B_width - ' + w + '*A_width)) + spacing_' + g + "R) * width_" +  g  + ", 0, 0 );"
 # print """if known ps_output:
 # glyph_name "uni""" + u + """"; 
 # fi
