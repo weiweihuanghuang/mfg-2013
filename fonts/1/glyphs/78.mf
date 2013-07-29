@@ -139,6 +139,10 @@ ang4 := angle((z4Br + (metapolation * (z4Cr -z4Br))) - (z4Bl + (metapolation * (
 
 % test extra pen angle
 
+
+
+% test extra pen angle
+
 ang1 := ang1;
 ang2 := ang2;
 ang3 := ang3;
@@ -150,18 +154,18 @@ ang7 := ang7;
 
 % test new penpos
 
-penpos1(dist1 + ((A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist1)), ang1);
-penpos2(dist2 + ((A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist2)), ang2);
-penpos3(dist3 + ((A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist3)), ang3);
-penpos4(dist4 + ((A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist4)), ang4);
-penpos5(dist5 + ((A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist5)), ang5);
-penpos6(dist6 + ((A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist6)), ang6);
-penpos7(dist7 + ((A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist7)), ang7);
+penpos1(dist1 + (A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist1)-stemcutter(1.0), ang1);
+penpos2(dist2 + (A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist2), ang2);
+penpos3(dist3 + (A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist3), ang3);
+penpos4(dist4 + (A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist4), ang4);
+penpos5(dist5 + (A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist5), ang5);
+penpos6(dist6 + (A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist6), ang6);
+penpos7(dist7 + (A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist7), ang7);
 
 
 % test new center (z) points
 
-z1=((A_width + metapolation * (B_width - A_width)) * (x210 + metapolation * (x21A - x210) + spacing_78L) * width_78, (y210 + metapolation *(y21A - y210))*((A_xheight + metapolation * (B_xheight - A_xheight)) / mean#));
+z1=((A_width + metapolation * (B_width - A_width)) * (x210 + metapolation * (x21A - x210) + spacing_78L) * width_78, (y210 + metapolation *(y21A - y210))*((A_xheight + metapolation * (B_xheight - A_xheight)) / mean#)) stemshift (-1.0);
 z2=((A_width + metapolation * (B_width - A_width)) * (x220 + metapolation * (x22A - x220) + spacing_78L) * width_78, (y220 + metapolation *(y22A - y220))*((A_xheight + metapolation * (B_xheight - A_xheight)) / mean#));
 z3=((A_width + metapolation * (B_width - A_width)) * (x230 + metapolation * (x23A - x230) + spacing_78L) * width_78, (y230 + metapolation *(y23A - y230))*((A_xheight + metapolation * (B_xheight - A_xheight)) / mean#));
 z4=((A_width + metapolation * (B_width - A_width)) * (x240 + metapolation * (x24A - x240) + spacing_78L) * width_78, (y240 + metapolation *(y24A - y240))*((A_xheight + metapolation * (B_xheight - A_xheight)) / mean#));
@@ -171,10 +175,10 @@ z7=((A_width + metapolation * (B_width - A_width)) * (x270 + metapolation * (x27
 
 % penstrokes
 
-penstroke z1e ... 
+penstroke z1e -- 
 z2e ... 
 z3e;
-penstroke z4e ... {right} 
+penstroke z4e shifted (0,-50mtpx) ... 
 z5e shifted (0, (A_xheightpt + metapolation * (B_xheightpt - A_xheightpt)) - y5l) + (0, A_over + metapolation * (B_over - A_over)) ... 
 z6e{down} ... 
 z7e

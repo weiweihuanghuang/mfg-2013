@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="quoteright" format="1">
+  <advance width="203"/>
+  <unicode hex="2019"/>
+  <outline>
+    <contour>
+      <point x="50" y="544" type="line" name="z2r"/>
+      <point x="153" y="544" type="line" name="z2l"/>
+      <point x="153" y="650" type="line" name="z1l"/>
+      <point x="50" y="650" type="line" name="z1r"/>
+    </contour>
+    <contour>
+      <point x="101" y="530" type="line" smooth="yes" name="z4r"/>
+      <point x="101" y="497"/>
+      <point x="85" y="481"/>
+      <point x="47" y="463" type="curve" name="z5r"/>
+      <point x="70" y="421" type="line" name="z5l"/>
+      <point x="107" y="434"/>
+      <point x="153" y="470"/>
+      <point x="153" y="539" type="curve" smooth="yes" name="z4l"/>
+      <point x="153" y="579" type="line" name="z3l"/>
+      <point x="101" y="579" type="line" name="z3r"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.typemytype.robofont.layerData</key>
+      <dict>
+        <key>background</key>
+        <dict>
+          <key>anchors</key>
+          <array>
+          </array>
+          <key>components</key>
+          <array>
+          </array>
+          <key>contours</key>
+          <array>
+          </array>
+          <key>lib</key>
+          <dict>
+          </dict>
+          <key>name</key>
+          <string>quoteright</string>
+          <key>unicodes</key>
+          <array>
+          </array>
+          <key>width</key>
+          <integer>203</integer>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

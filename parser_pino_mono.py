@@ -34,7 +34,7 @@ u = itemlist[0].attributes['hex'].value
 
 
 
-print 'beginfontchar(' + g + ', (' + w + '*A_width + metapolation * (' + w + '*B_width - ' + w2 + '*A_width)) * width_' + g + "+ spacing_" +  g  + "R, 0, 0 );"
+print 'beginfontchar(' + g + ', (' + w + '*A_width + metapolation * (' + w2 + '*B_width - ' + w + '*A_width)) * width_' + g + "+ spacing_" +  g  + "R, 0, 0 );"
 # print """if known ps_output:
 # glyph_name "uni""" + u + """"; 
 # fi
@@ -356,6 +356,102 @@ for item in itemlist :
                 print "ang"+ znamel[1:-1] + " := angle((" + znamel[0:-1] + "Br + (metapolation * (" + znamel[0:-1] + "Cr -" + znamel[0:-1] + "Br))) - (" + znamel[0:-1] + "Bl + (metapolation * (" + znamel[0:-1] + "Cl -" + znamel[0:-1] + "Bl))));" 
 
 
+# reading extra pen angle Font B 
+
+print """
+
+% test extra pen angle
+""" 
+
+
+glyph = glif.getElementsByTagName('glyph')
+g = glyph[0].attributes['name'].value
+
+
+
+glif = minidom.parse(font_b)
+itemlist = glif.getElementsByTagName('point') 
+
+inattr=0   
+ivn = 0
+stre = " ... "
+strtwo = " .. "
+stline = " -- "
+strz = ""
+zzn = []
+startp = []
+startpval = []
+
+# create empty variable list
+
+angle = []
+angleval_B = []
+
+
+# add iteration to string
+
+for i in range (1,100):
+  startp.append("")
+  startpval.append(0)
+
+  angle.append("")
+  angleval_B.append(0)
+
+
+
+
+# search for parameter values
+  
+for item in itemlist :
+  for i in range (1,100):
+     znamel = 'z'+str(i)+'l'
+     znamer = 'z'+str(i)+'r'
+     
+     ipn=0
+     try :
+       x = item.attributes['x'].value
+       y = item.attributes['y'].value
+       im =item.attributes['name'] 
+       try :
+	 istartp = item.attributes['startp'].value   
+	 istartp = True
+       except :
+       	 istartp = False
+
+       try :
+	 iangle = item.attributes['angle'].value   
+	 iangle = True
+       except :
+       	 iangle = False
+
+
+
+
+       ipn = 1   
+     except : 
+       inattr=inattr+1 
+
+
+     if ipn == 1 :
+       if im.value.find(znamel) > -1 :
+          zzn.append (i)
+       if im.value.find(znamel) > -1 or im.value.find(znamer) > -1:
+
+         if istartp == True :
+           istartpval = item.attributes['startp'].value
+           del startp[i-1]
+           startp.insert(i-1,"startp")
+	   del startpval[i-1]
+           startpval.insert(i-1,istartpval)
+
+         if iangle == True :
+           iangleval = item.attributes['angle'].value
+           del angle[i-1]
+           angle.insert(i-1,"angle")
+	   del angleval_B[i-1]
+           angleval_B.insert(i-1,iangleval)
+
+
 
 # reading extra pen angle 
 
@@ -479,7 +575,7 @@ for i in range (0,nnz) :
 # parameters 
 
   if angle[i] <> "" :
-     zeile = zeile + "ang" + str(zitem) + " := ang" + str(zitem) + "  " + str(angleval[i]) + ";" 
+     zeile = zeile + "ang" + str(zitem) + " := ang" + str(zitem) + "  " + str(angleval[i]) + "+ (metapolation * (" + str(angleval_B[i]) + " - " + str(angleval[i]) +" ));" 
   
   else :
      zeile = zeile + "ang" + str(zitem) + " := ang" + str(zitem) + ";"
