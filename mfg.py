@@ -271,6 +271,10 @@ class Font1:
         fontlist.sort()
         if cFont.loadoption == '1001':
             return render.cproject() 
+        print "loadoption ",cFont.loadoption
+        if cFont.loadoption == '2':
+            model.writeallxmlfromdb()
+            
         return render.font1(fontlist,form,mmaster,cFont)
 
 class GlobalParam:
