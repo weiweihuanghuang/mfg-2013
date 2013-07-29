@@ -13,7 +13,7 @@
     <contour>
       <point pointNo="p7" x="185" y="394"/>
       <point pointNo="p8" x="236" y="427"/>
-      <point name="z5r" pointNo="p9" rightp="1" smooth="yes" type="curve" x="309" y="427"/>
+      <point name="z5r" overx="y5l" pointNo="p9" smooth="yes" type="curve" x="309" y="427"/>
       <point pointNo="p10" x="366" y="427"/>
       <point pointNo="p11" x="406" y="395"/>
       <point downp="1" name="z6r" pointNo="p12" smooth="yes" type="curve" x="406" y="333"/>
@@ -26,7 +26,7 @@
       <point pointNo="p19" x="247" y="508"/>
       <point pointNo="p20" x="173" y="465"/>
       <point name="z4l" pointNo="p21" type="curve" x="133" y="391"/>
-      <point name="z4r" pointNo="p22" startp="1" type="line" x="133" y="306"/>
+      <point name="z4r" pointNo="p22" rightp2="1" startp="1" type="line" x="133" y="306"/>
     </contour>
   </outline>
   <lib>

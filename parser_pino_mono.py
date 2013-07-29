@@ -2401,40 +2401,40 @@ for i in range (0,nnz-1) :
     if penshifted[i] <> "" :
       zeile = zeile + " shifted (" + str(penshiftedval[i]) + ")"       
 
-    if  ( tension[i] <> "" and 
-          upp2[i] <> "") :
-            zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100-' + str(tensionval[i]) + '/100)))' + strtwo  + "{up}" 
-    else :
-      if upp2[i] <> "" :
-        zeile = zeile + dash + "{up}" 
-
-    if  ( tension[i] <> "" and 
-          downp2[i] <> "") :
-            zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100-' + str(tensionval[i]) + '/100)))' + strtwo  + "{down}" 
-    else :
-      if downp2[i] <> "" :
-        zeile = zeile + dash + "{down}" 
-
-    if  ( tension[i] <> "" and 
-          rightp2[i] <> "") :
-            zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100-' + str(tensionval[i]) + '/100)))' + strtwo  + "{right}" 
-    else :
-      if rightp2[i] <> "" :
-        zeile = zeile + dash + "{right}" 
-
-    if  ( tension[i] <> "" and 
-          leftp2[i] <> "") :
-            zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100-' + str(tensionval[i]) + '/100)))' + strtwo  + "{left}" 
-    else :
-      if leftp2[i] <> "" :
-        zeile = zeile + dash + "{left}" 
-
-    if  ( tension[i] <> "" and 
-          dir2[i] <> "") :
-            zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100-' + str(tensionval[i]) + '/100)))' + strtwo  + "{dir "+ str(dir2val[i]) + "}" 
-    else :
-      if dir2[i] <> "" :
-        zeile = zeile + dash + "{dir "+ str(dir2val[i]) + "}" 
+#     if  ( tension[i] <> "" and 
+#           upp2[i] <> "") :
+#             zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100-' + str(tensionval[i]) + '/100)))' + strtwo  + "{up}" 
+#     else :
+#       if upp2[i] <> "" :
+#         zeile = zeile + dash + "{up}" 
+# 
+#     if  ( tension[i] <> "" and 
+#           downp2[i] <> "") :
+#             zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100-' + str(tensionval[i]) + '/100)))' + strtwo  + "{down}" 
+#     else :
+#       if downp2[i] <> "" :
+#         zeile = zeile + dash + "{down}" 
+# 
+#     if  ( tension[i] <> "" and 
+#           rightp2[i] <> "") :
+#             zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100-' + str(tensionval[i]) + '/100)))' + strtwo  + "{right}" 
+#     else :
+#       if rightp2[i] <> "" :
+#         zeile = zeile + dash + "{right}" 
+# 
+#     if  ( tension[i] <> "" and 
+#           leftp2[i] <> "") :
+#             zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100-' + str(tensionval[i]) + '/100)))' + strtwo  + "{left}" 
+#     else :
+#       if leftp2[i] <> "" :
+#         zeile = zeile + dash + "{left}" 
+# 
+#     if  ( tension[i] <> "" and 
+#           dir2[i] <> "") :
+#             zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i]) + '/100 + (metapolation * (' + str(tensionvalB[i]) + '/100-' + str(tensionval[i]) + '/100)))' + strtwo  + "{dir "+ str(dir2val[i]) + "}" 
+#     else :
+#       if dir2[i] <> "" :
+#         zeile = zeile + dash + "{dir "+ str(dir2val[i]) + "}" 
 
     if  ( tension[i] <> "" and 
           cycle[i] <> "") :
@@ -2502,28 +2502,28 @@ if overdesc[i+1] <> "" :
 
 
 
-if  ( tension[i+1] <> "" and 
-      upp2[i+1] <> "") :
-        zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i+1]) + '/100 + (metapolation * (' + str(tensionvalB[i+1]) + '/100-' + str(tensionval[i+1]) + '/100)))' + strtwo  + "{up}" 
-
-if  ( tension[i+1] <> "" and 
-      downp2[i+1] <> "") :
-        zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i+1]) + '/100 + (metapolation * (' + str(tensionvalB[i+1]) + '/100-' + str(tensionval[i+1]) + '/100)))' + strtwo  + "{down}" 
-
-if  ( tension[i+1] <> "" and 
-      rightp2[i+1] <> "") :
-        zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i+1]) + '/100 + (metapolation * (' + str(tensionvalB[i+1]) + '/100-' + str(tensionval[i+1]) + '/100)))' + strtwo  + "{right}" 
-
-if  ( tension[i+1] <> "" and 
-      leftp2[i+1] <> "") :
-        zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i+1]) + '/100 + (metapolation * (' + str(tensionvalB[i+1]) + '/100-' + str(tensionval[i+1]) + '/100)))' + strtwo  + "{left}" 
-
-if  ( tension[i+1] <> "" and 
-      dir2[i+1] <> "") :
-        zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i+1]) + '/100 + (metapolation * (' + str(tensionvalB[i+1]) + '/100-' + str(tensionval[i+1]) + '/100)))' + strtwo  + "{dir "+ str(dir2val[i+1]) + "}" 
-
-if upp2[i+1] <> "" :
- zeile = zeile + dash + upp2[i+1]  
+# if  ( tension[i+1] <> "" and 
+#       upp2[i+1] <> "") :
+#         zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i+1]) + '/100 + (metapolation * (' + str(tensionvalB[i+1]) + '/100-' + str(tensionval[i+1]) + '/100)))' + strtwo  + "{up}" 
+# 
+# if  ( tension[i+1] <> "" and 
+#       downp2[i+1] <> "") :
+#         zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i+1]) + '/100 + (metapolation * (' + str(tensionvalB[i+1]) + '/100-' + str(tensionval[i+1]) + '/100)))' + strtwo  + "{down}" 
+# 
+# if  ( tension[i+1] <> "" and 
+#       rightp2[i+1] <> "") :
+#         zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i+1]) + '/100 + (metapolation * (' + str(tensionvalB[i+1]) + '/100-' + str(tensionval[i+1]) + '/100)))' + strtwo  + "{right}" 
+# 
+# if  ( tension[i+1] <> "" and 
+#       leftp2[i+1] <> "") :
+#         zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i+1]) + '/100 + (metapolation * (' + str(tensionvalB[i+1]) + '/100-' + str(tensionval[i+1]) + '/100)))' + strtwo  + "{left}" 
+# 
+# if  ( tension[i+1] <> "" and 
+#       dir2[i+1] <> "") :
+#         zeile = zeile + strtwo + "tension" + " (" + str(tensionval[i+1]) + '/100 + (metapolation * (' + str(tensionvalB[i+1]) + '/100-' + str(tensionval[i+1]) + '/100)))' + strtwo  + "{dir "+ str(dir2val[i+1]) + "}" 
+# 
+# if upp2[i+1] <> "" :
+#  zeile = zeile + dash + upp2[i+1]  
 
 
 
