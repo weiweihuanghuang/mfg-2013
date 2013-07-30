@@ -63,10 +63,18 @@ table,th,td {
 
 <h2>Glyph View</h2>
 
-<p> Selected Fonts : <br>
+<p> Selected Fonts :<br>
+<div class="title">
 $for fonts in fontsource:
   $fonts <br>
 </p> 
+</div>
+
+<p>
+Selected Glyph :</p>
+<div class="title">
+     $webglyph <br>
+</div>
 
 $for mast in master:
   <p> 

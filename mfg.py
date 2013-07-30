@@ -58,7 +58,7 @@ class Index:
         """ Show page """
         posts = model.get_posts()
         master = model.get_masters()
-        fontsource = [cFont.fontna,cFont.fontnb,cFont.glyphName]
+        fontsource = [cFont.fontna,cFont.fontnb]
 	webglyph = cFont.glyphName
         return render.metap(posts,master,fontsource,webglyph)
 
@@ -75,11 +75,11 @@ class Metap:
         if id =='0':
 #          we are working on font A
 #
-           fontsource = [cFont.fontna,cFont.glyphName]
+           fontsource = [cFont.fontna]
         if id =='1':
 #          we are working on font B
 #          
-           fontsource = [cFont.fontnb,cFont.glyphName]
+           fontsource = [cFont.fontnb]
 
 	webglyph = cFont.glyphName
         return render.metap(posts,master,fontsource,webglyph)

@@ -1,5 +1,10 @@
 $def with (posts,post,form,formparam,formparamG,master,mastglobal,webglyph,glyphparam,groupparam,cfont,postspa)
-<title>Glyph Edit</title>
+<title>
+$if cfont.idwork == '0' :
+       $cfont.fontna 
+$if cfont.idwork == '1' : 
+       $cfont.fontnb 
+</title>
 <link rel="stylesheet" type="text/css" href="/static/mfg.css"/>
 <style>
 .first{
@@ -35,6 +40,15 @@ h2{
 #menuleft{
 	width: 300px;
 }
+
+#fonttitle{
+	position:fixed;
+	top: 10px;
+	left: 40%;
+	margin: auto;
+	color: grey;
+}
+
 
 .menuleftgreen{
 	z-index: 5;
@@ -126,10 +140,12 @@ $for mast in mastglobal:
 </p>
  -->
 
-<p id="menuleft">  
+<p id="fonttitle">  
 $if cfont.idwork == '0' :
+       '$webglyph' Glyph,
        Font A: $cfont.fontna 
 $if cfont.idwork == '1' : 
+       '$webglyph' Glyph,
        Font B: $cfont.fontnb 
 </p> 
 
