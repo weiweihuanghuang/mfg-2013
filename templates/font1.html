@@ -86,12 +86,15 @@ $for mma in mmaster:
 $:form.render()
 </form>
 </div>
+
+
 <div>
 <p>
-<a href="/font2/$cfont.idglobal" style="color:green;text-decoration:underline;">Edit Global and Local Parameters</a>
+<a href="/font2/$cfont.idglobal" style="color:green;text-decoration:underline;">Edit Global and Local Parameters</a><p><span class="button"><a href="/"> Editor</a></span></p>
 
 </p>
-<p><br><br>
+
+<p><br>
 loadoption [0]: default case, read parameters from the xml attributes <br>
            [1]: read only cooridnates and apply parameters stored in the database, coresponding to the glyph, the fontA or fontB. <br>
                  this is equivalent as an update in the xml-source happen not with the webinterface and with a newer timestamp as the database records.<br>

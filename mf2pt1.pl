@@ -902,8 +902,8 @@ else {
     print FFSCRIPT <<'AUTOHINT';
 Open($1);
 SelectAll();
-RemoveOverlap();
-AddExtrema();
+# RemoveOverlap();
+# AddExtrema();
 Simplify(0, 2);
 CorrectDirection();
 Simplify(0, 2);

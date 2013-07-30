@@ -1,5 +1,5 @@
 $def with (form,gmlist,cfont,glo,formlA,formlB)
-<title>A Local Parameters</title>
+<title>B Local Parameters</title>
 <link rel="stylesheet" type="text/css" href="/static/mfg.css"/>
 <style>
 p,h2,.menu,table,th,td,#ruler,.paramset,a {
@@ -21,17 +21,24 @@ table,th,td {
 	text-align:left;
 	color: red;
 	}
-#mmA {
-     display:inline-block;
-     z-index:10;
-     }
+#mmA table,#mmA th,#mmA td,#mmA A {
+	width:200px;
+	text-align:left;
+	color: black;
+	}
 #mmB {
-     display:inline-block;
-     z-index:10;
+    display:inline-block;
+    z-index:10;
+     }
+#mmA {
+    display:inline-block;
+    z-index:10;
+    background: rgb(200,245,200);
+    color: black;
      }
 .paramset {
-     display:inline-block;
-     margin: 0 75 20 0;
+    display:inline-block;
+    margin: 0 75 20 0;
 }
 .paramname {
 	color:rgb(300,150,150);
@@ -64,7 +71,7 @@ $:formlB.render()
 
 <div class="paramset">
 $for gm in glo:
-	<a href="/font3/$gm.idlocal">
+	<a href="/font4/$gm.idlocal">
 	Local Param $gm.idlocal</a><br><br>
 	<span class="paramname">px</span> <span class="value">$gm.px</span><br>
 	<span class="paramname">width</span> <span class="value">$gm.width</span><br>

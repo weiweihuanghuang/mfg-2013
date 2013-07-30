@@ -1,98 +1,101 @@
 mtspace:=A_space+metapolation*(B_space-A_space);							
 mtspace_pt:=A_spacept+metapolation*(B_spacept-A_spacept);							
 							
-width_1:=1.0;		spacing_1L:=0pt+mtspace_pt;		spacing_1R:=0+mtspace*2;			% exclam
-width_2:=1.0;		spacing_2L:=0pt+mtspace_pt;		spacing_2R:=0+mtspace*2;			% quotedbl
-width_3:=1.0;		spacing_3L:=0pt+mtspace_pt;		spacing_3R:=0+mtspace*2;			% numbersign
-width_4:=1.0;		spacing_4L:=0pt+mtspace_pt;		spacing_4R:=0+mtspace*2;			% dollar
-width_5:=1.0;		spacing_5L:=0pt+mtspace_pt;		spacing_5R:=0+mtspace*2;			% percent
-width_6:=1.0;		spacing_6L:=0pt+mtspace_pt;		spacing_6R:=0+mtspace*2;			% ampersand
-width_7:=1.0;		spacing_7L:=0pt+mtspace_pt;		spacing_7R:=0+mtspace*2;			% quotesingle
-width_8:=1.0;		spacing_8L:=0pt+mtspace_pt;		spacing_8R:=0+mtspace*2;			% parenleft
-width_9:=1.0;		spacing_9L:=0pt+mtspace_pt;		spacing_9R:=0+mtspace*2;			% parenright
-width_10:=1.0;		spacing_10L:=0pt+mtspace_pt;		spacing_10R:=0+mtspace*2;			% asterisk
-width_11:=1.0;		spacing_11L:=0pt+mtspace_pt;		spacing_11R:=0+mtspace*2;			% plus
-width_12:=1.0;		spacing_12L:=0pt+mtspace_pt;		spacing_12R:=0+mtspace*2;			% comma
-width_13:=1.0;		spacing_13L:=0pt+mtspace_pt;		spacing_13R:=0+mtspace*2;			% hyphen
-width_14:=1.0;		spacing_14L:=0pt+mtspace_pt;		spacing_14R:=0+mtspace*2;			% period
-width_15:=1.0;		spacing_15L:=0pt+mtspace_pt;		spacing_15R:=0+mtspace*2;			% slash
-width_16:=1.0;		spacing_16L:=0pt+mtspace_pt;		spacing_16R:=0+mtspace*2;			% zero
-width_17:=1.0;		spacing_17L:=0pt+mtspace_pt;		spacing_17R:=0+mtspace*2;			% one
-width_18:=1.0;		spacing_18L:=0pt+mtspace_pt;		spacing_18R:=0+mtspace*2;			% two
-width_19:=1.0;		spacing_19L:=0pt+mtspace_pt;		spacing_19R:=0+mtspace*2;			% three
-width_20:=1.0;		spacing_20L:=0pt+mtspace_pt;		spacing_20R:=0+mtspace*2;			% four
-width_21:=1.0;		spacing_21L:=0pt+mtspace_pt;		spacing_21R:=0+mtspace*2;			% five
-width_22:=1.0;		spacing_22L:=0pt+mtspace_pt;		spacing_22R:=0+mtspace*2;			% six
-width_23:=1.0;		spacing_23L:=0pt+mtspace_pt;		spacing_23R:=0+mtspace*2;			% seven
-width_24:=1.0;		spacing_24L:=0pt+mtspace_pt;		spacing_24R:=0+mtspace*2;			% eight
-width_25:=1.0;		spacing_25L:=0pt+mtspace_pt;		spacing_25R:=0+mtspace*2;			% nine
-width_26:=1.0;		spacing_26L:=0pt+mtspace_pt;		spacing_26R:=0+mtspace*2;			% colon
-width_27:=1.0;		spacing_27L:=0pt+mtspace_pt;		spacing_27R:=0+mtspace*2;			% semicolon
-width_28:=1.0;		spacing_28L:=0pt+mtspace_pt;		spacing_28R:=0+mtspace*2;			% less
-width_29:=1.0;		spacing_29L:=0pt+mtspace_pt;		spacing_29R:=0+mtspace*2;			% equal
-width_30:=1.0;		spacing_30L:=0pt+mtspace_pt;		spacing_30R:=0+mtspace*2;			% greater
-width_31:=1.0;		spacing_31L:=0pt+mtspace_pt;		spacing_31R:=0+mtspace*2;			% question
-width_32:=1.0;		spacing_32L:=0pt+mtspace_pt;		spacing_32R:=0+mtspace*2;			% at
-width_33:=1.0;		spacing_33L:=0pt+mtspace_pt;		spacing_33R:=0+mtspace*2;			% A
-width_34:=1.0;		spacing_34L:=0pt+mtspace_pt;		spacing_34R:=0+mtspace*2;			% B
-width_35:=1.0;		spacing_35L:=0pt+mtspace_pt;		spacing_35R:=0+mtspace*2;			% C
-width_36:=1.0;		spacing_36L:=0pt+mtspace_pt;		spacing_36R:=0+mtspace*2;			% D
-width_37:=1.0;		spacing_37L:=0pt+mtspace_pt;		spacing_37R:=0+mtspace*2;			% E
-width_38:=1.0;		spacing_38L:=0pt+mtspace_pt;		spacing_38R:=0+mtspace*2;			% F
-width_39:=1.0;		spacing_39L:=0pt+mtspace_pt;		spacing_39R:=0+mtspace*2;			% G
-width_40:=1.0;		spacing_40L:=0pt+mtspace_pt;		spacing_40R:=0+mtspace*2;			% H
-width_41:=1.0;		spacing_41L:=0pt+mtspace_pt;		spacing_41R:=0+mtspace*2;			% I
-width_42:=1.0;		spacing_42L:=0pt+mtspace_pt;		spacing_42R:=0+mtspace*2;			% J
-width_43:=1.0;		spacing_43L:=0pt+mtspace_pt;		spacing_43R:=0+mtspace*2;			% K
-width_44:=1.0;		spacing_44L:=0pt+mtspace_pt;		spacing_44R:=0+mtspace*2;			% L
-width_45:=1.0;		spacing_45L:=0pt+mtspace_pt;		spacing_45R:=0+mtspace*2;			% M
-width_46:=1.0;		spacing_46L:=0pt+mtspace_pt;		spacing_46R:=0+mtspace*2;			% N
-width_47:=1.0;		spacing_47L:=0pt+mtspace_pt;		spacing_47R:=0+mtspace*2;			% O
-width_48:=1.0;		spacing_48L:=0pt+mtspace_pt;		spacing_48R:=0+mtspace*2;			% P
-width_49:=1.0;		spacing_49L:=0pt+mtspace_pt;		spacing_49R:=0+mtspace*2;			% Q
-width_50:=1.0;		spacing_50L:=0pt+mtspace_pt;		spacing_50R:=0+mtspace*2;			% R
-width_51:=1.0;		spacing_51L:=0pt+mtspace_pt;		spacing_51R:=0+mtspace*2;			% S
-width_52:=1.0;		spacing_52L:=0pt+mtspace_pt;		spacing_52R:=0+mtspace*2;			% T
-width_53:=1.0;		spacing_53L:=0pt+mtspace_pt;		spacing_53R:=0+mtspace*2;			% U
-width_54:=1.0;		spacing_54L:=0pt+mtspace_pt;		spacing_54R:=0+mtspace*2;			% V
-width_55:=1.0;		spacing_55L:=0pt+mtspace_pt;		spacing_55R:=0+mtspace*2;			% W
-width_56:=1.0;		spacing_56L:=0pt+mtspace_pt;		spacing_56R:=0+mtspace*2;			% X
-width_57:=1.0;		spacing_57L:=0pt+mtspace_pt;		spacing_57R:=0+mtspace*2;			% Y
-width_58:=1.0;		spacing_58L:=0pt+mtspace_pt;		spacing_58R:=0+mtspace*2;			% Z
-width_59:=1.0;		spacing_59L:=0pt+mtspace_pt;		spacing_59R:=0+mtspace*2;			% bracketleft
-width_60:=1.0;		spacing_60L:=0pt+mtspace_pt;		spacing_60R:=0+mtspace*2;			% backslash
-width_61:=1.0;		spacing_61L:=0pt+mtspace_pt;		spacing_61R:=0+mtspace*2;			% bracketright
-width_62:=1.0;		spacing_62L:=0pt+mtspace_pt;		spacing_62R:=0+mtspace*2;			% asciicircum
-width_63:=1.0;		spacing_63L:=0pt+mtspace_pt;		spacing_63R:=0+mtspace*2;			% underscore
-width_64:=1.0;		spacing_64L:=0pt+mtspace_pt;		spacing_64R:=0+mtspace*2;			% grave
-width_65:=1.0;		spacing_65L:=0pt+mtspace_pt;		spacing_65R:=0+metapolation*(0.5-0)+mtspace*2;			% a
-width_66:=1.0;		spacing_66L:=0pt+mtspace_pt;		spacing_66R:=0+mtspace*2;			% b
-width_67:=1.0;		spacing_67L:=0pt+mtspace_pt;		spacing_67R:=0+mtspace*2;			% c
-width_68:=1.0;		spacing_68L:=0pt+mtspace_pt;		spacing_68R:=0+mtspace*2;			% d
-width_69:=1.0;		spacing_69L:=0pt+mtspace_pt;		spacing_69R:=0+mtspace*2;			% e
-width_70:=1.0;		spacing_70L:=0pt+mtspace_pt;		spacing_70R:=0+mtspace*2;			% f
-width_71:=1.0;		spacing_71L:=0pt+mtspace_pt;		spacing_71R:=0+mtspace*2;			% g
-width_72:=1.0;		spacing_72L:=0pt+mtspace_pt;		spacing_72R:=0+mtspace*2;			% h
-width_73:=1.0;		spacing_73L:=0pt+mtspace_pt;		spacing_73R:=0+mtspace*2;			% i
-width_74:=1.0;		spacing_74L:=0pt+mtspace_pt;		spacing_74R:=0+mtspace*2;			% j
-width_75:=1.0;		spacing_75L:=0pt+mtspace_pt;		spacing_75R:=0+mtspace*2;			% k
-width_76:=1.0;		spacing_76L:=0pt+mtspace_pt;		spacing_76R:=0+mtspace*2;			% l
-width_77:=1.0;		spacing_77L:=0pt+mtspace_pt;		spacing_77R:=0+mtspace*2;			% m
-width_78:=1.0;		spacing_78L:=0pt+mtspace_pt;		spacing_78R:=0+mtspace*2;			% n
-width_79:=1.0;		spacing_79L:=0pt+mtspace_pt;		spacing_79R:=0+mtspace*2;			% o
-width_80:=1.0;		spacing_80L:=0pt+mtspace_pt;		spacing_80R:=0+mtspace*2;			% p
-width_81:=1.0;		spacing_81L:=0pt+mtspace_pt;		spacing_81R:=0+mtspace*2;			% q
-width_82:=1.0;		spacing_82L:=0pt+mtspace_pt;		spacing_82R:=0+mtspace*2;			% r
-width_83:=1.0;		spacing_83L:=0pt+mtspace_pt;		spacing_83R:=0+mtspace*2;			% s
-width_84:=1.0;		spacing_84L:=0pt+mtspace_pt;		spacing_84R:=0+mtspace*2;			% t
-width_85:=1.0;		spacing_85L:=0pt+mtspace_pt;		spacing_85R:=0+mtspace*2;			% u
-width_86:=1.0;		spacing_86L:=0pt+mtspace_pt;		spacing_86R:=0+mtspace*2;			% v
-width_87:=1.0;		spacing_87L:=0pt+mtspace_pt;		spacing_87R:=0+mtspace*2;			% w
-width_88:=1.0;		spacing_88L:=0pt+mtspace_pt;		spacing_88R:=0+mtspace*2;			% x
-width_89:=1.0;		spacing_89L:=0pt+mtspace_pt;		spacing_89R:=0+mtspace*2;			% y
-width_90:=1.0;		spacing_90L:=0pt+mtspace_pt;		spacing_90R:=0+mtspace*2;			% z
-width_91:=1.0;		spacing_91L:=0pt+mtspace_pt;		spacing_91R:=0+mtspace*2;			% braceleft
-width_92:=1.0;		spacing_92L:=0pt+mtspace_pt;		spacing_92R:=0+mtspace*2;			% bar
-width_93:=1.0;		spacing_93L:=0pt+mtspace_pt;		spacing_93R:=0+mtspace*2;			% braceright
-width_94:=1.0;		spacing_94L:=0pt+mtspace_pt;		spacing_94R:=0+mtspace*2;			% asciitilde
-width_95:=1.0;		spacing_95L:=0pt+mtspace_pt;		spacing_95R:=0+mtspace*2;			% space
+input handspacing		
+mtspace:=A_space+metapolation*(B_space-A_space);				
+		
+spacing_1L=L1*pt+mtspace*pt;		spacing_1R=R1+L1+mtspace*2;
+spacing_2L=L2*pt+mtspace*pt;		spacing_2R=R2+L2+mtspace*2;
+spacing_3L=L3*pt+mtspace*pt;		spacing_3R=R3+L3+mtspace*2;
+spacing_4L=L4*pt+mtspace*pt;		spacing_4R=R4+L4+mtspace*2;
+spacing_5L=L5*pt+mtspace*pt;		spacing_5R=R5+L5+mtspace*2;
+spacing_6L=L6*pt+mtspace*pt;		spacing_6R=R6+L6+mtspace*2;
+spacing_7L=L7*pt+mtspace*pt;		spacing_7R=R7+L7+mtspace*2;
+spacing_8L=L8*pt+mtspace*pt;		spacing_8R=R8+L8+mtspace*2;
+spacing_9L=L9*pt+mtspace*pt;		spacing_9R=R9+L9+mtspace*2;
+spacing_10L=L10*pt+mtspace*pt;		spacing_10R=R10+L10+mtspace*2;
+spacing_11L=L11*pt+mtspace*pt;		spacing_11R=R11+L11+mtspace*2;
+spacing_12L=L12*pt+mtspace*pt;		spacing_12R=R12+L12+mtspace*2;
+spacing_13L=L13*pt+mtspace*pt;		spacing_13R=R13+L13+mtspace*2;
+spacing_14L=L14*pt+mtspace*pt;		spacing_14R=R14+L14+mtspace*2;
+spacing_15L=L15*pt+mtspace*pt;		spacing_15R=R15+L15+mtspace*2;
+spacing_16L=L16*pt+mtspace*pt;		spacing_16R=R16+L16+mtspace*2;
+spacing_17L=L17*pt+mtspace*pt;		spacing_17R=R17+L17+mtspace*2;
+spacing_18L=L18*pt+mtspace*pt;		spacing_18R=R18+L18+mtspace*2;
+spacing_19L=L19*pt+mtspace*pt;		spacing_19R=R19+L19+mtspace*2;
+spacing_20L=L20*pt+mtspace*pt;		spacing_20R=R20+L20+mtspace*2;
+spacing_21L=L21*pt+mtspace*pt;		spacing_21R=R21+L21+mtspace*2;
+spacing_22L=L22*pt+mtspace*pt;		spacing_22R=R22+L22+mtspace*2;
+spacing_23L=L23*pt+mtspace*pt;		spacing_23R=R23+L23+mtspace*2;
+spacing_24L=L24*pt+mtspace*pt;		spacing_24R=R24+L24+mtspace*2;
+spacing_25L=L25*pt+mtspace*pt;		spacing_25R=R25+L25+mtspace*2;
+spacing_26L=L26*pt+mtspace*pt;		spacing_26R=R26+L26+mtspace*2;
+spacing_27L=L27*pt+mtspace*pt;		spacing_27R=R27+L27+mtspace*2;
+spacing_28L=L28*pt+mtspace*pt;		spacing_28R=R28+L28+mtspace*2;
+spacing_29L=L29*pt+mtspace*pt;		spacing_29R=R29+L29+mtspace*2;
+spacing_30L=L30*pt+mtspace*pt;		spacing_30R=R30+L30+mtspace*2;
+spacing_31L=L31*pt+mtspace*pt;		spacing_31R=R31+L31+mtspace*2;
+spacing_32L=L32*pt+mtspace*pt;		spacing_32R=R32+L32+mtspace*2;
+spacing_33L=L33*pt+mtspace*pt;		spacing_33R=R33+L33+mtspace*2;
+spacing_34L=L34*pt+mtspace*pt;		spacing_34R=R34+L34+mtspace*2;
+spacing_35L=L35*pt+mtspace*pt;		spacing_35R=R35+L35+mtspace*2;
+spacing_36L=L36*pt+mtspace*pt;		spacing_36R=R36+L36+mtspace*2;
+spacing_37L=L37*pt+mtspace*pt;		spacing_37R=R37+L37+mtspace*2;
+spacing_38L=L38*pt+mtspace*pt;		spacing_38R=R38+L38+mtspace*2;
+spacing_39L=L39*pt+mtspace*pt;		spacing_39R=R39+L39+mtspace*2;
+spacing_40L=L40*pt+mtspace*pt;		spacing_40R=R40+L40+mtspace*2;
+spacing_41L=L41*pt+mtspace*pt;		spacing_41R=R41+L41+mtspace*2;
+spacing_42L=L42*pt+mtspace*pt;		spacing_42R=R42+L42+mtspace*2;
+spacing_43L=L43*pt+mtspace*pt;		spacing_43R=R43+L43+mtspace*2;
+spacing_44L=L44*pt+mtspace*pt;		spacing_44R=R44+L44+mtspace*2;
+spacing_45L=L45*pt+mtspace*pt;		spacing_45R=R45+L45+mtspace*2;
+spacing_46L=L46*pt+mtspace*pt;		spacing_46R=R46+L46+mtspace*2;
+spacing_47L=L47*pt+mtspace*pt;		spacing_47R=R47+L47+mtspace*2;
+spacing_48L=L48*pt+mtspace*pt;		spacing_48R=R48+L48+mtspace*2;
+spacing_49L=L49*pt+mtspace*pt;		spacing_49R=R49+L49+mtspace*2;
+spacing_50L=L50*pt+mtspace*pt;		spacing_50R=R50+L50+mtspace*2;
+spacing_51L=L51*pt+mtspace*pt;		spacing_51R=R51+L51+mtspace*2;
+spacing_52L=L52*pt+mtspace*pt;		spacing_52R=R52+L52+mtspace*2;
+spacing_53L=L53*pt+mtspace*pt;		spacing_53R=R53+L53+mtspace*2;
+spacing_54L=L54*pt+mtspace*pt;		spacing_54R=R54+L54+mtspace*2;
+spacing_55L=L55*pt+mtspace*pt;		spacing_55R=R55+L55+mtspace*2;
+spacing_56L=L56*pt+mtspace*pt;		spacing_56R=R56+L56+mtspace*2;
+spacing_57L=L57*pt+mtspace*pt;		spacing_57R=R57+L57+mtspace*2;
+spacing_58L=L58*pt+mtspace*pt;		spacing_58R=R58+L58+mtspace*2;
+spacing_59L=L59*pt+mtspace*pt;		spacing_59R=R59+L59+mtspace*2;
+spacing_60L=L60*pt+mtspace*pt;		spacing_60R=R60+L60+mtspace*2;
+spacing_61L=L61*pt+mtspace*pt;		spacing_61R=R61+L61+mtspace*2;
+spacing_62L=L62*pt+mtspace*pt;		spacing_62R=R62+L62+mtspace*2;
+spacing_63L=L63*pt+mtspace*pt;		spacing_63R=R63+L63+mtspace*2;
+spacing_64L=L64*pt+mtspace*pt;		spacing_64R=R64+L64+mtspace*2;
+spacing_65L=L65*pt+mtspace*pt;		spacing_65R=R65+L65+mtspace*2;
+spacing_66L=L66*pt+mtspace*pt;		spacing_66R=R66+L66+mtspace*2;
+spacing_67L=L67*pt+mtspace*pt;		spacing_67R=R67+L67+mtspace*2;
+spacing_68L=L68*pt+mtspace*pt;		spacing_68R=R68+L68+mtspace*2;
+spacing_69L=L69*pt+mtspace*pt;		spacing_69R=R69+L69+mtspace*2;
+spacing_70L=L70*pt+mtspace*pt;		spacing_70R=R70+L70+mtspace*2;
+spacing_71L=L71*pt+mtspace*pt;		spacing_71R=R71+L71+mtspace*2;
+spacing_72L=L72*pt+mtspace*pt;		spacing_72R=R72+L72+mtspace*2;
+spacing_73L=L73*pt+mtspace*pt;		spacing_73R=R73+L73+mtspace*2;
+spacing_74L=L74*pt+mtspace*pt;		spacing_74R=R74+L74+mtspace*2;
+spacing_75L=L75*pt+mtspace*pt;		spacing_75R=R75+L75+mtspace*2;
+spacing_76L=L76*pt+mtspace*pt;		spacing_76R=R76+L76+mtspace*2;
+spacing_77L=L77*pt+mtspace*pt;		spacing_77R=R77+L77+mtspace*2;
+spacing_78L=L78*pt+mtspace*pt;		spacing_78R=R78+L78+mtspace*2;
+spacing_79L=L79*pt+mtspace*pt;		spacing_79R=R79+L79+mtspace*2;
+spacing_80L=L80*pt+mtspace*pt;		spacing_80R=R80+L80+mtspace*2;
+spacing_81L=L81*pt+mtspace*pt;		spacing_81R=R81+L81+mtspace*2;
+spacing_82L=L82*pt+mtspace*pt;		spacing_82R=R82+L82+mtspace*2;
+spacing_83L=L83*pt+mtspace*pt;		spacing_83R=R83+L83+mtspace*2;
+spacing_84L=L84*pt+mtspace*pt;		spacing_84R=R84+L84+mtspace*2;
+spacing_85L=L85*pt+mtspace*pt;		spacing_85R=R85+L85+mtspace*2;
+spacing_86L=L86*pt+mtspace*pt;		spacing_86R=R86+L86+mtspace*2;
+spacing_87L=L87*pt+mtspace*pt;		spacing_87R=R87+L87+mtspace*2;
+spacing_88L=L88*pt+mtspace*pt;		spacing_88R=R88+L88+mtspace*2;
+spacing_89L=L89*pt+mtspace*pt;		spacing_89R=R89+L89+mtspace*2;
+spacing_90L=L90*pt+mtspace*pt;		spacing_90R=R90+L90+mtspace*2;
+spacing_91L=L91*pt+mtspace*pt;		spacing_91R=R91+L91+mtspace*2;
+spacing_92L=L92*pt+mtspace*pt;		spacing_92R=R92+L92+mtspace*2;
+spacing_93L=L93*pt+mtspace*pt;		spacing_93R=R93+L93+mtspace*2;
+spacing_94L=L94*pt+mtspace*pt;		spacing_94R=R94+L94+mtspace*2;
+spacing_95L=L95*pt+mtspace*pt;		spacing_95R=R95+L95+mtspace*2;

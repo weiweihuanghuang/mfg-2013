@@ -1,5 +1,5 @@
 % parameter file 
-metapolation:=1.00;
+metapolation:=0.00;
 font_size:=10.000pt#;
 mean#:=5.000pt#;
 cap#:=8.000pt#;
@@ -9,8 +9,8 @@ box#:=10.000pt#;
 u#:=1.000pt#;
 A_px#:=0.00pt#;
 A_width:=1.00;
-A_space:=0.50;
-A_spacept:=0.50pt;
+A_space:=0.00;
+A_spacept:=0.00pt;
 A_xheight:=5.00;
 A_xheightpt:=5.00pt;
 A_capital:=8.00;
@@ -26,8 +26,8 @@ A_superness:=1.00;
 A_over:=0.08pt;
 B_px#:=0.75pt#;
 B_width:=0.90;
-B_space:=0.00;
-B_spacept:=0.00pt;
+B_space:=0.10;
+B_spacept:=0.10pt;
 B_xheight:=5.00;
 B_xheightpt:=5.00pt;
 B_capital:=8.00;
@@ -37,10 +37,10 @@ B_ascenderpt:=8.00pt;
 B_descender:=2.00;
 B_descenderpt:=2.00pt;
 B_inktrap:=10.00;
-B_stemcut:=30.00;
+B_stemcut:=20.00;
 B_skeleton#:=0.00pt#;
 B_superness:=1.00;
-B_over:=0.08pt;
+B_over:=0.04pt;
 
 input glyphs
 bye

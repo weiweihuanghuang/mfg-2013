@@ -1,20 +1,16 @@
-% width and sidebearing settings for each glyph
-input spacing
-
 % meta parameters
-mtpx:=A_px#+metapolation*(B_px#-A_px#);
-mtwidth:=A_width+metapolation*(B_width-A_width);
-mtspace:=A_space+metapolation*(B_space-A_space);
-mtxheight:=A_xheight+metapolation*(B_xheight-A_xheight);
-mtxheightpt:=A_xheightpt+metapolation*(B_xheightpt-A_xheightpt);
-mtcapital:=A_capital+metapolation*(B_capital-A_capital);
-mtcapitalpt:=A_capitalpt+metapolation*(B_capitalpt-A_capitalpt);
-mtascender:=A_ascender+metapolation*(B_ascender-A_ascender);
-mtascenderpt:=A_ascenderpt+metapolation*(B_ascenderpt-A_ascenderpt);
-mtdescender:=A_descender+metapolation*(B_descender-A_descender);
-mtdescenderpt:=A_descenderpt+metapolation*(B_descenderpt-A_descenderpt);
-mtskeleton:=A_skeleton+metapolation*(B_skeleton-A_skeleton);
-mtover:=A_over+metapolation*(B_over-A_over);
+mpx:=A_px#+metapolation*(B_px#-A_px#);
+mwidth:=A_width+metapolation*(B_width-A_width);
+mxheight:=A_xheight+metapolation*(B_xheight-A_xheight);
+mxheightpt:=A_xheightpt+metapolation*(B_xheightpt-A_xheightpt);
+mcapital:=A_capital+metapolation*(B_capital-A_capital);
+mcapitalpt:=A_capitalpt+metapolation*(B_capitalpt-A_capitalpt);
+mascender:=A_ascender+metapolation*(B_ascender-A_ascender);
+mascenderpt:=A_ascenderpt+metapolation*(B_ascenderpt-A_ascenderpt);
+mdescender:=A_descender+metapolation*(B_descender-A_descender);
+mdescenderpt:=A_descenderpt+metapolation*(B_descenderpt-A_descenderpt);
+mskeleton:=A_skeleton+metapolation*(B_skeleton-A_skeleton);
+mover:=A_over+metapolation*(B_over-A_over);
 
 % this file contains all defenitions outside glyphs and extra parameters not listed on metaflop.com
 % py#:=px#;
@@ -109,6 +105,9 @@ shifted (-0.5*a*(A_inktrap + metapolation * (B_inktrap-A_inktrap)),0) enddef;
 
 def inktrap_r(expr a)=
 shifted (0.5*a*(A_inktrap + metapolation * (B_inktrap-A_inktrap)),0) enddef;
+
+% width and sidebearing settings for each glyph
+input spacing
 
 % glyph input
 input glyphlist

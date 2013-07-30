@@ -222,13 +222,13 @@ penpos1(dist1 + (A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapo
 penpos2(dist2 + (A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist2), ang2);
 penpos3(dist3 + (A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist3), ang3);
 penpos4(dist4 + (A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist4), ang4);
-penpos5((0.9mtpx + metapolation * (0.9mtpx - 0.9mtpx)) * (dist5 + (A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist5)), ang5);
-penpos6((0.9mtpx + metapolation * (0.9mtpx - 0.9mtpx)) * (dist6 + (A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist6)), ang6);
-penpos7((mtpx + metapolation * (mtpx - mtpx)) * (dist7 + (A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist7)), ang7);
-penpos8((mtpx + metapolation * (mtpx - mtpx)) * (dist8 + (A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist8)), ang8);
+penpos5((1-0.15mtpx + metapolation * (1-0.15mtpx - 1-0.15mtpx)) * (dist5 + (A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist5)), ang5);
+penpos6((1-0.2mtpx  + metapolation * (1-0.2mtpx  - 1-0.2mtpx )) * (dist6 + (A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist6)), ang6);
+penpos7((1-0.15mtpx + metapolation * (1-0.15mtpx - 1-0.15mtpx)) * (dist7 + (A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist7)), ang7);
+penpos8((1-0.15mtpx + metapolation * (1-0.15mtpx - 1-0.15mtpx)) * (dist8 + (A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist8)), ang8);
 penpos9(dist9 + (A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist9), ang9);
-penpos10((mtpx + metapolation * (mtpx - mtpx)) * (dist10 + (A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist10)), ang10);
-penpos11((0.5mtpx + metapolation * (0.5mtpx - 0.5mtpx)) * (dist11 + (A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist11)), ang11);
+penpos10((1-0.1mtpx + metapolation * (1-0.1mtpx - 1-0.1mtpx)) * (dist10 + (A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist10)), ang10);
+penpos11((1-0.1mtpx + metapolation * (1-0.1mtpx - 1-0.1mtpx)) * (dist11 + (A_px + metapolation * (B_px - A_px)) + ((A_skeleton/50 + metapolation * (B_skeleton/50-A_skeleton/50)) * dist11)), ang11);
 
 
 % test new center (z) points
@@ -243,21 +243,21 @@ z7=((A_width + metapolation * (B_width - A_width)) * (x270 + metapolation * (x27
 z8=((A_width + metapolation * (B_width - A_width)) * (x280 + metapolation * (x28A - x280) + spacing_65L) * width_65, (y280 + metapolation *(y28A - y280))*((A_xheight + metapolation * (B_xheight - A_xheight)) / mean#));
 z9=((A_width + metapolation * (B_width - A_width)) * (x290 + metapolation * (x29A - x290) + spacing_65L) * width_65, (y290 + metapolation *(y29A - y290))*((A_xheight + metapolation * (B_xheight - A_xheight)) / mean#));
 z10=((A_width + metapolation * (B_width - A_width)) * (x2100 + metapolation * (x210A - x2100) + spacing_65L) * width_65, (y2100 + metapolation *(y210A - y2100))*((A_xheight + metapolation * (B_xheight - A_xheight)) / mean#));
-z11=((A_width + metapolation * (B_width - A_width)) * (x2110 + metapolation * (x211A - x2110) + spacing_65L) * width_65, (y2110 + metapolation *(y211A - y2110))*((A_xheight + metapolation * (B_xheight - A_xheight)) / mean#));
+z11=((A_width + metapolation * (B_width - A_width)) * (x2110 + metapolation * (x211A - x2110) + spacing_65L) * width_65, (y2110 + metapolation *(y211A - y2110))*((A_xheight + metapolation * (B_xheight - A_xheight)) / mean#)) shifted (x4r-x11l,0);
 
 % penstrokes
 
-penstroke z1e shifted (-30*mtpx,-20*mtpx ) {dir (6.4 + metapolation * (6.4 - 6.4))} ... 
-z2e shifted (0, (A_xheightpt + metapolation * (B_xheightpt - A_xheightpt)) - y2l) + (0, A_over + metapolation * (B_over - A_over)) .. tension (90/100 + (metapolation * (90/100 -90/100 ))) .. 
-z3e --- 
-z4e ... 
-z5e shifted (30*mtpx,0) shifted (0, - y5r) - (0, A_over + metapolation * (B_over - A_over)) ... 
-z6e shifted (30*mtpx,5*mtpx);
-penstroke z7e ... 
-z8e {dir (-174 + metapolation * (-174 - -174))} .. tension (90/100 + (metapolation * (90/100 -90/100 ))) .. 
-z9e .. tension ((095/100) + (metapolation * ((095/100) - (095/100)))) and ((095/100) + (metapolation * ((095/100) - (095/100)))) .. 
-z10e shifted (0, - y10r) - (0, A_over + metapolation * (B_over - A_over)) ... 
-z11e
+penstroke z1e shifted (-30mtpx,-20mtpx) {dir (6.4 + metapolation * (6.4 - 6.4))} ... 
+z2e shifted (0, (A_xheightpt + metapolation * (B_xheightpt - A_xheightpt)) - y2l) + (0, A_over + metapolation * (B_over - A_over)){right} .. tension (90/100 + (metapolation * (90/100 -90/100 ))) .. 
+z3e shifted (0, (A_xheightpt + metapolation * (B_xheightpt - A_xheightpt)) - y2l) + (0, A_over + metapolation * (B_over - A_over)) --- 
+z4e shifted (0,40mtpx ) ... 
+z5e shifted (25mtpx,0) shifted (0, - y5r) - (0, A_over + metapolation * (B_over - A_over)) ... 
+z6e shifted (35mtpx,6mtpx );
+penstroke z7e shifted (0,-5mtpx) ... 
+z8e shifted (0,-5mtpx) {dir (-174 + metapolation * (-174 - -174))} .. tension (90/100 + (metapolation * (90/100 -90/100 ))) .. 
+z9e .. tension (95/100 + (metapolation * (95/100 -95/100 ))) .. 
+z10e shifted (0, - y10r) - (0, A_over + metapolation * (B_over - A_over)){right} ... 
+z11e shifted (0, - y10r) - (0, A_over + metapolation * (B_over - A_over))
 ;
 
 
