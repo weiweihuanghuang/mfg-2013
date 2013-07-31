@@ -2278,7 +2278,7 @@ for i in range (0,nnz-1) :
       zeile = zeile + " shifted (" + str(penshiftedval[i]) + ")"      
 
     if overx[i] <> "" :
-      zeile = zeile + " shifted (0, (A_xheight*pt + metapolation * (B_xheightpt - A_xheight*pt)) - " + str(overxval[i]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
+      zeile = zeile + " shifted (0, (A_xheight*pt + metapolation * (B_xheight*pt - A_xheight*pt)) - " + str(overxval[i]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
 
     if overbase[i] <> "" :
       zeile = zeile + " shifted (0, - " + str(overbaseval[i]) + ") - (0, A_over + metapolation * (B_over - A_over))" 
@@ -2290,7 +2290,7 @@ for i in range (0,nnz-1) :
       zeile = zeile + " shifted (0, (A_ascender*pt + metapolation * (B_ascender*pt - A_ascender*pt )) - " + str(overascval[i]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
 
     if overdesc[i] <> "" :
-      zeile = zeile + " shifted (0, (A_descenderpt + metapolation * (B_descenderpt  - A_descenderpt )) - " + str(overdescval[i]) + ") - (0, A_over + metapolation * (B_over - A_over))" 
+      zeile = zeile + " shifted (0, (A_descender*pt + metapolation * (B_descender*pt  - A_descender*pt )) - " + str(overdescval[i]) + ") - (0, A_over + metapolation * (B_over - A_over))" 
 
 
     if penshiftedy[i] <> "" :
@@ -2477,7 +2477,7 @@ for i in range (0,nnz-1) :
 
 
     if overx[i] <> "" :
-      zeile = zeile + " shifted (0, (A_xheight*pt + metapolation * (B_xheightpt - A_xheight*pt)) - " + str(overxval[i]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
+      zeile = zeile + " shifted (0, (A_xheight*pt + metapolation * (B_xheight*pt - A_xheight*pt)) - " + str(overxval[i]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
 
     if overbase[i] <> "" :
       zeile = zeile + " shifted (0, - " + str(overbaseval[i]) + ") - (0, A_over + metapolation * (B_over - A_over))" 
@@ -2489,7 +2489,7 @@ for i in range (0,nnz-1) :
       zeile = zeile + " shifted (0, (A_ascender*pt + metapolation * (B_ascender*pt - A_ascender*pt )) - " + str(overascval[i]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
 
     if overdesc[i] <> "" :
-      zeile = zeile + " shifted (0, (A_descenderpt + metapolation * (B_descenderpt  - A_descenderpt )) - " + str(overdescval[i]) + ") - (0, A_over + metapolation * (B_over - A_over))" 
+      zeile = zeile + " shifted (0, (A_descender*pt + metapolation * (B_descender*pt  - A_descender*pt )) - " + str(overdescval[i]) + ") - (0, A_over + metapolation * (B_over - A_over))" 
 
 
     if penshifted[i] <> "" :
@@ -2580,7 +2580,7 @@ if dir[i+1] <> "" :
 
 
 if overx[i+1] <> "" :
-      zeile = zeile + " shifted (0, (A_xheight*pt + metapolation * (B_xheightpt - A_xheight*pt)) - " + str(overxval[i+1]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
+      zeile = zeile + " shifted (0, (A_xheight*pt + metapolation * (B_xheight*pt - A_xheight*pt)) - " + str(overxval[i+1]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
 
 if overbase[i+1] <> "" :
       zeile = zeile + " shifted (0, - " + str(overbaseval[i+1]) + ") - (0, A_over + metapolation * (B_over - A_over))" 
@@ -2592,7 +2592,7 @@ if overasc[i+1] <> "" :
       zeile = zeile + " shifted (0, (A_ascender*pt + metapolation * (B_ascender*pt - A_ascender*pt )) - " + str(overascval[i+1]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
 
 if overdesc[i+1] <> "" :
-      zeile = zeile + " shifted (0, (A_descenderpt + metapolation * (B_descenderpt  - A_descenderpt )) - " + str(overdescval[i+1]) + ") - (0, A_over + metapolation * (B_over - A_over))" 
+      zeile = zeile + " shifted (0, (A_descender*pt + metapolation * (B_descender*pt  - A_descender*pt )) - " + str(overdescval[i+1]) + ") - (0, A_over + metapolation * (B_over - A_over))" 
 
 
 
