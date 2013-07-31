@@ -76,8 +76,13 @@ color:red;
 <h2> fonts in directories</h2>
 <p>
 $for fontl in fontlist:
-   $fontl <br> 
+   $fontl  <br>
 <p>
+
+<p>
+<div class="title">
+     Project $cfont.idmaster <br></div><p>
+
 $for mma in mmaster:
    <a href="/font1/$mma.idmaster" style="color:green;text-decoration:underline;">Project $mma.idmaster</a> projname $mma.FontName fontA $mma.FontNameA fontB $mma.FontNameB idglobal $mma.idglobal vdate $mma.vdate <br>
 </p>
@@ -90,11 +95,11 @@ $:form.render()
 
 <div>
 <p>
-<a href="/font2/$cfont.idglobal" style="color:green;text-decoration:underline;">Edit Global and Local Parameters</a><p><span class="button"><a href="/"> Editor</a></span></p>
+<a href="/font2/$cfont.idglobal" style="color:green;text-decoration:underline;">Edit Global and Local Parameters</a><p><span class="button"><a href="/">Editor</a></span></p>
 
 </p>
 
-<p><br>
+<p>
 loadoption [0]: default case, read parameters from the xml attributes <br>
            [1]: read only cooridnates and apply parameters stored in the database, coresponding to the glyph, the fontA or fontB. <br>
                  this is equivalent as an update in the xml-source happen not with the webinterface and with a newer timestamp as the database records.<br>
