@@ -108,14 +108,14 @@ table, tr, #menuleft{
 	z-index: 5;
 	display: table-cell;
 	color: grey;
-	width: 24px;
+	padding:0 2 0 3;
 }
 .ptname {
 	color:rgb(150,200,150);
 	font: normal 15px/19px Menlo,'Inconsolata',mono;
 	z-index: 5;
 	display: table-cell;
-	width: 32px;
+	padding:0 5 0 1;
 }
 .value{
 	float: right;
@@ -316,7 +316,6 @@ $if form.d.groupn > "0" :
 $for ppp in postspa:
    $if ppp.PointName != '' :
      <span style="display:table-row;">
-     <span class="ptnumber">$ppp.id</span>
      <span class="ptname">$ppp.PointName</span>
      <span style="display: table-cell;">
      $if ppp.startp != None :
@@ -383,6 +382,7 @@ $for ppp in postspa:
        inktrap_r&nbsp;<span class="listvalue">$ppp.inktrap_r</span>
    <br>
    </span>
+   <span class="ptnumber">$ppp.id</span>
    </span>
 </p>
 
