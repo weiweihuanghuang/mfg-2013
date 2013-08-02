@@ -4,7 +4,7 @@ $if cfont.idwork == '0' :
        A: $cfont.fontna
 $if cfont.idwork == '1' : 
        B: $cfont.fontnb
- – Project $cfont.idmaster
+Project $cfont.idmaster
 </title>
 <link rel="stylesheet" type="text/css" href="/static/mfg.css"/>
 <style>
@@ -29,7 +29,7 @@ h2{
 #center{
 	bottom: 0;
 	height: 0px;
-	left: -500;
+	left: -350;
 	margin: auto;
 	position: absolute;
 	top: 630px;
@@ -43,9 +43,11 @@ h2{
 }
 
 #fonttitle{
+	text-align: center;
 	position:fixed;
+	font-size: 18px;
 	top: 10px;
-	left: 40%;
+	left: 42%;
 	margin: auto;
 	color: grey;
 }
@@ -57,20 +59,16 @@ h2{
 	width: 300px;
 	text-align: left;
 	color: yellow;
-	border-style: solid;
-	border-color: green;
-	border-width: 5px;
+	padding: 5px;
 }
 
 #menuleftorange{
 	z-index: 5;
-	background-color: orange;
+	background-color: darkorange;
 	width: 300px;
 	text-align: left;
 	color: yellow;
-	border-style: solid;
-	border-color: orange;
-	border-width: 5px;
+	padding: 5px;
 }
 
 a:visited{
@@ -87,9 +85,7 @@ table, tr, #menuleft{
 	background-color: black;
 	text-align: left;
 	color: white;
-	border-style: solid;
-	border-color: black;
-	border-width: 4px;
+	padding: 4px;
 }
 
 .paramset{
@@ -104,6 +100,23 @@ table, tr, #menuleft{
 	color: grey;
 }
 
+.listvalue{
+	color: khaki;
+}
+.ptnumber {
+	font: normal 15px/19px Menlo,'Inconsolata',mono;
+	z-index: 5;
+	display: table-cell;
+	color: grey;
+	width: 24px;
+}
+.ptname {
+	color:rgb(150,200,150);
+	font: normal 15px/19px Menlo,'Inconsolata',mono;
+	z-index: 5;
+	display: table-cell;
+	width: 32px;
+}
 .value{
 	float: right;
 	margin: 0 0 0 10;
@@ -143,11 +156,9 @@ $for mast in mastglobal:
 
 <p id="fonttitle">  
 $if cfont.idwork == '0' :
-       '$webglyph' Glyph,
-       Font A: $cfont.fontna 
+       <span style="color:red;font-weight:bold;">A</span>&nbsp;&nbsp;$cfont.fontna&nbsp;&nbsp;'$webglyph'
 $if cfont.idwork == '1' : 
-       '$webglyph' Glyph,
-       Font B: $cfont.fontnb 
+       <span style="color:red;font-weight:bold;">B</span>&nbsp;&nbsp;$cfont.fontnb&nbsp;&nbsp;'$webglyph'
 </p> 
 
 <p style="margin:10px 0;">
@@ -304,70 +315,75 @@ $if form.d.groupn > "0" :
  
 $for ppp in postspa:
    $if ppp.PointName != '' :
-     $ppp.id $ppp.PointName
+     <span style="display:table-row;">
+     <span class="ptnumber">$ppp.id</span>
+     <span class="ptname">$ppp.PointName</span>
+     <span style="display: table-cell;">
      $if ppp.startp != None :
-         startp $ppp.startp
+         startp&nbsp;<span class="listvalue">$ppp.startp</span>
      $if ppp.doubledash != None :
-         doubledash $ppp.doubledash
+         doubledash&nbsp;<span class="listvalue">$ppp.doubledash</span>
      $if ppp.tripledash != None :
-         tripledash $ppp.tripledash
+         tripledash&nbsp;<span class="listvalue">$ppp.tripledash</span>
      $if ppp.superleft != None :
-         superleft $ppp.superleft
+         superleft&nbsp;<span class="listvalue">$ppp.superleft</span>
      $if ppp.superright != None :
-         superright $ppp.superright
+         superright&nbsp;<span class="listvalue">$ppp.superright</span>
      $if ppp.leftp != None :
-       leftp $ppp.leftp
+       leftp&nbsp;<span class="listvalue">$ppp.leftp</span>
      $if ppp.rightp != None :
-       rightp $ppp.rightp
+       rightp&nbsp;<span class="listvalue">$ppp.rightp</span>
      $if ppp.downp != None :
-       downp $ppp.downp
+       downp&nbsp;<span class="listvalue">$ppp.downp</span>
      $if ppp.upp != None :
-       upp $ppp.upp
+       upp&nbsp;<span class="listvalue">$ppp.upp</span>
      $if ppp.dir != None :
-       dir $ppp.dir
+       dir&nbsp;<span class="listvalue">$ppp.dir</span>
      $if ppp.leftp2 != None :
-       leftp2 $ppp.leftp2
+       leftp2&nbsp;<span class="listvalue">$ppp.leftp2</span>
      $if ppp.rightp2 != None :
-       rightp2 $ppp.rightp2
+       rightp2&nbsp;<span class="listvalue">$ppp.rightp2</span>
      $if ppp.downp2 != None :
-       downp2 $ppp.downp2
+       downp2&nbsp;<span class="listvalue">$ppp.downp2</span>
      $if ppp.upp2 != None :
-       upp2 $ppp.upp2
+       upp2&nbsp;<span class="listvalue">$ppp.upp2</span>
      $if ppp.dir2 != None :
-       dir2 $ppp.dir2
+       dir2&nbsp;<span class="listvalue">$ppp.dir2</span>
      $if ppp.tension != None :
-       tension $ppp.tension
+       tension&nbsp;<span class="listvalue">$ppp.tension</span>
      $if ppp.tensionand != None :
-       tensionand $ppp.tensionand
+       tensionand&nbsp;<span class="listvalue">$ppp.tensionand</span>
      $if ppp.cycle != None :
-       cycle $ppp.cycle
+       cycle&nbsp;<span class="listvalue">$ppp.cycle</span>
      $if ppp.penshifted != None :
-       penshifted $ppp.penshifted
+       penshifted&nbsp;<span class="listvalue">$ppp.penshifted</span>
      $if ppp.pointshifted != None :
-       pointshifted $ppp.pointshifted
+       pointshifted&nbsp;<span class="listvalue">$ppp.pointshifted</span>
      $if ppp.angle != None :
-       angle $ppp.angle
+       angle&nbsp;<span class="listvalue">$ppp.angle</span>
      $if ppp.penwidth != None :
-       penwidth $ppp.penwidth
+       penwidth&nbsp;<span class="listvalue">$ppp.penwidth</span>
      $if ppp.overx != None :
-       overx $ppp.overx
+       overx&nbsp;<span class="listvalue">$ppp.overx</span>
      $if ppp.overbase != None :
-       overbase $ppp.overbase
+       overbase&nbsp;<span class="listvalue">$ppp.overbase</span>
      $if ppp.overcap != None :
-       overcap $ppp.overcap
+       overcap&nbsp;<span class="listvalue">$ppp.overcap</span>
      $if ppp.overasc != None :
-       overasc $ppp.overasc
+       overasc&nbsp;<span class="listvalue">$ppp.overasc</span>
      $if ppp.overdesc != None :
-       overdesc $ppp.overdesc
+       overdesc&nbsp;<span class="listvalue">$ppp.overdesc</span>
      $if ppp.stemcutter != None :
-       stemcutter $ppp.stemcutter
+       stemcutter&nbsp;<span class="listvalue">$ppp.stemcutter</span>
      $if ppp.stemshift != None :
-       stemshift $ppp.stemshift
+       stemshift&nbsp;<span class="listvalue">$ppp.stemshift</span>
      $if ppp.inktrap_l != None :
-       inktrap_l $ppp.inktrap_l
+       inktrap_l&nbsp;<span class="listvalue">$ppp.inktrap_l</span>
      $if ppp.inktrap_r != None :
-       inktrap_r $ppp.inktrap_r
+       inktrap_r&nbsp;<span class="listvalue">$ppp.inktrap_r</span>
    <br>
+   </span>
+   </span>
 </p>
 
 <p style="color:black"> &#9678; z points </p>
