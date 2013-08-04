@@ -38,6 +38,7 @@ def putFont():
 #
 #  put font A and font B into table
 #
+  idworks = mfg.cFont.idwork
   mfg.cFont.fontpath="fonts/"+str(mfg.cFont.idmaster)+"/"
   
   print mfg.cFont.glyphName
@@ -114,7 +115,6 @@ def putFont():
       itemlist = xmldocB.getElementsByTagName('point')
 
     if dbq:
-      print  dbq[0].vdate,vdatedb,vdatedbp, os.path.getmtime(glyphsource) 
       vdateos=int(os.path.getmtime(glyphsource))
       idel =0 
       if ( max(vdatedb,vdatedbp) < vdateos) and mfg.cFont.loadoption =='0' or mfg.cFont.loadoption =='99'  :
@@ -190,7 +190,6 @@ def putFont():
           db.query(strg)
           db.query("commit") 
         if mfg.cFont.loadoption == '1' and idel <1:
-          print "**",inum, s.attributes['x'].value, s.attributes['y'].value
           if s.hasAttribute('type') : 
               mainpoint = 1
           else :
@@ -208,9 +207,10 @@ def putFont():
                  ipose=len(im.value) 
                  nameval = im.value[iposa:ipose]
             pip=get_glyphparamid (glyphName, idmaster, nameval)
-            print "linkkk",inum,pip
             update_postp(inum, s.attributes['x'].value, s.attributes['y'].value, pip)
-           
+
+#   save previous value back          
+  mfg.cFont.idwork = idworks 
   return None  
 
 def gidmast(idwork):
@@ -633,13 +633,6 @@ def writexml():
 
 
      glyphName = mfg.cFont.glyphunic 
-     if mfg.cFont.idwork =='0' :
-        glyphsource  = mfg.cFont.fontpath+mfg.cFont.fontna + "/glyphs/"+glyphName+".glif"
-        xmldoc = xmldocA
-     if mfg.cFont.idwork =='1' :
-        xmldoc = xmldocB
-        glyphsource = mfg.cFont.fontpath+mfg.cFont.fontnb + "/glyphs/"+glyphName+".glif"
-     itemlist = xmldoc.getElementsByTagName('point')
      idmaster = gidmast(mfg.cFont.idwork)
       
      if mfg.cFont.idwork == '0' :
@@ -753,6 +746,7 @@ def get_activeglyph():
 
 def writeallxmlfromdb():
      print "**** in writeallxmlfromdb "
+     idworks=mfg.cFont.idwork
      for idwork in ['0','1']:
         mfg.cFont.idwork = idwork
         idmaster = mfg.cFont.idmaster
@@ -763,8 +757,8 @@ def writeallxmlfromdb():
           mfg.cFont.glyphunic = glyphn.glyphname
           mfg.cFont.glyphName = glyphn.glyphname
           writexml()
-     mfg.cFont.idwork = 0
-     mfg.cFont.loadoption = 0
+     mfg.cFont.idwork = idworks
+     mfg.cFont.loadoption = '0'
      return None
 
 def writeGlyphlist():
