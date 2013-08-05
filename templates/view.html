@@ -27,15 +27,15 @@ h2{
 }
 
 #center{
+	top: 800px;
 	bottom: 0;
+	left: -420px;
+	right: 0;
 	height: 0px;
-	left: -350;
+	width: 0px;
 	margin: auto;
 	position: absolute;
 /* 	top: 630px; */
-	top: 800px;
-	right: 0;
-	width: 0px;
 	-webkit-transform: translate(0%,0%) scale(100%,100%);
 }
 
@@ -44,10 +44,12 @@ h2{
 	position:fixed;
 	font-size: 18px;
 	top: 10px;
-	left: 42%;
 	margin: auto;
 	color: grey;
+	left: 42%;
+/* 	left: 39.5%; */
 }
+
 
 .menuleftgreen{
 	z-index: 5;
@@ -201,9 +203,15 @@ $for mast in mastglobal:
 
 <p id="fonttitle">  
 $if cfont.idwork == '0' :
-       <span style="color:red;font-weight:bold;">A</span>&nbsp;&nbsp;$cfont.fontna&nbsp;&nbsp;'$webglyph'&nbsp;&nbsp;<b>$glyphparam.PointName</b>
+   <span style="color:red;font-weight:bold;">A</span>&nbsp;&nbsp;$cfont.fontna&nbsp;&nbsp;'$webglyph'&nbsp;
+   $if form.d.PointName > "0" : 
+      <b>$glyphparam.PointName</b>
+   $else: select point
 $if cfont.idwork == '1' : 
-       <span style="color:red;font-weight:bold;">B</span>&nbsp;&nbsp;$cfont.fontnb&nbsp;&nbsp;'$webglyph'&nbsp;&nbsp;<b>$glyphparam.PointName</b>
+   <span style="color:red;font-weight:bold;">B</span>&nbsp;&nbsp;$cfont.fontnb&nbsp;&nbsp;'$webglyph'&nbsp;
+   $if form.d.PointName > "0" : 
+      <b>$glyphparam.PointName</b>
+   $else: select point
 </p> 
 
 <p style="margin:10px 0;">
@@ -241,11 +249,11 @@ paramform.groupval.value = "";
 <div class="menuright">
 $:form.render() 
 </div>
-<p style="height:104px;">
 $if form.d.PointName > "0" : 
+    <p style="height:104px;">
     $:formparam.render() 
     <input style="margin:0;position:relative;top:-35px;left:180px;" type="button" value="clear" onClick="resetparam()">
-</p>
+	</p>
 <!-- add new parameters here: -->
 <p class="menuleftgreen" >
   $if glyphparam != None :
