@@ -939,22 +939,25 @@ glyph = glif.getElementsByTagName('glyph')
 g = glyph[0].attributes['name'].value
 
 
-#mean = ['13','14','26','29','65','67','69','77','78','79','82','83','85','86','87','88','90','94','95']
+mean = ['13','14','26','29','65','67','69','77','78','79','82','83','85','86','87','88','90','94','95','12','27','63','71','80','81','89','2','7','11','28','30','62','64','66','68','70','72','73','75','76','84','4','8','9','15','59','60','61','74','91','92','93']
 #des = ['12','27','63','71','80','81','89']
 #asc = ['2','7','11','28','30','62','64','66','68','70','72','73','75','76','84']
-#cap = ['1','3','5','6','10','16','17','18','19','20','21','22','23','24','25','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58']
+cap = ['1','3','5','6','10','16','17','18','19','20','21','22','23','24','25','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58']
 #box = ['4','8','9','15','59','60','61','74','91','92','93']
 
-# ggroup=""
+ggroup=""
+gggroup=""
 
-#if g in mean :
-#    ggroup = 'xheight'
-    
+if g in mean :
+    ggroup = 'xheight'
+    gggroup = 'mean'
+
 #if g in des :
 #    ggroup = 'descender'
         
-#if g in cap : 
-#    ggroup = 'capital'
+if g in cap : 
+    ggroup = 'capital'
+    gggroup = 'cap'
 
 #if g in asc :
 #    ggroup = 'ascender'
@@ -1012,6 +1015,13 @@ inktrap_rval = []
 stemshift = []
 stemshiftval = []
 
+ascpoint = []
+ascpointval = []
+
+descpoint = []
+descpointval = []
+
+
 
 
 
@@ -1053,6 +1063,12 @@ for i in range (1,100):
 
   stemshift.append("")
   stemshiftval.append(0)
+
+  ascpoint.append("")
+  ascpointval.append(0)
+
+  descpoint.append("")
+  descpointval.append(0)
 
 
 
@@ -1136,6 +1152,18 @@ for item in itemlist :
 	 istemshift = True
        except :
        	 istemshift = False
+
+       try :
+	 iascpoint = item.attributes['ascpoint'].value   
+	 iascpoint = True
+       except :
+       	 iascpoint = False
+
+       try :
+	 idescpoint = item.attributes['descpoint'].value   
+	 idescpoint = True
+       except :
+       	 idescpoint = False
 
 
 
@@ -1228,6 +1256,19 @@ for item in itemlist :
 	   del stemshiftval[i-1]
            stemshiftval.insert(i-1,istemshiftval)
 
+         if iascpoint == True :
+           iascpointval = item.attributes['ascpoint'].value
+           del ascpoint[i-1]
+           ascpoint.insert(i-1,"ascpoint")
+	   del ascpointval[i-1]
+           ascpointval.insert(i-1,iascpointval)
+
+         if idescpoint == True :
+           idescpointval = item.attributes['descpoint'].value
+           del descpoint[i-1]
+           descpoint.insert(i-1,"descpoint")
+	   del descpointval[i-1]
+           descpointval.insert(i-1,idescpointval)
 
 
 
@@ -1260,7 +1301,20 @@ for i in range (0,nnz) :
 
 #  else :
 
-  zeile = "z"+str(zitem)+ "=((A_width + metapolation * (B_width - A_width)) * (x2"+ str(zitem)+ "0 + metapolation * (x2"+str(zitem)+"A - x2" +str(zitem)+"0) + spacing_" + g + "L) * width_" + g + ", (y2" +str(zitem)+ "0 + metapolation *(y2"+str(zitem)+ "A - y2" +str(zitem)+ "0))*((A_xheight + metapolation * (B_xheight - A_xheight)) / mean#))"
+#  zeile = "z"+str(zitem)+ "=((A_width + metapolation * (B_width - A_width)) * (x2"+ str(zitem)+ "0 + metapolation * (x2"+str(zitem)+"A - x2" +str(zitem)+"0) + spacing_" + g + "L) * width_" + g + ", (y2" +str(zitem)+ "0 + metapolation *(y2"+str(zitem)+ "A - y2" +str(zitem)+ "0))*((A_xheight + metapolation * (B_xheight - A_xheight)) / mean#))"
+
+
+  if ascpoint[i] <> "" :
+
+     zeile = "z"+str(zitem)+ "=((A_width + metapolation * (B_width - A_width)) * (x2"+ str(zitem)+ "0 + metapolation * (x2"+str(zitem)+"A - x2" +str(zitem)+"0) + spacing_" + g + "L) * width_" + g + ", (y2" +str(zitem)+ "0 + metapolation *(y2"+str(zitem)+ "A - y2" +str(zitem)+ "0))*((A_ascender + metapolation * (B_ascender - A_ascender)) / asc#))"
+
+  if descpoint[i] <> "" :
+
+     zeile = "z"+str(zitem)+ "=((A_width + metapolation * (B_width - A_width)) * (x2"+ str(zitem)+ "0 + metapolation * (x2"+str(zitem)+"A - x2" +str(zitem)+"0) + spacing_" + g + "L) * width_" + g + ", (y2" +str(zitem)+ "0 + metapolation *(y2"+str(zitem)+ "A - y2" +str(zitem)+ "0))*((A_descender + metapolation * (B_descender - A_descender)) / desc#))"
+
+  else :
+  
+     zeile = "z"+str(zitem)+ "=((A_width + metapolation * (B_width - A_width)) * (x2"+ str(zitem)+ "0 + metapolation * (x2"+str(zitem)+"A - x2" +str(zitem)+"0) + spacing_" + g + "L) * width_" + g + ", (y2" +str(zitem)+ "0 + metapolation *(y2"+str(zitem)+ "A - y2" +str(zitem)+ "0))*((A_" + ggroup + " + metapolation * (B_" +ggroup + " - A_" + ggroup + ")) / " + gggroup + "#))"
 
 
 
@@ -2278,7 +2332,7 @@ for i in range (0,nnz-1) :
       zeile = zeile + " shifted (" + str(penshiftedval[i]) + ")"      
 
     if overx[i] <> "" :
-      zeile = zeile + " shifted (0, (A_xheight*pt + metapolation * (B_xheightpt - A_xheight*pt)) - " + str(overxval[i]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
+      zeile = zeile + " shifted (0, (A_xheight*pt + metapolation * (B_xheight*pt - A_xheight*pt)) - " + str(overxval[i]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
 
     if overbase[i] <> "" :
       zeile = zeile + " shifted (0, - " + str(overbaseval[i]) + ") - (0, A_over + metapolation * (B_over - A_over))" 
@@ -2290,7 +2344,7 @@ for i in range (0,nnz-1) :
       zeile = zeile + " shifted (0, (A_ascender*pt + metapolation * (B_ascender*pt - A_ascender*pt )) - " + str(overascval[i]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
 
     if overdesc[i] <> "" :
-      zeile = zeile + " shifted (0, (A_descenderpt + metapolation * (B_descenderpt  - A_descenderpt )) - " + str(overdescval[i]) + ") - (0, A_over + metapolation * (B_over - A_over))" 
+      zeile = zeile + " shifted (0, (A_descender*pt + metapolation * (B_descender*pt  - A_descender*pt )) - " + str(overdescval[i]) + ") - (0, A_over + metapolation * (B_over - A_over))" 
 
 
     if penshiftedy[i] <> "" :
@@ -2301,6 +2355,7 @@ for i in range (0,nnz-1) :
 
     if superright[i] <> "" :
       zeile = zeile + strtwo + superright[i]+"("+str(zitem)+"e," +str(zitemsuper)+"e, ["+str(superrightval[i]) + '+ (metapolation * (' + str(superrightvalB[i])+ '-' +str(superrightval[i]) + '))])' + strtwo      
+
 
     if upp[i] <> "" :
       zeile = zeile + "{up}"      
@@ -2313,6 +2368,7 @@ for i in range (0,nnz-1) :
 
     if rightp[i] <> "" :
       zeile = zeile + "{right}"      
+
 
     if dir[i] <> "" :
        if dirB[i] <> "" :
@@ -2477,7 +2533,7 @@ for i in range (0,nnz-1) :
 
 
     if overx[i] <> "" :
-      zeile = zeile + " shifted (0, (A_xheight*pt + metapolation * (B_xheightpt - A_xheight*pt)) - " + str(overxval[i]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
+      zeile = zeile + " shifted (0, (A_xheight*pt + metapolation * (B_xheight*pt - A_xheight*pt)) - " + str(overxval[i]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
 
     if overbase[i] <> "" :
       zeile = zeile + " shifted (0, - " + str(overbaseval[i]) + ") - (0, A_over + metapolation * (B_over - A_over))" 
@@ -2489,7 +2545,7 @@ for i in range (0,nnz-1) :
       zeile = zeile + " shifted (0, (A_ascender*pt + metapolation * (B_ascender*pt - A_ascender*pt )) - " + str(overascval[i]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
 
     if overdesc[i] <> "" :
-      zeile = zeile + " shifted (0, (A_descenderpt + metapolation * (B_descenderpt  - A_descenderpt )) - " + str(overdescval[i]) + ") - (0, A_over + metapolation * (B_over - A_over))" 
+      zeile = zeile + " shifted (0, (A_descender*pt + metapolation * (B_descender*pt  - A_descender*pt )) - " + str(overdescval[i]) + ") - (0, A_over + metapolation * (B_over - A_over))" 
 
 
     if penshifted[i] <> "" :
@@ -2580,7 +2636,7 @@ if dir[i+1] <> "" :
 
 
 if overx[i+1] <> "" :
-      zeile = zeile + " shifted (0, (A_xheight*pt + metapolation * (B_xheightpt - A_xheight*pt)) - " + str(overxval[i+1]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
+      zeile = zeile + " shifted (0, (A_xheight*pt + metapolation * (B_xheight*pt - A_xheight*pt)) - " + str(overxval[i+1]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
 
 if overbase[i+1] <> "" :
       zeile = zeile + " shifted (0, - " + str(overbaseval[i+1]) + ") - (0, A_over + metapolation * (B_over - A_over))" 
@@ -2592,7 +2648,7 @@ if overasc[i+1] <> "" :
       zeile = zeile + " shifted (0, (A_ascender*pt + metapolation * (B_ascender*pt - A_ascender*pt )) - " + str(overascval[i+1]) + ") + (0, A_over + metapolation * (B_over - A_over))" 
 
 if overdesc[i+1] <> "" :
-      zeile = zeile + " shifted (0, (A_descenderpt + metapolation * (B_descenderpt  - A_descenderpt )) - " + str(overdescval[i+1]) + ") - (0, A_over + metapolation * (B_over - A_over))" 
+      zeile = zeile + " shifted (0, (A_descender*pt + metapolation * (B_descender*pt  - A_descender*pt )) - " + str(overdescval[i+1]) + ") - (0, A_over + metapolation * (B_over - A_over))" 
 
 
 

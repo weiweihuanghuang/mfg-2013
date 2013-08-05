@@ -1,7 +1,2 @@
 .DS_Store
-
-fonts/.DS_Store
-
-fonts/2/.DS_Store
-
-fonts/.DS_Store
+*.pyc

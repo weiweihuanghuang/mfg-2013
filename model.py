@@ -4,8 +4,7 @@ import codecs
 import os.path, time
 
 # db = web.database(dbn='mysql', db='blog', user='root', pw='' )
-#db = web.database(dbn='mysql', db='blog', user='wei', pw='' )
-db = web.database(dbn='mysql', db='blog', user='walter', pw='' )
+db = web.database(dbn='mysql', db='blog', user='wei', pw='' )
 
    
 def xxmlat(s, dbob, sattr, val, iro):
@@ -167,6 +166,10 @@ def putFont():
             xxmrlat( inum, s, 'overx')
             xxmrlat( inum, s, 'overbase')
             xxmrlat( inum, s, 'overcap')
+            xxmrlat( inum, s, 'overasc')
+            xxmrlat( inum, s, 'overdesc')
+            xxmrlat( inum, s, 'ascpoint')
+            xxmrlat( inum, s, 'descpoint')
             xxmrlat( inum, s, 'stemcutter')
             xxmrlat( inum, s, 'stemshift')
             xxmrlat( inum, s, 'inktrap_l')
@@ -727,12 +730,14 @@ def writexml():
                    xxmlat(s,db_rowpar[0].overx,'overx','',0)
                    xxmlat(s,db_rowpar[0].overbase,'overbase','',0)
                    xxmlat(s,db_rowpar[0].overcap,'overcap','',0)
+                   xxmlat(s,db_rowpar[0].overasc,'overasc','',0)
+                   xxmlat(s,db_rowpar[0].ascpoint,'ascpoint','1',0)
+                   xxmlat(s,db_rowpar[0].descpoint,'descpoint','1',0)
                    xxmlat(s,db_rowpar[0].stemcutter,'stemcutter','',4)
                    xxmlat(s,db_rowpar[0].stemshift,'stemshift','',4)
                    xxmlat(s,db_rowpar[0].inktrap_l,'inktrap_l','',4)
                    xxmlat(s,db_rowpar[0].inktrap_r,'inktrap_r','',4)
              else :
-
                    if s.hasAttribute('name') :
                       s.removeAttribute('name')
 #

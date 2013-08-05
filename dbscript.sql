@@ -57,6 +57,8 @@ CREATE TABLE glyphparam (
     overcap VARCHAR(10), 
     overasc VARCHAR(10), 
     overdesc VARCHAR(10), 
+    ascpoint INT, 
+    descpoint INT, 
     stemcutter float,
     stemshift float,
     inktrap_l float,
@@ -95,6 +97,8 @@ CREATE TABLE groupparam (
     overcap VARCHAR(10), 
     overasc VARCHAR(10), 
     overdesc VARCHAR(10), 
+    ascpoint INT, 
+    descpoint INT, 
     stemcutter float,
     stemshift float,
     inktrap_l float,
@@ -143,6 +147,7 @@ CREATE TABLE localparam (
 );
 insert into master (FontName,FontNameA,FontNameB,idglobal) Values ("Foxtail", "FoxtailA.ufo","FoxtailA.ufo",1);
 insert into master (FontName,FontNameA,FontNameB,idglobal) Values ("My First Metapolator Font", "GaramondSansA.ufo","GaramondSansB.ufo",2);
+insert into master (FontName,FontNameA,FontNameB,idglobal) Values ("Generic Sans", "SeanA.ufo","SeanB.ufo",3);
 insert into globalparam (idglobal,metapolation,unitwidth,fontsize) Values (1, 0.5,1,10);
 insert into globalparam (idglobal,metapolation,unitwidth,fontsize) Values (2, 0.5,1,10);
 insert into localparam (idlocal) values (1);

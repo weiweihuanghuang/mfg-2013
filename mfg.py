@@ -72,12 +72,12 @@ class Metap:
 #          we are working on font A
            cFont.idwork=id
 #
-           fontsource = [cFont.fontna,cFont.glyphName]
+           fontsource = [cFont.fontna]
         if id =='1':
 #          we are working on font B
            cFont.idwork=id
 #          
-           fontsource = [cFont.fontnb,cFont.glyphName]
+           fontsource = [cFont.fontnb]
 
         posts = model.get_posts()
         master = model.get_masters()
@@ -109,17 +109,18 @@ class View:
 
     formParam = web.form.Form(
         web.form.Dropdown('Param',
-            [('select','select'),('startp','startp'),('doubledash','doubledash'),('tripledash','tripledash'),('superleft','superleft'),('superright','superright'),('leftp','leftp'),('rightp','rightp'),('downp','downp'),('upp','upp'),('dir','dir'),('leftp2','leftp2'),('rightp2','rightp2'),('downp2','downp2'),('upp2','upp2'),('dir2','dir2'),('tension','tension'),('tensionand','tensionand'),('cycle','cycle'),('penshifted','penshifted'),('pointshifted','pointshifted'),('angle','angle'),('penwidth','penwidth'),('overx','overx'),('overbase','overbase'),('overcap','overcap'),('overasc','overasc'),('overdesc','overdesc'),('stemcutter','stemcutter'),('stemshift','stemshift'),('inktrap_l','inktrap_l'),('inktrap_r','inktrap_r')]), 
+            [('select','select'),('startp','startp'),('doubledash','doubledash'),('tripledash','tripledash'),('superleft','superleft'),('superright','superright'),('leftp','leftp'),('rightp','rightp'),('downp','downp'),('upp','upp'),('dir','dir'),('leftp2','leftp2'),('rightp2','rightp2'),('downp2','downp2'),('upp2','upp2'),('dir2','dir2'),('tension','tension'),('tensionand','tensionand'),('cycle','cycle'),('penshifted','penshifted'),('pointshifted','pointshifted'),('angle','angle'),('penwidth','penwidth'),('overx','overx'),('overbase','overbase'),('overcap','overcap'),('overasc','overasc'),('overdesc','overdesc'),('ascpoint','ascpoint'),('descpoint','descpoint'),('stemcutter','stemcutter'),('stemshift','stemshift'),('inktrap_l','inktrap_l'),('inktrap_r','inktrap_r')]), 
         web.form.Textbox('parmval',
             size=15, 
-            description="parmval"),
+            description="parmval",
+            id="parmvaltext"),
         web.form.Button('saveParam'), 
         )
 # and the same parameters for groups here:
 
     formParamG = web.form.Form(
         web.form.Dropdown('Group',
-            [('select','select'),('startp','startp'),('doubledash','doubledash'),('tripledash','tripledash'),('superleft','superleft'),('superright','superright'),('leftp','leftp'),('rightp','rightp'),('downp','downp'),('upp','upp'),('dir','dir'),('leftp2','leftp2'),('rightp2','rightp2'),('downp2','downp2'),('upp2','upp2'),('dir2','dir2'),('tension','tension'),('tensionand','tensionand'),('cycle','cycle'),('penshifted','penshifted'),('pointshifted','pointshifted'),('angle','angle'),('penwidth','penwidth'),('overx','overx'),('overbase','overbase'),('overcap','overcap'),('overasc','overasc'),('overdesc','overdesc'),('stemcutter','stemcutter'),('stemshift','stemshift'),('inktrap_l','inktrap_l'),('inktrap_r','inktrap_r')]), 
+            [('select','select'),('startp','startp'),('doubledash','doubledash'),('tripledash','tripledash'),('superleft','superleft'),('superright','superright'),('leftp','leftp'),('rightp','rightp'),('downp','downp'),('upp','upp'),('dir','dir'),('leftp2','leftp2'),('rightp2','rightp2'),('downp2','downp2'),('upp2','upp2'),('dir2','dir2'),('tension','tension'),('tensionand','tensionand'),('cycle','cycle'),('penshifted','penshifted'),('pointshifted','pointshifted'),('angle','angle'),('penwidth','penwidth'),('overx','overx'),('overbase','overbase'),('overcap','overcap'),('overasc','overasc'),('overdesc','overdesc'),('ascpoint','ascpoint'),('descpoint','descpoint'),('stemcutter','stemcutter'),('stemshift','stemshift'),('inktrap_l','inktrap_l'),('inktrap_r','inktrap_r')]), 
         web.form.Textbox('groupval',
             size=15, 
             description="groupval"),
