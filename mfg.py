@@ -67,19 +67,20 @@ class Metap:
 
     def GET (self,id):
         """ Show page """
-        cFont.idwork=id
-        posts = model.get_posts()
-        master = model.get_masters()
-#        fontsource = [cFont.fontna,cFont.fontnb,cFont.glyphName]
 
         if id =='0':
 #          we are working on font A
+           cFont.idwork=id
 #
-           fontsource = [cFont.fontna]
+           fontsource = [cFont.fontna,cFont.glyphName]
         if id =='1':
 #          we are working on font B
+           cFont.idwork=id
 #          
-           fontsource = [cFont.fontnb]
+           fontsource = [cFont.fontnb,cFont.glyphName]
+
+        posts = model.get_posts()
+        master = model.get_masters()
 
 	webglyph = cFont.glyphName
         return render.metap(posts,master,fontsource,webglyph)

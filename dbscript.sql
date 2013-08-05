@@ -21,6 +21,7 @@ CREATE TABLE glyphoutline (
     y integer, 
     contrp integer default 0,
     idmaster INT,
+    pip INT,
     vdate    TIMESTAMP default now(),
     primary key (idmaster,id,glyphName)
 );
