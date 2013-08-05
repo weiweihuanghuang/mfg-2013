@@ -721,8 +721,7 @@ def writexml():
                    xxmlat(s,db_rowpar[0].overasc,'overasc','',0)
                    xxmlat(s,db_rowpar[0].ascpoint,'ascpoint','1',0)
                    xxmlat(s,db_rowpar[0].descpoint,'descpoint','1',0)
-
-xxmlat(s,db_rowpar[0].stemcutter,'stemcutter','',4)
+                   xxmlat(s,db_rowpar[0].stemcutter,'stemcutter','',4)
                    xxmlat(s,db_rowpar[0].stemshift,'stemshift','',4)
                    xxmlat(s,db_rowpar[0].inktrap_l,'inktrap_l','',4)
                    xxmlat(s,db_rowpar[0].inktrap_r,'inktrap_r','',4)
