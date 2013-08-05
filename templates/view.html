@@ -201,9 +201,9 @@ $for mast in mastglobal:
 
 <p id="fonttitle">  
 $if cfont.idwork == '0' :
-       <span style="color:red;font-weight:bold;">A</span>&nbsp;&nbsp;$cfont.fontna&nbsp;&nbsp;'$webglyph'&nbsp;&nbsp;
+       <span style="color:red;font-weight:bold;">A</span>&nbsp;&nbsp;$cfont.fontna&nbsp;&nbsp;'$webglyph'&nbsp;&nbsp;<b>$glyphparam.PointName</b>
 $if cfont.idwork == '1' : 
-       <span style="color:red;font-weight:bold;">B</span>&nbsp;&nbsp;$cfont.fontnb&nbsp;&nbsp;'$webglyph'&nbsp;&nbsp;
+       <span style="color:red;font-weight:bold;">B</span>&nbsp;&nbsp;$cfont.fontnb&nbsp;&nbsp;'$webglyph'&nbsp;&nbsp;<b>$glyphparam.PointName</b>
 </p> 
 
 <p style="margin:10px 0;">
@@ -248,6 +248,7 @@ $if form.d.PointName > "0" :
 </p>
 <!-- add new parameters here: -->
 <p class="menuleftgreen" >
+  $if glyphparam != None :
     $if glyphparam.startp != None : 
        <a href="#" class="whitelink" onClick="selectparam('startp'); return false;">startp</a> <a href="javascript:;" class="copyparam">$glyphparam.startp</a><br>
     $if glyphparam.doubledash != None :
