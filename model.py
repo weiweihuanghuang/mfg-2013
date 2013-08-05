@@ -3,9 +3,7 @@ from xml.dom import minidom
 import codecs
 import os.path, time
 
-# db = web.database(dbn='mysql', db='blog', user='root', pw='' )
-db = web.database(dbn='mysql', db='blog', user='wei', pw='' )
-
+db = web.database(dbn='mysql', db='blog', user='root', pw='' )
    
 def xxmlat(s, dbob, sattr, val, iro):
 
@@ -888,7 +886,7 @@ def ufo2mf():
 
 def writeGlyphlist():
 
-  print "*** write glyphlist ***"
+  print "*** Run METAFONT ***"
   ifile=open(mfg.cFont.fontpath+"glyphlist.mf","w")
  
 
