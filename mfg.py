@@ -72,12 +72,12 @@ class Metap:
 #          we are working on font A
            cFont.idwork=id
 #
-           fontsource = [cFont.fontna,cFont.glyphName]
+           fontsource = [cFont.fontna]
         if id =='1':
 #          we are working on font B
            cFont.idwork=id
 #          
-           fontsource = [cFont.fontnb,cFont.glyphName]
+           fontsource = [cFont.fontnb]
 
         posts = model.get_posts()
         master = model.get_masters()
