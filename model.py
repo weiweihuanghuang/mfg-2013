@@ -876,7 +876,7 @@ def ufo2mf():
         filech2 = open(dirnamef2+"/"+ch1,'r')
         newfile,extension = ch1.split('.')
         newfilename=newfile+".mf"
-        commd2 = "python parser.py " +ch1 +" " +dirnamef1 +" " +dirnamef2 +" > " +dirnamep1 +"/" +newfilename
+        commd2 = "python ufo2mf.py " +ch1 +" " +dirnamef1 +" " +dirnamef2 +" > " +dirnamep1 +"/" +newfilename
         os.system(commd2)
       except :
         print "error",dirnamef1+"/"+ch1

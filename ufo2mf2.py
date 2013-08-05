@@ -34,7 +34,7 @@ if len(dirnamef1)>2 and len(dirnamef2)>2 and len(dirnamep1)>2 :
          os.system(commd1)
          newfile,extension = ch1.split('.')
          newfilename=newfile+".mf"
-         commd2 = "python parser.py " +ch1 +" " +dirnamef1 +" " +dirnamef2 +" > " +dirnamep1 +"/" +newfilename
+         commd2 = "python mtpparser.py " +ch1 +" " +dirnamef1 +" " +dirnamef2 +" > " +dirnamep1 +"/" +newfilename
          os.system(commd2)
        except : 
          print "error",dirnamef2+"/"+ch1
