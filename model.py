@@ -245,6 +245,13 @@ def get_post(id):
     except IndexError:
         return None
 
+def get_postspip():
+    glyphName = mfg.cFont.glyphunic 
+    idmaster = gidmast(mfg.cFont.idwork)
+    ids= " and idmaster="+'"'+str(idmaster)+'"'
+    q1="SELECT id,pip from glyphoutline where GlyphName="+'"'+glyphName+'"'
+    return list(db.query(q1+ids))
+
 def get_glyphparamid(glyphName, idmaster,nameval):
 
     ids= " and idmaster="+'"'+str(idmaster)+'"'
@@ -430,15 +437,20 @@ def insert_glyphparam(idp, a):
     
     glyphName = mfg.cFont.glyphunic 
     idmaster = gidmast(mfg.cFont.idwork)
-    ligl=get_posts()
-    listid=list(ligl.id)
-    listpip=list(ligl.pip)
-    for idpa in listid :
-      if idpa not in listpip :
+    ids= " and idmaster="+'"'+str(idmaster)+'"'
+    ligl=get_postspip()
+    piplist=[]
+    idlist=[]
+    for liid in ligl :
+      idlist.append (liid.id)
+      if liid.pip not in [] :
+         piplist.append (liid.pip)
+    for idpa in idlist :  
+      if idpa not in piplist : 
         print "insert glyphparam", idpa
-        idpar=idpa 
+        idpar=str(idpa) 
         break
-    db.update('glyphoutline', id=idp,GlyphName=glyphName, idmaster=idmaster, vars=locals(),
+    db.update('glyphoutline', where='id="'+str(idp)+'" and GlyphName="'+glyphName+'"'+ids, vars=locals(),
               pip=idpar)
     db.insert('glyphparam', id=idpar,GlyphName=glyphName, PointName=a, idmaster=idmaster)
     db.query("commit")
