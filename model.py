@@ -3,7 +3,14 @@ from xml.dom import minidom
 import codecs
 import os.path, time
 
+<<<<<<< HEAD
 db = web.database(dbn='mysql', db='blog', user='root', pw='' )
+=======
+# db = web.database(dbn='mysql', db='blog', user='root', pw='' )
+#db = web.database(dbn='mysql', db='blog', user='wei', pw='' )
+db = web.database(dbn='mysql', db='blog', user='walter', pw='' )
+
+>>>>>>> a6a0338... set names PointName to empty points
    
 def xxmlat(s, dbob, sattr, val, iro):
 
@@ -164,10 +171,6 @@ def putFont():
             xxmrlat( inum, s, 'overx')
             xxmrlat( inum, s, 'overbase')
             xxmrlat( inum, s, 'overcap')
-            xxmrlat( inum, s, 'overasc')
-            xxmrlat( inum, s, 'overdesc')
-            xxmrlat( inum, s, 'ascpoint')
-            xxmrlat( inum, s, 'descpoint')
             xxmrlat( inum, s, 'stemcutter')
             xxmrlat( inum, s, 'stemshift')
             xxmrlat( inum, s, 'inktrap_l')
@@ -245,6 +248,13 @@ def get_post(id):
         return db.select('vglyphoutline', where='id=$id and glyphName='+'"'+glyphName+'"' +ids, vars=locals())[0]
     except IndexError:
         return None
+
+def get_postspip():
+    glyphName = mfg.cFont.glyphunic 
+    idmaster = gidmast(mfg.cFont.idwork)
+    ids= " and idmaster="+'"'+str(idmaster)+'"'
+    q1="SELECT id,pip from glyphoutline where GlyphName="+'"'+glyphName+'"'
+    return list(db.query(q1+ids))
 
 def get_glyphparamid(glyphName, idmaster,nameval):
 
@@ -431,15 +441,20 @@ def insert_glyphparam(idp, a):
     
     glyphName = mfg.cFont.glyphunic 
     idmaster = gidmast(mfg.cFont.idwork)
-    ligl=get_posts()
-    listid=list(ligl.id)
-    listpip=list(ligl.pip)
-    for idpa in listid :
-      if idpa not in listpip :
+    ids= " and idmaster="+'"'+str(idmaster)+'"'
+    ligl=get_postspip()
+    piplist=[]
+    idlist=[]
+    for liid in ligl :
+      idlist.append (liid.id)
+      if liid.pip not in [] :
+         piplist.append (liid.pip)
+    for idpa in idlist :  
+      if idpa not in piplist : 
         print "insert glyphparam", idpa
-        idpar=idpa 
+        idpar=str(idpa) 
         break
-    db.update('glyphoutline', id=idp,GlyphName=glyphName, idmaster=idmaster, vars=locals(),
+    db.update('glyphoutline', where='id="'+str(idp)+'" and GlyphName="'+glyphName+'"'+ids, vars=locals(),
               pip=idpar)
     db.insert('glyphparam', id=idpar,GlyphName=glyphName, PointName=a, idmaster=idmaster)
     db.query("commit")
@@ -716,14 +731,12 @@ def writexml():
                    xxmlat(s,db_rowpar[0].overx,'overx','',0)
                    xxmlat(s,db_rowpar[0].overbase,'overbase','',0)
                    xxmlat(s,db_rowpar[0].overcap,'overcap','',0)
-                   xxmlat(s,db_rowpar[0].overasc,'overasc','',0)
-                   xxmlat(s,db_rowpar[0].ascpoint,'ascpoint','1',0)
-                   xxmlat(s,db_rowpar[0].descpoint,'descpoint','1',0)
                    xxmlat(s,db_rowpar[0].stemcutter,'stemcutter','',4)
                    xxmlat(s,db_rowpar[0].stemshift,'stemshift','',4)
                    xxmlat(s,db_rowpar[0].inktrap_l,'inktrap_l','',4)
                    xxmlat(s,db_rowpar[0].inktrap_r,'inktrap_r','',4)
              else :
+
                    if s.hasAttribute('name') :
                       s.removeAttribute('name')
 #
