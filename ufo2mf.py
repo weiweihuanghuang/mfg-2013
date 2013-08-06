@@ -1,3 +1,11 @@
+# Metapolator
+# Beta 0.1
+# © 2013 by Simon Egli, Walter Egli, Wei Huang 
+#
+# http://github.com/metapolator
+#
+# GPL v3 (http://www.gnu.org/copyleft/gpl.html). 
+
 from xml.dom import minidom
 import sys
 
@@ -9,7 +17,7 @@ charname = sys.argv[1]
 font_a =  dirnamef1 +"/"+charname 
 font_b =  dirnamef2 +"/"+charname 
 
-print """% File parsed with ufo2mf (UFO to Metafont) by Walter Egli, Simon Egli, Wei Huang  %
+print """% File parsed with Metapolator %
 
 % box dimension definition %
 """

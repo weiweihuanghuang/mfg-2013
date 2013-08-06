@@ -1,3 +1,11 @@
+# Metapolator
+# Beta 0.1
+# © 2013 by Simon Egli, Walter Egli, Wei Huang 
+#
+# http://github.com/metapolator
+#
+# GPL v3 (http://www.gnu.org/copyleft/gpl.html). 
+
 import web, datetime,mfg
 from xml.dom import minidom
 import codecs
