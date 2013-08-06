@@ -1,6 +1,6 @@
 # Metapolator
 # Beta 0.1
-# © 2013 by Simon Egli, Walter Egli, Wei Huang 
+# (c) 2013 by Simon Egli, Walter Egli, Wei Huang 
 #
 # http://github.com/metapolator
 #
