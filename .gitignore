@@ -4,5 +4,9 @@
 /font.log
 /font.afm
 /font.tfm
+<<<<<<< HEAD
 /fonts/1/glyphlist.mf
 /fonts/1/font.mf
+=======
+/fonts/1/glyphlist.mf
+>>>>>>> refs/heads/working
