@@ -1,19 +1,7 @@
-rm font.2602gf
-rm missfont.log
 rm font.log
-rm font.dvi
-rm font.otf
-rm font.ttf
 rm font.tfm
 rm font.pfb
 rm font.afm
-rm font.svg
-rm font.woff
-rm font.eot
-rm font.pdf
-rm font-webfont.eot
-rm font-webfont.woff
-rm font-webfont.ttf
 
 # mf font.mf
 
