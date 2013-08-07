@@ -104,9 +104,11 @@ $:form.render()
 </p>
 
 <p>
-loadoption [0]: default case, read parameters from the xml attributes <br>
-           [1]: read only cooridnates and apply parameters stored in the database, coresponding to the glyph, the fontA or fontB. <br>
-                 this is equivalent as an update in the xml-source happen not with the webinterface and with a newer timestamp as the database records.<br>
+loadoption <br>
+[0]: Load parameters and glyph outlines from the xml<br>
+[1]: Load only glyph outlines from xml for selected glyph (if timestamp is newer than databse)<br>
+[2]: Save parameters and glyph outlines from database to xml for all glyphs<br>
+[99]: Load parameters and glyph outlines from xml to database for all glyphs (currently only for selected glyph)<br>
 </p>
 <h2>glyphs</h2>
 <p><span class="button"><a href="/view/1">Edit Glyph</a></span></p>
