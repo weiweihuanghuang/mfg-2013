@@ -223,7 +223,11 @@ def putFontAllglyphs():
 #  and put the xml data into db using the rule applied in loadoption 
 #  only the fonts (xml file) will be read when the glifs are present in both fonts A and B
 # 
+# save the values for restore
   idworks = mfg.cFont.idwork
+  glyphnames = mfg.cFont.glyphName
+  glyphunics = mfg.cFont.glyphunic
+
   dirnamea = mfg.cFont.fontpath+mfg.cFont.fontna + "/glyphs/"
   dirnameb = mfg.cFont.fontpath+mfg.cFont.fontnb + "/glyphs/"
 
@@ -237,8 +241,12 @@ def putFontAllglyphs():
       mfg.cFont.glyphName = glyphName
       mfg.cFont.glyphunic = glyphName
       putFont ()
-#   save previous value back          
+#
+#   save previous values back          
   mfg.cFont.idwork = idworks 
+  mfg.cFont.glyphName = glyphnames
+  mfg.cFont.glyphunic = glyphunics
+
   return None  
 
 def gidmast(idwork):

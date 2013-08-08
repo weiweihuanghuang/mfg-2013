@@ -245,6 +245,9 @@ class Font1:
         web.form.Textbox('loadoption', web.form.notnull, 
             size=1,
             description="loadoption", value="0"),
+        web.form.Textbox('mfprocess', web.form.notnull, 
+            size=1,
+            description="mfprocess", value="0"),
 
         web.form.Button('savefont'),
         )
@@ -263,7 +266,7 @@ class Font1:
         fontlist.sort()
         form=self.form()
         form=Font1.form()
-        form.fill({'Name':fontname,'UFO_A':fontna,'UFO_B':fontnb,'GLYPH':cFont.glyphName,'loadoption':cFont.loadoption})
+        form.fill({'Name':fontname,'UFO_A':fontna,'UFO_B':fontnb,'GLYPH':cFont.glyphName,'loadoption':cFont.loadoption,'mfprocess':cFont.mfoption})
         return render.font1(fontlist,form,mmaster,cFont)
 
     def POST (self,id):
@@ -285,12 +288,12 @@ class Font1:
 #   mfoption = '1' all characters stored in DB will be written for the font 
 #   process
 #
-        if form.d.loadoption == 'mf0' :
+        if form.d.mfprocess == '0' :
            cFont.mfoption = '0'
-        if form.d.loadoption == 'mf1' :
+        if form.d.mfprocess == '1' :
            cFont.mfoption = '1'
-        else: 
-           cFont.loadoption = form.d.loadoption
+
+        cFont.loadoption = form.d.loadoption
 
         if int(id) > 0 and int(id) <1000:
            model.update_master(id)
