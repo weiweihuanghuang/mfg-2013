@@ -678,11 +678,17 @@ def copyproject ():
 
 
 def writexml():
+#
+#  write  two xml file for glyph in A and B Font
+#
 
-
-     glyphName = mfg.cFont.glyphunic 
+   glyphName = mfg.cFont.glyphunic 
+   idworks= mfg.cFont.idwork
+#  loop over "A and B" glyph
+   for idwork in ['0','1']:
+     mfg.cFont.idwork=idwork
      idmaster = gidmast(mfg.cFont.idwork)
-      
+
      if mfg.cFont.idwork == '0' :
         glyphsourceA  = mfg.cFont.fontpath+mfg.cFont.fontna + "/glyphs/"+glyphName+".glif"
         glyphsource = glyphsourceA
@@ -784,7 +790,10 @@ def writexml():
      if mfg.cFont.idwork == '1' :
         with codecs.open(glyphsource, "w", "utf-8") as out:
           xmldocB.writexml(out) 
-     return None
+
+#  restore current idwork setting
+   mfg.cFont.idwork=idworks
+   return None
 
 def get_activeglyph():
     glyphName = mfg.cFont.glyphunic 
@@ -796,20 +805,16 @@ def get_activeglyph():
 
 
 def writeallxmlfromdb():
-     print "**** in writeallxmlfromdb "
+
      idworks=mfg.cFont.idwork
-     for idwork in ['0','1']:
-        mfg.cFont.idwork = idwork
-        idmaster = mfg.cFont.idmaster
-        idmaster = gidmast(mfg.cFont.idwork)
-        ids= " idmaster="+'"'+str(idmaster)+'"'
-        alist=list(get_activeglyph())
-        for glyphn in alist :
+     alist=list(get_activeglyph())
+     for glyphn in alist :
           mfg.cFont.glyphunic = glyphn.glyphname
           mfg.cFont.glyphName = glyphn.glyphname
           writexml()
+#
+#    restore old idwork value
      mfg.cFont.idwork = idworks
-     mfg.cFont.loadoption = '0'
      return None
 
 def writeGlyphlist():
