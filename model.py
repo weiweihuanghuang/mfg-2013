@@ -41,93 +41,52 @@ def delFont(fontName,glyphNamel):
 
   return None
 
-def putFont():
+def putFontG( glyphName, glyphsource, idmaster ):
+
+#  Read one glyph from xml file with glif extension
+#  and put the data into db
+#  There is a loadoption with values:
 #
-#  put font A and font B into table
+#  loadoption '0' :  read data and put it in db when timestamp in xmlfile is newer than db
+#  loadoption '1' :  read only x-y coordinates independent of timestamp and use parameters stored in db
+#  loadoption '99':  read data and put it in db independent of timestamp
 #
-  idworks = mfg.cFont.idwork
-  mfg.cFont.fontpath="fonts/"+str(mfg.cFont.idmaster)+"/"
+    if idmaster > 0 :
+      mfg.cFont.idwork = '0'
+    if idmaster < 0 :
+      mfg.cFont.idwork = '1'
+
+    xmldoc = minidom.parse(glyphsource)
+
+    advance = xmldoc.getElementsByTagName('advance')
   
-  print mfg.cFont.glyphName
-  print mfg.cFont.glyphunic
-  global glyphsource
-  global glyphnameNew
-  global glyphName
-  glyphName = mfg.cFont.glyphunic 
-  glyphsourceA = mfg.cFont.fontpath+mfg.cFont.fontna + "/glyphs/"+glyphName+".glif"
-  glyphsourceB = mfg.cFont.fontpath+mfg.cFont.fontnb + "/glyphs/"+glyphName+".glif"
-  glyphnameNew = glyphName+".glif"
-  print glyphnameNew
-  print "lastmodifiedA: %s" % time.ctime(os.path.getmtime(glyphsourceA))
-  print "lastmodifiedB: %s" % time.ctime(os.path.getmtime(glyphsourceB))
-
-  global xmldocA
-  global xmldocB
-  global itemlistA
-  global itemlistB
-  try :
-     xmldocA = minidom.parse(glyphsourceA)
-     xmldocB = minidom.parse(glyphsourceB)
-  except :
-     print "not meier"
-     return None
-
-  advanceA = xmldocA.getElementsByTagName('advance')
-  advanceB = xmldocB.getElementsByTagName('advance')
-  
-  idmasterA = int(mfg.cFont.idmaster)
-  idmasterB = -idmasterA
-
-  idsA= " and idmaster="+'"'+str(idmasterA)+'"'
-  idsB= " and idmaster="+'"'+str(idmasterB)+'"'
+    ids= " and idmaster="+'"'+str(idmaster)+'"'
 #
 #  decide when to load new entries from xml file   
 #
-  dbqA= list(db.query("SELECT unix_timestamp(max(vdate)) vdate from glyphoutline where glyphname=glyphName" +idsA))
-  dbqB= list(db.query("SELECT unix_timestamp(max(vdate)) vdate from glyphoutline where glyphname=glyphName" +idsB))
-  dbqpA= list(db.query("SELECT unix_timestamp(max(vdate)) vdate from glyphparam where glyphname=glyphName"+idsA))
-  dbqpB= list(db.query("SELECT unix_timestamp(max(vdate)) vdate from glyphparam where glyphname=glyphName"+idsB))
+    dbq= list(db.query("SELECT unix_timestamp(max(vdate)) vdate from glyphoutline where glyphname=glyphName" +ids))
+    dbqp= list(db.query("SELECT unix_timestamp(max(vdate)) vdate from glyphparam where glyphname=glyphName"+ids))
+#
 # check if glyphoutline exists
-  for idmaster in [idmasterA, idmasterB] :
-    if idmaster == idmasterA:
-      mfg.cFont.idwork='0'
-      glyphsource = glyphsourceA
-      dbq = dbqA
-      if  dbqA[0].vdate == None :
+#
+    if dbq[0].vdate == None :
          vdatedb = 0
          vdatedbp = 0
-      else:
-         vdatedb=int(dbqA[0].vdate)
-         if dbqpA[0].vdate == None :
+    else:
+         vdatedb=int(dbq[0].vdate)
+         if dbqp[0].vdate == None :
             vdatedbp = 0
          else:
-            vdatedbp=int(dbqpA[0].vdate)
-      ids = idsA
-      itemlist = xmldocA.getElementsByTagName('point')
+            vdatedbp=int(dbqp[0].vdate)
+    itemlist = xmldoc.getElementsByTagName('point')
 
-    if idmaster == idmasterB:
-      mfg.cFont.idwork='1'
-      glyphsource = glyphsourceB
-      dbq = dbqB
-      if  dbqB[0].vdate == None :
-         vdatedb = 0
-         vdatedbp = 0
-      else:
-         vdatedb=int(dbqB[0].vdate)
-         if dbqpB[0].vdate == None :
-            vdatedbp = 0
-         else:
-            vdatedbp=int(dbqpB[0].vdate)
-      ids = idsB
-      itemlist = xmldocB.getElementsByTagName('point')
-
+    idel = 0
     if dbq:
       vdateos=int(os.path.getmtime(glyphsource))
-      idel =0 
-      if ( max(vdatedb,vdatedbp) < vdateos) and mfg.cFont.loadoption =='0' or mfg.cFont.loadoption =='99'  :
-        db.delete('glyphoutline', where='Glyphname="'+glyphName+'"'+ids )  
-        db.delete('glyphparam', where='Glyphname="'+glyphName+'"'+ids )  
-        idel=1
+      if ( max(vdatedb,vdatedbp) < vdateos)and mfg.cFont.loadoption =='0' or mfg.cFont.loadoption =='99'  :
+          db.delete('glyphoutline', where='Glyphname="'+glyphName+'"'+ids )  
+          db.delete('glyphparam', where='Glyphname="'+glyphName+'"'+ids )  
+          idel = 1
 
 # check if list is empty
     if not  list(db.select('glyphoutline', where='GlyphName="'+glyphName+'"'+ids )) or mfg.cFont.loadoption == '1' : 
@@ -137,7 +96,7 @@ def putFont():
       for s in itemlist :
         inum = inum+1
 #  find a named point , convention the name begin with the letter z
-        if mfg.cFont.loadoption == '0' or idel ==1:
+        if mfg.cFont.loadoption == '0' or idel == 1:
           if s.hasAttribute('name'): 
             im = s.attributes['name'] 
             iposa = im.value.find("z")
@@ -200,6 +159,10 @@ def putFont():
               strg= "insert into glyphoutline (GlyphName,PointNr,x,y,contrp,id,idmaster,pip) Values ("+'"'+glyphName+'"'+","+'"'+s.attributes['pointNo'].value+'"' + ","+ str(s.attributes['x'].value)+ "," + str(s.attributes['y'].value)+","+str(mainpoint)+","+str(inum)+","+str(idmaster)+","+str(idpar)+")"
           db.query(strg)
           db.query("commit") 
+#
+#  load option 1  read from xml files only x,y coordinates
+#  it could be the order of the records has been changed
+#
         if mfg.cFont.loadoption == '1' and idel <1:
           if s.hasAttribute('type') : 
               mainpoint = 1
@@ -217,9 +180,63 @@ def putFont():
                if ipose == -1 :
                  ipose=len(im.value) 
                  nameval = im.value[iposa:ipose]
+#    get the link pip to the parameter table
             pip=get_glyphparamid (glyphName, idmaster, nameval)
             update_postp(inum, s.attributes['x'].value, s.attributes['y'].value, pip)
 
+    return None
+
+
+def putFont():
+#
+#  create glypsource names
+#  create fontpath
+#  read font A and font B
+#  put font A and font B into DB according the loadoption rule 
+#  
+#
+  idworks = mfg.cFont.idwork
+  mfg.cFont.fontpath="fonts/"+str(mfg.cFont.idmaster)+"/"
+  
+  print mfg.cFont.glyphName, mfg.cFont.glyphunic
+  
+  glyphName = mfg.cFont.glyphunic 
+  glyphsourceA = mfg.cFont.fontpath+mfg.cFont.fontna + "/glyphs/"+glyphName+".glif"
+  glyphsourceB = mfg.cFont.fontpath+mfg.cFont.fontnb + "/glyphs/"+glyphName+".glif"
+  glyphnameNew = glyphName+".glif"
+
+  print glyphnameNew
+  print "lastmodifiedA: %s" % time.ctime(os.path.getmtime(glyphsourceA))
+  print "lastmodifiedB: %s" % time.ctime(os.path.getmtime(glyphsourceB))
+
+  idmaster = mfg.cFont.idmaster
+#
+  putFontG( glyphName, glyphsourceA, int(idmaster) )
+  putFontG( glyphName, glyphsourceB, -int(idmaster) )
+
+  mfg.cFont.idwork = idworks
+  return None  
+
+def putFontAllglyphs():
+#
+#  read all fonts (xml files with glif extension) in unix directory 
+#  and put the xml data into db using the rule applied in loadoption 
+#  only the fonts (xml file) will be read when the glifs are present in both fonts A and B
+# 
+  idworks = mfg.cFont.idwork
+  dirnamea = mfg.cFont.fontpath+mfg.cFont.fontna + "/glyphs/"
+  dirnameb = mfg.cFont.fontpath+mfg.cFont.fontnb + "/glyphs/"
+
+  charlista = [f for f in os.listdir(dirnamea) ]
+  charlistb = [f for f in os.listdir(dirnameb) ]
+
+  for ch1 in charlista and charlistb : 
+    fnb,ext=buildfname (ch1)
+    if ext in ["glif"] :
+      glyphName = fnb
+      mfg.cFont.glyphName = glyphName
+      mfg.cFont.glyphunic = glyphName
+      putFont ()
 #   save previous value back          
   mfg.cFont.idwork = idworks 
   return None  
@@ -888,7 +905,7 @@ def ufo2mf():
 
   for ch1 in charlist1: 
     fnb,ext=buildfname (ch1)
-    if ext in ["glif"] and ( fnb == mfg.cFont.glyphunic or mfg.cFont.timestamp == 0 ) :
+    if ext in ["glif"] and ( fnb == mfg.cFont.glyphunic or mfg.cFont.timestamp == 0 or mfg.cFont.mfoption == "1" ) :
 
       print "file",ch1
     
