@@ -11,23 +11,30 @@ from xml.dom import minidom
 import codecs
 import os.path, time
 
-db = web.database(dbn='mysql', db='blog', user='root', pw='' )
+db = web.database(dbn='mysql', db='blog', user='walter', pw='' )
    
 def xxmlat(s, dbob, sattr, val, iro):
 
    if str(dbob) != 'None' :
       if not s.hasAttribute(sattr) :
           s.setAttribute(sattr,"")
-
+#
+#  this are values with floating point number types
+#
       if val == '' :
-          s.attributes[sattr] = str(dbob)
-      else :
-          if iro > 0 :
-            s.attributes[sattr] = round(val,iro)
-          else :
-            s.attributes[sattr] = val
-         
+#  if a rounding number is set then round the value
+          if iro >0 :
+             s.attributes[sattr] = str(round(dbob,iro))
+          else:   
+             s.attributes[sattr] = str(dbob)
+#
+#  in this case we will set the fixed value into xml
+      else : 
+          s.attributes[sattr] = val
+           
    else :
+#  in this case we look if the attribute is already set in the xml
+#  then we remove it
       if s.hasAttribute(sattr) :
           s.removeAttribute(sattr)
 
@@ -233,14 +240,14 @@ def putFontAllglyphs():
 
   charlista = [f for f in os.listdir(dirnamea) ]
   charlistb = [f for f in os.listdir(dirnameb) ]
-
-  for ch1 in charlista and charlistb : 
-    fnb,ext=buildfname (ch1)
-    if ext in ["glif"] :
-      glyphName = fnb
-      mfg.cFont.glyphName = glyphName
-      mfg.cFont.glyphunic = glyphName
-      putFont ()
+  for ch1 in charlista : 
+    if ch1 in charlistb :
+      fnb,ext=buildfname (ch1)
+      if ext in ["glif"] :
+        glyphName = fnb
+        mfg.cFont.glyphName = glyphName
+        mfg.cFont.glyphunic = glyphName
+        putFont ()
 #
 #   save previous values back          
   mfg.cFont.idwork = idworks 
@@ -682,11 +689,9 @@ def writexml():
 #  write  two xml file for glyph in A and B Font
 #
 
-   glyphName = mfg.cFont.glyphunic 
-   idworks= mfg.cFont.idwork
-#  loop over "A and B" glyph
-   for idwork in ['0','1']:
-     mfg.cFont.idwork=idwork
+     glyphName = mfg.cFont.glyphunic 
+     idworks= mfg.cFont.idwork
+
      idmaster = gidmast(mfg.cFont.idwork)
 
      if mfg.cFont.idwork == '0' :
@@ -723,6 +728,7 @@ def writexml():
                       s.attributes['name']=nameattr
                    else :
                       s.setAttribute('name',nameattr)
+                      s.toxml()
 #
 #     first read group parameters
 #                 
@@ -735,7 +741,8 @@ def writexml():
                         s.attributes['groupname']=groupname
                      else :
                         s.setAttribute('groupname',groupname)
-
+                        s.toxml()
+#
 #     get the parameter list included with group parameters (lower priority)
                      qstrp = "SELECT * from vgls where id="+str(inum) +" and Glyphname="+'"'+glyphName+'"'+ids
                      db_rowpar = list(db.query(qstrp))
@@ -792,8 +799,8 @@ def writexml():
           xmldocB.writexml(out) 
 
 #  restore current idwork setting
-   mfg.cFont.idwork=idworks
-   return None
+     mfg.cFont.idwork=idworks
+     return None
 
 def get_activeglyph():
     glyphName = mfg.cFont.glyphunic 
@@ -806,12 +813,29 @@ def get_activeglyph():
 
 def writeallxmlfromdb():
 
+     dirnamea = mfg.cFont.fontpath+mfg.cFont.fontna + "/glyphs/"
+     dirnameb = mfg.cFont.fontpath+mfg.cFont.fontnb + "/glyphs/"
+
+     charlista = [f for f in os.listdir(dirnamea) if fnextension(f) == 'glif']
+     charlistb = [f for f in os.listdir(dirnameb) if fnextension(f) == 'glif']
+
+
      idworks=mfg.cFont.idwork
      alist=list(get_activeglyph())
-     for glyphn in alist :
-          mfg.cFont.glyphunic = glyphn.glyphname
-          mfg.cFont.glyphName = glyphn.glyphname
-          writexml()
+     aalist=[]
+     for g in alist :
+       aalist.append(g.glyphname)
+#
+     for ch1 in charlista :
+       if ch1 in charlistb :
+         glyphname,exte = buildfname(ch1)
+         if glyphname in aalist:
+            mfg.cFont.glyphunic = glyphname
+            mfg.cFont.glyphName = glyphname
+#   for A and B font
+            for iwork in ['0','1']:
+               mfg.cFont.idwork = iwork
+               writexml()
 #
 #    restore old idwork value
      mfg.cFont.idwork = idworks
@@ -907,34 +931,34 @@ def buildfname ( filename ):
            basename=""
     return [basename,extension]
 
+def fnextension ( filename ):
+    try :
+      basename,extension = filename.split('.')
+    except :
+           extension="garbage"
+           basename=""
+    return extension
+
 def ufo2mf():
-  print "************",mfg.cFont.fontpath
+
+  print "ufo2mf",mfg.cFont.fontpath
   dirnamef1 = mfg.cFont.fontpath+mfg.cFont.fontna+"/glyphs"
   dirnamef2 = mfg.cFont.fontpath+mfg.cFont.fontnb+"/glyphs"
   dirnamep1 = mfg.cFont.fontpath+"glyphs"
  
-  charlist1 = [f for f in os.listdir(dirnamef1) ]
-  charlist2 = [f for f in os.listdir(dirnamef2) ]
+  charlist1 = [f for f in os.listdir(dirnamef1) if fnextension (f) == 'glif']
+  charlist2 = [f for f in os.listdir(dirnamef2) if fnextension (f) == 'glif']
 
   for ch1 in charlist1: 
-    fnb,ext=buildfname (ch1)
-    if ext in ["glif"] and ( fnb == mfg.cFont.glyphunic or mfg.cFont.timestamp == 0 or mfg.cFont.mfoption == "1" ) :
-
-      print "file",ch1
-    
-      try :
-        filech1 = open(dirnamef1+"/"+ch1,'r')
-        filech2 = open(dirnamef2+"/"+ch1,'r')
-        newfile,extension = ch1.split('.')
-        newfilename=newfile+".mf"
-        commd2 = "python ufo2mf.py " +ch1 +" " +dirnamef1 +" " +dirnamef2 +" > " +dirnamep1 +"/" +newfilename
-        os.system(commd2)
-      except :
-        print "error",dirnamef1+"/"+ch1
-        print "error",dirnamef2+"/"+ch1
-      continue
+    if ch1 in charlist2:
+      fnb,ext=buildfname (ch1)
+      if ( fnb == mfg.cFont.glyphunic or mfg.cFont.timestamp == 0 or mfg.cFont.mfoption == "1" ) :
+          newfile = fnb
+          newfilename=newfile+".mf"
+          commd2 = "python parser_pino_mono.py " +ch1 +" " +dirnamef1 +" " +dirnamef2 +" > " +dirnamep1 +"/" +newfilename
+          os.system(commd2)
   
-  mfg.cFont.timestamp=1
+  mfg.cFont.timestamp = 1
   return None
 
 def writeGlyphlist():
