@@ -11,7 +11,7 @@ from xml.dom import minidom
 import codecs
 import os.path, time
 
-db = web.database(dbn='mysql', db='blog', user='walter', pw='' )
+db = web.database(dbn='mysql', db='blog', user='root', pw='' )
    
 def xxmlat(s, dbob, sattr, val, iro):
 
@@ -267,7 +267,7 @@ def get_posts():
     idmaster = gidmast(mfg.cFont.idwork)
     glyphName = mfg.cFont.glyphunic 
     ids= " and idmaster="+'"'+str(idmaster)+'"'
-    q1="SELECT IFNULL(PointName, '') PointNr,x,y,concat('position:absolute;left:',0+x,'px;top:',0-y,'px; ',IF (PointName > '', 'color:black;', IF (contrp > 0 , 'z-index:1;color:blue;', 'z-index:1;color:CCFFFF;')) ) position, id from vglyphoutline where GlyphName="+'"'+glyphName+'"'
+    q1="SELECT IFNULL(PointName, '') PointNr,x,y,concat('position:absolute;left:',0+x,'px;top:',0-y,'px; ',IF (PointName > '', 'color:black;', IF (contrp > 0 , 'z-index:1;color:blue;', 'z-index:0;color:CCFFFF;')) ) position, id from vglyphoutline where GlyphName="+'"'+glyphName+'"'
     return list(db.query(q1+ids ))
 
 def get_postspa():
@@ -955,7 +955,7 @@ def ufo2mf():
       if ( fnb == mfg.cFont.glyphunic or mfg.cFont.timestamp == 0 or mfg.cFont.mfoption == "1" ) :
           newfile = fnb
           newfilename=newfile+".mf"
-          commd2 = "python parser_pino_mono.py " +ch1 +" " +dirnamef1 +" " +dirnamef2 +" > " +dirnamep1 +"/" +newfilename
+          commd2 = "python ufo2mf.py " +ch1 +" " +dirnamef1 +" " +dirnamef2 +" > " +dirnamep1 +"/" +newfilename
           os.system(commd2)
   
   mfg.cFont.timestamp = 1
