@@ -10,6 +10,7 @@ import web, datetime,mfg
 from xml.dom import minidom
 import codecs
 import os.path, time
+import xmltomf
 
 db = web.database(dbn='mysql', db='blog', user='root', pw='' )
    
@@ -24,7 +25,7 @@ def xxmlat(s, dbob, sattr, val, iro):
       if val == '' :
 #  if a rounding number is set then round the value
           if iro >0 :
-             s.attributes[sattr] = str(round(dbob,iro))
+             s.attributes[sattr] = str(round(float(dbob),iro))
           else:   
              s.attributes[sattr] = str(dbob)
 #
@@ -955,8 +956,9 @@ def ufo2mf():
       if ( fnb == mfg.cFont.glyphunic or mfg.cFont.timestamp == 0 or mfg.cFont.mfoption == "1" ) :
           newfile = fnb
           newfilename=newfile+".mf"
-          commd2 = "python ufo2mf.py " +ch1 +" " +dirnamef1 +" " +dirnamef2 +" > " +dirnamep1 +"/" +newfilename
-          os.system(commd2)
+#          commd2 = "python parser_pino_mono.py " +ch1 +" " +dirnamef1 +" " +dirnamef2 +" > " +dirnamep1 +"/" +newfilename
+#          os.system(commd2)
+          xmltomf.xmltomf1( ch1, dirnamef1, dirnamef2, dirnamep1, newfilename )
   
   mfg.cFont.timestamp = 1
   return None
