@@ -18,6 +18,7 @@ def  xmltomf1( charname, dirnamef1, dirnamef2, dirnamep1, newfilename ) :
 
 	fip=open(dirnamep1+"/"+newfilename, "w")
 
+	fip.write("\n")
 	fip.write( """% File parsed with Metapolator %
 
 % box dimension definition %
@@ -43,6 +44,7 @@ def  xmltomf1( charname, dirnamef1, dirnamef2, dirnamep1, newfilename ) :
 
 
 
+	fip.write("\n")
 	fip.write( 'beginfontchar(' + g + ', ((' + w + '*A_width + metapolation * (' + w2 + '*B_width - ' + w + '*A_width)) + spacing_' + g + "R) * width_" +  g  + ", 0, 0 );")
 	# fip.write( """if known ps_output:
 	# glyph_name "uni""" + u + """"; 
@@ -51,6 +53,7 @@ def  xmltomf1( charname, dirnamef1, dirnamef2, dirnamep1, newfilename ) :
 
 	# reading l and r as pxl and pxr font A
 
+	fip.write("\n")
 	fip.write( """ 
 % point coordinates font A
 """)
@@ -78,8 +81,10 @@ def  xmltomf1( charname, dirnamef1, dirnamef2, dirnamep1, newfilename ) :
 	     if ipn == 1 :
 	       if im.value.find(znamer)>-1 or im.value.find(znamel)>-1: 
 		 if im.value.find(znamer)>-1 :
+		   fip.write("\n")
 		   fip.write( "px" + znamer[1:] + " := " + x + "u ; "   +  "py"+ znamer[1:] + " := " + y + "u ;"  ) 
 		 if im.value.find(znamel)>-1 :
+		   fip.write("\n")
 		   fip.write( "px" + znamel[1:] + " := " + x + "u ; "   +  "py"+ znamel[1:] + " := " + y + "u ;"   )
 
 
@@ -89,6 +94,7 @@ def  xmltomf1( charname, dirnamef1, dirnamef2, dirnamep1, newfilename ) :
 	glif = minidom.parse(font_a)
 	itemlist = glif.getElementsByTagName('point') 
 
+	fip.write("\n")
 	fip.write( """
 % reading mid points font A
 """ )
@@ -113,7 +119,9 @@ def  xmltomf1( charname, dirnamef1, dirnamef2, dirnamep1, newfilename ) :
 	       if im.value.find(znamer)>-1 or im.value.find(znamel)>-1: 
 		 if im.value.find(znamer)>-1 :
 		
+			fip.write("\n")
 			fip.write( ".5(px"+ znamel[1:] + " + px" + znamer[1:] + ") = x2" + zname[1:-1] +"0;"  ) 
+			fip.write("\n")
 			fip.write( ".5(py"+ znamel[1:] + " + py" + znamer[1:] + ") = y2" + zname[1:-1] +"0;"   )
 
 
@@ -147,7 +155,9 @@ def  xmltomf1( charname, dirnamef1, dirnamef2, dirnamep1, newfilename ) :
 	       if im.value.find(znamer)>-1 or im.value.find(znamel)>-1: 
 		 if im.value.find(znamer)>-1 :
 
+			fip.write("\n")
 			fip.write( "px"+ znamel[1:] + " = x"+ znamel[1:-1] + "Bl; py"+ znamel[1:] + " = y"+ znamel[1:-1] + "Bl; ") 
+			fip.write("\n")
 			fip.write( "px"+ znamer[1:] + " = x"+ znamer[1:-1] + "Br; py"+ znamer[1:] + " = y"+ znamer[1:-1] + "Br; " )
 
 
@@ -157,6 +167,7 @@ def  xmltomf1( charname, dirnamef1, dirnamef2, dirnamep1, newfilename ) :
 	glif = minidom.parse(font_a)
 	itemlist = glif.getElementsByTagName('point') 
 
+	fip.write("\n")
 	fip.write( """
 % pen width
 """) 
@@ -182,10 +193,12 @@ def  xmltomf1( charname, dirnamef1, dirnamef2, dirnamep1, newfilename ) :
 	       if im.value.find(znamer)>-1 or im.value.find(znamel)>-1: 
 		 if im.value.find(znamer)>-1 :
 
+			fip.write("\n")
 			fip.write( "dist"+ znamel[1:-1] + " := length (z"+ znamel[1:-1] + "Bl-" + "z"+ znamel[1:-1] + "Br) ;" )
 
 	# reading l and r as ppxl and ppxr font B
 
+	fip.write("\n")
 	fip.write( """ 
 % point coordinates font B
 """)
@@ -216,8 +229,10 @@ def  xmltomf1( charname, dirnamef1, dirnamef2, dirnamep1, newfilename ) :
 	     if ipn == 1 :
 	       if im.value.find(znamer)>-1 or im.value.find(znamel)>-1: 
 		 if im.value.find(znamer)>-1 :
+		   fip.write("\n")
 		   fip.write( "ppx" + znamer[1:] + " := " + x + "u ; "   +  "ppy"+ znamer[1:] + " := " + y + "u ;"   )
 		 if im.value.find(znamel)>-1 :
+		   fip.write("\n")
 		   fip.write( "ppx" + znamel[1:] + " := " + x + "u ; "   +  "ppy"+ znamel[1:] + " := " + y + "u ;"   )
 
 
@@ -228,6 +243,7 @@ def  xmltomf1( charname, dirnamef1, dirnamef2, dirnamep1, newfilename ) :
 	glif = minidom.parse(font_b)
 	itemlist = glif.getElementsByTagName('point') 
 
+	fip.write("\n")
 	fip.write( """
 % reading mid points font B
 """ )
@@ -253,7 +269,9 @@ def  xmltomf1( charname, dirnamef1, dirnamef2, dirnamep1, newfilename ) :
 	       if im.value.find(znamer)>-1 or im.value.find(znamel)>-1: 
 		 if im.value.find(znamer)>-1 :
 
+			fip.write("\n")
 			fip.write( ".5(ppx"+ znamel[1:] + " + ppx" + znamer[1:] + ") = x2" + zname[1:-1] +"A;" )  
+			fip.write("\n")
 			fip.write( ".5(ppy"+ znamel[1:] + " + ppy" + znamer[1:] + ") = y2" + zname[1:-1] +"A;"  ) 
 
 
@@ -286,9 +304,10 @@ def  xmltomf1( charname, dirnamef1, dirnamef2, dirnamep1, newfilename ) :
 	    
 	     if ipn == 1 :
 	       if im.value.find(znamer)>-1 or im.value.find(znamel)>-1: 
-		 if im.value.find(znamer)>-1 :
-		 
+		 if im.value.find(znamer)>-1 :		 
+			fip.write("\n")
 			fip.write( "ppx"+ znamel[1:] + " = x"+ znamel[1:-1] + "Cl; ppy"+ znamel[1:] + " = y"+ znamel[1:-1] + "Cl; " )
+			fip.write("\n")
 			fip.write( "ppx"+ znamer[1:] + " = x"+ znamer[1:-1] + "Cr; ppy"+ znamer[1:] + " = y"+ znamer[1:-1] + "Cr; " )
 
 
@@ -300,6 +319,7 @@ def  xmltomf1( charname, dirnamef1, dirnamef2, dirnamep1, newfilename ) :
 	glif = minidom.parse(font_b)
 	itemlist = glif.getElementsByTagName('point') 
 
+	fip.write("\n")
 	fip.write( """
 % pen width Font B
 """ )
@@ -325,6 +345,7 @@ def  xmltomf1( charname, dirnamef1, dirnamef2, dirnamep1, newfilename ) :
 	       if im.value.find(znamer)>-1 or im.value.find(znamel)>-1: 
 		 if im.value.find(znamer)>-1 :
 
+			fip.write("\n")
 			fip.write( "dist"+ znamel[1:-1] + "B := length (z"+ znamel[1:-1] + "Cl-" + "z"+ znamel[1:-1] + "Cr) ;" )
 			
 
@@ -337,6 +358,7 @@ def  xmltomf1( charname, dirnamef1, dirnamef2, dirnamep1, newfilename ) :
 	glif = minidom.parse(font_a)
 	itemlist = glif.getElementsByTagName('point') 
 
+	fip.write("\n")
 	fip.write( """
 % pen angle Font A
 """ )
@@ -362,11 +384,13 @@ def  xmltomf1( charname, dirnamef1, dirnamef2, dirnamep1, newfilename ) :
 	       if im.value.find(znamer)>-1 or im.value.find(znamel)>-1: 
 		 if im.value.find(znamer)>-1 :
 
+			fip.write("\n")
 			fip.write( "ang"+ znamel[1:-1] + " := angle((" + znamel[0:-1] + "Br + (metapolation * (" + znamel[0:-1] + "Cr -" + znamel[0:-1] + "Br))) - (" + znamel[0:-1] + "Bl + (metapolation * (" + znamel[0:-1] + "Cl -" + znamel[0:-1] + "Bl))));" )
 
 
 # reading extra pen angle Font B 
 
+	fip.write("\n")
 	fip.write( """
 % test extra pen angle
 """ )
@@ -463,6 +487,7 @@ def  xmltomf1( charname, dirnamef1, dirnamef2, dirnamep1, newfilename ) :
 
 	# reading extra pen angle 
 
+	fip.write("\n")
 	fip.write( """
 % test extra pen angle
 """ )
@@ -587,6 +612,7 @@ def  xmltomf1( charname, dirnamef1, dirnamef2, dirnamep1, newfilename ) :
 	  else :
 	     zeile = zeile + "ang" + str(zitem) + " := ang" + str(zitem) + ";"
 	  zeile = zeile
+	  fip.write("\n")
 	  fip.write( zeile)
 	  
 
@@ -737,6 +763,7 @@ def  xmltomf1( charname, dirnamef1, dirnamef2, dirnamep1, newfilename ) :
 		
 # reading font Pen Positions Font A
 
+	fip.write("\n")
 	fip.write( """
 
 % test new penpos
@@ -918,6 +945,7 @@ def  xmltomf1( charname, dirnamef1, dirnamef2, dirnamep1, newfilename ) :
 	  else: 
 	    zeile = zeile 
 	  zeile = zeile + ", ang" +str(zitem) + ");"
+	  fip.write("\n")
 	  fip.write( zeile)
 
 #zeile = zeileend + semi
@@ -925,6 +953,7 @@ def  xmltomf1( charname, dirnamef1, dirnamef2, dirnamep1, newfilename ) :
 #fip.write( zeile)
 # reading font Pen strokes
 
+	fip.write("\n")
 	fip.write( """
 % test new center (z) points
 """ )
@@ -1336,6 +1365,7 @@ def  xmltomf1( charname, dirnamef1, dirnamef2, dirnamep1, newfilename ) :
 	  else: 
 	     zeile = zeile 
 	  zeile = zeile + semi 
+	  fip.write("\n")
 	  fip.write( zeile)
 
 #zeile = zeileend + semi
@@ -1683,6 +1713,7 @@ def  xmltomf1( charname, dirnamef1, dirnamef2, dirnamep1, newfilename ) :
 
 
 
+	fip.write("\n")
 	fip.write( """
 % penstrokes
 """)
@@ -2564,6 +2595,7 @@ def  xmltomf1( charname, dirnamef1, dirnamef2, dirnamep1, newfilename ) :
 
 	    
 	    zeile = zeile + semi 
+	  fip.write("\n")
 	  fip.write( zeile )
 
 # parameters after final point ( +1 after i )
@@ -2652,10 +2684,13 @@ def  xmltomf1( charname, dirnamef1, dirnamef2, dirnamep1, newfilename ) :
 
 # fip.write( closing z point )
 
+	fip.write("\n")
 	fip.write( zeile ) 
+	fip.write("\n")
 	fip.write( semi )
 
 
+	fip.write("\n")
 	fip.write( """
 % pen labels
 penlabels(range 1 thru 99);
