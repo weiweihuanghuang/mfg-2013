@@ -50,6 +50,9 @@ def  xmltomf1( charname, dirnamef1, dirnamef2, dirnamep1, newfilename ) :
 	# fi
 	# """
 
+	fip.write("\n")
+	fip.write("currenttransform := identity slanted slant;")
+
 	# reading l and r as pxl and pxr font A
 
 	fip.write("\n")
