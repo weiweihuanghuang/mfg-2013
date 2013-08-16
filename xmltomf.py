@@ -18,7 +18,6 @@ def  xmltomf1( charname, dirnamef1, dirnamef2, dirnamep1, newfilename ) :
 
 	fip=open(dirnamep1+"/"+newfilename, "w")
 
-	fip.write("\n")
 	fip.write( """% File parsed with Metapolator %
 
 % box dimension definition %
